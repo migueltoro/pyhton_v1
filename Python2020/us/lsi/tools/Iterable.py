@@ -26,7 +26,7 @@ def limit(iterable,n):
         s = zip(iterable,range(n))
         return (x for x,_ in s)
     
-def flatMap(iterable):
+def flat_map(iterable):
         return (y for x in iterable for y in x)
     
 def joining(iterable,tostring=str,separator='\n',prefix='',suffix=''):
@@ -34,4 +34,4 @@ def joining(iterable,tostring=str,separator='\n',prefix='',suffix=''):
     
 
 if __name__ == '__main__':
-    pass
+    print(str_iterable(flat_map([[0,1],[2,3,4],[5,6],[9]])))
