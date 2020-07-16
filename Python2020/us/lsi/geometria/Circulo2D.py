@@ -7,6 +7,7 @@ Created on 16 jul. 2020
 from math import pi 
 from dataclasses import dataclass
 from us.lsi.geometria.Punto2D import Punto2D
+from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.tools import Preconditions
 
 @dataclass(frozen=True,order=True)
@@ -26,6 +27,24 @@ class Circulo2D:
     @property
     def perimetro(self) :
         return 2*pi*self.radio
+        
+    def rota(self, p, angulo) :        
+        return Circulo2D.of(self.centro.rota(p,angulo), self.radio)
+    
+    def traslada(self, v) :
+        return Circulo2D.of(self.centro.traslada(v),self.radio)
+        
+    def homotecia(self, p, factor) :
+        return Circulo2D.of(self.centro.homotecia(p,factor), self.radio*factor)
+    
+    def proyecta_sobre_recta(self, r) :
+        c = self.centro.proyectaSobre(r)
+        u = r.vector.unitario()
+        return Segmento2D.of_puntos(c.add_vector(u.multiply(self.radio)),c.add_vector(u.multiply(-self.radio)))
+    
+    def simetrico(self, r) :
+        return Circulo2D.of(self.centro.simetrico(r), self.radio)
+    
 
 if __name__ == '__main__':
     pass

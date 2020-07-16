@@ -20,7 +20,7 @@ class Vector2D:
     
     @staticmethod
     def of_puntos(p1,p2):
-        return p1.minus_punto(p2)
+        return p2.minus_punto(p1)
     
     @staticmethod
     def parse(text):
