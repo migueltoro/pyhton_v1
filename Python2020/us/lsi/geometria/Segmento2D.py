@@ -17,6 +17,9 @@ class Segmento2D:
     def of_puntos(p1,p2):
         return Segmento2D(p1,p2)
     
+    def __str__(self):
+        return '({0},{1})'.format(str(self.p1),str(self.p2))
+    
     @property
     def copy(self):
         return Segmento2D(self.p1,self.p2)

@@ -20,6 +20,9 @@ class Circulo2D:
         Preconditions.checkArgument(radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}',radio)
         return Circulo2D(centro, radio)
     
+    def __str__(self):
+        return '({0},{1:.2f})'.format(str(self.centro),self.radio)
+    
     @property
     def area(self) :
         return pi*self.radio*self.radio

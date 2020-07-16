@@ -47,6 +47,9 @@ class Poligono2D:
         p2 = Punto2D.of(x_max, y_max)
         p3 = Punto2D.of(x_min, y_max)
         return Poligono2D([p0,p1,p2,p3])
+    
+    def __str__(self):
+        return '({0})'.format(','.join(str(p) for p in self.vertices))
            
     @property
     def copy(self):

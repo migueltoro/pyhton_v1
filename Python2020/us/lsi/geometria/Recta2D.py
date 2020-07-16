@@ -22,6 +22,9 @@ class Recta2D:
     def of_puntos(p1,p2):
         return Recta2D(p1,p2.minus_punto(p1))
     
+    def __str__(self):
+        return '({0},{1})'.format(str(self.punto),str(self.vector))
+    
     def punto(self,factor = 0.):
         return self.punto.add_vector(self.vector.multiply(factor))
     
