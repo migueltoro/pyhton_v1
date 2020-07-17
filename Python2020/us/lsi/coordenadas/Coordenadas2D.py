@@ -12,6 +12,10 @@ class Coordenadas2D:
         return Coordenadas2D(latitude,longitude)
         
     
+    # a = sin^2(inclat/2) + cos(lat1) * cos(lat2) * sin^2(inclong/2)
+    # d = R * 2 * atan2(sqrt(a),sqrt(1-a))
+
+    
     def distance(self, other):  
         radio_tierra = 6373.0
         latitud_a, longitud_a = radians(self.latitude), radians(self.longitude)
