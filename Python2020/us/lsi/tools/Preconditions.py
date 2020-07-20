@@ -4,12 +4,16 @@ Created on 15 jul. 2020
 @author: migueltoro
 '''
 
+from typing import TypeVar
+
+E = TypeVar('E')
+
 '''
 * Checks that the boolean is true. Use for validating arguments to methods.
 * @param message A message
 * @param condition A condition
 '''
-def checkArgument(condition,message=None):    
+def checkArgument(condition:bool,message=None):    
     if(not condition):
         raise Exception(message)
 
@@ -18,7 +22,7 @@ def checkArgument(condition,message=None):
 * @param message Mensaje a imprimir
 * @param condition A condition
 '''
-def checkState(condition,message):
+def checkState(condition:bool,message=None):
     if(not condition):
         raise Exception(message)
        
@@ -30,7 +34,7 @@ reference Parametro a comprobar
 El parametro a comprobar
 '''
    
-def checkNotNull(reference):
+def checkNotNull(reference:E):
     if(not reference):
         raise Exception("Es nulo %s".format(reference))
     return reference
@@ -44,7 +48,7 @@ def checkNotNull(reference):
 * @return Index El indice del elemento
 '''
    
-def checkElementIndex(index,size):
+def checkElementIndex(index:int,size:int):
     if(not (index>=0 and index<size)):
         raise Exception("Index = %d, size %d".format(index,size))
     return index
@@ -57,7 +61,7 @@ def checkElementIndex(index,size):
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
-def checkPositionIndex(index,size):
+def checkPositionIndex(index:int,size:int):
     if(not (index>=0 and index<=size)):
         raise Exception("Index = %d, size %d".format(index,size))
     return index

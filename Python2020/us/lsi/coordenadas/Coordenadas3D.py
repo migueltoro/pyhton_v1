@@ -7,7 +7,9 @@ Created on Jun 5, 2019
 from math import sqrt
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D 
 from dataclasses import dataclass, asdict, astuple
+from typing import TypeVar
 
+Coordenadas3D = TypeVar('Coordenadas3D')
 
 @dataclass(frozen=True,order=True)
 class Coordenadas3D:
@@ -16,22 +18,22 @@ class Coordenadas3D:
     altitude: float
     
     @staticmethod
-    def of(latitude,longitude,altitude):
+    def of(latitude:float,longitude:float,altitude:float) -> Coordenadas3D:
         return Coordenadas3D(latitude,longitude,altitude)
     
     @property
-    def to2D(self):
+    def to2D(self:Coordenadas3D) -> Coordenadas2D:
         return Coordenadas2D(self.latitude,self.longitude)
         
           
-    def distance(self,other): 
+    def distance(self:Coordenadas3D,other:Coordenadas3D) -> float: 
         c1 = self.to2D
         c2 = other.to2D
         d_2d = c1.distance(c2)
         inc_alt = self.altitude-other.altitude
         return sqrt(inc_alt**2 + d_2d**2)
         
-    def __str__(self):
+    def __str__(self:Coordenadas3D) -> str:
         return '({0:>20},{1:>20},{2:>20})'.format(self.latitude,self.longitude,self.altitude)
     
 

@@ -7,10 +7,10 @@ Created on 15 jul. 2020
 from datetime import datetime
 from datetime import timedelta
 
-def parse_date(s,ft = "%d/%m/%Y"):
+def parse_date(s:str,ft = "%d/%m/%Y") -> datetime:
     return datetime.strptime(s, ft).date()
 
-def str_date(s,ft = "%d/%m/%Y"):
+def str_date(s:datetime,ft = "%d/%m/%Y") -> str:
     return datetime.strftime(s, ft)
 
 if __name__ == '__main__':

@@ -5,8 +5,12 @@ Created on 16 jul. 2020
 '''
 
 from dataclasses import dataclass
-from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Punto2D import Punto2D
+from us.lsi.geometria.Vector2D import Vector2D
+from us.lsi.geometria.Recta2D import Recta2D
+from typing import TypeVar
+
+Segmento2D = TypeVar('Segmento2D')
 
 @dataclass(frozen=True,order=True)
 class Segmento2D:
@@ -14,45 +18,38 @@ class Segmento2D:
     p2: Punto2D
       
     @staticmethod
-    def of_puntos(p1,p2):
+    def of_puntos(p1:Punto2D,p2:Punto2D) -> Segmento2D:
         return Segmento2D(p1,p2)
     
     def __str__(self):
         return '({0},{1})'.format(str(self.p1),str(self.p2))
     
     @property
-    def copy(self):
+    def copy(self) -> Segmento2D:
         return Segmento2D(self.p1,self.p2)
     
     @property
-    def vector(self) :
-        return Vector2D.of_puntos(self.p1,self.p2)
+    def vector(self) -> Vector2D:
+        return Punto2D.vector_of_puntos(self.p1,self.p2)
     
     @property
-    def longitud(self) :        
+    def longitud(self) -> float:        
         return self.p1.distancia_a(self.p2)
 
-    
-    @property
-    def rota(self,p,angulo):
-        return Segmento2D.of_puntos(self.p1.rota(p,angulo),self.p2.rota(p,angulo))
+    def rota(self,p:Punto2D,angulo) -> Segmento2D:
+        return Segmento2D.vector_of_puntos(self.p1.rota(p,angulo),self.p2.rota(p,angulo))
 
-    @property
-    def traslada(self, v):
-        return Segmento2D.of_puntos(self.p1.traslada(v), self.p2.traslada(v))
+    def traslada(self, v:Vector2D) -> Segmento2D:
+        return Segmento2D.vector_of_puntos(self.p1.traslada(v), self.p2.traslada(v))
     
-    @property
-    def homotecia(self, p, factor) :
+    def homotecia(self, p:Punto2D, factor) -> Segmento2D:
         return Segmento2D.of(self.p1.homotecia(p,factor), self.p2.homotecia(p,factor))
     
-    @property
-    def proyecta_sobre_recta(self,r) :
+    def proyecta_sobre_recta(self,r:Recta2D) -> Segmento2D:
         return Segmento2D.of(self.p1.proyecta_sobre_recta(r), self.p2.proyecta_sobre_recta(r))
     
-    @property
-    def simetrico(self,r) :
-        return Segmento2D.of(self.p1.simetrico(r), self.p2.simetrico(r))
-    
+    def simetrico(self,r:Recta2D) -> Segmento2D:
+        return Segmento2D.of(self.p1.simetrico(r), self.p2.simetrico(r))    
 
 if __name__ == '__main__':
-    pass
+    print(Segmento2D.of_puntos(Punto2D.of(1., 1.),Punto2D.of(-1., -1.)))

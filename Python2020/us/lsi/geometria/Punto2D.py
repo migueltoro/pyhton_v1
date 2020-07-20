@@ -8,6 +8,9 @@ from math import sqrt
 from dataclasses import dataclass
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
+from typing import TypeVar
+
+Punto2D = TypeVar('Punto2D')
 
 @dataclass(frozen=True,order=True)
 class Punto2D:
@@ -15,32 +18,32 @@ class Punto2D:
     y: float
     
     @staticmethod
-    def origen():
+    def origen() -> Punto2D:
         return Punto2D(0.,0.)   
       
     @staticmethod
-    def of(x,y):
+    def of(x:float,y:float) -> Punto2D:
         return Punto2D(x,y)
     
     @staticmethod
-    def parse(linea):
+    def parse(linea:str) -> Punto2D:
         x,y = linea.split(',')
         return Punto2D(float(x),float(y))
     
+    @staticmethod
+    def vector_of_puntos(p1:Punto2D,p2:Punto2D) -> Vector2D:
+        return p2.minus_punto(p1)
+    
     @property
-    def copy(self):
+    def copy(self: Punto2D) ->  Punto2D:
         return Punto2D(self.x,self.y)
     
     @property
-    def distancia_al_origen(self):
+    def distancia_al_origen(self: Punto2D) -> float:
         return self.distancia_a(Punto2D.origen())
-    
+      
     @property
-    def as_vector(self):
-        return Vector2D.of_xy(self.x,self.y)
-    
-    @property
-    def cuadrante(self):
+    def cuadrante(self) -> Cuadrante:
         if self.x >=0 and self.y >= 0 :
             c = Cuadrante.PRIMERO;
         elif self.x <=0 and self.y >=0 :
@@ -51,38 +54,38 @@ class Punto2D:
             c = Cuadrante.CUARTO
         return c;
     
-    def distancia_a(self,p):
+    def distancia_a(self,p:Punto2D) -> float:
         dx = self.x-p.x;
         dy = self.y-p.y
         return sqrt(dx*dx+dy*dy);
     
-    def add_vector(self,v):
+    def add_vector(self,v:Vector2D) -> Punto2D:
         return Punto2D.of(self.x+v.x,self.y+v.y)
     
-    def minus_vector(self,v):
+    def minus_vector(self,v:Vector2D) -> Punto2D:
         return Punto2D.of(self.x-v.x,self.y-v.y)
     
-    def minus_punto(self,p):
+    def minus_punto(self,p:Punto2D) -> Vector2D:
         return Vector2D.of_xy(self.x-p.x,self.y-p.y)
     
-    def traslada(self,v):
+    def traslada(self,v:Vector2D) ->Punto2D:
         return self.add_vector(v)
     
-    def rota(self, p, angulo):
+    def rota(self, p:Punto2D, angulo:float) -> Punto2D:
         v = self.minus_punto(p).rota(angulo)
         return p.add(v)      
     
-    def homotecia(self,p,factor):
-        return p.add_vector(Vector2D.of_puntos(self,p).multiply(factor))
+    def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
+        return p.add_vector(Punto2D.vector_of_puntos(self,p).multiply(factor))
     
-    def proyecta_sobre_recta(self,r):       
+    def proyecta_sobre_recta(self,r) -> 'Punto2D':       
         return r.punto().add(self.minus(r.punto().proyectaSobre(r.getVector())))
     
-    def simetrico_con_respecto_a_recta(self,r):
+    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> 'Punto2D':
         p = self.proyecta_sobre_recta(r)
         return p.vector().multiply(2.).minus(self.vector()).punto()
     
-    def __str__(self):
+    def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
 
 if __name__ == '__main__':

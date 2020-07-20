@@ -1,6 +1,9 @@
 from math import sin, cos, sqrt, atan2, radians
 from dataclasses import dataclass, asdict, astuple
 from us.lsi.tools.Iterable import average
+from typing import TypeVar,List
+
+Coordenadas2D = TypeVar('Coordenadas2D')
 
 @dataclass(frozen=True,order=True)
 class Coordenadas2D:
@@ -8,7 +11,7 @@ class Coordenadas2D:
     longitude: float
       
     @staticmethod
-    def of(latitude,longitude):
+    def of(latitude:float,longitude:float) -> Coordenadas2D:
         return Coordenadas2D(latitude,longitude)
         
     
@@ -16,7 +19,7 @@ class Coordenadas2D:
     # d = R * 2 * atan2(sqrt(a),sqrt(1-a))
 
     
-    def distance(self, other):  
+    def distance(self:Coordenadas2D, other:Coordenadas2D) -> float:  
         radio_tierra = 6373.0
         latitud_a, longitud_a = radians(self.latitude), radians(self.longitude)
         latitud_b, longitud_b = radians(other.latitude), radians(other.longitude)    
@@ -28,17 +31,17 @@ class Coordenadas2D:
         return radio_tierra * c
     
     
-    def esCercana(self, c, d):
+    def esCercana(self:Coordenadas2D, c:Coordenadas2D, d:float) -> bool:
         return self.distance(c) <= d
     
     @staticmethod
-    def center(coordenadas): 
+    def center(coordenadas:List[Coordenadas2D]) -> Coordenadas2D: 
         averageLat = average(x.latitude for x in coordenadas)
         averageLng = average(x.longitude for x in coordenadas)
         return Coordenadas2D.of(averageLat,averageLng)
     
     
-    def __str__(self):
+    def __str__(self:Coordenadas2D) -> str:
         return '({0},{1})'.format(self.latitude,self.longitude)
        
 
