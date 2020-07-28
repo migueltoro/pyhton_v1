@@ -5,6 +5,7 @@ Created on 19 jul. 2020
 '''
 
 from typing import TypeVar
+from optional import Optional
 
 
 E = TypeVar('E')
@@ -12,6 +13,11 @@ E = TypeVar('E')
 def identity(e:E) -> E:
     return e
 
+def optional(e:E) -> Optional:
+    if e is None:
+        return Optional.empty()
+    else:
+        return Optional.of(e)
 
 if __name__ == '__main__':
-    pass
+    print(optional(3).get())

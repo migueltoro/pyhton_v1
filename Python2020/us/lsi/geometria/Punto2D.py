@@ -4,16 +4,17 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-from math import sqrt
+from math import sqrt, pi
 from dataclasses import dataclass
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
+from us.lsi.geometria.Objeto2D import Objeto2D
 from typing import TypeVar
 
 Punto2D = TypeVar('Punto2D')
 
 @dataclass(frozen=True,order=True)
-class Punto2D:
+class Punto2D(Objeto2D):
     x: float
     y: float
     
@@ -73,15 +74,15 @@ class Punto2D:
     
     def rota(self, p:Punto2D, angulo:float) -> Punto2D:
         v = self.minus_punto(p).rota(angulo)
-        return p.add(v)      
+        return p.add_vector(v)      
     
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
         return p.add_vector(Punto2D.vector_of_puntos(self,p).multiply(factor))
     
-    def proyecta_sobre_recta(self,r) -> 'Punto2D':       
+    def proyecta_sobre_recta(self,r) -> Punto2D:       
         return r.punto().add(self.minus(r.punto().proyectaSobre(r.getVector())))
     
-    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> 'Punto2D':
+    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return p.vector().multiply(2.).minus(self.vector()).punto()
     
@@ -93,3 +94,5 @@ if __name__ == '__main__':
     print(p)
     print(p.cuadrante)
     print(p.distancia_al_origen)
+    print(p.minus_punto(Punto2D.of(1., 5.)))
+    print(p.rota(Punto2D.origen(),pi/2))

@@ -11,13 +11,14 @@ from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Recta2D import Recta2D
+from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from typing import List, TypeVar, Set
 
 Poligono2D = TypeVar('Poligono2D')
 
 @dataclass(frozen=True,order=True)
-class Poligono2D:
+class Poligono2D(Objeto2D):
     vertices: List[Punto2D]
       
     @staticmethod
@@ -59,7 +60,7 @@ class Poligono2D:
         return '({0})'.format(','.join(str(p) for p in self.vertices))
            
     @property
-    def copy(self) -> 'Poligono2D':
+    def copy(self) -> Poligono2D:
         return Poligono2D(self.vertices)
     
     @property
@@ -100,7 +101,7 @@ class Poligono2D:
     def proyecta_sobre_recta(self,r:Recta2D) -> Set[Punto2D]:
         return {x.proyecta_sobre_recta(r) for x in self.vertices}
     
-    def simetrico(self, r:Recta2D) -> Poligono2D:
+    def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:
         return Poligono2D.of_vertices([x.simetrico(r) for x in self.vertices])
 
 if __name__ == '__main__':

@@ -7,7 +7,6 @@ Created on 17 jul. 2020
 from typing import Iterator, Tuple, Union
 from math import pi,sqrt
 from us.lsi.tools import Preconditions
-from us.lsi.tools.Iterable import Number
 
 ComplexFloat = Union[float,complex]
 StrFloat = Union[float,str]
@@ -21,14 +20,14 @@ def longitud_circunferencia(radio:float) -> float:
     return 2*pi*radio
 
 #media = sum(x)/n
-def media(iterable:Iterator[Number]) -> float:
+def media(iterable:Iterator[Union[int,float]]) -> float:
     a = (0.,0) #(sum x, num elem)
     for e in iterable:
         a = (a[0]+e,a[1]+1)
     return a[0]/a[1]  
 
 # desv = sqrt(sum(x^2)/n-(sum(x)/n)^2)
-def deviacion_tipica(iterable:Iterator[Number]) -> float:
+def deviacion_tipica(iterable:Iterator[Union[int,float]]) -> float:
     a = (0.,0.,0)  #(sum x^2, sum x, num elem)
     for e in iterable:
         a = (a[0]+e*e,a[1]+e,a[2]+1)

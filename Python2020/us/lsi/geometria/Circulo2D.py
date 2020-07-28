@@ -10,6 +10,7 @@ from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Recta2D import Recta2D
+from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from typing import TypeVar
@@ -17,7 +18,7 @@ from typing import TypeVar
 Circulo2D = TypeVar('Circulo2D')
 
 @dataclass(frozen=True,order=True)
-class Circulo2D:
+class Circulo2D(Objeto2D):
     centro: Punto2D
     radio:float
 
@@ -52,7 +53,7 @@ class Circulo2D:
         u = r.vector.unitario()
         return Segmento2D.of_puntos(c.add_vector(u.multiply(self.radio)),c.add_vector(u.multiply(-self.radio)))
     
-    def simetrico(self, r: Recta2D) -> Circulo2D:
+    def simetrico_con_respecto_a_recta(self, r: Recta2D) -> Circulo2D:
         return Circulo2D.of(self.centro.simetrico(r), self.radio)
     
 

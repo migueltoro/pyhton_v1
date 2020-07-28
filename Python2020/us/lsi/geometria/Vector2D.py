@@ -4,7 +4,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-from math import sin, cos, radians, atan2, degrees
+from math import sin, cos, radians, atan2, degrees, sqrt
 from dataclasses import dataclass
 from us.lsi.tools import Preconditions
 from typing import TypeVar
@@ -27,17 +27,17 @@ class Vector2D:
     
     @staticmethod
     def of_grados(modulo:float,angulo:float) -> Vector2D:
-        Preconditions.checkArgument(modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:%.2f}'.format(modulo))
+        Preconditions.checkArgument(modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
         return Vector2D.of_radianes(modulo,radians(angulo))
     
     @staticmethod
     def of_radianes(modulo:float, angulo:float)-> Vector2D:
-        Preconditions.checkArgument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:%.2f}'.format(modulo))
+        Preconditions.checkArgument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
         return Vector2D.of_xy(modulo*cos(angulo),modulo*sin(angulo))       
     
     @property
     def modulo(self) -> float:
-        return self.x+self.x+self.y*self.y
+        return sqrt(self.x*self.x+self.y*self.y)
     
     @property
     def angulo(self) -> float:

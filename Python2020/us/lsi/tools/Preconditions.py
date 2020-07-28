@@ -36,7 +36,7 @@ El parametro a comprobar
    
 def checkNotNull(reference:E):
     if(not reference):
-        raise Exception("Es nulo %s".format(reference))
+        raise Exception("Es nulo {0:s}".format(reference))
     return reference
         
 '''
@@ -50,7 +50,7 @@ def checkNotNull(reference:E):
    
 def checkElementIndex(index:int,size:int):
     if(not (index>=0 and index<size)):
-        raise Exception("Index = %d, size %d".format(index,size))
+        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
     return index
     
 '''
@@ -63,9 +63,10 @@ def checkElementIndex(index:int,size:int):
 '''
 def checkPositionIndex(index:int,size:int):
     if(not (index>=0 and index<=size)):
-        raise Exception("Index = %d, size %d".format(index,size))
+        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
     return index
     
 
 if __name__ == '__main__':
-    pass
+    print("Index = {0:d}, size {1:d}".format(5,4))
+    checkPositionIndex(5,4)   
