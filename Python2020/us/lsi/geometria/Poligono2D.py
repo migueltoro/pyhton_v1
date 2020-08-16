@@ -5,7 +5,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-from __future__ import annotations
+
 from math import pi
 from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D

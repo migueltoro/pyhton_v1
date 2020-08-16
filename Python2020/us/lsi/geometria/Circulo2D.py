@@ -4,7 +4,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-from __future__ import annotations
+
 from math import pi 
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Segmento2D import Segmento2D

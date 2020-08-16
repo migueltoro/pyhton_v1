@@ -3,13 +3,14 @@ Created on 26 jul. 2020
 
 @author: migueltoro
 '''
+
 from dataclasses import dataclass
 from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas
 from us.lsi.tools.Functions import identity
 from us.lsi.tools.Iterable import str_iterable, grouping_list, grouping, flat_map
-from us.lsi.whatsapp.PalabraDeUsuario import UsuarioPalabra
+from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
 from datetime import date
 import re
 from us.lsi.tools import Graphics
@@ -161,7 +162,7 @@ class Conversacion:
     def numero_de_palabras_por_resto_de_usuarios(self) -> Dict[str,int]:
         return grouping(self.frecuencia_de_palabras_por_resto_de_usuarios.items(),fkey=lambda e:e[0].usuario,op=lambda x,e: x+e[1],a0=0)
     
-    def importancia_de_palabra(self,usuario:str,palabra:int) -> float:
+    def importancia_de_palabra(self,usuario:str,palabra:str) -> float:
         return (self.frecuencia_de_palabras_por_usuario[UsuarioPalabra.of(usuario,palabra)] \
                 / self.numero_de_palabras_por_usuario[usuario]) * \
                 (self.numero_de_palabras_por_resto_de_usuarios[usuario] \
@@ -175,7 +176,7 @@ class Conversacion:
         r5 = ((e[0].palabra,self.importancia_de_palabra(e[0].usuario,e[0].palabra)) for e in r4)
         return {e[0]:e[1] for e in r5}
     
-    def diagrama_de_barras_mensajes_por_dia_de_semana(self,file_out): 
+    def diagrama_de_barras_mensajes_por_dia_de_semana(self,file_out:str) -> None: 
         ls = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
         ls.sort(key=lambda e:e[0])    
         nombres_columna = [week_days[x[0]] for x in ls]       
@@ -183,7 +184,7 @@ class Conversacion:
         nombres_datos = ['DiaDeSemana','NumeroDeMensajes']       
         Graphics.columnsBarChart(file_out, "MensajesPorDiaDeSemana", nombres_datos,nombres_columna, datos)
         
-    def diagrama_de_tarta_mensajes_por_dia_de_semana(self,file_out): 
+    def diagrama_de_tarta_mensajes_por_dia_de_semana(self,file_out:str) -> None: 
         ls = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
         ls.sort(key=lambda e:e[0])    
         nombres_columna = [week_days[x[0]] for x in ls]       

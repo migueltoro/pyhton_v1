@@ -4,6 +4,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
+
 from math import sqrt, pi
 from dataclasses import dataclass
 from us.lsi.geometria.Cuadrante import Cuadrante
