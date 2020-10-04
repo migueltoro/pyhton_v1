@@ -4,7 +4,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-from math import sin, cos, radians, atan2, degrees, sqrt
+from math import sin, cos, radians, atan2, degrees, sqrt, acos
 from dataclasses import dataclass
 from us.lsi.tools import Preconditions
 from typing import TypeVar
@@ -71,11 +71,14 @@ class Vector2D:
     def multiply_double(self,factor:float)-> Vector2D:
         return Vector2D.of_xy(self.x*factor,self.y*factor)
     
-    def multiplica_vectorial_2d(self,v:Vector2D) -> float:
+    def multiply_vectorial_2d(self,v:Vector2D) -> float:
         return self.x*v.y-self.y*v.x
     
-    def multiplica_escalar(self,v:Vector2D) -> float:
+    def multiply_escalar(self,v:Vector2D) -> float:
         return self.x*v.x+self.y*v.y
+    
+    def angulo_con(self,v:Vector2D) -> float:
+        return acos(self.multiply_escalar(v) / (self.modulo * v.modulo))
     
     def __str__(self)->str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
@@ -85,4 +88,9 @@ if __name__ == '__main__':
     print(v)
     print(v.modulo)
     print(degrees(v.angulo))
+    print(v.ortogonal)
+    print(degrees(v.angulo_con(v.ortogonal)))
+    
+    
+    
     
