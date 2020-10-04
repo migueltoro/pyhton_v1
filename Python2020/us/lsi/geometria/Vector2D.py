@@ -90,7 +90,9 @@ if __name__ == '__main__':
     print(degrees(v.angulo))
     print(v.ortogonal)
     print(degrees(v.angulo_con(v.ortogonal)))
-    
+    v2 = Vector2D.of_xy(1.,0.)
+    v3 = Vector2D.of_xy(0.,1.)
+    print(v2.multiply_vectorial_2d(v3))
     
     
     

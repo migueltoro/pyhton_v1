@@ -32,7 +32,7 @@ class Punto2D(Objeto2D):
         return Punto2D(float(x),float(y))
     
     @staticmethod
-    def vector_of_puntos(p1:Punto2D,p2:Punto2D) -> Vector2D:
+    def of_puntos(p1:Punto2D,p2:Punto2D) -> Vector2D:
         return p2.minus_punto(p1)
     
     @property
@@ -77,7 +77,7 @@ class Punto2D(Objeto2D):
         return p.add_vector(v)      
     
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
-        return p.add_vector(Punto2D.vector_of_puntos(self,p).multiply(factor))
+        return p.add_vector(Punto2D.of_puntos(self,p).multiply(factor))
     
     def proyecta_sobre_recta(self,r) -> Punto2D:       
         return r.punto().add(self.minus(r.punto().proyectaSobre(r.getVector())))

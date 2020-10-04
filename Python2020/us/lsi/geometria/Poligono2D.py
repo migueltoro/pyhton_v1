@@ -44,8 +44,8 @@ class Poligono2D(Objeto2D):
     @staticmethod
     def rectangulo(p:Punto2D, base:Vector2D, altura:float) -> Poligono2D:
         p1 = p.add_vector(base)
-        p2 = p.add_vector(base).add(base.ortogonal.multiply(altura))
-        p3 = p.add_vector(base.rota(pi/2).unitario.multiply(altura))
+        p2 = p.add_vector(base).add_vector(base.ortogonal.multiply_double(altura))
+        p3 = p.add_vector(base.rota(pi/2).unitario.multiply_double(altura))
         return Poligono2D([p,p1,p2,p3])
     
     @staticmethod
@@ -65,8 +65,8 @@ class Poligono2D(Objeto2D):
     
     @property
     def area(self) -> float:
-        n = self.getNumeroDeVertices();
-        area = sum(self.diagonal(0,i).multiplica_vectorial(self.diagonal(i,i+1)) for i in range(1,n-1))
+        n = self.numero_de_vertices
+        area = sum(self.diagonal(0,i).multiply_vectorial_2d(self.diagonal(i,i+1)) for i in range(1,n-1))
         return area/2   
     
     @property
@@ -76,18 +76,18 @@ class Poligono2D(Objeto2D):
     def vertice(self,i)-> Punto2D:
         n = self.numero_de_vertices
         Preconditions.checkElementIndex(i, n)
-        return self.vertices
+        return self.vertices[i]
     
     def lado(self,i:int) -> Vector2D:
         n = self.numero_de_vertices
         Preconditions.checkElementIndex(i, n);
-        return Punto2D.vector_of_puntos(self.vertice(i),self.vertice((i+1)%n))
+        return Punto2D.of(self.vertice(i),self.vertice((i+1)%n))
     
     def diagonal(self,i:int,j:int) -> Vector2D:
         n = self.numero_de_vertices
         Preconditions.checkElementIndex(i, n);
         Preconditions.checkElementIndex(j, n);
-        return Punto2D.vector_of_puntos(self.vertices(i),self.vertices(j))
+        return Punto2D.of(self.vertice(i),self.vertice(j))
     
     def rota(self, p:Punto2D, angulo:float) -> Poligono2D:
         return Poligono2D.of_vertices([x.rota(p,angulo) for x in self.vertices])
@@ -109,3 +109,8 @@ if __name__ == '__main__':
     pol = Poligono2D.cuadrado(Punto2D.origen(),v)
     print(pol)
     print(pol.rota(Punto2D.of(1.,1.), pi/2))
+    print(pol.area)
+    r = Poligono2D.rectangulo(Punto2D.of(1.,1.),v,2.)
+    print(r)
+    print("{0:.2f}".format(r.area))
+    

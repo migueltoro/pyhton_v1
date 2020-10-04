@@ -17,7 +17,7 @@ from us.lsi.geometria.Segmento2D import Segmento2D
 
 Agregado2D = TypeVar('Agregado2D')
 
-@dataclass(frozen=True,order=True)
+@dataclass(frozen=True)
 class Agregado2D(Objeto2D):
     objetos: List[Objeto2D]
     

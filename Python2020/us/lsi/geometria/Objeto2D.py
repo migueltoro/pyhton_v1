@@ -5,32 +5,34 @@ Created on 21 jul. 2020
 '''
 
 from typing import TypeVar
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from abc import abstractmethod
 
 Objeto2D = TypeVar('Objeto2D')
+Punto2D = TypeVar('Punto2D')
+Vector2D = TypeVar('Vector2D')
+Recta2D = TypeVar('Recta2D')
 
-@dataclass(frozen=True,order=True)
-class Objeto2D(ABC):
+
+class Objeto2D:
     
     @abstractmethod
-    def rota(self, p, angulo) -> Objeto2D:        
+    def rota(self, p:Punto2D, angulo:float) -> Objeto2D:        
         pass
     
     @abstractmethod
-    def traslada(self, v) -> Objeto2D:
+    def traslada(self, v:Vector2D) -> Objeto2D:
         pass
     
     @abstractmethod    
-    def homotecia(self, p, factor) -> Objeto2D:
+    def homotecia(self, p:Punto2D, factor:float) -> Objeto2D:
         pass
     
     @abstractmethod
-    def proyecta_sobre_recta(self, r) -> Objeto2D:
+    def proyecta_sobre_recta(self, r:Recta2D) -> Objeto2D:
         pass
     
     @abstractmethod
-    def simetrico_con_respecto_a_recta(self, r) -> Objeto2D:
+    def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Objeto2D:
         pass
 
 if __name__ == '__main__':

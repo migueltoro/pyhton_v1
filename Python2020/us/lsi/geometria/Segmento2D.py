@@ -31,10 +31,10 @@ class Segmento2D(Objeto2D):
     
     @property
     def vector(self) -> Vector2D:
-        return Punto2D.vector_of_puntos(self.p1,self.p2)
+        return Punto2D.of_puntos(self.p1,self.p2)
     
     @property
-    def longitud(self) -> float:        
+    def modulo(self) -> float:        
         return self.p1.distancia_a(self.p2)
 
     def rota(self,p:Punto2D,angulo) -> Segmento2D:

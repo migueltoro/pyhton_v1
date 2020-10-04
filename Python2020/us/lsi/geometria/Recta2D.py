@@ -17,11 +17,11 @@ class Recta2D:
     vector: Vector2D
      
     @staticmethod
-    def of_punto_vector(p:Punto2D,v:Vector2D) -> Recta2D:
+    def of(p:Punto2D,v:Vector2D) -> Recta2D:
         return Recta2D(p,v)
     
     @staticmethod
-    def vector_of_puntos(p1:Punto2D,p2:Punto2D) -> Recta2D:
+    def of_puntos(p1:Punto2D,p2:Punto2D) -> Recta2D:
         return Recta2D(p1,p2.minus_punto(p1))
     
     def __str__(self) -> str:
@@ -31,13 +31,13 @@ class Recta2D:
         return self.punto.add_vector(self.vector.multiply(factor))
     
     def paralela(self,p:Punto2D) -> Recta2D:
-        return Recta2D.of_punto_vector(p,self.vector)
+        return Recta2D.of(p,self.vector)
     
     def ortogonal(self,p:Punto2D) -> Recta2D:
-        return Recta2D.of_punto_vector(p,self.vector.ortogonal)
+        return Recta2D.of(p,self.vector.ortogonal)
 
 if __name__ == '__main__':
     p1 = Punto2D.origen()
     p2 = Punto2D.of(1., 1.)
-    r = Recta2D.vector_of_puntos(p1, p2)
+    r = Recta2D.of_puntos(p1, p2)
     print(r)
