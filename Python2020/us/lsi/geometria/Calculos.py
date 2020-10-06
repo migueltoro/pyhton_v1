@@ -7,10 +7,7 @@ Created on 17 jul. 2020
 from typing import Iterator, Tuple, Union
 from math import pi,sqrt
 from us.lsi.tools import Preconditions
-from statistics import mean, stdev
-
-ComplexFloat = Union[float,complex]
-StrFloat = Union[float,str]
+from statistics import mean, stdev, quantiles
 
 def area_circulo(radio:float) -> float:
     Preconditions.checkArgument(radio>=0,'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
@@ -68,4 +65,4 @@ if __name__ == '__main__':
     print(stdev(cuadrados_de_multiplos_entre(10, 100, 3)))
     print(media(cuadrados_de_multiplos_entre(10, 100, 3)))
     print(mean(cuadrados_de_multiplos_entre(10, 100, 3)))
-    
+    print(quantiles(cuadrados_de_multiplos_entre(10, 100, 3),n=10))
