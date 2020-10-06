@@ -40,6 +40,10 @@ class Punto2D(Objeto2D):
         return Punto2D(self.x,self.y)
     
     @property
+    def vector(self: Punto2D) ->  Vector2D:
+        return Vector2D(self.x,self.y)
+    
+    @property
     def distancia_al_origen(self: Punto2D) -> float:
         return self.distancia_a(Punto2D.origen())
       
@@ -79,12 +83,15 @@ class Punto2D(Objeto2D):
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
         return p.add_vector(Punto2D.of_puntos(self,p).multiply(factor))
     
-    def proyecta_sobre_recta(self,r) -> Punto2D:       
-        return r.punto().add(self.minus(r.punto().proyectaSobre(r.getVector())))
+    def proyecta_sobre_recta(self,r) -> Punto2D: 
+        v1 = self.minus_punto(r.punto)
+        f = r.vector.multiply_escalar(v1)
+        v2 = r.vector.multiply_double(f/r.vector.modulo)  
+        return r.punto.add_vector(v2)
     
     def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
         p = self.proyecta_sobre_recta(r)
-        return p.vector().multiply(2.).minus(self.vector()).punto()
+        return self.add_vector(p.minus_punto(self).multiply_double(2.))
     
     def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)

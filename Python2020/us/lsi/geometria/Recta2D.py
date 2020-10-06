@@ -38,6 +38,9 @@ class Recta2D:
 
 if __name__ == '__main__':
     p1 = Punto2D.origen()
-    p2 = Punto2D.of(1., 1.)
+    p2 = Punto2D.of(0., 1.)
     r = Recta2D.of_puntos(p1, p2)
     print(r)
+    p3 = Punto2D.of(1.0,7.0)
+    print(p3.proyecta_sobre_recta(r))
+    print(p3.simetrico_con_respecto_a_recta(r))
