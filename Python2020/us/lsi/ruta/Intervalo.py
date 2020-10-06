@@ -29,7 +29,7 @@ class Intervalo:
         return self.fin.coordenadas.altitude-self.principio.coordenadas.altitude
     
     @property
-    def modulo(self) -> float:
+    def longitud(self) -> float:
         return self.principio.coordenadas.distance(self.fin.coordenadas)
     
     @property
@@ -39,7 +39,7 @@ class Intervalo:
     @property
     def velocidad(self) -> float:
         Preconditions.checkArgument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0:.2f}'.format(self.tiempo))
-        return self.modulo/self.tiempo
+        return self.longitud/self.tiempo
 
 
 if __name__ == '__main__':
@@ -50,6 +50,6 @@ if __name__ == '__main__':
     it = Intervalo.of(m1,m2)
     print(it)
     print(it.desnivel)
-    print(it.modulo)
+    print(it.longitud)
     print(it.tiempo)
     print(it.velocidad)

@@ -19,7 +19,7 @@ class Ruta:
     marcas: List[Marca]
     
     @staticmethod
-    def data_of_file(fichero: str) -> Ruta:
+    def ruta_of_file(fichero: str) -> Ruta:
         marcas = [Marca.parse(x) for x in lineasCSV(fichero, delimiter =",")]
         return Ruta(marcas);
     
@@ -32,13 +32,13 @@ class Ruta:
         return sum(self.intervalo(i).tiempo for i in range(0,n-1))
    
     @property
-    def modulo(self) -> float:
+    def longitud(self) -> float:
         n = len(self.marcas)
-        return sum(self.intervalo(i).modulo for i in range(0,n-1))
+        return sum(self.intervalo(i).longitud for i in range(0,n-1))
     
     @property
     def velocidad_media(self) -> float:
-        return self.modulo/self.tiempo
+        return self.longitud/self.tiempo
     
     def intervalo(self, i:int) -> Intervalo:
         n = len(self.marcas)
@@ -48,12 +48,12 @@ class Ruta:
     @property
     def desnivel_creciente_acumulado(self) -> float:
         n = len(self.marcas)
-        return sum(self.intervalo(i).modulo for i in range(0,n-1) if self.intervalo(i).desnivel > 0)
+        return sum(self.intervalo(i).longitud for i in range(0,n-1) if self.intervalo(i).desnivel > 0)
     
     @property
     def desnivel_decreciente_acumulado(self) -> float:
         n = len(self.marcas)
-        return sum(self.intervalo(i).modulo for i in range(0,n-1) if self.intervalo(i).desnivel < 0)
+        return sum(self.intervalo(i).longitud for i in range(0,n-1) if self.intervalo(i).desnivel < 0)
     
     def mostrar_altitud(self,fileOut):
         alturas = [str(self.marcas[i].coordenadas.altitude) for i in range(len(self.marcas))]
@@ -62,9 +62,9 @@ class Ruta:
         Graphics.lineChart(fileOut,"Ruta Ronda",campos,(indices,alturas))
 
 if __name__ == '__main__':
-    r = Ruta.data_of_file("../../../resources/ruta.csv");
+    r = Ruta.ruta_of_file("../../../resources/ruta.csv");
 #    print(r)
-    print(r.modulo)
+    print(r.longitud)
     print(r.tiempo)
     print(r.velocidad_media)
     print(r.desnivel_creciente_acumulado)

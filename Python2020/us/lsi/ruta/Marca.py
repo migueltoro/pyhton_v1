@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from datetime import time
 from us.lsi.tools.Dates import parse_time, str_time
 from us.lsi.coordenadas.Coordenadas3D import Coordenadas3D
-from typing import TypeVar,List
+from typing import TypeVar
 
 Marca = TypeVar('Marca')
 
@@ -18,7 +18,7 @@ class Marca:
     coordenadas: Coordenadas3D
     
     @staticmethod   
-    def parse(linea: List[str]) -> Marca:
+    def parse(linea: str) -> Marca:
         tiempo,latitud,modulo,altitud = linea
         tiempo = parse_time(tiempo,'%H:%M:%S')
         coordenadas = Coordenadas3D.of(float(latitud), float(modulo), float(altitud)/1000)
