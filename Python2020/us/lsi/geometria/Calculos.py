@@ -7,6 +7,7 @@ Created on 17 jul. 2020
 from typing import Iterator, Tuple, Union
 from math import pi,sqrt
 from us.lsi.tools import Preconditions
+from statistics import mean, stdev
 
 ComplexFloat = Union[float,complex]
 StrFloat = Union[float,str]
@@ -64,4 +65,7 @@ if __name__ == '__main__':
     print(deviacion_tipica(x*x for x in range(10,100) if x%3 == 0))
     it = cuadrados_de_multiplos_entre(10, 100, 3)
     print(deviacion_tipica(it))
-    print(media(it))
+    print(stdev(cuadrados_de_multiplos_entre(10, 100, 3)))
+    print(media(cuadrados_de_multiplos_entre(10, 100, 3)))
+    print(mean(cuadrados_de_multiplos_entre(10, 100, 3)))
+    
