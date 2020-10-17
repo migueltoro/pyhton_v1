@@ -7,7 +7,7 @@ Created on 26 jul. 2020
 from dataclasses import dataclass
 from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
-from us.lsi.tools.File import lineas
+from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tools.Functions import identity
 from us.lsi.tools.Iterable import str_iterable, grouping_list, grouping, flat_map
 from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
@@ -43,9 +43,9 @@ class Conversacion:
 
     @staticmethod   
     def data_of_file(file: str) -> Conversacion:
-        ms = (Mensaje.parse(m) for m in lineas(file))
+        ms = (Mensaje.parse(m) for m in lineas_de_fichero(file))
         mensajes = [m for m in ms if m is not None]
-        palabrasHuecas = {p for p in lineas("../../../resources/palabras_huecas.txt") if len(p) >0}
+        palabrasHuecas = {p for p in lineas_de_fichero("../../../resources/palabras_huecas.txt") if len(p) >0}
         return Conversacion(mensajes,palabrasHuecas)
     
     def __str__(self) -> str:

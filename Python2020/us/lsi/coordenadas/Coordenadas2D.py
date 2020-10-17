@@ -31,7 +31,7 @@ class Coordenadas2D:
         return radio_tierra * c
     
     
-    def esCercana(self:Coordenadas2D, c:Coordenadas2D, d:float) -> bool:
+    def es_cercana(self:Coordenadas2D, c:Coordenadas2D, d:float) -> bool:
         return self.distance(c) <= d
     
     @staticmethod

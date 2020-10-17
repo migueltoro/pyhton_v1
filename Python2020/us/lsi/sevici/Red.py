@@ -30,7 +30,7 @@ class Red:
     
     @staticmethod
     def data_of_file(fichero: str) -> Red:
-        estaciones = [Estacion.parse(x) for x in File.lineasCSV(fichero, delimiter =",")[1:]]
+        estaciones = [Estacion.parse(x) for x in File.lineas_de_csv(fichero, delimiter =",")[1:]]
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
         estaciones.sort()

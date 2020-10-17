@@ -21,8 +21,8 @@ class Vector2D:
         return Vector2D(x,y)
     
     @staticmethod
-    def parse(text:str) -> Vector2D:
-        x,y = text.split(',')
+    def parse(texto_de_fichero:str) -> Vector2D:
+        x,y = texto_de_fichero.split(',')
         return Vector2D(float(x),float(y))
     
     @staticmethod

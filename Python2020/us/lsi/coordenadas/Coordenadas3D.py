@@ -49,7 +49,7 @@ if __name__ == '__main__':
     print(c2)
     print(d1)
     print(d2)
-    print(c1.to2D.esCercana(c2.to2D, 3.4))
+    print(c1.to2D.es_cercana(c2.to2D, 3.4))
     print(c1.to2D.distance(c2.to2D))
     print(c1.distance(c2))
     print(astuple(c1))

@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import TypeVar,List
 from us.lsi.ruta.Marca import Marca
 from us.lsi.ruta.Intervalo import Intervalo
-from us.lsi.tools.File import lineasCSV
+from us.lsi.tools.File import lineas_de_csv
 from us.lsi.tools import Preconditions
 from us.lsi.tools import Graphics
 
@@ -20,7 +20,7 @@ class Ruta:
     
     @staticmethod
     def ruta_of_file(fichero: str) -> Ruta:
-        marcas = [Marca.parse(x) for x in lineasCSV(fichero, delimiter =",")]
+        marcas = [Marca.parse(x) for x in lineas_de_csv(fichero, delimiter =",")]
         return Ruta(marcas);
     
     def __str__(self):

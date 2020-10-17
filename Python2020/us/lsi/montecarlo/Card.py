@@ -24,9 +24,9 @@ class Card:
 
     
     @staticmethod
-    def of_text(text):     
-        p = text[len(text)-1]
-        v = text[0:len(text)-1]
+    def of_text(texto_de_fichero):     
+        p = texto_de_fichero[len(texto_de_fichero)-1]
+        v = texto_de_fichero[0:len(texto_de_fichero)-1]
         palo = symbols_palos.index(p)
         valor = nombre_valores.index(v)      
         return Card.of(palo, valor)
