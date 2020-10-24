@@ -13,8 +13,8 @@ E = TypeVar('E')
 R = TypeVar('R')
 
 
-def str_iterable(iterable:Iterator[E],ts:Callable[[E],str]=str,separator:str=',',prefix:str='{',suffix:str='}') -> str:
-    return '{0}{1}{2}'.format(prefix,separator.join(ts(x) for x in iterable),suffix)
+def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}') -> str:
+    return '{0}{1}{2}'.format(prefix,sep.join(x for x in iterable),suffix)
 
 def size(iterable:Iterator[E]) -> int:
     n = 0
@@ -92,6 +92,7 @@ def counting(iterable:Iterator[E],fkey:Callable[[E],R]) -> Dict[K,int]:
     return grouping(iterable,fkey,lambda x,y:x+1,a0=0)    
 
 if __name__ == '__main__':
-    print(str_iterable(range(0,100)))
+    print(str_iterable(str(x) for x in range(0,100)))
     print(average(range(0,100)))
-    print(str_iterable(flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    print(str_iterable(str(x) for x in flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    

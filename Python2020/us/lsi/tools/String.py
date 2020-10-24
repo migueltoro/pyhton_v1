@@ -5,7 +5,7 @@ Created on 24 jul. 2020
 '''
 
 import re
-from typing import TypeVar, Dict
+from typing import TypeVar, Dict, List
 
 
 Objeto2D = TypeVar('Objeto2D')
@@ -24,6 +24,12 @@ def strip_non_ascii(string):
     stripped = (c for c in string if 0 < ord(c) < 127)
     return ''.join(stripped)   
 
+def split_str(text:str,sep:str=',') -> List[str]:
+    return re.split(sep,text)
+
 if __name__ == '__main__':
     e = r'[ ,;.\n():?!\"]'.encode('utf-8')
     print(e)
+    e = 'Juan Antonio,Pepe fue&mail'
+    print(split_str(e,sep='[ ,&]'))
+    print(e.split(' ,&'))
