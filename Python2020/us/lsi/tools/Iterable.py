@@ -5,6 +5,7 @@ Created on 15 jul. 2020
 '''
 from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Optional
 from us.lsi.tools.Functions import identity
+import random
 # from optional import Optional
 
 K = TypeVar('K')
@@ -16,6 +17,22 @@ R = TypeVar('R')
 def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}') -> str:
     return '{0}{1}{2}'.format(prefix,sep.join(x for x in iterable),suffix)
 
+def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
+    n = a
+    while n < b:
+        yield n
+        n = n+c
+        
+def geometric(a:int,b:int,c:int) -> Iterable[int]:
+    n = a
+    while n < b:
+        yield n
+        n = n*c
+
+def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
+    for _ in range(n):
+        yield random.randint(a,b)
+                
 def size(iterable:Iterator[E]) -> int:
     n = 0
     for _ in iterable:
@@ -50,7 +67,7 @@ def limit(iterable:Iterator[E],n:int) -> Iterator[E]:
     s = zip(iterable,range(n))
     return (x for x,_ in s)
 
-def index(iterable:Iterator[bool],default:int=None):
+def index(iterable:Iterator[bool],default:int=-1):
     for i,e in enumerate(iterable):
         if e:
             return i
@@ -95,4 +112,12 @@ if __name__ == '__main__':
     print(str_iterable(str(x) for x in range(0,100)))
     print(average(range(0,100)))
     print(str_iterable(str(x) for x in flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    print(str_iterable(str(x) for x in geometric(2,100,5)))
+    print(index((x%29==0 for x in aleatorios(10,1000,50))))
+    
+    
+    
+    
+          
+    
     
