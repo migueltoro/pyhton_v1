@@ -31,6 +31,10 @@ def conjunto_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Set[int]:
 def cuadrados_de_multiplos_entre_dict(a:int,b:int,c:int)-> Dict[int,int]:
     return {x:x*x for x in range(a,b) if x%c == 0}
 
+def secuencia_aritmetica(a:int,b:int,c:int) -> Iterator[int]:
+    ls = (b-a)//c
+    return (a+i*c for i in range(0,ls+1))
+
 #media = sum(x)/n
 def media(iterable:Iterator[Union[int,float]]) -> float:
     a = (0.,0) #(sum x, num elem)
@@ -55,16 +59,19 @@ def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> Union[Tuple[float,com
     Preconditions.checkArgument(a>0,'El coeficiente a debe ser distinto de cero y es {0:.2f}'.format(a))
     disc = b*b-4*a*c
     if disc >= 0 :
-        s1,s2 = (-b+sqrt(disc))/(2*a),(-b-sqrt(disc))/(2*a)
+        r1 = -b/(2*a)
+        r2 = sqrt(disc)/(2*a)
+        s1,s2 = r1+r2,r1-r2
         return (s1,s2)
     else :
-        s1,s2 = complex(-b/(2*a),sqrt(-disc)/(2*a)),complex(-b/(2*a),-sqrt(-disc)/(2*a))
+        re = -b/(2*a)
+        im = sqrt(-disc)/(2*a)
+        s1,s2 = complex(re,im),complex(re,-im)
         return (s1,s2)
                                  
              
-if __name__ == '__main__':
-    
-    print(sol_ecuacion_segundo_grado(1,1,1))
+if __name__ == '__main__': 
+    print(sol_ecuacion_segundo_grado(1,-3,2))
     print(area_circulo(5.))
     print(media(x for x in range(10,100) if x%2 == 0))
     print(deviacion_tipica(x*x for x in range(10,100) if x%3 == 0))
@@ -78,3 +85,4 @@ if __name__ == '__main__':
     print(conjunto_de_enteros_aleatorios_entre(10,100,50))
     print(list(cuadrados_de_multiplos_entre(10, 100, 3)))
     print(cuadrados_de_multiplos_entre_dict(10, 100, 3))
+    print(list(secuencia_aritmetica(3,40,7)))
