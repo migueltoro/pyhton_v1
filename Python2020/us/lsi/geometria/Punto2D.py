@@ -86,8 +86,9 @@ class Punto2D(Objeto2D):
     
     def proyecta_sobre_recta(self,r) -> Punto2D: 
         v1 = self.minus_punto(r.punto)
-        f = r.vector.multiply_escalar(v1)
-        v2 = r.vector.multiply_double(f/r.vector.modulo)  
+        vu = r.vector.unitario
+        f = v1.multiply_escalar(vu)
+        v2 = vu.multiply_double(f)  
         return r.punto.add_vector(v2)
     
     def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:

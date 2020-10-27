@@ -100,10 +100,10 @@ class Poligono2D(Objeto2D):
         return Poligono2D.of_vertices([x.homotecia(p,factor) for x in self.vertices])
         
     def proyecta_sobre_recta(self,r:Recta2D) -> Set[Punto2D]:
-        return {x.proyecta_sobre_recta(r) for x in self.vertices}
+        return Poligono2D.of_vertices([x.proyecta_sobre_recta(r) for x in self.vertices])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:
-        return Poligono2D.of_vertices([x.simetrico(r) for x in self.vertices])
+        return Poligono2D.of_vertices([x.simetrico_con_respecto_a_recta(r) for x in self.vertices])
     
     def shape(self):
         return Draw.shape_polygon([[p.x,p.y] for p in self.vertices])
