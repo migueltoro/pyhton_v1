@@ -14,6 +14,7 @@ from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from typing import TypeVar
+from us.lsi.tools import Draw
 
 Circulo2D = TypeVar('Circulo2D')
 
@@ -56,6 +57,8 @@ class Circulo2D(Objeto2D):
     def simetrico_con_respecto_a_recta(self, r: Recta2D) -> Circulo2D:
         return Circulo2D.of(self.centro.simetrico(r), self.radio)
     
+    def shape(self):
+        return Draw.shape_circle([self.center.x,self.center.y],self.radio)
 
 if __name__ == '__main__':
     p = Punto2D.of(2.1,4.5)

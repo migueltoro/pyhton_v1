@@ -10,6 +10,7 @@ from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from typing import TypeVar
+from us.lsi.tools import Draw
 
 Punto2D = TypeVar('Punto2D')
 
@@ -92,6 +93,9 @@ class Punto2D(Objeto2D):
     def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return self.add_vector(p.minus_punto(self).multiply_double(2.))
+    
+    def shape(self):
+        return Draw.shape_point([self.x,self.y])
     
     def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)

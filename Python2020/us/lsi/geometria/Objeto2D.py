@@ -34,6 +34,10 @@ class Objeto2D:
     @abstractmethod
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Objeto2D:
         pass
+    
+    @abstractmethod
+    def shape(self):
+        pass
 
 if __name__ == '__main__':
     pass

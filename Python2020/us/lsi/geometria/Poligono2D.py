@@ -14,6 +14,7 @@ from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from typing import List, TypeVar, Set
+from us.lsi.tools import Draw
 
 Poligono2D = TypeVar('Poligono2D')
 
@@ -103,6 +104,10 @@ class Poligono2D(Objeto2D):
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:
         return Poligono2D.of_vertices([x.simetrico(r) for x in self.vertices])
+    
+    def shape(self):
+        return Draw.shape_polygon([[p.x,p.y] for p in self.vertices])
+
 
 if __name__ == '__main__':
     v = Vector2D.of_xy(1., 0.)

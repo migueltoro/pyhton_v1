@@ -13,7 +13,7 @@ from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Poligono2D import Poligono2D
 from math import pi
 from us.lsi.geometria.Segmento2D import Segmento2D
-
+from us.lsi.tools import Draw
 
 Agregado2D = TypeVar('Agregado2D')
 
@@ -42,7 +42,9 @@ class Agregado2D(Objeto2D):
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Agregado2D:
         return Agregado2D.of_vertices([x.simetrico(r) for x in self.objetos])
-       
+    
+    def shape(self):
+        return [p.shape() for p in self.objetos]
 
 if __name__ == '__main__':
     p = Punto2D.of(2., 3.)
@@ -50,8 +52,10 @@ if __name__ == '__main__':
     pol = Poligono2D.cuadrado(Punto2D.origen(),v)
     s = Segmento2D.of_puntos(Punto2D.of(1., 3.), Punto2D.of(0., 3.))
     a = Agregado2D.of([p,pol,s])
+    a = a.rota(Punto2D.origen(),pi/3)
     print(a)
     print(a.rota(Punto2D.origen(),pi/2))
     print(p.rota(Punto2D.origen(),pi/2))
     print(pol.rota(Punto2D.origen(),pi/2))
     print(a.rota(Punto2D.origen(),pi/3))
+    Draw.draw(a.shape())
