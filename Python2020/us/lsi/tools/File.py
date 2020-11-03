@@ -17,8 +17,8 @@ def lineas_iterator(file:str,encoding:str='utf-8') -> Iterator[str]:
             yield linea
     
 def lineas_de_fichero(file:str,encoding:str='utf-8') -> List[str]:
-    with open(file, "r", encoding=encoding) as f:
-        lineas_de_fichero =  [linea for linea in f]
+    with open(file, encoding=encoding) as f:
+        lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
     
 def lineas_de_csv(file:str, delimiter:str=",")-> List[List[str]]:
@@ -40,6 +40,7 @@ if __name__ == '__main__':
     f = lineas_iterator('../../../resources/palabras_huecas.txt')
     for x in f:
         print(x)
+    
     
    
         

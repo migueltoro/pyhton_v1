@@ -7,7 +7,7 @@ Created on 17 jul. 2020
 from typing import Iterator, Tuple, Union, Set, Dict
 from math import pi,sqrt
 from us.lsi.tools import Preconditions
-from statistics import mean, stdev, quantiles
+from statistics import mean, stdev, quantiles, pstdev
 import random
 
 def area_circulo(radio:float) -> float:
@@ -31,9 +31,15 @@ def conjunto_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Set[int]:
 def cuadrados_de_multiplos_entre_dict(a:int,b:int,c:int)-> Dict[int,int]:
     return {x:x*x for x in range(a,b) if x%c == 0}
 
-def secuencia_aritmetica(a:int,b:int,c:int) -> Iterator[int]:
+def progresion_aritmetica(a:int,b:int,c:int) -> Iterator[int]:
     ls = (b-a)//c
     return (a+i*c for i in range(0,ls+1))
+
+def suma(iterable:Iterator[Union[int,float]]) -> float:
+    a = 0 #(sum x, num elem)
+    for e in iterable:
+        a = a+e
+    return a  
 
 #media = sum(x)/n
 def media(iterable:Iterator[Union[int,float]]) -> float:
@@ -85,4 +91,11 @@ if __name__ == '__main__':
     print(conjunto_de_enteros_aleatorios_entre(10,100,50))
     print(list(cuadrados_de_multiplos_entre(10, 100, 3)))
     print(cuadrados_de_multiplos_entre_dict(10, 100, 3))
-    print(list(secuencia_aritmetica(3,40,7)))
+    print(list(progresion_aritmetica(3,40,7)))
+    print(deviacion_tipica(progresion_aritmetica(10,100,7)))
+    print(pstdev(progresion_aritmetica(10,100,7)))
+    print(media(progresion_aritmetica(10,100,7)))
+    print(mean(progresion_aritmetica(10,100,7)))
+    
+    
+    

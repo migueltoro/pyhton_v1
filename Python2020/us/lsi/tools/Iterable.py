@@ -6,6 +6,7 @@ Created on 15 jul. 2020
 from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Optional
 from us.lsi.tools.Functions import identity
 import random
+from us.lsi.tools.File import lineas_de_fichero
 # from optional import Optional
 
 K = TypeVar('K')
@@ -14,8 +15,8 @@ E = TypeVar('E')
 R = TypeVar('R')
 
 
-def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}') -> str:
-    return '{0}{1}{2}'.format(prefix,sep.join(x for x in iterable),suffix)
+def str_iterable(iterable:Iterator[E],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) -> str:
+    return '{0}{1}{2}'.format(prefix,sep.join(ts(x) for x in iterable),suffix)
 
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
@@ -114,7 +115,7 @@ if __name__ == '__main__':
     print(str_iterable(str(x) for x in flat_map([[0,1],[2,3,4],[5,6],[9]])))
     print(str_iterable(str(x) for x in geometric(2,100,5)))
     print(index((x%29==0 for x in aleatorios(10,1000,50))))
-    
+    print(str_iterable(lineas_de_fichero(('../../../resources/datos.txt'))))
     
     
     
