@@ -104,10 +104,10 @@ def grouping_list(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],
     return grouping(iterable,fkey,lambda x,y:x+[fvalue(y)],a0=[])
 
 def grouping_set(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,Set[V]]:
-    return grouping(iterable,fkey,lambda x,y:x|{fvalue(y)},a0=set())
+    return grouping(iterable,fkey,lambda x,y:x|{fvalue(y)},a0=set())    
 
-def counting(iterable:Iterator[E],fkey:Callable[[E],R]) -> Dict[K,int]:
-    return grouping(iterable,fkey,lambda x,y:x+1,a0=0)    
+def counting(iterable:Iterator[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
+    return grouping(iterable,fkey,lambda x,y:x+fsum(y),a0=0) 
 
 if __name__ == '__main__':
     print(str_iterable(str(x) for x in range(0,100)))
