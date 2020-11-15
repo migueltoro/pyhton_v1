@@ -65,9 +65,21 @@ def limit(iterable:Iterator[E],n:int) -> Iterator[E]:
     s = zip(iterable,range(n))
     return (x for x,_ in s)
 
-def index(iterable:Iterator[bool],default:int=-1):
+def index_bool(iterable:Iterator[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e:
+            return i
+    return default
+
+def index(iterable:Iterator[E],predicate:Callable[[E],bool],default:int=-1)->int:
+    for i,e in enumerate(iterable):
+        if predicate(e):
+            return i
+    return default
+
+def index_elem(iterable:Iterator[E],elem:E,default:int=-1)->int:
+    for i,e in enumerate(iterable):
+        if e == elem:
             return i
     return default
     
@@ -140,8 +152,9 @@ if __name__ == '__main__':
     print(average(range(0,100)))
     print(str_iterable(flat_map([[0,1],[2,3,4],[5,6],[9]])))
     print(str_iterable(geometric(2,100,5)))
-    print(index((x%29==0 for x in aleatorios(10,1000,50))))
-    print(str_iterable(lineas_de_fichero(('../../../resources/datos.txt'))))
+    print(index_bool((x%29==0 for x in aleatorios(10,1000,50))))
+    print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
+    print(index((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     
     
     

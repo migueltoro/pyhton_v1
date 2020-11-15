@@ -40,31 +40,31 @@ def checkNotNull(reference:E):
     return reference
         
 '''
-* Checks that index is a valid element index into a list, string, or array with the specified size. 
-* An element index may range from 0 inclusive to size exclusive. 
+* Checks that index_bool is a valid element index_bool into a list, string, or array with the specified size. 
+* An element index_bool may range from 0 inclusive to size exclusive. 
 * You don't pass the list, string, or array directly; you just pass its size. 
-* @param index Un indice 
+* @param index_bool Un indice 
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
    
-def checkElementIndex(index:int,size:int):
-    if(not (index>=0 and index<size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
-    return index
+def checkElementIndex(index_bool:int,size:int):
+    if(not (index_bool>=0 and index_bool<size)):
+        raise Exception("Index = {0:d}, size {1:d}".format(index_bool,size))
+    return index_bool
     
 '''
-* Checks that index is a valid position index into a list, string, or array with the specified size. 
-* A position index may range from 0 inclusive to size inclusive. 
-* You don't pass the list, string, or array directly; you just pass its size. Returns index.
-* @param index El indice del elemento
+* Checks that index_bool is a valid position index_bool into a list, string, or array with the specified size. 
+* A position index_bool may range from 0 inclusive to size inclusive. 
+* You don't pass the list, string, or array directly; you just pass its size. Returns index_bool.
+* @param index_bool El indice del elemento
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
-def checkPositionIndex(index:int,size:int):
-    if(not (index>=0 and index<=size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
-    return index
+def checkPositionIndex(index_bool:int,size:int):
+    if(not (index_bool>=0 and index_bool<=size)):
+        raise Exception("Index = {0:d}, size {1:d}".format(index_bool,size))
+    return index_bool
     
 
 if __name__ == '__main__':
