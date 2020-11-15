@@ -10,7 +10,7 @@ from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools import File
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 from sortedcontainers import SortedSet
-from us.lsi.tools.Iterable import grouping_list, grouping, str_iterable
+from us.lsi.tools.Iterable import grouping_list, grouping_acum, str_iterable
 # from optional import Optional
 from us.lsi.tools.Functions import optional
 
@@ -72,7 +72,7 @@ class Red:
    
     @property
     def numero_de_estaciones_por_bicis_disponibles(self) ->  Dict[int,int]:
-        return grouping(self.estaciones, lambda e: e.free_bikes, lambda x,y: x+1, a0=0)  
+        return grouping_acum(self.estaciones, lambda e: e.free_bikes, lambda x,y: x+1, a0=0)  
 
 if __name__ == '__main__':
     numero,name = '242_PLAZA NUEVA'.split('_')

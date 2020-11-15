@@ -15,9 +15,6 @@ E = TypeVar('E')
 R = TypeVar('R')
 
 
-def str_iterable(iterable:Iterator[E],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) -> str:
-    return '{0}{1}{2}'.format(prefix,sep.join(ts(x) for x in iterable),suffix)
-
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
     while n < b:
@@ -87,8 +84,37 @@ def flat(e:Union[E,Iterable[E]]) -> Iterator[E]:
 def joining(iterable:Iterator[E],tostring:Callable[[E],str]=str,separator:str='\n',prefix:str='',suffix:str='') -> str:
         return '{0}{1}{2}'.format(prefix,separator.join(tostring(x) for x in  iterable),suffix)
   
+def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) ->str:
+    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in iterable),suffix)
 
-def grouping(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[V],E],a0:E=None) -> Dict[K, V]:
+def str_dictionary(dictionary:Dict[K,V],sep:str='\n',prefix:str='',suffix:str='') ->str:
+    ts = lambda x:'({}:{})'.format(str(x[0]),str(x[1]))
+    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in sorted(dictionary.items(),key=lambda x:x[0])),suffix)
+
+def reduce(iterable:Iterator[E],op:Callable[[E,E],E])->E:
+    it = (x for x in iterable)
+    a = next(it)
+    for e in it:
+        a = op(a,e)
+    return a
+
+def accumulate(iterable:Iterator[E],op:Callable[[V,E],E],a0:V)->V:
+    a = a0
+    for e in iterable:
+        a = op(a,e)
+    return a
+
+def grouping_reduce(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[E,E],E]) -> Dict[K, E]:
+    a = {}
+    for e in iterable:
+        k = fkey(e)
+        if k in a:
+            a[k] = op(a[k],e)
+        else:
+            a[k] = e
+    return a
+
+def grouping_acum(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[V],E],a0:E=None) -> Dict[K, V]:
     a = {}
     for e in iterable:
         k = fkey(e)
@@ -101,21 +127,22 @@ def grouping(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[V],E],a0:E=N
     return a
 
 def grouping_list(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,List[V]]:
-    return grouping(iterable,fkey,lambda x,y:x+[fvalue(y)],a0=[])
+    return grouping_acum(iterable,fkey,lambda x,y:x+[fvalue(y)],a0=[])
 
 def grouping_set(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,Set[V]]:
-    return grouping(iterable,fkey,lambda x,y:x|{fvalue(y)},a0=set())    
+    return grouping_acum(iterable,fkey,lambda x,y:x|{fvalue(y)},a0=set())    
 
 def counting(iterable:Iterator[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
-    return grouping(iterable,fkey,lambda x,y:x+fsum(y),a0=0) 
+    return grouping_acum(iterable,fkey,lambda x,y:x+fsum(y),a0=0) 
 
 if __name__ == '__main__':
-    print(str_iterable(str(x) for x in range(0,100)))
+    print(str_iterable(range(0,100)))
     print(average(range(0,100)))
-    print(str_iterable(str(x) for x in flat_map([[0,1],[2,3,4],[5,6],[9]])))
-    print(str_iterable(str(x) for x in geometric(2,100,5)))
+    print(str_iterable(flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    print(str_iterable(geometric(2,100,5)))
     print(index((x%29==0 for x in aleatorios(10,1000,50))))
     print(str_iterable(lineas_de_fichero(('../../../resources/datos.txt'))))
+    
     
     
     

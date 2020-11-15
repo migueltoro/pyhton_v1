@@ -7,7 +7,7 @@ Created on 25 jul. 2020
 from typing import Set,OrderedDict,Iterator
 from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import size,flat_map,average,find_first,grouping,distinct,str_iterable,grouping_list
+from us.lsi.tools.Iterable import size,flat_map,average,find_first,grouping_acum,distinct,str_iterable,grouping_list
 from us.lsi.tools.Collections import invert_dict
 import re
 
@@ -51,7 +51,7 @@ def linea_numero(file:str,n:int) -> str:
     return find_first(enumerate(lineas_de_fichero(file)),predicate=lambda p:p[0] == n).get()[1]
 
 def frecuencias_de_palabras(file:str) -> OrderedDict[str,int]:
-    d = grouping(palabras_no_huecas(file),fkey=identity,op=lambda x,y:x+1,a0=0)
+    d = grouping_acum(palabras_no_huecas(file),fkey=identity,op=lambda x,y:x+1,a0=0)
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
 
 def palabras_por_frecuencias(file:str) -> OrderedDict[int,Set[str]]:
