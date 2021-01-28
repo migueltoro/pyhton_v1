@@ -19,9 +19,9 @@ class Marca:
     
     @staticmethod   
     def parse(linea: str) -> Marca:
-        tiempo,latitud,modulo,altitud = linea
+        tiempo,latitud,longitud,altitud = linea
         tiempo = parse_time(tiempo,'%H:%M:%S')
-        coordenadas = Coordenadas3D.of(float(latitud), float(modulo), float(altitud)/1000)
+        coordenadas = Coordenadas3D.of(float(latitud), float(longitud), float(altitud)/1000)
         return Marca(tiempo, coordenadas)        
     
     def distance(self,other):

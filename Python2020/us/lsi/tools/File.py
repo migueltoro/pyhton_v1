@@ -16,13 +16,13 @@ def lineas_iterator(file:str,encoding:str='utf-8') -> Iterator[str]:
         for linea in f:
             yield linea
     
-def lineas_de_fichero(file:str,encoding:str='utf-8') -> List[str]:
-    with open(file, encoding=encoding) as f:
+def lineas_de_fichero(file:str,encoding='utf-8') -> List[str]:
+    with open(file,encoding=encoding) as f:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
     
-def lineas_de_csv(file:str, delimiter:str=",")-> List[List[str]]:
-    with open(file) as f:
+def lineas_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> List[List[str]]:
+    with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         lineas_de_fichero =  [linea for linea in lector]
         return lineas_de_fichero
@@ -36,11 +36,17 @@ def write(file:str,texto:str) -> None:
     with open(file, "w", encoding='utf-8') as f:
         f.write(texto)
 
+def print_encoding(file:str)->None:
+    with open(file) as f:
+        print(f)
+
 if __name__ == '__main__':
-    f = lineas_iterator('../../../resources/palabras_huecas.txt')
+#    f = lineas_iterator('../../../resources/palabras_huecas.txt')
+#    for x in f:
+#        print(x)
+    
+    f = lineas_de_csv('../../../resources/estaciones.csv')
     for x in f:
         print(x)
-    
-    
    
         

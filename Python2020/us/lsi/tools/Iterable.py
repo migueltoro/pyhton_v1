@@ -3,7 +3,7 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Optional
+from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Optional, Tuple
 from us.lsi.tools.Functions import identity
 import random
 from us.lsi.tools.File import lineas_de_fichero
@@ -53,6 +53,13 @@ def average(iterable:Iterator[Union[int, float]]) -> float:
 
 def find_first(iterable:Iterator[E], predicate:Callable[[E],bool]) -> Optional[E]:
     return next((x for x in iterable if predicate(x)), None)
+
+def first_and_last(iterable:Iterator[E],defaultvalue=None)->Tuple[E,E]:
+    first = last = next(iterable, defaultvalue)
+    for last in iterable:
+        pass
+    return (first,last)
+    
 
 def distinct(iterable:Iterator[E])->Iterator[E]:
     seen = set()
@@ -155,7 +162,7 @@ if __name__ == '__main__':
     print(index_bool((x%29==0 for x in aleatorios(10,1000,50))))
     print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
     print(index((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
-    
+    print(first_and_last(arithmetic(3,500,29)))
     
     
     

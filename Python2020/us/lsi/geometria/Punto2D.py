@@ -13,6 +13,7 @@ from typing import TypeVar
 from us.lsi.tools import Draw
 
 Punto2D = TypeVar('Punto2D')
+Recta2D = TypeVar('Recta2D')
 
 @dataclass(frozen=True,order=True)
 class Punto2D(Objeto2D):
@@ -82,16 +83,16 @@ class Punto2D(Objeto2D):
         return p.add_vector(v)      
     
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
-        return p.add_vector(Punto2D.of_puntos(self,p).multiply(factor))
+        return p.add_vector(p.minus_punto(self).multiply(factor))
     
-    def proyecta_sobre_recta(self,r) -> Punto2D: 
+    def proyecta_sobre_recta(self,r:Recta2D) -> Punto2D: 
         v1 = self.minus_punto(r.punto)
         vu = r.vector.unitario
         f = v1.multiply_escalar(vu)
         v2 = vu.multiply_double(f)  
         return r.punto.add_vector(v2)
     
-    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
+    def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return self.add_vector(p.minus_punto(self).multiply_double(2.))
     

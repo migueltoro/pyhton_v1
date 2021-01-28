@@ -11,6 +11,7 @@ from us.lsi.tools.File import lineas_de_csv
 from us.lsi.tools import Preconditions
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
+from itertools import accumulate 
 
 Ruta = TypeVar('Ruta')
 
@@ -62,7 +63,7 @@ class Ruta:
         campos = ["Posicion","Altura"]
         Graphics.lineChart(fileOut,"Ruta Ronda",campos,(indices,alturas))
     
-    def distance(self):
+    def distance_y(self):
         i=0
         r=0
         n=len(self.marcas)
@@ -70,12 +71,16 @@ class Ruta:
             yield r
             r = r + self.intervalo(i).longitud
             i = i+1
-        
+    
+    @property    
+    def distance(self):
+        n=len(self.marcas)
+        return accumulate(self.intervalo(i).longitud for i in range(0, n))
             
     def mostrar_altitud(self):
         n = len(self.marcas)
         alturas = [self.marcas[i].coordenadas.altitude for i in range(0,n)]
-        distancias = [d for d in self.distance()]
+        distancias = list(self.distance)
         datos = [(x,y) for x,y in zip(distancias,alturas)]       
         Draw.draw_multiline(datos,y_label='Altura',x_label='kms',title='Recorrido de Ronda')
 
@@ -91,6 +96,7 @@ if __name__ == '__main__':
     r.mostrar_altitud()
     print(r.longitud)
     print(r.tiempo)
+    print(len(r.marcas))
     
     
     

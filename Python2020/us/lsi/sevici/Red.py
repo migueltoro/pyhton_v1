@@ -30,7 +30,7 @@ class Red:
     
     @staticmethod
     def data_of_file(fichero: str) -> Red:
-        estaciones = [Estacion.parse(x) for x in File.lineas_de_csv(fichero, delimiter =",")[1:]]
+        estaciones = [Estacion.parse(x) for x in File.lineas_de_csv(fichero, delimiter =",",encoding='cp1252')[1:]]
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
         estaciones.sort()
@@ -75,6 +75,7 @@ class Red:
         return grouping_acum(self.estaciones, lambda e: e.free_bikes, lambda x,y: x+1, a0=0)  
 
 if __name__ == '__main__':
+    File.print_encoding("../../../resources/estaciones.csv")
     numero,name = '242_PLAZA NUEVA'.split('_')
     print(numero)
     print(name)

@@ -67,7 +67,7 @@ class Poligono2D(Objeto2D):
     @property
     def area(self) -> float:
         n = self.numero_de_vertices
-        area = sum(self.diagonal(0,i).multiply_vectorial_2d(self.diagonal(i,i+1)) for i in range(1,n-1))
+        area = sum(self.diagonal(0,i).multiply_vectorial_2d(self.diagonal(i,i+1)) for i in range(1,n-2))
         return area/2   
     
     @property

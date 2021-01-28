@@ -96,6 +96,7 @@ if __name__ == '__main__':
     print(pstdev(progresion_aritmetica(10,100,7)))
     print(media(progresion_aritmetica(10,100,7)))
     print(mean(progresion_aritmetica(10,100,7)))
+    print(range(10,100)[2])
     
     
     
