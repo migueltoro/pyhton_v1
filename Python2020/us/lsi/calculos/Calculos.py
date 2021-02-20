@@ -32,8 +32,7 @@ def cuadrados_de_multiplos_entre_dict(a:int,b:int,c:int)-> Dict[int,int]:
     return {x:x*x for x in range(a,b) if x%c == 0}
 
 def progresion_aritmetica(a:int,b:int,c:int) -> Iterator[int]:
-    ls = (b-a)//c
-    return (a+i*c for i in range(0,ls+1))
+    return (e for e in range(a,b) if (e-a)%c==0)
 
 def suma(iterable:Iterator[Union[int,float]]) -> float:
     a = 0 #(sum x, num elem)
@@ -77,6 +76,7 @@ def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> Union[Tuple[float,com
                                  
              
 if __name__ == '__main__': 
+    print(list(progresion_aritmetica(5,20, 3)))
     print(sol_ecuacion_segundo_grado(1,-3,2))
     print(area_circulo(5.))
     print(media(x for x in range(10,100) if x%2 == 0))

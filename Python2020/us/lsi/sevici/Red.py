@@ -77,10 +77,10 @@ class Red:
 if __name__ == '__main__':
     File.print_encoding("../../../resources/estaciones.csv")
     numero,name = '242_PLAZA NUEVA'.split('_')
-    print(numero)
-    print(name)
+#    print(numero)
+#    print(name)
     r = Red.data_of_file("../../../resources/estaciones.csv")
-    print(r)
+#    print(r)
     print(r.estacion_con_mas_bicis_disponibles)
     print(r.estacion_de_numero(86).get())
     print(r.estacion_de_nombre_compuesto('86_CAMINO DE LOS DESCUBRIMIENTOS').get())
