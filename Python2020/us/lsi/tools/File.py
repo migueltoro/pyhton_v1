@@ -5,7 +5,7 @@ Created on 15 jul. 2020
 '''
 
 
-from typing import List, Iterator
+from typing import List, Iterable
 import csv
 import chardet
 
@@ -13,10 +13,13 @@ def partes_de_linea(linea:str, delimiter:str=",")-> List[str]:
     partes = linea.split(delimiter)
     return partes
 
-def lineas_iterator(file:str,encoding:str='utf-8') -> Iterator[str]:
+def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
     with open(file, "r", encoding=encoding) as f:
-        for linea in f:
-            yield linea
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            yield line.strip()
     
 def lineas_de_fichero(file:str,encoding='utf-8') -> List[str]:
     with open(file,encoding=encoding) as f:
@@ -38,6 +41,10 @@ def write(file:str,texto:str) -> None:
     with open(file, "w", encoding='utf-8') as f:
         f.write(texto)
 
+def write_iterable(file:str,iterable:Iterable[str]) -> None:
+    with open(file, "w", encoding='utf-8') as f:
+        for ln in iterable:
+            f.write(ln)
 
 def print_encoding(file:str)->str:
     with open(file,"rb") as f:
