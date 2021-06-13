@@ -4,8 +4,10 @@ Created on 15 jul. 2020
 @author: migueltoro
 '''
 
+
 from typing import List, Iterator
 import csv
+import chardet
 
 def partes_de_linea(linea:str, delimiter:str=",")-> List[str]:
     partes = linea.split(delimiter)
@@ -36,9 +38,12 @@ def write(file:str,texto:str) -> None:
     with open(file, "w", encoding='utf-8') as f:
         f.write(texto)
 
-def print_encoding(file:str)->None:
-    with open(file) as f:
-        print(f)
+
+def print_encoding(file:str)->str:
+    with open(file,"rb") as f:
+        data = f.read()
+        enc = chardet.detect(data)
+        return enc['encoding']
 
 if __name__ == '__main__':
 #    f = lineas_iterator('../../../resources/palabras_huecas.txt')

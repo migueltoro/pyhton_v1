@@ -3,11 +3,11 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Optional, Tuple
-from us.lsi.tools.Functions import identity
+from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Tuple
 import random
 from us.lsi.tools.File import lineas_de_fichero
-# from optional import Optional
+
+identity = lambda x:x
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -31,19 +31,19 @@ def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
                 
-def size(iterable:Iterator[E]) -> int:
+def count(iterable:Iterator[E]) -> int:
     n = 0
     for _ in iterable:
         n = n+1
     return n
 
-def iterate(initial:E, predicate:Callable[[E],bool],operator:Callable[[E,E],E]) -> Iterator[E]:
+def iterate(initial:E, predicate:Callable[[E],bool],operator:Callable[[E],E]) -> Iterable[E]:
     e = initial
     while predicate(e):
         yield e
         e = operator(e)
 
-def average(iterable:Iterator[Union[int, float]]) -> float:
+def average(iterable:Iterable):
     s = 0
     n = 0
     for x in iterable:
@@ -51,9 +51,12 @@ def average(iterable:Iterator[Union[int, float]]) -> float:
         n = n+1
     return s/n
 
-def find_first(iterable:Iterator[E], predicate:Callable[[E],bool]) -> Optional[E]:
-    return next((x for x in iterable if predicate(x)), None)
-
+def find_first(iterable:Iterator[E], p:Callable[[E],bool]) -> Union[E,None]:
+    for e in iterable:
+        if p(e):
+            return e
+    return None
+    
 def first_and_last(iterable:Iterator[E],defaultvalue=None)->Tuple[E,E]:
     first = last = next(iterable, defaultvalue)
     for last in iterable:
@@ -68,32 +71,39 @@ def distinct(iterable:Iterator[E])->Iterator[E]:
             seen.add(item)
             yield item 
             
-def limit(iterable:Iterator[E],n:int) -> Iterator[E]:
-    s = zip(iterable,range(n))
-    return (x for x,_ in s)
+def limit(iterable:Iterator[E],limit:int) -> Iterable[E]:
+    i = 0
+    for e in iterable:
+        if i < limit:
+            yield e
+            i = i +1
+        else:
+            break
 
-def index_bool(iterable:Iterator[bool],default:int=-1)->int:
+def index_bool(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e:
             return i
     return default
 
-def index(iterable:Iterator[E],predicate:Callable[[E],bool],default:int=-1)->int:
+def index_predicate(iterable:Iterable[E],predicate:Callable[[E],bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if predicate(e):
             return i
     return default
 
-def index_elem(iterable:Iterator[E],elem:E,default:int=-1)->int:
+def index_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e == elem:
             return i
     return default
     
-def flat_map(iterable:Iterator[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterator[R]:
-    return (y for x in iterable for y in fm(x))
+def flat_map(iterable:Iterable[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
+    for e in iterable:
+        for pe in fm(e):
+            yield pe
     
-def flat(e:Union[E,Iterable[E]]) -> Iterator[E]:
+def flat(e:Union[E,Iterable[E]]) -> Iterable[E]:
     if isinstance(e,Iterable):
         for x in e:
             yield x 
@@ -110,49 +120,26 @@ def str_dictionary(dictionary:Dict[K,V],sep:str='\n',prefix:str='',suffix:str=''
     ts = lambda x:'({}:{})'.format(str(x[0]),str(x[1]))
     return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in sorted(dictionary.items(),key=lambda x:x[0])),suffix)
 
-def reduce(iterable:Iterator[E],op:Callable[[E,E],E])->E:
-    it = (x for x in iterable)
-    a = next(it)
-    for e in it:
-        a = op(a,e)
-    return a
 
-def accumulate(iterable:Iterator[E],op:Callable[[V,E],E],a0:V)->V:
-    a = a0
-    for e in iterable:
-        a = op(a,e)
-    return a
-
-def grouping_reduce(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[E,E],E]) -> Dict[K, E]:
+def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K],op:Callable[[V,V],V],fvalue:Callable[[E],V]= identity) -> Dict[K, E]:
     a = {}
     for e in iterable:
         k = fkey(e)
         if k in a:
-            a[k] = op(a[k],e)
+            a[k] = op(a[k],fvalue(e))
         else:
-            a[k] = e
+            a[k] = fvalue(e)
     return a
 
-def grouping_acum(iterable:Iterator[E],fkey:Callable[[E],K],op:Callable[[V],E],a0:E=None) -> Dict[K, V]:
-    a = {}
-    for e in iterable:
-        k = fkey(e)
-        if not (a0 is None):
-            a[k] = op(a.get(k,a0),e)
-        elif k in a:
-            a[k] = op(a[k],e)
-        else:
-            a[k] = e
-    return a
+def grouping_list(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,List[V]]:
+    return grouping_reduce(iterable,fkey,lambda x,y:x+y,lambda x: [fvalue(x)])
 
-def grouping_list(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,List[V]]:
-    return grouping_acum(iterable,fkey,lambda x,y:x+[fvalue(y)],a0=[])
+def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,Set[V]]:
+    return grouping_reduce(iterable,fkey,lambda x,y:x|y,lambda x: {fvalue(x)}) 
 
-def grouping_set(iterable:Iterator[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,Set[V]]:
-    return grouping_acum(iterable,fkey,lambda x,y:x|{fvalue(y)},a0=set())    
-
-def counting(iterable:Iterator[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
-    return grouping_acum(iterable,fkey,lambda x,y:x+fsum(y),a0=0) 
+# similar a Counter
+def counting(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
+    return grouping_reduce(iterable,fkey,op=lambda x,y:x+y,fvalue= fsum)
 
 if __name__ == '__main__':
     print(str_iterable(range(0,100)))
@@ -161,7 +148,7 @@ if __name__ == '__main__':
     print(str_iterable(geometric(2,100,5)))
     print(index_bool((x%29==0 for x in aleatorios(10,1000,50))))
     print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
-    print(index((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
+    print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
     
     
