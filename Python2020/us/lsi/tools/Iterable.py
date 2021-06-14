@@ -3,7 +3,7 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Tuple
+from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Tuple, Any
 import random
 from us.lsi.tools.File import lineas_de_fichero
 
@@ -14,6 +14,19 @@ V = TypeVar('V')
 E = TypeVar('E')
 R = TypeVar('R')
 
+
+def zip2(*iterables:Iterable[Iterable[Any]])->Iterable[Any]:
+    iterables = [iter(it) for it in iterables]
+    n = len(iterables)
+    try:
+        while True:
+            ls = []
+            for i in range(n):
+                e = next(iterables[i])
+                ls.append(e)          
+            yield tuple(ls)               
+    except StopIteration:
+        return
 
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
@@ -150,9 +163,7 @@ if __name__ == '__main__':
     print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
     print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
-    
-    
-    
+    print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15])))    
           
     
     
