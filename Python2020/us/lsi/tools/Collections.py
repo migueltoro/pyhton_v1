@@ -5,7 +5,7 @@ Created on 25 jul. 2020
 '''
 
 from typing import TypeVar, Dict, List, Union, Iterable
-from us.lsi.tools.Iterable import flat,str_iterable,grouping_list
+from us.lsi.tools.Iterable import flat,grouping_list
 
 
 K = TypeVar('K')

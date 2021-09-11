@@ -115,6 +115,11 @@ def flat_map(iterable:Iterable[E],fm:Callable[[E],Iterable[R]]=identity) -> Iter
     for e in iterable:
         for pe in fm(e):
             yield pe
+            
+def enumerate_flat_map(iterable:Iterable[enumerate[E]],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[enumerate[R]]:
+    for e in iterable:
+        for pe in fm(e.item):
+            yield enumerate(e.count,pe)
     
 def flat(e:Union[E,Iterable[E]]) -> Iterable[E]:
     if isinstance(e,Iterable):
@@ -128,10 +133,6 @@ def joining(iterable:Iterator[E],tostring:Callable[[E],str]=str,separator:str='\
   
 def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) ->str:
     return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in iterable),suffix)
-
-def str_dictionary(dictionary:Dict[K,V],sep:str='\n',prefix:str='',suffix:str='') ->str:
-    ts = lambda x:'({}:{})'.format(str(x[0]),str(x[1]))
-    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in sorted(dictionary.items(),key=lambda x:x[0])),suffix)
 
 
 def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K],op:Callable[[V,V],V],fvalue:Callable[[E],V]= identity) -> Dict[K, E]:
@@ -151,7 +152,7 @@ def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V
     return grouping_reduce(iterable,fkey,lambda x,y:x|y,lambda x: {fvalue(x)}) 
 
 # similar a Counter
-def counting(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
+def frequencies(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
     return grouping_reduce(iterable,fkey,op=lambda x,y:x+y,fvalue= fsum)
 
 if __name__ == '__main__':

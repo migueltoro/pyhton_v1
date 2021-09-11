@@ -5,7 +5,6 @@ Created on 27 oct. 2020
 '''
 from typing import List,Tuple,Callable
 import matplotlib.pyplot as plt
-import numpy as np
 from  matplotlib.patches import Patch
 from math import sin
 
@@ -48,7 +47,7 @@ def draw_piechar(labels:List[str],sizes:List[int]):
     plt.show()
 
 def draw_barchart(labels:List[str],sizes:List[int],title:str,y_label:str):
-    y_pos = np.arange(len(sizes))
+    y_pos = list(range(0,len(sizes)))
     plt.bar(y_pos,sizes, align='center', alpha=0.5)
     plt.xticks(y_pos,labels)
     plt.ylabel(y_label)

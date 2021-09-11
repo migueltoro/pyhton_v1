@@ -7,7 +7,7 @@ Created on 27 jul. 2020
 from __future__ import annotations
 from typing import TypeVar,List,Dict
 from us.lsi.montecarlo.Card import Card
-from us.lsi.tools.Iterable import counting, index_bool, joining
+from us.lsi.tools.Iterable import frequencies, index_bool, joining
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
 
@@ -67,7 +67,7 @@ class Mano:
     @property
     def frecuencias_de_valores(self) -> Dict[int,int]:
         if not self._frecuencias_de_valores:
-            self._frecuencias_de_valores = counting(self._cartas,fkey=lambda c:c.valor)           
+            self._frecuencias_de_valores = frequencies(self._cartas,fkey=lambda c:c.valor)           
         return self._frecuencias_de_valores
     
     @property
@@ -82,7 +82,7 @@ class Mano:
     @property
     def frecuencias_de_palos(self) -> Dict[int,int]:
         if not self._frecuencias_de_palos:
-            self._frecuencias_de_palos = counting(self._cartas,fkey=lambda c:c.palo) 
+            self._frecuencias_de_palos = frequencies(self._cartas,fkey=lambda c:c.palo) 
         return self._frecuencias_de_palos
     
     @property

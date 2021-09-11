@@ -13,6 +13,13 @@ class Coordenadas2D:
     @staticmethod
     def of(latitude:float,longitude:float) -> Coordenadas2D:
         return Coordenadas2D(latitude,longitude)
+    
+    @staticmethod
+    def center(coordenadas:List[Coordenadas2D]) -> Coordenadas2D: 
+        averageLat = average(x.latitude for x in coordenadas)
+        averageLng = average(x.longitude for x in coordenadas)
+        return Coordenadas2D.of(averageLat,averageLng)
+    
         
     
     # a = sin^2(inclat/2) + cos(lat1) * cos(lat2) * sin^2(inclong/2)
@@ -33,12 +40,6 @@ class Coordenadas2D:
     
     def es_cercana(self:Coordenadas2D, c:Coordenadas2D, d:float) -> bool:
         return self.distance(c) <= d
-    
-    @staticmethod
-    def center(coordenadas:List[Coordenadas2D]) -> Coordenadas2D: 
-        averageLat = average(x.latitude for x in coordenadas)
-        averageLng = average(x.longitude for x in coordenadas)
-        return Coordenadas2D.of(averageLat,averageLng)
     
     
     def __str__(self:Coordenadas2D) -> str:

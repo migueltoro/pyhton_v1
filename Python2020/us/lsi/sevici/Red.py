@@ -10,9 +10,7 @@ from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools import File
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 from sortedcontainers import SortedSet
-from us.lsi.tools.Iterable import grouping_list, grouping_acum, str_iterable
-# from optional import Optional
-from us.lsi.tools.Functions import optional
+from us.lsi.tools.Iterable import grouping_list, str_iterable,frequencies
 
 Red = TypeVar('Red')
 
@@ -51,10 +49,10 @@ class Red:
         return len(self.estaciones)
     
     def estacion_de_nombre_compuesto(self,name:str) -> Optional[Estacion]:
-        return optional(self.por_nombre_compuesto.get(name,None))
+        return self.por_nombre_compuesto.get(name,None)
                  
     def estacion_de_numero(self, n:int) -> Optional[Estacion]: 
-        return optional(self.por_numero.get(n,None))
+        return self.por_numero.get(n,None)
  
     def estaciones_con_bicis_disponibles(self, k:int=1) -> Set[Estacion]:
             return {e for e in self.estaciones if e.free_bikes >= k}
@@ -72,7 +70,7 @@ class Red:
    
     @property
     def numero_de_estaciones_por_bicis_disponibles(self) ->  Dict[int,int]:
-        return grouping_acum(self.estaciones, lambda e: e.free_bikes, lambda x,y: x+1, a0=0)  
+        return frequencies(self.estaciones, lambda e: e.free_bikes)  
 
 if __name__ == '__main__':
     File.print_encoding("../../../resources/estaciones.csv")
@@ -82,8 +80,8 @@ if __name__ == '__main__':
     r = Red.data_of_file("../../../resources/estaciones.csv")
 #    print(r)
     print(r.estacion_con_mas_bicis_disponibles)
-    print(r.estacion_de_numero(86).get())
-    print(r.estacion_de_nombre_compuesto('86_CAMINO DE LOS DESCUBRIMIENTOS').get())
+    print(r.estacion_de_numero(86))
+    print(r.estacion_de_nombre_compuesto('86_CAMINO DE LOS DESCUBRIMIENTOS'))
     print(str_iterable(r.numero_de_estaciones_por_bicis_disponibles.items()))
     print(str_iterable(r.estaciones_con_bicis_disponibles(k=2)))
     

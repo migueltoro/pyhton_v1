@@ -27,8 +27,8 @@ class Card:
     def of_text(texto_de_fichero):     
         p = texto_de_fichero[len(texto_de_fichero)-1]
         v = texto_de_fichero[0:len(texto_de_fichero)-1]
-        palo = symbols_palos.index_bool(p)
-        valor = nombre_valores.index_bool(v)      
+        palo = symbols_palos.index(p)
+        valor = nombre_valores.index(v)      
         return Card.of(palo, valor)
     
     @staticmethod

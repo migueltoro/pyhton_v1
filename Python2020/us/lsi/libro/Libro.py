@@ -7,7 +7,8 @@ Created on 25 jul. 2020
 from typing import Set,OrderedDict,Iterator
 from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import size,flat_map,average,find_first,grouping_acum,distinct,str_iterable,grouping_list
+from us.lsi.tools.Iterable import flat_map,average,find_first,distinct,str_iterable,grouping_list,\
+    frequencies
 from us.lsi.tools.Collections import invert_dict
 import re
 
@@ -30,16 +31,16 @@ def numero_de_lineas(file: str) -> int:
     return len(lineas_de_fichero(file))
 
 def numero_de_palabras_no_huecas(file:str) -> int:
-    return size(palabras_no_huecas(file)) 
+    return palabras_no_huecas(file).count() 
 
 def numero_de_palabras_distintas_no_huecas(file:str) -> int:    
-    return size(palabras_no_huecas_distintas(file))            
+    return palabras_no_huecas_distintas(file).count()            
 
 def longitud_media_de_lineas(file:str) -> float:
     return average(len(ln) for ln in lineas_de_fichero(file))
 
 def numero_de_lineas_vacias(file:str) -> int:
-    return size(ln for ln in lineas_de_fichero(file) if len(ln) == 0)
+    return (ln for ln in lineas_de_fichero(file) if len(ln) == 0).count()
 
 def linea_mas_larga(file:str) -> str:
     return max(lineas_de_fichero(file), key= lambda x:len(x))
@@ -51,7 +52,7 @@ def linea_numero(file:str,n:int) -> str:
     return find_first(enumerate(lineas_de_fichero(file)),predicate=lambda p:p[0] == n).get()[1]
 
 def frecuencias_de_palabras(file:str) -> OrderedDict[str,int]:
-    d = grouping_acum(palabras_no_huecas(file),fkey=identity,op=lambda x,y:x+1,a0=0)
+    d = frequencies(palabras_no_huecas(file),fkey=identity)
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
 
 def palabras_por_frecuencias(file:str) -> OrderedDict[int,Set[str]]:
@@ -63,8 +64,9 @@ def palabra_en_lineas(file:str) -> OrderedDict[str,Set[int]]:
     palabras = ((i,p) for i,linea in enumerate(lns) for p in re.split(sep,linea) if len(p) >0) 
     d = grouping_list(palabras,fkey=lambda e: e[1], fvalue=lambda e: e[0])
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
+    
 
 if __name__ == '__main__':
 #    print(numero_de_palabras_distintas_no_huecas("../../../resources/quijote.txt"))
 #    print(str_iterable(palabras_por_frecuencias("../../../resources/quijote.txt").items(),sep='\n',pf='',sf=''))
-    print(str_iterable(palabra_en_lineas("../../../resources/quijote.txt").items(),sep='\n',pf='',sf=''))
+    print(str_iterable(palabra_en_lineas("../../../resources/quijote.txt").items(),sep='\n',prefix='',suffix=''))
