@@ -4,24 +4,27 @@ Created on 17 jul. 2020
 @author: migueltoro
 
 '''
-from typing import Iterator, Tuple, Union, Set, Dict
+from typing import Iterator, Iterable, Tuple, Union, Set, Dict
 from math import pi,sqrt
 from us.lsi.tools import Preconditions
 from statistics import mean, stdev, quantiles, pstdev
 import random
 
 def area_circulo(radio:float) -> float:
-    Preconditions.checkArgument(radio>=0,'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
+    Preconditions.checkArgument(radio>=0, 
+                                'El radio debe ser mayor o \
+                                igual a cero y es {0:.2f}' 
+                                .format(radio))
     return pi*radio**2
 
 def longitud_circunferencia(radio:float) -> float:
     Preconditions.checkArgument(radio>=0,'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
     return 2*pi*radio
 
-def cuadrados_de_multiplos_entre(a:int,b:int,c:int)-> Iterator[int]:
+def cuadrados_de_multiplos_entre(a:int,b:int,c:int)-> Iterable[int]:
     return (x**2 for x in range(a,b) if x%c == 0)
 
-def list_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Iterator[int]:
+def list_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Iterable[int]:
     return [random.randint(a,b) for _ in range(0,n)]
 
 def conjunto_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Set[int]:
