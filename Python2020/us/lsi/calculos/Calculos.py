@@ -34,7 +34,7 @@ def conjunto_de_enteros_aleatorios_entre(a:int,b:int,n:int)-> Set[int]:
 def cuadrados_de_multiplos_entre_dict(a:int,b:int,c:int)-> Dict[int,int]:
     return {x:x*x for x in range(a,b) if x%c == 0}
 
-def progresion_aritmetica(a:int,b:int,c:int) -> Iterator[int]:
+def progresion_aritmetica(a:int,b:int,c:int) -> Iterable[int]:
     return (e for e in range(a,b) if (e-a)%c==0)
 
 def suma(iterable:Iterator[Union[int,float]]) -> float:
