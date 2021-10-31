@@ -57,11 +57,7 @@ class Ruta:
         n = len(self.marcas)
         return sum(self.intervalo(i).longitud for i in range(0,n-1) if self.intervalo(i).desnivel < 0)
     
-    def mostrar_altitud_google(self,fileOut):
-        alturas = [str(self.marcas[i].coordenadas.altitude) for i in range(len(self.marcas))]
-        indices = [i for i in range(len(self.marcas))]
-        campos = ["Posicion","Altura"]
-        Graphics.lineChart(fileOut,"Ruta Ronda",campos,(indices,alturas))
+    
     
     def distance_y(self):
         i=0
@@ -81,8 +77,14 @@ class Ruta:
         n = len(self.marcas)
         alturas = [self.marcas[i].coordenadas.altitude for i in range(0,n)]
         distancias = list(self.distance)
-        datos = [(x,y) for x,y in zip(distancias,alturas)]       
+        datos = list(zip(distancias,alturas))      
         Draw.draw_multiline(datos,y_label='Altura',x_label='kms',title='Recorrido de Ronda')
+        
+    def mostrar_altitud_google(self,fileOut):
+        alturas = [str(self.marcas[i].coordenadas.altitude) for i in range(len(self.marcas))]
+        distances = list(self.distance)
+        campos = ["Posicion","Altura"]
+        Graphics.lineChart(fileOut,"Ruta Ronda",campos,(distances,alturas))
 
 if __name__ == '__main__':
     r = Ruta.ruta_of_file("../../../resources/ruta.csv");
@@ -92,7 +94,7 @@ if __name__ == '__main__':
     print(r.velocidad_media)
     print(r.desnivel_creciente_acumulado)
     print(r.desnivel_decreciente_acumulado)
-#    r.mostrar_altitud_google("../../../ficheros/alturas.html")
+    r.mostrar_altitud_google("../../../ficheros/alturas.html")
     r.mostrar_altitud()
     print(r.longitud)
     print(r.tiempo)
