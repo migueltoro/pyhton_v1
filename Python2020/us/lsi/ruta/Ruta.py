@@ -12,6 +12,7 @@ from us.lsi.tools import Preconditions
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
 from itertools import accumulate 
+from us.lsi.tools.Iterable import str_iterable,limit
 
 Ruta = TypeVar('Ruta')
 
@@ -57,21 +58,21 @@ class Ruta:
         n = len(self.marcas)
         return sum(self.intervalo(i).longitud for i in range(0,n-1) if self.intervalo(i).desnivel < 0)
     
+    @property    
+    def distance(self):
+        n=len(self.marcas)
+        return accumulate(self.intervalo(i).longitud if i>=0 else 0 for i in range(-1, n))
     
-    
+    @property
     def distance_y(self):
         i=0
         r=0
         n=len(self.marcas)
+        yield r
         while(i<n):
-            yield r
             r = r + self.intervalo(i).longitud
+            yield r
             i = i+1
-    
-    @property    
-    def distance(self):
-        n=len(self.marcas)
-        return accumulate(self.intervalo(i).longitud for i in range(0, n))
             
     def mostrar_altitud(self):
         n = len(self.marcas)
@@ -82,23 +83,18 @@ class Ruta:
         
     def mostrar_altitud_google(self,fileOut):
         alturas = [str(self.marcas[i].coordenadas.altitude) for i in range(len(self.marcas))]
-        distances = list(self.distance)
+        distances = list(self.distance)[:-1]
         campos = ["Posicion","Altura"]
         Graphics.lineChart(fileOut,"Ruta Ronda",campos,(distances,alturas))
 
 if __name__ == '__main__':
     r = Ruta.ruta_of_file("../../../resources/ruta.csv");
-#    print(r)
-    print(r.longitud)
-    print(r.tiempo)
-    print(r.velocidad_media)
-    print(r.desnivel_creciente_acumulado)
-    print(r.desnivel_decreciente_acumulado)
-    r.mostrar_altitud_google("../../../ficheros/alturas.html")
+#    print(r.marcas[:30])
+#    print(str_iterable(r.distance,sep="\n",ts=lambda e:"{0:.3f}".format(e)))
+    print("__________")
+    print(str_iterable(r.distance_y,sep="\n",ts=lambda e:"{0:.3f}".format(e)))
     r.mostrar_altitud()
-    print(r.longitud)
-    print(r.tiempo)
-    print(len(r.marcas))
+    r.mostrar_altitud_google("../../../ficheros/alturas.html")
     
     
     
