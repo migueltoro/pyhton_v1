@@ -5,7 +5,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-
+from __future__ import annotations
 from math import pi
 from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D
@@ -13,17 +13,14 @@ from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
-from typing import List, TypeVar, Set
 from us.lsi.tools import Draw
-
-Poligono2D = TypeVar('Poligono2D')
 
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
-    vertices: List[Punto2D]
+    vertices: list[Punto2D]
       
     @staticmethod
-    def of_vertices(vertices: List[Punto2D]) -> Poligono2D:
+    def of_vertices(vertices: list[Punto2D]) -> Poligono2D:
         return Poligono2D(vertices)
    
     @staticmethod
@@ -99,7 +96,7 @@ class Poligono2D(Objeto2D):
     def homotecia(self, p:Punto2D, factor:float) -> Poligono2D:
         return Poligono2D.of_vertices([x.homotecia(p,factor) for x in self.vertices])
         
-    def proyecta_sobre_recta(self,r:Recta2D) -> Set[Punto2D]:
+    def proyecta_sobre_recta(self,r:Recta2D) -> set[Punto2D]:
         return Poligono2D.of_vertices([x.proyecta_sobre_recta(r) for x in self.vertices])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:

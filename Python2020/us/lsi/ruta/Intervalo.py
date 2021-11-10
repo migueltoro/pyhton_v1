@@ -4,13 +4,11 @@ Created on 23 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import TypeVar
 from us.lsi.ruta.Marca import Marca
-from us.lsi.tools import Preconditions
+from us.lsi.tools.Preconditions import checkArgument
 from us.lsi.tools.Dates import to_datetime
-
-Intervalo = TypeVar('Intervalo')
 
 @dataclass(frozen=True,order=True)
 class Intervalo:
@@ -19,6 +17,8 @@ class Intervalo:
     
     @staticmethod
     def of(principio: Marca, fin:Marca) -> Intervalo:
+        checkArgument(principio <= fin,\
+                      'Principio={0}, fin={1}'.format(principio,fin))
         return Intervalo(principio,fin)
     
     def __str__(self):
@@ -30,7 +30,7 @@ class Intervalo:
     
     @property
     def longitud(self) -> float:
-        return self.principio.coordenadas.distance(self.fin.coordenadas)
+        return self.principio.coordenadas.distancia(self.fin.coordenadas)
     
     @property
     def tiempo(self) -> float:
@@ -38,7 +38,7 @@ class Intervalo:
     
     @property
     def velocidad(self) -> float:
-        Preconditions.checkArgument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0:.2f}'.format(self.tiempo))
+        checkArgument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo))
         return self.longitud/self.tiempo
 
 

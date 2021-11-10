@@ -5,12 +5,12 @@ Created on 24 jul. 2020
 '''
 
 import re
-from typing import TypeVar, Dict, List
+from typing import TypeVar
 
 
 Objeto2D = TypeVar('Objeto2D')
 
-def transform(inText:str,reglas:Dict[str,str]) -> str:
+def transform(inText:str,reglas:dict[str,str]) -> str:
     outText = inText;
     for e,s in reglas.items():
         outText = re.sub(r'\{'+e+'\}',s,outText)
@@ -24,7 +24,7 @@ def strip_non_ascii(string):
     stripped = (c for c in string if 0 < ord(c) < 127)
     return ''.join(stripped)   
 
-def split_str(text:str,sep:str=',') -> List[str]:
+def split_str(text:str,sep:str=',') -> list[str]:
     return re.split(sep,text)
 
 if __name__ == '__main__':

@@ -3,30 +3,30 @@ Created on 27 oct. 2020
 
 @author: migueltoro
 '''
-from typing import List,Tuple,Callable
+from typing import Callable
 import matplotlib.pyplot as plt
 from  matplotlib.patches import Patch
 from math import sin
 
 color:str='r'
 
-def shape_polygon(points:List[Tuple[float,float]])->Patch:
+def shape_polygon(points:list[tuple[float,float]])->Patch:
     return plt.Polygon(points, closed=True, fill=None, edgecolor=color)
     
-def shape_segment(points:List[float])->Patch: 
+def shape_segment(points:list[float])->Patch: 
     return plt.Polygon(points, closed=None, fill=None, edgecolor=color)
 
-def shape_circle(center:Tuple[float],radio:float)->Patch:
+def shape_circle(center:tuple[float],radio:float)->Patch:
     return plt.Circle(center,radio, fill=None, color=color)
 
-def shape_point(center:Tuple[float],size:float=0.05)->Patch:
+def shape_point(center:tuple[float],size:float=0.05)->Patch:
     return plt.Circle(center,size,fill=True,color=color,fc=color)
 
-def shape_multiline(points:List[Tuple[float,float]])->Patch:
+def shape_multiline(points:list[tuple[float,float]])->Patch:
     return plt.Polygon(points, closed=None, fill=None, edgecolor=color)
     
 
-def draw_shapes(shapes:List[Patch]): 
+def draw_shapes(shapes:list[Patch]): 
     plt.axes()
     for f in shapes:
         plt.gca().add_patch(f)
@@ -41,12 +41,12 @@ def draw_function(function:Callable[[float],float],a:float,b:float,inc:float)->N
     plt.plot(x, y)
     plt.show()
     
-def draw_piechar(labels:List[str],sizes:List[int]):
+def draw_piechar(labels:list[str],sizes:list[int]):
     plt.pie(sizes, labels=labels)
     plt.axis('equal')
     plt.show()
 
-def draw_barchart(labels:List[str],sizes:List[int],title:str,y_label:str):
+def draw_barchart(labels:list[str],sizes:list[int],title:str,y_label:str):
     y_pos = list(range(0,len(sizes)))
     plt.bar(y_pos,sizes, align='center', alpha=0.5)
     plt.xticks(y_pos,labels)
@@ -54,7 +54,7 @@ def draw_barchart(labels:List[str],sizes:List[int],title:str,y_label:str):
     plt.title(title)
     plt.show()
     
-def draw_multiline(points:List[Tuple[float,float]],y_label:str='eje y',x_label:str='eje_x',title:str='Grafico'):
+def draw_multiline(points:list[tuple[float,float]],y_label:str='eje y',x_label:str='eje_x',title:str='Grafico'):
     plt.ylabel(y_label)
     plt.xlabel(x_label) 
     plt.title(title) 

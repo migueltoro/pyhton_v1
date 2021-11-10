@@ -4,15 +4,13 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
-from typing import TypeVar
 from us.lsi.tools import Draw
-
-Segmento2D = TypeVar('Segmento2D')
 
 @dataclass(frozen=True,order=True)
 class Segmento2D(Objeto2D):

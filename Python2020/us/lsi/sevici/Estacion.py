@@ -4,12 +4,11 @@ Created on 24 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import TypeVar, List
 from us.lsi.tools import Preconditions
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 
-Estacion = TypeVar('Estacion')
 
 @dataclass(frozen=True,order=True)
 class Estacion:
@@ -22,7 +21,7 @@ class Estacion:
 
     
     @staticmethod   
-    def parse(linea: List[str]) -> Estacion:
+    def parse(linea: list[str]) -> Estacion:
         name,slots,empty_slots,free_bikes,longitude,latitude = linea
         Preconditions.checkArgument('_' in name,'{0} no contiene _'.format(name))
         numero, name = name.split("_")

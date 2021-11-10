@@ -4,7 +4,7 @@ Created on 25 jul. 2020
 @author: migueltoro
 '''
 
-from typing import Set,OrderedDict,Iterator
+from typing import OrderedDict,Iterable
 from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tools.Functions import identity
 from us.lsi.tools.Iterable import flat_map,average,find_first,distinct,str_iterable,grouping_list,\
@@ -14,17 +14,17 @@ import re
 
 sep = r'[ ,;.\n():?!\"]'
 
-def palabras_huecas() -> Set[str]:
+def palabras_huecas() -> set[str]:
     lns = lineas_de_fichero("../../../resources/palabras_huecas.txt")
     return {p for p in lns}
 
-def palabras_no_huecas(file: str) -> Iterator[str]:
+def palabras_no_huecas(file: str) -> Iterable[str]:
     lns = lineas_de_fichero(file,encoding='utf-16')
     pls = flat_map(lns,lambda x: re.split(sep, x))
     palabras = (p for p in pls if p not in palabras_huecas() if len(p) > 0)
     return palabras
 
-def palabras_no_huecas_distintas(file: str) -> Iterator[str]:
+def palabras_no_huecas_distintas(file: str) -> Iterable[str]:
     return distinct(palabras_no_huecas(file))
 
 def numero_de_lineas(file: str) -> int:
@@ -55,11 +55,11 @@ def frecuencias_de_palabras(file:str) -> OrderedDict[str,int]:
     d = frequencies(palabras_no_huecas(file),fkey=identity)
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
 
-def palabras_por_frecuencias(file:str) -> OrderedDict[int,Set[str]]:
+def palabras_por_frecuencias(file:str) -> OrderedDict[int,set[str]]:
     d = invert_dict(frecuencias_de_palabras(file))
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
  
-def palabra_en_lineas(file:str) -> OrderedDict[str,Set[int]]:
+def palabra_en_lineas(file:str) -> OrderedDict[str,set[int]]:
     lns = lineas_de_fichero(file,encoding='utf-16')
     palabras = ((i,p) for i,linea in enumerate(lns) for p in re.split(sep,linea) if len(p) >0) 
     d = grouping_list(palabras,fkey=lambda e: e[1], fvalue=lambda e: e[0])

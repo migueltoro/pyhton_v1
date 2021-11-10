@@ -4,12 +4,11 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from math import sin, cos, radians, atan2, degrees, sqrt, acos
 from dataclasses import dataclass
 from us.lsi.tools import Preconditions
-from typing import TypeVar
 
-Vector2D = TypeVar('Vector2D')
 
 @dataclass(frozen=True,order=True)
 class Vector2D:

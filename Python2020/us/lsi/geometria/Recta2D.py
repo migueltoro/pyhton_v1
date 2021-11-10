@@ -4,12 +4,11 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Punto2D import Punto2D
 from dataclasses import dataclass
-from typing import TypeVar
 
-Recta2D = TypeVar('Recta2D')
 
 @dataclass(frozen=True,order=True)
 class Recta2D:

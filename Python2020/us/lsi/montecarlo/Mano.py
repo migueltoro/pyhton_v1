@@ -5,15 +5,12 @@ Created on 27 jul. 2020
 '''
 
 from __future__ import annotations
-from typing import TypeVar,List,Dict
 from us.lsi.montecarlo.Card import Card
 from us.lsi.tools.Iterable import frequencies, index_bool, joining
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
 
-Mano= TypeVar('Mano')
-
-nombres_jugadas: List[str] =  ['EscaleraReal','EscaleraDeColor','Poker','Full','Color', \
+nombres_jugadas: list[str] =  ['EscaleraReal','EscaleraDeColor','Poker','Full','Color', \
                         'Escalera','Trio', \
                         'DoblePareja','Pareja','CartaMasAlta']
 numero_de_cartas: int = 5 
@@ -22,12 +19,12 @@ numero_de_cartas: int = 5
 class Mano:
     
     def __init__(self, cartas):       
-        self._cartas: List[Card] = cartas
-        self._frecuencias_de_valores: Dict[int,int] = None
-        self._valores_ordenados_por_frecuencias: List[int] = None
+        self._cartas: list[Card] = cartas
+        self._frecuencias_de_valores: dict[int,int] = None
+        self._valores_ordenados_por_frecuencias: list[int] = None
         self._son_5_valores_consecutivos: bool = None
-        self._frecuencias_de_palos: Dict[int,int] = None
-        self._palos_ordenados_por_frecuencias: List[int] = None
+        self._frecuencias_de_palos: dict[int,int] = None
+        self._palos_ordenados_por_frecuencias: list[int] = None
         self._jugada: int = None
         self._fuerza: float = None        
     
@@ -52,7 +49,7 @@ class Mano:
         return Mano(cartas)
     
     @property
-    def cartas(self) -> List[Card]:
+    def cartas(self) -> list[Card]:
         return self._cartas
     
     @property
@@ -65,13 +62,13 @@ class Mano:
         return self._son_5_valores_consecutivos
     
     @property
-    def frecuencias_de_valores(self) -> Dict[int,int]:
+    def frecuencias_de_valores(self) -> dict[int,int]:
         if not self._frecuencias_de_valores:
             self._frecuencias_de_valores = frequencies(self._cartas,fkey=lambda c:c.valor)           
         return self._frecuencias_de_valores
     
     @property
-    def valores_ordenados_por_frecuencias(self) -> List[int]:
+    def valores_ordenados_por_frecuencias(self) -> list[int]:
         if not self._valores_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_valores.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
@@ -80,13 +77,13 @@ class Mano:
         return self._valores_ordenados_por_frecuencias
 
     @property
-    def frecuencias_de_palos(self) -> Dict[int,int]:
+    def frecuencias_de_palos(self) -> dict[int,int]:
         if not self._frecuencias_de_palos:
             self._frecuencias_de_palos = frequencies(self._cartas,fkey=lambda c:c.palo) 
         return self._frecuencias_de_palos
     
     @property
-    def palos_ordenados_por_frecuencias(self) -> List[int]:
+    def palos_ordenados_por_frecuencias(self) -> list[int]:
         if not self._palos_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_palos.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
@@ -160,7 +157,7 @@ class Mano:
         return nombres_jugadas[self.jugada]
     
     @property
-    def predicados_jugadas(self) -> List[bool]:
+    def predicados_jugadas(self) -> list[bool]:
         return  [self.es_escalera_real,self.es_escalera_de_color,self.es_poker,self.es_full,self.es_color, \
                  self.es_escalera,self.es_trio, \
                  self.es_doble_pareja,self.es_pareja,self.es_carta_mas_alta] 

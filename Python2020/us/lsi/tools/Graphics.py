@@ -7,10 +7,11 @@ Created on 26 jul. 2020
 from us.lsi.tools import File
 from us.lsi.tools import String
 from us.lsi.tools.Iterable import joining
-from typing import List, Tuple, Union
 from us.lsi.tools import Preconditions
 
-def lineChart(fileOut:str,title:str,nombres_de_ejes:List[str],datos:Tuple[List[int],List[float]]) -> None:  
+num = int | float
+
+def lineChart(fileOut:str,title:str,nombres_de_ejes:list[str],datos:tuple[list[int],list[float]]) -> None:  
     Preconditions.checkArgument(len(nombres_de_ejes) ==2,'Debe haber dos nombres de ejes y hay {0:d}'.format(len(nombres_de_ejes)))
     result = File.texto_de_fichero('../../../resources/LineChartPattern.html')
     cl = ("'{0:s}'".format(x) for x in nombres_de_ejes)
@@ -24,7 +25,7 @@ def lineChart(fileOut:str,title:str,nombres_de_ejes:List[str],datos:Tuple[List[i
 def filaLineChart(e,datos):
     return '[{0}]'.format(','.join(str(datos[i][e]) for i in range(len(datos))))
     
-def pieChart(fileOut:str,title:str,nombres_de_datos:List[str],nombres:List[str],datos:List[Union[int,float]]) -> None:
+def pieChart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str],datos:list[num]) -> None:
     result = File.texto_de_fichero("../../../resources/PieChartPattern.html")
     dt = ("'{0}'".format(e) for e in nombres_de_datos)
     campos_text = joining(dt,separator=",",prefix="[",suffix="]")
@@ -38,7 +39,7 @@ def filaPieChart(e,nombres,datos):
     return "['%s',%s]" % (nombres[e],str(datos[e]))
 
 
-def columnsBarChart(fileOut:str,title:str,nombres_de_datos:List[str],columns_labels:List[str],datos:List[Union[int,float]]) -> None:
+def columnsBarChart(fileOut:str,title:str,nombres_de_datos:list[str],columns_labels:list[str],datos:list[num]) -> None:
     result = File.texto_de_fichero("../../../resources/ColumnsBarPattern.html")
     dt = ("'{0}'".format(e) for e in nombres_de_datos)
     nombres_de_datos_text = joining(dt,separator=",",prefix="[",suffix="]")
@@ -50,7 +51,7 @@ def columnsBarChart(fileOut:str,title:str,nombres_de_datos:List[str],columns_lab
     result = String.transform(result,reglas)
     File.write(fileOut,result)
  
-def columna_columns_bar_chart(e:int,columns_labels:str,datos:Union[int,float]) -> str:
+def columna_columns_bar_chart(e:int,columns_labels:str,datos:num) -> str:
     return "['%s',%s]" % (columns_labels[e],str(datos[e]))
 
 def cartas_graphic(fileOut,cartas,fuerza,tipo):       

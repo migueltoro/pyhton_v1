@@ -4,16 +4,14 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from math import sqrt, pi
 from dataclasses import dataclass
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Objeto2D import Objeto2D
-from typing import TypeVar
 from us.lsi.tools import Draw
 
-Punto2D = TypeVar('Punto2D')
-Recta2D = TypeVar('Recta2D')
 
 @dataclass(frozen=True,order=True)
 class Punto2D(Objeto2D):
@@ -48,18 +46,21 @@ class Punto2D(Objeto2D):
     @property
     def distancia_al_origen(self: Punto2D) -> float:
         return self.distancia_a(Punto2D.origen())
-      
+
+    
     @property
     def cuadrante(self) -> Cuadrante:
-        if self.x >=0 and self.y >= 0 :
-            c = Cuadrante.PRIMERO;
-        elif self.x <=0 and self.y >=0 :
-            c = Cuadrante.SEGUNDO;
-        elif self.x <=0 and self.y <=0 :
-            c = Cuadrante.TERCERO;
-        else :
-            c = Cuadrante.CUARTO
-        return c;
+        match self:
+            case Punto2D(x,y) if x >=0 and y >= 0 :
+                c = Cuadrante.PRIMERO
+            case Punto2D(x,y) if x <=0 and y >=0 :
+                c = Cuadrante.SEGUNDO
+            case Punto2D(x,y) if x <=0 and y <=0 :
+                c = Cuadrante.TERCERO
+            case _ :
+                c = Cuadrante.CUARTO
+        return c
+                
     
     def distancia_a(self,p:Punto2D) -> float:
         dx = self.x-p.x;
@@ -85,14 +86,14 @@ class Punto2D(Objeto2D):
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
         return p.add_vector(p.minus_punto(self).multiply(factor))
     
-    def proyecta_sobre_recta(self,r:Recta2D) -> Punto2D: 
+    def proyecta_sobre_recta(self,r:'Recta2D') -> Punto2D: 
         v1 = self.minus_punto(r.punto)
         vu = r.vector.unitario
         f = v1.multiply_escalar(vu)
         v2 = vu.multiply_double(f)  
         return r.punto.add_vector(v2)
     
-    def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Punto2D:
+    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return self.add_vector(p.minus_punto(self).multiply_double(2.))
     
@@ -104,8 +105,10 @@ class Punto2D(Objeto2D):
 
 if __name__ == '__main__':
     p = Punto2D.parse('2.3,-4.55')
+    p1 = Punto2D.parse('2.3,4.55')
     print(p)
     print(p.cuadrante)
+    print(p1.cuadrante)
     print(p.distancia_al_origen)
     print(p.minus_punto(Punto2D.of(1., 5.)))
     print(p.rota(Punto2D.origen(),pi/2))

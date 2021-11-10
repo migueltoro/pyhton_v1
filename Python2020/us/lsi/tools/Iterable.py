@@ -3,11 +3,13 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterator, Iterable, TypeVar, Dict, Callable, List, Set, Union, Tuple, Any
+from typing import Iterable, TypeVar, Callable, Any
 import random
 from us.lsi.tools.File import lineas_de_fichero
 
 identity = lambda x:x
+
+num = int | float
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -44,7 +46,7 @@ def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
                 
-def count(iterable:Iterator[E]) -> int:
+def count(iterable:Iterable[E]) -> int:
     n = 0
     for _ in iterable:
         n = n+1
@@ -56,7 +58,7 @@ def iterate(initial:E, predicate:Callable[[E],bool],operator:Callable[[E],E]) ->
         yield e
         e = operator(e)
 
-def average(iterable:Iterable):
+def average(iterable:Iterable[num]):
     s = 0
     n = 0
     for x in iterable:
@@ -64,27 +66,27 @@ def average(iterable:Iterable):
         n = n+1
     return s/n
 
-def find_first(iterable:Iterator[E], p:Callable[[E],bool]) -> Union[E,None]:
+def find_first(iterable:Iterable[E], p:Callable[[E],bool]) -> E | None:
     for e in iterable:
         if p(e):
             return e
     return None
     
-def first_and_last(iterable:Iterator[E],defaultvalue=None)->Tuple[E,E]:
+def first_and_last(iterable:Iterable[E],defaultvalue=None)->tuple[E,E]:
     first = last = next(iterable, defaultvalue)
     for last in iterable:
         pass
     return (first,last)
     
 
-def distinct(iterable:Iterator[E])->Iterator[E]:
+def distinct(iterable:Iterable[E])->Iterable[E]:
     seen = set()
     for item in iterable:
         if item not in seen:
             seen.add(item)
             yield item 
             
-def limit(iterable:Iterator[E],limit:int) -> Iterable[E]:
+def limit(iterable:Iterable[E],limit:int) -> Iterable[E]:
     i = 0
     for e in iterable:
         if i < limit:
@@ -121,21 +123,22 @@ def enumerate_flat_map(iterable:Iterable[enumerate[E]],fm:Callable[[E],Iterable[
         for pe in fm(e.item):
             yield enumerate(e.count,pe)
     
-def flat(e:Union[E,Iterable[E]]) -> Iterable[E]:
+def flat(e: E | Iterable[E]) -> Iterable[E]:
     if isinstance(e,Iterable):
         for x in e:
             yield x 
     else:
         yield e
     
-def joining(iterable:Iterator[E],tostring:Callable[[E],str]=str,separator:str='\n',prefix:str='',suffix:str='') -> str:
+def joining(iterable:Iterable[E],tostring:Callable[[E],str]=str,separator:str='\n',prefix:str='',suffix:str='') -> str:
         return '{0}{1}{2}'.format(prefix,separator.join(tostring(x) for x in  iterable),suffix)
   
-def str_iterable(iterable:Iterator[str],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) ->str:
+def str_iterable(iterable:Iterable[str],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) ->str:
     return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in iterable),suffix)
 
 
-def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K],op:Callable[[V,V],V],fvalue:Callable[[E],V]= identity) -> Dict[K, E]:
+def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K], \
+                    op:Callable[[V,V],V],fvalue:Callable[[E],V]= identity) -> dict[K, E]:
     a = {}
     for e in iterable:
         k = fkey(e)
@@ -145,14 +148,14 @@ def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K],op:Callable[[V,V],
             a[k] = fvalue(e)
     return a
 
-def grouping_list(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,List[V]]:
+def grouping_list(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> dict[K,list[V]]:
     return grouping_reduce(iterable,fkey,lambda x,y:x+y,lambda x: [fvalue(x)])
 
-def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> Dict[K,Set[V]]:
+def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> dict[K,set[V]]:
     return grouping_reduce(iterable,fkey,lambda x,y:x|y,lambda x: {fvalue(x)}) 
 
 # similar a Counter
-def frequencies(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> Dict[K,int]:
+def frequencies(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> dict[K,int]:
     return grouping_reduce(iterable,fkey,op=lambda x,y:x+y,fvalue= fsum)
 
 if __name__ == '__main__':

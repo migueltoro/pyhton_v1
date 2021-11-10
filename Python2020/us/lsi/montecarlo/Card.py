@@ -7,9 +7,6 @@ Created on 27 jul. 2020
 from __future__ import annotations
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
-from typing import TypeVar
-
-Card= TypeVar('Card')
 
 nombre_valores = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
 symbols_palos = ['C', 'H', 'S', 'D']

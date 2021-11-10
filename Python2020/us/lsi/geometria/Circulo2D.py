@@ -4,7 +4,7 @@ Created on 16 jul. 2020
 @author: migueltoro
 '''
 
-
+from __future__ import annotations
 from math import pi 
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Segmento2D import Segmento2D
@@ -13,10 +13,8 @@ from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
-from typing import TypeVar
 from us.lsi.tools import Draw
 
-Circulo2D = TypeVar('Circulo2D')
 
 @dataclass(frozen=True,order=True)
 class Circulo2D(Objeto2D):

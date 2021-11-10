@@ -4,8 +4,8 @@ Created on 21 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import TypeVar,List
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Punto2D import Punto2D
@@ -15,20 +15,18 @@ from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.tools import Draw
 from math import pi
 
-Agregado2D = TypeVar('Agregado2D')
-
 @dataclass(frozen=False)
 class Agregado2D(Objeto2D):
-    objetos: List[Objeto2D]
+    objetos: list[Objeto2D]
         
     @staticmethod
-    def of(objetos: List[Objeto2D]) -> Agregado2D:
+    def of(objetos: list[Objeto2D]) -> Agregado2D:
         return Agregado2D(objetos)
     
     def __str__(self) -> str:
         return '({0})'.format(','.join(str(p) for p in self.objetos))
     
-    def add(self,mas_objetos:List[Objeto2D])->None:
+    def add(self,mas_objetos:list[Objeto2D])->None:
         self.objetos = self.objetos + mas_objetos
     
     def rota(self, p:Punto2D, angulo:float) -> Agregado2D:
