@@ -12,7 +12,7 @@ from us.lsi.tools.Preconditions import checkElementIndex
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
 from itertools import accumulate 
-from us.lsi.tools.GraphicsMaps import  polyline
+from us.lsi.tools.GraphicsMaps import  polyline, set_tipo, TipoMapa
 
 class Ruta:
     
@@ -65,8 +65,14 @@ class Ruta:
         Graphics.lineChart(fileOut,"Ruta Ronda",campos,(distancias,alturas))
         
     def mostrar_mapa_google(self,fileOut:str)->None:
+        set_tipo(TipoMapa.Google)
         coordenadas = [c.coordenadas.to2D for c in self.marcas]
-        polyline(fileOut,coordenadas);
+        polyline(fileOut,coordenadas)
+    
+    def mostrar_mapa_bing(self,fileOut:str)->None:
+        set_tipo(TipoMapa.Bing)
+        coordenadas = [c.coordenadas.to2D for c in self.marcas]
+        polyline(fileOut,coordenadas)
 
 if __name__ == '__main__':
     r = Ruta.ruta_of_file("../../../resources/ruta.csv");
@@ -75,7 +81,8 @@ if __name__ == '__main__':
     print("__________")
     r.mostrar_altitud()
     r.mostrar_altitud_google("../../../ficheros/alturasGoogle.html")
-    r.mostrar_mapa_google("../../../ficheros/mapaGoogle.html")
+#    r.mostrar_mapa_google("../../../ficheros/mapaGoogle.html")
+    r.mostrar_mapa_bing("../../../ficheros/mapaBing.html")
     
     
     

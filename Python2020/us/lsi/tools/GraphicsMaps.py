@@ -10,23 +10,33 @@ from us.lsi.tools import File
 from us.lsi.tools import String
 from enum import Enum
 
+
+
 class TipoMapa(Enum):
     Google = 1
     Bing = 2
     
-def tipoMapa()->TipoMapa:
-    return TipoMapa.Google
+tipo: TipoMapa = TipoMapa.Google
+
+def set_tipo(ntipo:TipoMapa)->None:
+    global tipo
+    tipo = ntipo
+    
+def get_tipo()->TipoMapa.Google:
+    global tipo
+    return tipo
+
+n:int = 0
+
+def nv():
+    global n
+    n = n +1
+    return n
 
 def toPointGoogle(coordenadas:Coordenadas2D)->str:
-    r = "lat: {0:11.6f}, lng: {1:11.6f}".format(coordenadas.latitud,coordenadas.longitud)
-    return '{'+r+'}'
+    return  "{{ lat: {0:11.6f}, lng: {1:11.6f} }}".format(coordenadas.latitud,coordenadas.longitud)
 
-def n()->int:
-    n = 0
-    yield n
-    n = n+1
-
-def toMarkerGoogle(n:int,color:str, text:str,coordenadas:Coordenadas2D)->str:
+def toMarkerGoogle(color:str, text:str,coordenadas:Coordenadas2D)->str:
         url = "\"http://maps.google.com/mapfiles/ms/icons/"+color+"-dot.png\""
         lat = coordenadas.latitud
         lng = coordenadas.longitud
@@ -36,7 +46,7 @@ def toMarkerGoogle(n:int,color:str, text:str,coordenadas:Coordenadas2D)->str:
                        position: {1:s}, \r\
                        title: '{2:s}' , \r\
                        icon: {{ url: {3:s} }} \r\
-                       }});".format(n,position_text,text,url)
+                       }});".format(nv(),position_text,text,url)
 
 def getKeyGoogle()->str:
     return File.lineas_de_fichero(
@@ -48,35 +58,57 @@ def getPolylinePatternGoogle()->str:
 def getMarkersPatternGoogle()->str:
     return File.texto_de_fichero("../../../resources/GoogleMarkersPattern.html")
 
+def toPointBing(coordenadas:Coordenadas2D)->str:
+    return "new Microsoft.Maps.Location({0:11.6f},{1:11.6f})".format(coordenadas.latitud,coordenadas.longitud)
+
+def toMarkerBing(color:str, text:str, coordenadas:Coordenadas2D)->str:
+        lat = coordenadas.latitud
+        lng = coordenadas.longitud
+        n = nv()
+        return "var pin{0:d} = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location({1:11.6f},{2:11.6f},{{\
+        color:'{3:s}',\
+        text:'{4:s}'}});\n\
+        map.entities.push(pin{0:d});".format(n,lat,lng,color,text)
+
+def getKeyBing()->str:
+    return File.lineas_de_fichero("C:/Users/migueltoro/OneDrive - UNIVERSIDAD DE SEVILLA/Escritorio/Jars/Keys/privateBing.txt")[0]
+
+def getPolylinePatternBing()->str:
+    return File.texto_de_fichero("../../../resources/BingPolylinePattern.html")
+
+def getMarkersPatternBing()->str:
+    return File.texto_de_fichero("../../../resources/BingMarkersPattern.html")
+
+
 def toPoint(coordenadas: Coordenadas2D)->str:
-    if tipoMapa() == TipoMapa.Google:
+    if get_tipo() == TipoMapa.Google:
         return toPointGoogle(coordenadas)
     else:
-        pass
+        return toPointBing(coordenadas)
         
-def toMarker(n:int,color:str, text:str, coordenadas:Coordenadas2D)->str:
-    if tipoMapa() == TipoMapa.Google:
-        return toMarkerGoogle(n,color,text,coordenadas)
+def toMarker(color:str, text:str, coordenadas:Coordenadas2D)->str:
+    if get_tipo() == TipoMapa.Google:
+        return toMarkerGoogle(color,text,coordenadas)
     else:
-        pass
+        return toMarkerBing(color,text,coordenadas)
 
 def getKey()->str:
-    if tipoMapa() == TipoMapa.Google:
+    if get_tipo() == TipoMapa.Google:
         return getKeyGoogle()
     else:
-        pass
+        return getKeyBing()
 
 def getPolylinePattern()->str:
-    if tipoMapa() == TipoMapa.Google:
+    if get_tipo() == TipoMapa.Google:
         return getPolylinePatternGoogle()
     else:
-        pass
+        return getPolylinePatternBing()
 
 def getMarkersPattern()->str:
-    if tipoMapa() == TipoMapa.Google:
+    if get_tipo() == TipoMapa.Google:
         return getMarkersPatternGoogle()
     else:
-        pass
+        return getMarkersPatternBing()
     
 def polyline(fileOut:str, ubicaciones:list[Coordenadas2D])-> None:
         center = Coordenadas2D.center(ubicaciones)
@@ -84,9 +116,9 @@ def polyline(fileOut:str, ubicaciones:list[Coordenadas2D])-> None:
         ub = (toPoint(x) for x in ubicaciones)
         polylineText = str_iterable(ub,",\n","\n[", "]\n")
         centerText = toPoint(center);
-        markerCenterText = toMarker(0,"red","C",center);
-        markerBeginText = toMarker(1,"red","S",ubicaciones[0])
-        markerEndText = toMarker(2,"red","E",ubicaciones[-1])
+        markerCenterText = toMarker("red","C",center);
+        markerBeginText = toMarker("red","S",ubicaciones[0])
+        markerEndText = toMarker("red","E",ubicaciones[-1])
         keyText = getKey()
         reglas = {}
         reglas["center"] = centerText
