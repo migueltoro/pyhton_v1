@@ -70,6 +70,7 @@ class Red:
     def numero_de_estaciones_por_bicis_disponibles(self) ->  dict[int,int]:
         return frequencies(self.estaciones, lambda e: e.free_bikes)  
 
+
 if __name__ == '__main__':
     File.print_encoding("../../../resources/estaciones.csv")
     numero,name = '242_PLAZA NUEVA'.split('_')
