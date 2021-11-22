@@ -44,7 +44,7 @@ def cuadrados_de_multiplos_entre_dict(a:int,b:int,c:int)-> dict[int,int]:
     return {x:x*x for x in range(a,b) if x%c == 0}
 
 def progresion_aritmetica(a:int,b:int,c:int) -> Iterable[int]:
-    return (a+i*c for i in range(a,b) if a+i*c<b)
+    return range(a,b,c)
 
 def suma(iterable:Iterable[num]) -> num:
     a = 0 #(sum x, num elem)

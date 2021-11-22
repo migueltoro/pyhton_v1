@@ -47,7 +47,7 @@ def draw_piechar(labels:list[str],sizes:list[int]):
     plt.show()
 
 def draw_barchart(labels:list[str],sizes:list[int],title:str,y_label:str):
-    y_pos = list(range(0,len(sizes)))
+    y_pos = list(range(len(sizes)))
     plt.bar(y_pos,sizes, align='center', alpha=0.5)
     plt.xticks(y_pos,labels)
     plt.ylabel(y_label)
@@ -65,7 +65,7 @@ def draw_multiline(points:list[tuple[float,float]],y_label:str='eje y',x_label:s
 
 if __name__ == '__main__':
 #    draw_piechar(['Python', 'C++', 'Ruby', 'Java'],[215, 130, 245, 210])
-#    draw_barchart(['Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp'],[10,8,6,4,2,1],'Titulo','Prueba')
+     draw_barchart(['Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp'],[10,8,6,4,2,1],'Titulo','Prueba')
 #    draw_circle((0.5, 0.5), 0.2, color='r')
 #    circle = shape_circle((0, 0), 1.)
 #    polygon = shape_polygon([[2, 1], [8, 1], [8, 4]])
@@ -73,4 +73,4 @@ if __name__ == '__main__':
 #    punto = shape_point([-30, 2])
 #    draw_shapes([circle,line,polygon,punto])
 #    draw_multiline([1,2,3,7,-1,5,6])
-    draw_function(lambda x:sin(x),-25.,25,1.)
+     draw_function(lambda x:sin(x),-25.,25,1.)

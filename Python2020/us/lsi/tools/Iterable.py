@@ -45,12 +45,6 @@ def geometric(a:int,b:int,c:int) -> Iterable[int]:
 def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
-                
-def count(iterable:Iterable[E]) -> int:
-    n = 0
-    for _ in iterable:
-        n = n+1
-    return n
 
 def iterate(initial:E, predicate:Callable[[E],bool],operator:Callable[[E],E]) -> Iterable[E]:
     e = initial
@@ -94,6 +88,23 @@ def limit(iterable:Iterable[E],limit:int) -> Iterable[E]:
             i = i +1
         else:
             break
+        
+def count(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
+    n = 0
+    for e in iterable:
+        if predicate(e):
+            n = n+1
+    return n
+
+def reduce2(f:Callable[[R,E],R], iterable:Iterable[E], initial:R=None)->R|None:
+    r = initial
+    if initial is None:
+        iterable = iter(iterable)
+        r = next(iterable)
+    for e in iterable:
+        r = f(r,e)
+    return r
+    
 
 def index_bool(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
@@ -129,6 +140,7 @@ def flat(e: E | Iterable[E]) -> Iterable[E]:
             yield x 
     else:
         yield e
+        
     
 def joining(iterable:Iterable[E],tostring:Callable[[E],str]=str,separator:str='\n',prefix:str='',suffix:str='') -> str:
         return '{0}{1}{2}'.format(prefix,separator.join(tostring(x) for x in  iterable),suffix)

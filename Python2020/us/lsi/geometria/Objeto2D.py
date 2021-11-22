@@ -3,11 +3,10 @@ Created on 21 jul. 2020
 
 @author: migueltoro
 '''
-
+from __future__ import annotations
 from typing import TypeVar
 from abc import abstractmethod
 
-Objeto2D = TypeVar('Objeto2D')
 Punto2D = TypeVar('Punto2D')
 Vector2D = TypeVar('Vector2D')
 Recta2D = TypeVar('Recta2D')

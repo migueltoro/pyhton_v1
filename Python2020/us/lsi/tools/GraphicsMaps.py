@@ -53,10 +53,10 @@ def getKeyGoogle()->str:
         "C:/Users/migueltoro/OneDrive - UNIVERSIDAD DE SEVILLA/Escritorio/Jars/Keys/privateGoogle.txt")[0]
     
 def getPolylinePatternGoogle()->str:
-    return File.texto_de_fichero("../../../resources/GooglePolylinePattern.html")
+    return File.read("../../../resources/GooglePolylinePattern.html")
     
 def getMarkersPatternGoogle()->str:
-    return File.texto_de_fichero("../../../resources/GoogleMarkersPattern.html")
+    return File.read("../../../resources/GoogleMarkersPattern.html")
 
 def toPointBing(coordenadas:Coordenadas2D)->str:
     return "new Microsoft.Maps.Location({0:11.6f},{1:11.6f})".format(coordenadas.latitud,coordenadas.longitud)
@@ -74,10 +74,10 @@ def getKeyBing()->str:
     return File.lineas_de_fichero("C:/Users/migueltoro/OneDrive - UNIVERSIDAD DE SEVILLA/Escritorio/Jars/Keys/privateBing.txt")[0]
 
 def getPolylinePatternBing()->str:
-    return File.texto_de_fichero("../../../resources/BingPolylinePattern.html")
+    return File.read("../../../resources/BingPolylinePattern.html")
 
 def getMarkersPatternBing()->str:
-    return File.texto_de_fichero("../../../resources/BingMarkersPattern.html")
+    return File.read("../../../resources/BingMarkersPattern.html")
 
 
 def toPoint(coordenadas: Coordenadas2D)->str:

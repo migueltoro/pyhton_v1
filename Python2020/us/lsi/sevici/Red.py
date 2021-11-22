@@ -72,7 +72,7 @@ class Red:
 
 
 if __name__ == '__main__':
-    File.print_encoding("../../../resources/estaciones.csv")
+    File.encoding("../../../resources/estaciones.csv")
     numero,name = '242_PLAZA NUEVA'.split('_')
 #    print(numero)
 #    print(name)
