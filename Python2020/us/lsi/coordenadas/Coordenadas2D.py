@@ -3,6 +3,7 @@ from math import sin, cos, sqrt, atan2, radians
 from dataclasses import dataclass, asdict, astuple
 from statistics import mean
 from us.lsi.tools.Preconditions import checkArgument
+from typing import Iterable
 
 
 @dataclass(frozen=True,order=True)
@@ -24,8 +25,7 @@ class Coordenadas2D:
         return Coordenadas2D.of(float(lat),float(long))
     
     @staticmethod
-    def center(coordenadas:list[Coordenadas2D]) -> \
-            Coordenadas2D: 
+    def center(coordenadas:Iterable[Coordenadas2D]) -> Coordenadas2D: 
         latMean = mean(x.latitud for x in coordenadas)
         lngMean = mean(x.longitud for x in coordenadas)
         return Coordenadas2D.of(latMean,lngMean)

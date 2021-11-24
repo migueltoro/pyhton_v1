@@ -4,6 +4,7 @@ Created on 17 nov 2021
 @author: migueltoro
 '''
 from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv, encoding
+from us.lsi.tools.Iterable import flat_map
 from typing import Iterable, TypeVar, Callable
 from us.lsi.tools.Preconditions import checkArgument
 import re
@@ -36,7 +37,6 @@ def suma_aritmetica(a:int,b:int,c:int)->int:
         s = s + e
     return s
 
-
 if __name__ == '__main__':
     r = acumula("../../../resources/datos_2.txt",encoding='ISO-8859-1',inicial=set(),f=lambda r,e:r|{int(e)})
     print(r)
@@ -49,6 +49,8 @@ con razon {2} es {3}" \
     .format(2,500,7,suma_aritmetica(2,500,7)))
     r = [random.randint(0,100) for _ in range(50)]
     print(sorted(Counter(r).items(),reverse = True))
+    it = lineas_de_csv("../../../resources/datos_2.txt",encoding='ISO-8859-1')
+    print(Counter(flat_map(it)).most_common(5))
 
 
     

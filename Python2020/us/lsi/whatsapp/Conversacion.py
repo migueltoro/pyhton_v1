@@ -4,6 +4,7 @@ Created on 26 jul. 2020
 @author: migueltoro
 '''
 
+from __future__ import annotations
 from dataclasses import dataclass
 from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
@@ -15,7 +16,6 @@ from datetime import date
 import re
 from us.lsi.tools import Graphics
 
-Conversacion = TypeVar('Conversacion')
 P = TypeVar('P')
 
 week_days = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
@@ -49,7 +49,9 @@ class Conversacion:
         return Conversacion(mensajes,palabrasHuecas)
     
     def __str__(self) -> str:
-        return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(str_iterable(self.palabras_huecas), str_iterable(self.mensajes,separator='\n',prefix='',suffix=''))       
+        it1 = str_iterable(self.palabras_huecas)
+        it2 = str_iterable(self.mensajes,separator='\n',prefix='',suffix='')
+        return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(it1, it2)       
  
     def _mensajes_por_propiedad(self, p: Callable[[Mensaje],P]) -> Dict[P,List[Mensaje]]:
         return grouping_list(self.mensajes,fkey=p)

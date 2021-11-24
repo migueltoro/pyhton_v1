@@ -167,7 +167,7 @@ def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V
     return grouping_reduce(iterable,fkey,lambda x,y:x|y,lambda x: {fvalue(x)}) 
 
 # similar a Counter
-def frequencies(iterable:Iterable[E],fkey:Callable[[E],K],fsum:Callable[[E],int]=lambda e:1) -> dict[K,int]:
+def frequencies(iterable:Iterable[E],fkey:Callable[[E],K]=identity,fsum:Callable[[E],int]=lambda e:1) -> dict[K,int]:
     return grouping_reduce(iterable,fkey,op=lambda x,y:x+y,fvalue= fsum)
 
 if __name__ == '__main__':
