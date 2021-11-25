@@ -13,7 +13,7 @@ E = TypeVar('E')
 * @param message A message
 * @param condition A condition
 '''
-def checkArgument(condition:bool,message=None):    
+def checkArgument(condition:bool,message=None): 
     if(not condition):
         raise Exception(message)
 

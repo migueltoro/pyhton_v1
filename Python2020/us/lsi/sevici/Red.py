@@ -6,7 +6,7 @@ Created on 24 jul. 2020
 
 from __future__ import annotations
 from us.lsi.sevici.Estacion import Estacion
-from us.lsi.tools.File import encoding, lineas_de_csv
+from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 from sortedcontainers import SortedSet
 from us.lsi.tools.Iterable import grouping_list, str_iterable,frequencies
@@ -102,11 +102,11 @@ class Red:
 
 
 if __name__ == '__main__':
-    print(encoding("../../../resources/estaciones.csv"))
+    print(encoding(absolute_path("/resources/estaciones.csv")))
     numero,name = '242_PLAZA NUEVA'.split('_')
 #    print(numero)
 #    print(name)
-    r = Red.data_of_file("../../../resources/estaciones.csv") 
+    r = Red.data_of_file(absolute_path("/resources/estaciones.csv"))
 #    r.add(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
  #   print(r.estacion_de_numero(6).ubicacion.distancia_a())

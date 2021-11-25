@@ -7,7 +7,7 @@ Created on 23 jul. 2020
 from __future__ import annotations
 from us.lsi.ruta.Marca import Marca
 from us.lsi.ruta.Intervalo import Intervalo
-from us.lsi.tools.File import lineas_de_csv
+from us.lsi.tools.File import lineas_de_csv, absolute_path
 from us.lsi.tools.Preconditions import checkElementIndex
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
@@ -21,7 +21,7 @@ class Ruta:
         self.n = len(marcas)
     
     @staticmethod
-    def ruta_of_file(fichero: str) -> Ruta:
+    def ruta_of_file(fichero: str) -> Ruta: 
         marcas = [Marca.parse(x) for x in lineas_de_csv(fichero, delimiter =",")]
         return Ruta(marcas)
     
@@ -75,14 +75,15 @@ class Ruta:
         polyline(fileOut,coordenadas)
 
 if __name__ == '__main__':
-    r = Ruta.ruta_of_file("../../../resources/ruta.csv");
+    print("/resources/ruta.csv")
+    r = Ruta.ruta_of_file(absolute_path("/resources/ruta.csv"));
 #    print(r.marcas[:30])
-    print(r.n)
+    print(r)
     print("__________")
-    r.mostrar_altitud()
-    r.mostrar_altitud_google("../../../ficheros/alturasGoogle.html")
+#    r.mostrar_altitud()
+#    r.mostrar_altitud_google("../../../ficheros/alturasGoogle.html")
 #    r.mostrar_mapa_google("../../../ficheros/mapaGoogle.html")
-    r.mostrar_mapa_bing("../../../ficheros/mapaBing.html")
+#    r.mostrar_mapa_bing("../../../ficheros/mapaBing.html")
     
     
     

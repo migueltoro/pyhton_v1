@@ -8,34 +8,55 @@ Created on 15 jul. 2020
 from typing import Iterable
 import csv
 import chardet
+from us.lsi.tools.Preconditions import checkArgument
+import os
+import sys
+
+def root_project():
+    return sys.path[1]
+
+def absolute_path(file:str)->str:
+    return root_project()+file
+
+def dir_path()->str:
+    return os.getcwd()
+
+def existeFichero(filePath)->bool:
+    return os.path.isfile(filePath)
+    
 
 def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     partes = linea.split(delimiter)
     return partes
 
 def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
         for line in f:
             yield line.strip()
     
 def lineas_de_fichero(file:str,encoding='utf-8') -> list[str]:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding=encoding) as f:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
     
 def lineas_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         lineas_de_fichero =  [linea for linea in lector]
         return lineas_de_fichero
 
 def iterable_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:
             yield line
 
 def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[str]:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:
@@ -43,6 +64,7 @@ def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iter
                     yield p           
 
 def read(file:str,encoding:str='utf-8') -> str:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
         texto = f.read()
         return texto
@@ -57,6 +79,7 @@ def write_iterable(file:str,iterable:Iterable[str]) -> None:
             f.write(ln)
 
 def encoding(file:str)->str:
+    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
     with open(file,"rb") as f:
         data = f.read()
         enc = chardet.detect(data)
@@ -66,11 +89,7 @@ if __name__ == '__main__':
 #    f = lineas_iterator('../../../resources/palabras_huecas.txt')
 #    for x in f:
 #        print(x)
-    print(encoding('../../../resources/estaciones.csv'))
     
-    f = iterable_de_csv('../../../resources/estaciones.csv',encoding='ISO-8859-1')
-#    next(f)
-    for x in f:
-        print(x)
+    print(os.getcwd())
    
         

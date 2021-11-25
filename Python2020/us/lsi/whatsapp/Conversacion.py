@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from us.lsi.tools.Functions import identity
 from us.lsi.tools.Iterable import str_iterable, grouping_list, frequencies, flat_map
 from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
@@ -195,7 +195,7 @@ class Conversacion:
         Graphics.pieChart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)
     
 if __name__ == '__main__':
-    c = Conversacion.data_of_file("../../../resources/bigbangtheory_es.txt")
+    c = Conversacion.data_of_file(absolute_path("/resources/bigbangtheory_es.txt"))
 #    print(c)    
     print(str_iterable(c.numero_de_mensajes_por_usuario.items()))
     tsf = lambda e:'{0:s}={1}'.format(e[0],e[1])
