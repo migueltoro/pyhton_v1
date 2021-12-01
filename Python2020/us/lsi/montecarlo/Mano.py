@@ -9,13 +9,14 @@ from us.lsi.montecarlo.Card import Card
 from us.lsi.tools.Iterable import frequencies, index_bool, joining
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
+from functools import total_ordering
 
 nombres_jugadas: list[str] =  ['EscaleraReal','EscaleraDeColor','Poker','Full','Color', \
                         'Escalera','Trio', \
                         'DoblePareja','Pareja','CartaMasAlta']
 numero_de_cartas: int = 5 
 
-
+@total_ordering
 class Mano:
     
     def __init__(self, cartas):       
@@ -187,13 +188,14 @@ class Mano:
             self.valores_ordenados_por_frecuencias[0] < mano.valores_ordenados_por_frecuencias[0]:
             return True
         return r
-    
-    def __gt__(self,mano):
-        return not (self  < mano) and not (self == mano)
-      
+          
     def __eq__(self,mano):
         return self.jugada == mano.jugada and \
             self.valores_ordenados_por_frecuencias[0] == mano.valores_ordenados_por_frecuencias[0]
+    
+    def __ne__(self, other)->bool:
+        return not (self == other)
+    
                         
     def __str__(self):
         mano = joining((c for c in self.cartas),separator=',',prefix='[',suffix=']')
@@ -202,8 +204,7 @@ class Mano:
     def to_graphics(self, file_out: str) -> None:
         fuerza = self.fuerza(n=5000)
         cartas_graphic(file_out,self.cartas,fuerza,self.nombre_de_jugada)
-    
-    
+        
 
 if __name__ == '__main__':
     m1 = Mano.random()
@@ -212,4 +213,5 @@ if __name__ == '__main__':
     print(m1)
     print(m2)
     print(m3)
+    print(m1 < m2)
     m3.to_graphics('../../../ficheros/cartas_out.html')

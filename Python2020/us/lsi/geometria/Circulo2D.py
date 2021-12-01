@@ -14,6 +14,7 @@ from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from us.lsi.tools import Draw
+from matplotlib.patches import Patch
 
 
 @dataclass(frozen=True,order=True)
@@ -50,13 +51,14 @@ class Circulo2D(Objeto2D):
     def proyecta_sobre_recta(self, r: Recta2D) -> Segmento2D:
         c = self.centro.proyectaSobre(r)
         u = r.vector.unitario()
-        return Segmento2D.of_puntos(c.add_vector(u.multiply(self.radio)),c.add_vector(u.multiply(-self.radio)))
+        return Segmento2D.of_puntos(c+u*self.radio,c-u*(self.radio))
     
     def simetrico_con_respecto_a_recta(self, r: Recta2D) -> Circulo2D:
         return Circulo2D.of(self.centro.simetrico(r), self.radio)
     
-    def shape(self):
-        return Draw.shape_circle([self.center.x,self.center.y],self.radio)
+    @property
+    def shape(self)->list[Patch]:
+        return Draw.shape_circle([self.center.x,self.center.y],self.radio,fill=False)
 
 if __name__ == '__main__':
     p = Punto2D.of(2.1,4.5)

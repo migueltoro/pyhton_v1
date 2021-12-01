@@ -10,22 +10,12 @@ from math import sin
 
 color:str='r'
 
-def shape_polygon(points:list[tuple[float,float]])->Patch:
-    return plt.Polygon(points, closed=True, fill=None, edgecolor=color)
+def shape_circle(center:tuple[float],radio:float,fill=None)->Patch:
+    return plt.Circle(center,radio, fill=fill, color=color)
+
+def shape_multiline(points:list[tuple[float,float]],closed=None, fill=None)->Patch:
+    return plt.Polygon(points, closed=closed, fill=fill, edgecolor=color)
     
-def shape_segment(points:list[float])->Patch: 
-    return plt.Polygon(points, closed=None, fill=None, edgecolor=color)
-
-def shape_circle(center:tuple[float],radio:float)->Patch:
-    return plt.Circle(center,radio, fill=None, color=color)
-
-def shape_point(center:tuple[float],size:float=0.05)->Patch:
-    return plt.Circle(center,size,fill=True,color=color,fc=color)
-
-def shape_multiline(points:list[tuple[float,float]])->Patch:
-    return plt.Polygon(points, closed=None, fill=None, edgecolor=color)
-    
-
 def draw_shapes(shapes:list[Patch]): 
     plt.axes()
     for f in shapes:
@@ -65,7 +55,7 @@ def draw_multiline(points:list[tuple[float,float]],y_label:str='eje y',x_label:s
 
 if __name__ == '__main__':
 #    draw_piechar(['Python', 'C++', 'Ruby', 'Java'],[215, 130, 245, 210])
-     draw_barchart(['Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp'],[10,8,6,4,2,1],'Titulo','Prueba')
+    draw_barchart(['Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp'],[10,8,6,4,2,1],'Titulo','Prueba')
 #    draw_circle((0.5, 0.5), 0.2, color='r')
 #    circle = shape_circle((0, 0), 1.)
 #    polygon = shape_polygon([[2, 1], [8, 1], [8, 4]])
@@ -73,4 +63,4 @@ if __name__ == '__main__':
 #    punto = shape_point([-30, 2])
 #    draw_shapes([circle,line,polygon,punto])
 #    draw_multiline([1,2,3,7,-1,5,6])
-     draw_function(lambda x:sin(x),-25.,25,1.)
+    draw_function(lambda x:sin(x),-25.,25,1.)

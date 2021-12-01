@@ -7,8 +7,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import time,date
 from us.lsi.tools.Dates import parse_time, str_time, parse_date, str_date
-from us.lsi.tools.String import to_unicode
-from typing import TypeVar
 import re
 
 RE = r'(?P<fecha>\d\d?/\d\d?/\d\d?) (?P<hora>\d\d?:\d\d) - (?P<usuario>[^:]+): (?P<texto>.+)'

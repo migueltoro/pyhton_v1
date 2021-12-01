@@ -13,6 +13,7 @@ from enum import Enum
 from us.lsi.tools.Iterable import flat_map
 from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv, lineas_iterable
 
+
 num = int | float
 
 class Color(Enum):
@@ -90,7 +91,7 @@ def sum_file(file:str)->int:
     itf =  lineas_de_csv(file) 
     it2 = (int(e) for e in flat_map(itf))
     return sum(it2)
-                 
+            
              
 if __name__ == '__main__': 
     print(list(progresion_aritmetica(5,20, 3)))
@@ -117,6 +118,7 @@ if __name__ == '__main__':
     print('__________________________')
     print(sum_file("../../../resources/datos_2.txt"))
     print(len(range(1000)))
+    print
     
     
     

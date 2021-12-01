@@ -5,7 +5,6 @@ Created on 26 jul. 2020
 '''
 
 from __future__ import annotations
-from dataclasses import dataclass
 from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
@@ -21,25 +20,21 @@ P = TypeVar('P')
 week_days = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
 sep = r'[ ,;.\n():?!\"]'
 
-@dataclass
+
 class Conversacion:
-    _mensajes: List[Mensaje]
-    _palabras_huecas: Set[str]
-    _usuarios: Set[str] = None
-    _mensajes_por_usuario: Dict[str,Mensaje] = None
-    _mensajes_por_dia_de_semana: Dict[int,Mensaje] = None
-    _mensajes_por_fecha: Dict[date,Mensaje] = None
-    _mensajes_por_hora: Dict[int,Mensaje] = None
-    _numero_de_mensajes_por_usuario: Dict[str,int] = None
-    _numero_de_mensajes_por_dia_de_semana: Dict[int,int] = None
-    _numero_de_mensajes_por_fecha: Dict[date,int] = None
-    _numero_de_mensajes_por_hora: Dict[int,int] = None
-    _frecuencia_de_palabras: Dict[str,int] = None
-    _numero_de_palabras: int = None
-    _frecuencia_de_palabras_por_usuario: Dict[UsuarioPalabra,int] = None
-    _numero_de_palabras_por_usuario: Dict[str,int] = None
-    _frecuencia_de_palabras_por_resto_de_usuarios: Dict[UsuarioPalabra,int] = None
-    _numero_de_palabras_por_resto_de_usuarios: Dict[str,int] = None
+    
+    def __init__(self, mensajes: List[Mensaje], palabras_huecas: Set[str]):
+        self._mensajes: List[Mensaje] = mensajes
+        self._palabras_huecas: Set[str] = palabras_huecas
+        self._usuarios: Set[str] = {m.usuario for m in self._mensajes}
+        self._mensajes_por_usuario: Dict[str,Mensaje] = None
+        self._numero_de_mensajes_por_usuario = None
+        self._frecuencia_de_palabras: Dict[str,int] = None
+        self._numero_de_palabras: int = None
+        self._frecuencia_de_palabras_por_usuario: Dict[UsuarioPalabra,int] = None
+        self._numero_de_palabras_por_usuario: Dict[str,int] = None
+        self._frecuencia_de_palabras_por_resto_de_usuarios: Dict[UsuarioPalabra,int] = None
+        self._numero_de_palabras_por_resto_de_usuarios: Dict[str,int] = None
 
     @staticmethod   
     def data_of_file(file: str) -> Conversacion:
@@ -69,8 +64,6 @@ class Conversacion:
     
     @property
     def usuarios(self) -> Set[str]:
-        if self._usuarios is None:
-            self._usuarios = {m.usuario for m in self.mensajes}
         return self._usuarios
        
     @property
@@ -81,21 +74,15 @@ class Conversacion:
     
     @property
     def mensajes_por_dia_de_semana(self) -> Dict[str,Mensaje]:
-        if self._mensajes_por_dia_de_semana is None:
-            self._mensajes_por_dia_de_semana = self._mensajes_por_propiedad(lambda m: m.fecha.weekday())
-        return self._mensajes_por_dia_de_semana
+        return   self._mensajes_por_propiedad(lambda m: m.fecha.weekday())
     
     @property
     def mensajes_por_fecha(self) -> Dict[date,Mensaje]:
-        if self._mensajes_por_fecha is None:
-            self._mensajes_por_fecha = self._mensajes_por_propiedad(lambda m: m.fecha)
-        return self._mensajes_por_fecha 
+        return self._mensajes_por_propiedad(lambda m: m.fecha) 
     
     @property
     def mensajes_por_hora(self) -> Dict[int,Mensaje]:
-        if self._mensajes_por_hora is None:
-            self._mensajes_por_hora = self._mensajes_por_propiedad(lambda m: m.hora.hour)
-        return self._mensajes_por_hora 
+        return self._mensajes_por_propiedad(lambda m: m.hora.hour)
     
     @property
     def numero_de_mensajes_por_usuario(self) -> Dict[str,int]:
@@ -105,21 +92,15 @@ class Conversacion:
     
     @property
     def numero_de_mensajes_por_dia_de_semana(self) -> Dict[str,int]:
-        if self._numero_de_mensajes_por_dia_de_semana is None:
-            self._numero_de_mensajes_por_dia_de_semana = self._numero_de_mensajes_por_propiedad(lambda m: m.fecha.weekday())
-        return self._numero_de_mensajes_por_dia_de_semana
+        return self._numero_de_mensajes_por_propiedad(lambda m: m.fecha.weekday())
     
     @property
     def numero_de_mensajes_por_fecha(self) -> Dict[date,int]:
-        if self._numero_de_mensajes_por_fecha is None:
-            self._numero_de_mensajes_por_fecha = self._numero_de_mensajes_por_propiedad(lambda m: m.fecha)
-        return self._numero_de_mensajes_por_fecha 
+        return self._numero_de_mensajes_por_propiedad(lambda m: m.fecha) 
     
     @property
     def numero_de_mensajes_por_hora(self) -> Dict[int,int]:
-        if self._numero_de_mensajes_por_hora is None:
-            self._numero_de_mensajes_por_hora = self._numero_de_mensajes_por_propiedad(lambda m: m.hora.hour)
-        return self._numero_de_mensajes_por_hora 
+        return self._numero_de_mensajes_por_propiedad(lambda m: m.hora.hour) 
     
     @property
     def frecuencia_de_palabras(self) -> Dict[str,int]:
@@ -132,11 +113,9 @@ class Conversacion:
     
     @property
     def numero_de_palabras(self) -> int:
-        return sum(n for _,n in self.frecuencia_de_palabras.items())
-    
-    @property
-    def numero_de_palabras_por_usuario(self) -> Dict[str,int]:
-        return frequencies(self.frecuencia_de_palabras_por_usuario.items(),fkey=lambda e:e[0].usuario)
+        if self._numero_de_palabras is None:
+            self._numero_de_palabras = sum(n for _,n in self.frecuencia_de_palabras.items())
+        return self._numero_de_palabras
     
     @property
     def frecuencia_de_palabras_por_usuario(self) -> Dict[UsuarioPalabra,int]:
@@ -144,8 +123,12 @@ class Conversacion:
             ms_us_tex = ((m.usuario,m.texto) for m in self.mensajes)
             plsu = (UsuarioPalabra.of(u,p) for u,t in ms_us_tex for p in re.split(sep,t))
             plsuf = (pu for pu in plsu if len(pu.palabra) > 0 and pu.palabra not in self.palabras_huecas)
-            self._frecuencia_de_palabras_por_usuario = frequencies(plsuf,fkey=identity)
+            self._frecuencia_de_palabras_por_usuario = frequencies(plsuf)
         return self._frecuencia_de_palabras_por_usuario
+    
+    @property
+    def numero_de_palabras_por_usuario(self) -> Dict[str,int]:
+        return frequencies(self.frecuencia_de_palabras_por_usuario.items(),fkey=lambda e:e[0].usuario)
     
     @property     
     def frecuencia_de_palabras_por_resto_de_usuarios(self) -> Dict[UsuarioPalabra,int]:

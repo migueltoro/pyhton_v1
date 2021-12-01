@@ -16,20 +16,18 @@ nombre_palos = ["clubs","hearts","spades","diamonds"]
 class Card:
     palo:int  # [0,4)
     valor:int # [0,14)
-    _ide:int = None # palo*4+valor # [0,54)
-    
-
+    _ide:int = None # palo*4+valor # [0,52)
     
     @staticmethod
-    def of_text(read):     
-        p = read[len(read)-1]
-        v = read[0:len(read)-1]
+    def of_text(text:str)->Card:     
+        p = text[len(text)-1]
+        v = text[0:len(text)-1]
         palo = symbols_palos.index(p)
         valor = nombre_valores.index(v)      
         return Card.of(palo, valor)
     
     @staticmethod
-    def of_id(ide):
+    def of_id(ide:int)->Card:
         Preconditions.checkArgument(ide >= 0 and ide < 52, "No es posible {0:d}".format(ide))
         palo = ide % 4
         valor = ide % 13
@@ -68,4 +66,5 @@ class Card:
         return r
 
 if __name__ == '__main__':
-    pass
+    print(Card.of_id(34))
+    print(Card.of_text('10S'))

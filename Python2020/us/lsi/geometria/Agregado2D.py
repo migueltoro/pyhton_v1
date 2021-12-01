@@ -23,11 +23,22 @@ class Agregado2D(Objeto2D):
     def of(objetos: list[Objeto2D]) -> Agregado2D:
         return Agregado2D(objetos)
     
+    @staticmethod
+    def empty() -> Agregado2D:
+        return Agregado2D([])
+    
     def __str__(self) -> str:
         return '({0})'.format(','.join(str(p) for p in self.objetos))
     
-    def add(self,mas_objetos:list[Objeto2D])->None:
-        self.objetos = self.objetos + mas_objetos
+    def add(self,objeto:Objeto2D)->None:
+        self.objetos.append(objeto)
+        
+    def add_list(self,objetos:list[Objeto2D])->None:
+        for e in objetos:
+            self.objetos.append(e)
+           
+    def copy(self):
+        return Agregado2D.of([e.copy for e in self.objetos])
     
     def rota(self, p:Punto2D, angulo:float) -> Agregado2D:
         return Agregado2D.of([x.rota(p,angulo) for x in self.objetos])
@@ -42,23 +53,25 @@ class Agregado2D(Objeto2D):
         return Agregado2D.of([x.proyecta_sobre_recta(r) for x in self.vertices])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Agregado2D:
-        return Agregado2D.of_vertices([x.simetrico(r) for x in self.objetos])
+        return Agregado2D.of([x.simetrico(r) for x in self.objetos])
     
+    @property
     def shape(self):
-        return [p.shape() for p in self.objetos]
+        return [p.shape for p in self.objetos]
        
 
 if __name__ == '__main__':
     p = Punto2D.of(1., -1.)
     pr = Punto2D.of(0., 0.)
-    vr = Vector2D.of_xy(1,1).multiply_double(5.)
+    vr = Vector2D.of(1,1)*5.
     r = Recta2D.of(pr, vr)
     p2 = p.proyecta_sobre_recta(r)
     p3 = p.simetrico_con_respecto_a_recta(r)
-    pol = Poligono2D.cuadrado(Punto2D.of(3.,4.),Vector2D.of_xy(1,-2))
+    pol = Poligono2D.cuadrado(Punto2D.of(3.,4.),Vector2D.of(1,-2))
     pol2 = pol.simetrico_con_respecto_a_recta(r)
-    s = Segmento2D.of_puntos(pr, pr.add_vector(vr))
-    a = Agregado2D.of([p,p2,p3,s,pol,pol2])
+    s = Segmento2D.of_puntos(pr, pr+vr)
+    a = Agregado2D.of([p,p2,p3,s,pol])
+    a.add(pol)
     b = a.rota(Punto2D.origen(),-pi/3)
     print(p)
     print(p2)
@@ -69,7 +82,11 @@ if __name__ == '__main__':
 #    print(p.rota(Punto2D.origen(),pi/2))
 #    print(pol.rota(Punto2D.origen(),pi/2))
 #    print(a.rota(Punto2D.origen(),pi/3))
-    shape = a.shape()
+    shape = a.shape
     Draw.color='b'
-    shape = shape + b.shape()
+    shape = shape + b.shape
     Draw.draw_shapes(shape) 
+    c = Agregado2D.empty()
+    c.add(p)
+    print(c)
+    Draw.draw_shapes(c.shape)

@@ -14,14 +14,16 @@ from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from us.lsi.tools import Draw
+from matplotlib.patches import Patch
 
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
     vertices: list[Punto2D]
+    n: int
       
     @staticmethod
-    def of_vertices(vertices: list[Punto2D]) -> Poligono2D:
-        return Poligono2D(vertices)
+    def of(vertices: list[Punto2D]) -> Poligono2D:
+        return Poligono2D(vertices,len(vertices))
    
     @staticmethod
     def triangulo(p1:Punto2D, p2:Punto2D, p3:Punto2D) -> Poligono2D:
@@ -29,22 +31,22 @@ class Poligono2D(Objeto2D):
     
     @staticmethod
     def triangulo_equilatero(p1:Punto2D, lado:Vector2D)-> Poligono2D:
-        return Poligono2D([p1, p1.add(lado), p1.add(lado.rota(pi/3))])
+        return Poligono2D([p1, p1+lado, p1+lado.rota(pi/3)])
     
     @staticmethod
     def cuadrado(p:Punto2D,lado:Vector2D) -> Poligono2D:
-        p1 = p.add_vector(lado)
+        p1 = p+lado
         lo = lado.ortogonal
-        p2 = p1.add_vector(lo)
-        p3 = p.add_vector(lo)
-        return Poligono2D([p,p1,p2,p3])
+        p2 = p1+lo
+        p3 = p+lo
+        return Poligono2D.of([p,p1,p2,p3])
     
     @staticmethod
     def rectangulo(p:Punto2D, base:Vector2D, altura:float) -> Poligono2D:
-        p1 = p.add_vector(base)
-        p2 = p.add_vector(base).add_vector(base.ortogonal.multiply_double(altura))
-        p3 = p.add_vector(base.rota(pi/2).unitario.multiply_double(altura))
-        return Poligono2D([p,p1,p2,p3])
+        p1 = p+base
+        p2 = p+base+base.ortogonal.unitario*altura
+        p3 = p+base.rota(pi/2).unitario*altura
+        return Poligono2D.of([p,p1,p2,p3])
     
     @staticmethod
     def rectanguloHorizontal(x_min:Punto2D, x_max:Punto2D, y_min:Punto2D, y_max:Punto2D) -> Poligono2D:
@@ -52,66 +54,64 @@ class Poligono2D(Objeto2D):
         p1 = Punto2D.of(x_max, y_min)
         p2 = Punto2D.of(x_max, y_max)
         p3 = Punto2D.of(x_min, y_max)
-        return Poligono2D([p0,p1,p2,p3])
+        return Poligono2D.of([p0,p1,p2,p3])
     
     def __str__(self) -> str:
         return '({0})'.format(','.join(str(p) for p in self.vertices))
            
     @property
     def copy(self) -> Poligono2D:
-        return Poligono2D(self.vertices)
+        return Poligono2D.of(self.vertices)
     
     @property
     def area(self) -> float:
-        n = self.numero_de_vertices
-        area = sum(self.diagonal(0,i).multiply_vectorial_2d(self.diagonal(i,i+1)) for i in range(1,n-2))
-        return area/2   
+        area = sum(self.diagonal(0,i).multiply_vectorial_2d(self.diagonal(0,i+1)) for i in range(1,self.n-1))
+        return area/2  
     
     @property
-    def numero_de_vertices(self) -> int:
-        return len(self.vertices)
+    def perimetro(self)->float:
+        return sum(self.lado(i).modulo for i in range(self.n))
     
     def vertice(self,i)-> Punto2D:
-        n = self.numero_de_vertices
-        Preconditions.checkElementIndex(i, n)
+        Preconditions.checkElementIndex(i, self.n)
         return self.vertices[i]
     
     def lado(self,i:int) -> Vector2D:
-        n = self.numero_de_vertices
-        Preconditions.checkElementIndex(i, n);
-        return Punto2D.of(self.vertice(i),self.vertice((i+1)%n))
+        Preconditions.checkElementIndex(i, self.n);
+        return self.vertice(i).vector_to(self.vertice((i+1)%self.n))
     
     def diagonal(self,i:int,j:int) -> Vector2D:
-        n = self.numero_de_vertices
-        Preconditions.checkElementIndex(i, n);
-        Preconditions.checkElementIndex(j, n);
-        return Punto2D.of(self.vertice(i),self.vertice(j))
+        Preconditions.checkElementIndex(i, self.n);
+        Preconditions.checkElementIndex(j, self.n);
+        return self.vertice(i).vector_to(self.vertice(j))
     
     def rota(self, p:Punto2D, angulo:float) -> Poligono2D:
-        return Poligono2D.of_vertices([x.rota(p,angulo) for x in self.vertices])
+        return Poligono2D.of([x.rota(p,angulo) for x in self.vertices])
 
     def traslada(self, v:Vector2D) -> Poligono2D:
-        return Poligono2D.of_vertices([x.traslada(v) for x in self.vertices])
+        return Poligono2D.of([x.traslada(v) for x in self.vertices])
     
     def homotecia(self, p:Punto2D, factor:float) -> Poligono2D:
-        return Poligono2D.of_vertices([x.homotecia(p,factor) for x in self.vertices])
+        return Poligono2D.of([x.homotecia(p,factor) for x in self.vertices])
         
     def proyecta_sobre_recta(self,r:Recta2D) -> set[Punto2D]:
-        return Poligono2D.of_vertices([x.proyecta_sobre_recta(r) for x in self.vertices])
+        return Poligono2D.of([x.proyecta_sobre_recta(r) for x in self.vertices])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:
-        return Poligono2D.of_vertices([x.simetrico_con_respecto_a_recta(r) for x in self.vertices])
+        return Poligono2D.of([x.simetrico_con_respecto_a_recta(r) for x in self.vertices])
     
-    def shape(self):
-        return Draw.shape_polygon([[p.x,p.y] for p in self.vertices])
+    @property
+    def shape(self)->Patch:
+        return Draw.shape_multiline([[p.x,p.y] for p in self.vertices],closed=True)
 
 
 if __name__ == '__main__':
-    v = Vector2D.of_xy(1., 0.)
+    v = Vector2D.of(1., 0.)
     pol = Poligono2D.cuadrado(Punto2D.origen(),v)
     print(pol)
-    print(pol.rota(Punto2D.of(1.,1.), pi/2))
     print(pol.area)
+    print(pol.perimetro)
+    print(pol.rota(Punto2D.of(1.,1.), pi/2))
     r = Poligono2D.rectangulo(Punto2D.of(1.,1.),v,2.)
     print(r)
     print("{0:.2f}".format(r.area))

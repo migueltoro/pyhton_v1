@@ -50,7 +50,7 @@ class Red:
     def por_numero(self)->dict[int,Estacion]:
         return self._por_numero
     
-    def add(self,estacion:Estacion)->None:
+    def __add__(self,estacion:Estacion)->None:
         checkArgument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
         checkArgument(estacion.nombre_compuesto not in self.por_nombre_compuesto, 'El nombre compuesto {} de la estacion esta repetido'.format(estacion.nombre_compuesto))
         self._estaciones.append(estacion)
@@ -107,7 +107,7 @@ if __name__ == '__main__':
 #    print(numero)
 #    print(name)
     r = Red.data_of_file(absolute_path("/resources/estaciones.csv"))
-#    r.add(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
+#    r.__add__(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
  #   print(r.estacion_de_numero(6).ubicacion.distancia_a())
 #    print(str_dictionary(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))

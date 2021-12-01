@@ -43,12 +43,31 @@ class Fraccion:
         n = randint(-lm,lm)
         d = randint(1,lm)
         return Fraccion(n,d)
+    
+    def __neg__(self):
+        return Fraccion(-self.numerador,self.denominador)
         
-    def add(self,other)->Fraccion:
-        resultado_numerador = self._numerador*other._denominador +self._denominador*other._numerador
-        resultado_denominador = self._denominador*other._denominador
-        resultado = Fraccion(resultado_numerador,resultado_denominador)
+    def __add__(self,other)->Fraccion:
+        n = self.numerador*other._denominador +self.denominador*other.numerador
+        d = self.denominador*other.denominador
+        resultado = Fraccion(n,d)
         return resultado
+    
+    def __sub__(self,other)->Fraccion:
+        n = self.numerador*other.denominador - self.denominador*other.numerador
+        d = self.denominador*other.denominador
+        resultado = Fraccion(n,d)
+        return resultado
+    
+    def __mul__(self,other)->Fraccion:
+        n = self.numerador*other.numerador
+        d = self.denominador*other.denominador
+        return Fraccion(n,d)
+    
+    def __truediv__(self,other)->Fraccion:
+        n = self.numerador*other.denominador
+        d = self.denominador*other.numerador
+        return Fraccion(n,d)
     
     @property
     def numerador(self)->int:
@@ -58,6 +77,7 @@ class Fraccion:
         self._numerador = n
         self.__normaliza()
     
+    @property
     def denominador(self)->int:
         return self._denominador
     
@@ -87,13 +107,17 @@ class Fraccion:
 
 if __name__ == '__main__':
     f1 = Fraccion.of(3)
-    print(f1.numerador)
-    print(f1.denominador())
+    print('1:',f1.numerador)
+    print('2:',f1.denominador)
     f2 = Fraccion.of(3, 6)
-    print(f1 >= f2)
+    print('3:',f1 >= f2)
     f3 = Fraccion.of(2, -12)
     print(f3)
     f3.set_denominador(10)
-    print(f3)
+    print('4:',f3+f2)
+    print('5:',f3-f2)
+    print('6:',f3*f2)
+    print('7:',f3/f2)
+    print('8:',-f3/f2)
     ls = (Fraccion.random(1000) for _ in range(50))
-    print(str_iterable(ls))
+    print('9:',str_iterable(ls))

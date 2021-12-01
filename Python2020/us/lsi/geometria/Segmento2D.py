@@ -11,6 +11,7 @@ from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
+from  matplotlib.patches import Patch
 
 @dataclass(frozen=True,order=True)
 class Segmento2D(Objeto2D):
@@ -30,7 +31,7 @@ class Segmento2D(Objeto2D):
     
     @property
     def vector(self) -> Vector2D:
-        return Punto2D.of_puntos(self.p1,self.p2)
+        return self.p1.vector_to(self.p2)
     
     @property
     def modulo(self) -> float:        
@@ -50,9 +51,9 @@ class Segmento2D(Objeto2D):
     
     def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Segmento2D:
         return Segmento2D.of(self.p1.simetrico(r), self.p2.simetrico(r))    
-    
-    def shape(self):
-        return Draw.shape_segment([[self.p1.x,self.p1.y],[self.p2.x,self.p2.y]])
+    @property
+    def shape(self)->Patch:
+        return Draw.shape_multiline([[self.p1.x,self.p1.y],[self.p2.x,self.p2.y]],closed=False)
 
 if __name__ == '__main__':
     print(Segmento2D.of_puntos(Punto2D.of(1., 1.),Punto2D.of(-1., -1.)))

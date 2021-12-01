@@ -77,7 +77,7 @@ def distinct(iterable:Iterable[E])->Iterable[E]:
     seen = set()
     for item in iterable:
         if item not in seen:
-            seen.add(item)
+            seen.__add__(item)
             yield item 
             
 def limit(iterable:Iterable[E],limit:int) -> Iterable[E]:

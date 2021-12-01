@@ -21,13 +21,13 @@ class Recta2D:
     
     @staticmethod
     def of_puntos(p1:Punto2D,p2:Punto2D) -> Recta2D:
-        return Recta2D(p1,p2.minus_punto(p1))
+        return Recta2D(p1,p2.vector_to(p1))
     
     def __str__(self) -> str:
         return '({0},{1})'.format(str(self.punto),str(self.vector))
     
     def punto_en_recta(self,factor:float = 0.) -> Punto2D:
-        return self.punto.add_vector(self.vector.multiply(factor))
+        return self.punto + self.vector * factor
     
     def paralela(self,p:Punto2D) -> Recta2D:
         return Recta2D.of(p,self.vector)
