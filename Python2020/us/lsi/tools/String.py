@@ -14,7 +14,7 @@ def transform(inText:str,reglas:dict[str,str]) -> str:
     outText = inText;
     for e,s in reglas.items():
         outText = re.sub(r'\{'+e+'\}',s,outText)
-    return outText;
+    return outText
 
 def to_unicode(r:str) -> str:
     return str(r).encode('cp850', errors='replace').decode('cp850')

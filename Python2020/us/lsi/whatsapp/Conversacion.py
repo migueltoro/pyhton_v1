@@ -9,7 +9,7 @@ from typing import TypeVar, List, Set, Dict, Callable
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import str_iterable, grouping_list, frequencies, flat_map
+from us.lsi.tools.Iterable import str_iterable, grouping_list, groups_size, flat_map
 from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
 from datetime import date
 import re
@@ -52,7 +52,7 @@ class Conversacion:
         return grouping_list(self.mensajes,fkey=p)
            
     def _numero_de_mensajes_por_propiedad(self, p: Callable[[Mensaje],P]) -> Dict[P,int]:
-        return frequencies(self.mensajes,fkey=p)
+        return groups_size(self.mensajes,fkey=p)
     
     @property
     def mensajes(self) -> List[Mensaje]:
@@ -108,7 +108,7 @@ class Conversacion:
             ms_tex = (m.texto for m in self.mensajes)
             ps = flat_map(ms_tex,lambda x: re.split(sep, x))
             palabras = (p for p in ps if len(p) > 0 and p not in self.palabras_huecas)
-            self._frecuencia_de_palabras = frequencies(palabras,fkey=identity)
+            self._frecuencia_de_palabras = groups_size(palabras,fkey=identity)
         return self._frecuencia_de_palabras
     
     @property
@@ -123,12 +123,12 @@ class Conversacion:
             ms_us_tex = ((m.usuario,m.texto) for m in self.mensajes)
             plsu = (UsuarioPalabra.of(u,p) for u,t in ms_us_tex for p in re.split(sep,t))
             plsuf = (pu for pu in plsu if len(pu.palabra) > 0 and pu.palabra not in self.palabras_huecas)
-            self._frecuencia_de_palabras_por_usuario = frequencies(plsuf)
+            self._frecuencia_de_palabras_por_usuario = groups_size(plsuf)
         return self._frecuencia_de_palabras_por_usuario
     
     @property
     def numero_de_palabras_por_usuario(self) -> Dict[str,int]:
-        return frequencies(self.frecuencia_de_palabras_por_usuario.items(),fkey=lambda e:e[0].usuario)
+        return groups_size(self.frecuencia_de_palabras_por_usuario.items(),fkey=lambda e:e[0].usuario)
     
     @property     
     def frecuencia_de_palabras_por_resto_de_usuarios(self) -> Dict[UsuarioPalabra,int]:
@@ -145,7 +145,7 @@ class Conversacion:
     
     @property     
     def numero_de_palabras_por_resto_de_usuarios(self) -> Dict[str,int]:
-        return frequencies(self.frecuencia_de_palabras_por_resto_de_usuarios.items(),fkey=lambda e:e[0].usuario)
+        return groups_size(self.frecuencia_de_palabras_por_resto_de_usuarios.items(),fkey=lambda e:e[0].usuario)
     
     def importancia_de_palabra(self,usuario:str,palabra:str) -> float:
         return (self.frecuencia_de_palabras_por_usuario[UsuarioPalabra.of(usuario,palabra)] \

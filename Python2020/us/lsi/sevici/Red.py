@@ -9,7 +9,7 @@ from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 from sortedcontainers import SortedSet
-from us.lsi.tools.Iterable import grouping_list, str_iterable,frequencies
+from us.lsi.tools.Iterable import grouping_list, str_iterable,groups_size
 from us.lsi.tools.Preconditions import checkArgument
 from us.lsi.tools.Dict import str_dictionary
 from us.lsi.tools.GraphicsMaps import markers
@@ -97,7 +97,7 @@ class Red:
    
     @property
     def numero_de_estaciones_por_bicis_disponibles(self) ->  dict[int,int]:
-        return frequencies(self.estaciones, lambda e: e.free_bikes)  
+        return groups_size(self.estaciones, lambda e: e.free_bikes)  
     
 
 
