@@ -99,9 +99,13 @@ class Punto2D(Objeto2D):
 if __name__ == '__main__':
     p = Punto2D.parse('(2.3,-4.55)')
     p1 = Punto2D.parse('(2.3,4.55)')
+    p3 = Punto2D.parse('(3.,4.)')
+    p4 = Punto2D.parse('(0.,0.)')
     print(p)
     print(p.cuadrante)
     print(p1.cuadrante)
     print(p.distancia_al_origen)
     print(p.vector_to(Punto2D.of(1., 5.)))
     print(p.rota(Punto2D.origen(),pi/2))
+    print(p3.distancia_a(p4))
+    

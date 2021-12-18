@@ -6,6 +6,7 @@ Created on 15 jul. 2020
 from typing import Iterable, TypeVar, Callable, Any
 import random
 from us.lsi.tools.File import lineas_de_fichero
+from collections import Counter
 
 identity = lambda x:x
 
@@ -160,6 +161,7 @@ def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K], \
             a[k] = fvalue(e)
     return a
 
+
 def grouping_list(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> dict[K,list[V]]:
     return grouping_reduce(iterable,fkey,lambda x,y:x+y,lambda x: [fvalue(x)])
 
@@ -179,7 +181,12 @@ if __name__ == '__main__':
     print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
     print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
-    print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15])))    
-          
+    print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
+    g = grouping_reduce(range(0,10,2),fkey = lambda x: x%3,op=lambda x,y:x+y)
+    print(g[0])   
+    cp = Counter(['a', 'b', 'c', 'a', 'b', 'b'])
+    print(cp.most_common(1)[0][1])
+    r = ((1, 2, 3, 4)*2)[-2:-1]
+    print(r)   
     
     

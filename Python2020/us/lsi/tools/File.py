@@ -21,7 +21,7 @@ def absolute_path(file:str)->str:
 def dir_path()->str:
     return os.getcwd()
 
-def existeFichero(filePath)->bool:
+def existe_fichero(filePath)->bool:
     return os.path.isfile(filePath)
     
 
@@ -30,33 +30,33 @@ def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     return partes
 
 def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
         for line in f:
             yield line.strip()
     
 def lineas_de_fichero(file:str,encoding='utf-8') -> list[str]:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding=encoding) as f:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
     
 def lineas_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         lineas_de_fichero =  [linea for linea in lector]
         return lineas_de_fichero
 
 def iterable_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:
             yield line
 
 def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[str]:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:
@@ -64,7 +64,7 @@ def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iter
                     yield p           
 
 def read(file:str,encoding:str='utf-8') -> str:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
         texto = f.read()
         return texto
@@ -79,7 +79,7 @@ def write_iterable(file:str,iterable:Iterable[str]) -> None:
             f.write(ln)
 
 def encoding(file:str)->str:
-    checkArgument(existeFichero(file),'El fichero {} no existe'.format(file))
+    checkArgument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,"rb") as f:
         data = f.read()
         enc = chardet.detect(data)
@@ -91,5 +91,6 @@ if __name__ == '__main__':
 #        print(x)
     
     print(os.getcwd())
+    print(existe_fichero("../../../resources/datos_2.txt"))
    
         
