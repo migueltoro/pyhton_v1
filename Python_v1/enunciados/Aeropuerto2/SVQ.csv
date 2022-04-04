@@ -1,0 +1,165 @@
+fecha,horaPlanificada,codigo,ciudad,codigoAeropuerto,compañia,modeloAvion,idAvion,estado,horaEfectiva,direccion
+05/02/2018,6:45,FR1204,Verona,VRN,Ryanair,B738,EI-EKK,Departed,6:49,out
+05/02/2018,6:50,VY2223,Barcelona,BCN,Vueling,A320,EC-MDZ,Departed,8:36,out
+05/02/2018,7:00,FR1188,Memmingen,FMM,Ryanair,B738,EI-FIS,Departed,7:10,out
+05/02/2018,7:00,TP1103,Lisbon,LIS,TAP Express,AT76,CS-DJF,Departed,7:00,out
+05/02/2018,7:10,FR3041,Santiago,SCQ,Ryanair,B738,EI-EVT,Departed,7:16,out
+05/02/2018,7:45,VY2253,Barcelona,BCN,Vueling,A320,EC-MOG,Departed,7:49,out
+05/02/2018,8:25,VY3943,Palma de Mallorca,PMI,Vueling,A320,EC-LLM,Departed,8:30,out
+05/02/2018,8:35,IB8841,Valencia,VLC,Iberia Regional,CRJX,EC-LJX,Departed,8:43,out
+05/02/2018,8:40,IB8931,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Departed,9:45,out
+05/02/2018,9:05,I23947,Madrid,MAD,Iberia Express,A320,EC-LYM,Departed,9:13,out
+05/02/2018,9:05,VY2211,Barcelona,BCN,Vueling,A321,EC-MGY,Departed,9:23,out
+05/02/2018,9:15,TO3101,Paris,ORY,Transavia,B738,F-HTVB,Departed,9:21,out
+05/02/2018,11:00,FR6445,Brussels,CRL,Ryanair,B738,EI-EVT,Departed,11:17,out
+05/02/2018,11:20,VY2509,Bilbao,BIO,Vueling,A320,EC-LRE,Departed,11:32,out
+05/02/2018,12:20,VY3048,Las Palmas,LPA,Vueling,A320,EC-MOG,Departed,12:40,out
+05/02/2018,13:00,VY3254,Tenerife,TFN,Vueling,A320,EC-LVO,Departed,13:02,out
+05/02/2018,13:10,IB3949,Madrid,MAD,Iberia,32A,EC-MBK,Canceled,null,out
+05/02/2018,13:25,U22010,London,LTN,easyJet,A320,G-EZOM,Departed,13:32,out
+05/02/2018,13:40,FR5262,Paris,BVA,Ryanair,B738,EI-FOB,Departed,13:52,out
+05/02/2018,13:45,VY1299,A Coruna,LCG,Vueling,A320,EC-LOP,Departed,13:45,out
+05/02/2018,13:55,U28176,London,LGW,easyJet,A319,G-EZDM,Departed,14:12,out
+05/02/2018,15:05,TP1105,Lisbon,LIS,TAP Express,AT76,CS-DJE,Departed,14:54,out
+05/02/2018,15:30,VY2221,Barcelona,BCN,Vueling,A320,EC-LRE,Departed,15:39,out
+05/02/2018,16:05,FR2208,Valencia,VLC,Ryanair,B738,EI-FIV,Departed,16:14,out
+05/02/2018,16:10,VY3964,Valencia,VLC,Vueling,A320,EC-MJC,Departed,16:16,out
+05/02/2018,16:25,FR1650,Bari,BRI,Ryanair,B738,EI-FIS,Departed,16:29,out
+05/02/2018,16:40,LH1823,Munich,MUC,Lufthansa,A319,D-AILB,Departed,16:36,out
+05/02/2018,16:40,FR8364,London,STN,Ryanair,B738,EI-EVF,Departed,16:49,out
+05/02/2018,17:00,V73269,Santander,SDR,Volotea,B712,EI-FCB,Departed,17:04,out
+05/02/2018,17:00,WK221,Zurich,ZRH,Edelweiss Air,A320,HB-IJV,Departed,17:11,out
+05/02/2018,17:20,IB8847,Valencia,VLC,Iberia,CRK,EC-JCV,Departed,17:25,out
+05/02/2018,17:35,FR5268,Eindhoven,EIN,Ryanair,B738,EI-EVT,Departed,17:39,out
+05/02/2018,17:40,I23951,Madrid,MAD,Iberia Express,A320,EC-ILQ,Canceled,null,out
+05/02/2018,17:45,VY2257,Barcelona,BCN,Vueling,A320,EC-JYX,Departed,18:02,out
+05/02/2018,17:50,FR5272,Palma de Mallorca,PMI,Ryanair,B738,EI-FZG,Departed,18:00,out
+05/02/2018,18:20,VY8832,Paris,CDG,Vueling,A320,EC-MOG,Departed,18:28,out
+05/02/2018,18:35,FR4371,Manchester,MAN,Ryanair,B738,EI-DLF,Departed,18:45,out
+05/02/2018,19:40,FR6399,Barcelona,BCN,Ryanair,B738,EI-FOB,Departed,20:28,out
+05/02/2018,19:50,FR6397,Barcelona,BCN,Ryanair,B738,EI-FRF,Departed,20:50,out
+05/02/2018,20:05,VY2269,Barcelona,BCN,Vueling,A320,EC-LRE,Departed,21:00,out
+05/02/2018,20:10,FR4636,Milan,BGY,Ryanair,B738,EI-FRT,Departed,20:15,out
+05/02/2018,20:10,UX5106,Tenerife,TFN,Air Europa,B738,EC-LVR,Departed,20:34,out
+05/02/2018,20:20,HV6730,Amsterdam,AMS,Transavia,B738,PH-HSB,Departed,20:33,out
+05/02/2018,20:20,TO3109,Paris,ORY,Transavia,B738,F-HTVG,Departed,20:45,out
+05/02/2018,20:30,VY6571,Rome,FCO,Vueling,A320,EC-MBK,Departed,20:46,out
+05/02/2018,20:35,IB3953,Madrid,MAD,Iberia Express,A320,EC-MBU,Departed,23:48,out
+05/02/2018,20:40,IB8849,Valencia,VLC,Iberia Regional,CRJX,EC-MLN,Departed,21:22,out
+05/02/2018,20:40,V73830,Asturias,OVD,Volotea,B712,EI-FCB,Departed,20:53,out
+05/02/2018,20:50,FR1635,Rome,CIA,Ryanair,B738,EI-FIP,Departed,20:54,out
+05/02/2018,21:00,IB8933,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Departed,21:13,out
+05/02/2018,21:20,BA2799,London,LGW,British Airways,A319,G-DBCH,Departed,21:32,out
+05/02/2018,21:30,VY2505,Bilbao,BIO,Vueling,A320,EC-KDX,Departed,21:37,out
+05/02/2018,21:35,FR8362,London,STN,Ryanair,B738,EI-DCP,Departed,21:42,out
+05/02/2018,21:55,FR2554,Lanzarote,ACE,Ryanair,B738,EI-ESS,Departed,22:09,out
+06/02/2018,6:30,VY8830,Paris,CDG,Vueling,A320,EC-MOG,Departed,6:40,out
+06/02/2018,6:40,FR5201,Berlin,SXF,Ryanair,B738,EI-FOB,Departed,6:50,out
+06/02/2018,6:50,VY2223,Barcelona,BCN,Vueling,A320,EC-LVO,Departed,7:01,out
+06/02/2018,7:00,FR1192,Toulouse,TLS,Ryanair,B738,EI-EVT,Departed,7:06,out
+06/02/2018,7:00,FR6397,Barcelona,BCN,Ryanair,B738,EI-FIS,Departed,6:59,out
+06/02/2018,7:00,TP1103,Lisbon,LIS,TAP Express,AT76,CS-DJD,Departed,7:03,out
+06/02/2018,8:35,IB8841,Valencia,VLC,Iberia Regional,CRJX,EC-LOX,Departed,8:40,out
+06/02/2018,8:40,IB8931,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Departed,8:45,out
+06/02/2018,9:05,I23947,Madrid,MAD,Iberia Express,A320,EC-MEH,Departed,9:34,out
+06/02/2018,9:05,VY2211,Barcelona,BCN,Vueling,A321,EC-MHA,Departed,9:30,out
+06/02/2018,9:15,U21726,Toulouse,TLS,easyJet,A319,G-EZIT,Departed,9:15,out
+06/02/2018,11:00,FR1567,Frankfurt,FRA,Ryanair,B738,EI-FTL,Departed,11:01,out
+06/02/2018,11:20,VY2509,Bilbao,BIO,Vueling,A320,EC-LVO,Departed,11:27,out
+06/02/2018,11:30,FR7147,Dublin,DUB,Ryanair,B738,EI-EFN,Departed,11:38,out
+06/02/2018,11:35,FR7724,Las Palmas,LPA,Ryanair,B738,EI-FIS,Departed,11:39,out
+06/02/2018,12:10,TP1101,Lisbon,LIS,TAP Express,AT76,CS-DJH,Departed,12:16,out
+06/02/2018,12:20,VY2424,Ibiza,IBZ,Vueling,A320,EC-LRE,Departed,12:18,out
+06/02/2018,12:30,VY3941,Palma de Mallorca,PMI,Vueling,A320,EC-LUN,Departed,14:18,out
+06/02/2018,13:00,VY3254,Tenerife,TFN,Vueling,A320,EC-MOG,Departed,13:27,out
+06/02/2018,13:10,I23949,Madrid,MAD,Iberia Express,A320,EC-LVQ,Departed,13:24,out
+06/02/2018,13:15,LH1141,Frankfurt,FRA,Lufthansa,A320,D-AIZZ,Departed,13:38,out
+06/02/2018,13:55,U28176,London,LGW,easyJet (Linate-Fiumicino Per Tutti Livery),A319,G-EZIW,Departed,13:53,out
+06/02/2018,15:05,TP1105,Lisbon,LIS,TAP Express,AT76,CS-DJA,Departed,14:55,out
+06/02/2018,15:25,FR5272,Palma de Mallorca,PMI,Ryanair,B738,EI-FOB,Departed,15:29,out
+06/02/2018,15:30,VY2221,Barcelona,BCN,Vueling,A320,EC-LVO,Departed,15:40,out
+06/02/2018,15:35,FR7338,Bordeaux,BOD,Ryanair,B738,EI-EVT,Departed,15:47,out
+06/02/2018,15:40,FR8733,Milan,MXP,Ryanair,B738,EI-DPM,Departed,15:50,out
+06/02/2018,16:40,FR8364,London,STN,Ryanair,B738,EI-EKK,Departed,17:09,out
+06/02/2018,16:45,FR4008,Marrakesh,RAK,Ryanair,B738,EI-ENO,Departed,16:54,out
+05/02/2018,7:50,VY3942,Palma de Mallorca,PMI,Vueling,A320,EC-LLM,Landed,7:36,in
+05/02/2018,8:05,IB8840,Valencia,VLC,Iberia Regional,CRJX,EC-LJX,Landed,7:59,in
+05/02/2018,8:10,IB8930,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Landed,9:20,in
+05/02/2018,8:25,VY2212,Barcelona,BCN,Vueling,A321,EC-MGY,Landed,8:22,in
+05/02/2018,8:30,I23954,Madrid,MAD,Iberia Express,A320,EC-LYM,Landed,8:24,in
+05/02/2018,8:35,TO3100,Paris,ORY,Transavia,B738,F-HTVB,Landed,8:11,in
+05/02/2018,10:30,FR3042,Santiago,SCQ,Ryanair,B738,EI-EVT,Landed,10:23,in
+05/02/2018,10:45,VY2224,Barcelona,BCN,Vueling,A320,EC-LRE,Landed,10:41,in
+05/02/2018,11:40,VY2252,Barcelona,BCN,Vueling,A320,EC-MOG,Landed,11:54,in
+05/02/2018,12:30,FR1205,Verona,VRN,Ryanair,B738,EI-EKK,Landed,12:16,in
+05/02/2018,12:35,IB3950,Madrid,MAD,Iberia Express,A320,EC-LUD,Canceled,null,in
+05/02/2018,12:50,U22009,London,LTN,easyJet,A320,G-EZOM,Landed,12:28,in
+05/02/2018,12:55,FR1189,Memmingen,FMM,Ryanair,B738,EI-FIS,Landed,12:59,in
+05/02/2018,13:10,VY1298,A Coruna,LCG,Vueling,A320,EC-LOP,Landed,13:02,in
+05/02/2018,13:20,U28175,London,LGW,easyJet,A319,G-EZDM,Landed,13:19,in
+05/02/2018,14:25,TP1102,Lisbon,LIS,TAP Express,AT76,CS-DJE,Landed,14:17,in
+05/02/2018,14:45,VY2510,Bilbao,BIO,Vueling,A320,EC-LRE,Landed,14:32,in
+05/02/2018,15:30,VY3965,Valencia,VLC,Vueling,A320,EC-MJC,Landed,15:26,in
+05/02/2018,15:35,FR2207,Valencia,VLC,Ryanair,B738,EI-FIV,Landed,15:25,in
+05/02/2018,15:55,LH1822,Munich,MUC,Lufthansa,A319,D-AILB,Landed,15:41,in
+05/02/2018,16:10,WK220,Zurich,ZRH,Edelweiss Air,A320,HB-IJV,Landed,16:13,in
+05/02/2018,16:10,FR8363,London,STN,Ryanair,B738,EI-EVF,Landed,16:03,in
+05/02/2018,16:35,V73831,Asturias,OVD,Volotea,B712,EI-FCB,Canceled,null,in
+05/02/2018,16:45,FR6444,Brussels,CRL,Ryanair,B738,EI-EVT,Landed,16:52,in
+05/02/2018,16:50,IB8846,Valencia,VLC,Iberia,CRK,EC-JCV,Canceled,null,in
+05/02/2018,17:05,I23952,Madrid,MAD,Iberia Express,A320,EC-ILQ,Canceled,null,in
+05/02/2018,17:05,VY2256,Barcelona,BCN,Vueling,A320,EC-JYX,Landed,17:03,in
+05/02/2018,17:20,FR5273,Palma de Mallorca,PMI,Ryanair,B738,EI-FZG,Landed,17:15,in
+05/02/2018,17:30,VY3049,Las Palmas,LPA,Vueling,A320,EC-MOG,Landed,17:21,in
+05/02/2018,18:05,FR4370,Manchester,MAN,Ryanair,B738,EI-DLF,Landed,17:53,in
+05/02/2018,18:10,VY3255,Tenerife,TFN,Vueling,A320,EC-LVO,Landed,17:58,in
+05/02/2018,19:05,FR5263,Paris,BVA,Ryanair,B738,EI-FOB,Landed,18:56,in
+05/02/2018,19:15,UX5103,Tenerife,TFN,Air Europa,B738,EC-LVR,Landed,19:33,in
+05/02/2018,19:20,FR6396,Barcelona,BCN,Ryanair,B738,EI-FRF,Landed,19:13,in
+05/02/2018,19:30,VY2268,Barcelona,BCN,Vueling,A320,EC-LRE,Landed,19:21,in
+05/02/2018,19:40,HV6729,Amsterdam,AMS,Transavia,B738,PH-HSB,Landed,19:24,in
+05/02/2018,19:40,TO3108,Paris,ORY,Transavia,B738,F-HTVG,Landed,19:25,in
+05/02/2018,19:40,FR4635,Milan,BGY,Ryanair,B738,EI-FRT,Landed,19:16,in
+05/02/2018,19:55,VY6570,Rome,FCO,Vueling,A320,EC-MBK,Landed,19:45,in
+05/02/2018,20:00,IB3948,Madrid,MAD,Iberia Express,A320,EC-MBU,Landed,23:03,in
+05/02/2018,20:05,IB8844,Valencia,VLC,Iberia Regional,CRJX,EC-MLN,Landed,20:44,in
+05/02/2018,20:10,FR1634,Rome,CIA,Ryanair,B738,EI-FIP,Landed,19:57,in
+05/02/2018,20:15,V73268,Santander,SDR,Volotea,B712,EI-FCB,Landed,20:07,in
+05/02/2018,20:30,BA2798,London,LGW,British Airways,A319,G-DBCH,Landed,20:38,in
+05/02/2018,20:30,IB8932,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Landed,20:17,in
+05/02/2018,20:55,VY2506,Bilbao,BIO,Vueling,A320,EC-KDX,Landed,20:48,in
+05/02/2018,21:05,FR8361,London,STN,Ryanair,B738,EI-DCP,Landed,20:58,in
+05/02/2018,21:25,FR2553,Lanzarote,ACE,Ryanair,B738,EI-ESS,Landed,21:19,in
+05/02/2018,23:10,FR1651,Bari,BRI,Ryanair,B738,EI-FIS,Landed,22:49,in
+05/02/2018,23:40,FR5269,Eindhoven,EIN,Ryanair,B738,EI-EVT,Landed,23:43,in
+05/02/2018,23:40,FR6398,Barcelona,BCN,Ryanair,B738,EI-FOB,Landed,23:59,in
+05/02/2018,23:55,TP1106,Lisbon,LIS,TAP Express,AT76,CS-DJD,Landed,23:47,in
+05/02/2018,23:55,VY8833,Paris,CDG,Vueling,A320,EC-MOG,Landed,23:58,in
+06/02/2018,0:05,VY2220,Barcelona,BCN,Vueling,A320,EC-LRE,Landed,0:43,in
+06/02/2018,8:05,IB8840,Valencia,VLC,Iberia Regional,CRJX,EC-LOX,Landed,8:02,in
+06/02/2018,8:10,IB8930,Almeria,LEI,Iberia Regional,CRJ2,EC-HEK,Landed,7:57,in
+06/02/2018,8:25,VY2212,Barcelona,BCN,Vueling,A321,EC-MHA,Landed,8:09,in
+06/02/2018,8:30,IB3954,Madrid,MAD,Iberia Express,A320,EC-MEH,Landed,8:41,in
+06/02/2018,8:40,U21725,Toulouse,TLS,easyJet,A319,G-EZIT,Landed,8:27,in
+06/02/2018,10:25,FR1566,Frankfurt,FRA,Ryanair,B738,EI-FTL,Landed,10:12,in
+06/02/2018,10:45,FR1193,Toulouse,TLS,Ryanair,B738,EI-EVT,Landed,10:45,in
+06/02/2018,10:45,VY2224,Barcelona,BCN,Vueling,A320,EC-LVO,Landed,10:42,in
+06/02/2018,11:00,FR6396,Barcelona,BCN,Ryanair,B738,EI-FIS,Landed,10:52,in
+06/02/2018,11:00,FR7146,Dublin,DUB,Ryanair,B738,EI-EFN,Landed,10:50,in
+06/02/2018,11:30,TP1104,Lisbon,LIS,TAP Express,AT76,CS-DJH,Landed,11:29,in
+06/02/2018,11:50,VY3940,Palma de Mallorca,PMI,Vueling,A320,EC-LUN,Landed,13:20,in
+06/02/2018,12:15,VY8831,Paris,CDG,Vueling,A320,EC-MOG,Landed,12:31,in
+06/02/2018,12:30,LH1140,Frankfurt,FRA,Lufthansa,A320,D-AIZZ,Landed,12:35,in
+06/02/2018,12:35,I23950,Madrid,MAD,Iberia Express,A320,EC-LVQ,Landed,12:39,in
+06/02/2018,13:20,U28175,London,LGW,easyJet (Linate-Fiumicino Per Tutti Livery),A319,G-EZIW,Landed,13:02,in
+06/02/2018,14:05,FR5202,Berlin,SXF,Ryanair,B738,EI-FOB,Landed,13:57,in
+06/02/2018,14:25,TP1102,Lisbon,LIS,TAP Express,AT76,CS-DJA,Landed,14:04,in
+06/02/2018,14:45,VY2510,Bilbao,BIO,Vueling,A320,EC-LVO,Landed,14:31,in
+06/02/2018,15:10,FR8732,Milan,MXP,Ryanair,B738,EI-DPM,Landed,14:50,in
+06/02/2018,15:35,VY2425,Ibiza,IBZ,Vueling,A320,EC-LRE,Landed,15:12,in
+06/02/2018,16:10,FR8363,London,STN,Ryanair,B738,EI-DWC,Landed,15:55,in
+06/02/2018,16:15,FR4009,Marrakesh,RAK,Ryanair,B738,EI-ENO,Landed,15:48,in
+06/02/2018,16:45,FR7723,Las Palmas,LPA,Ryanair,B738,EI-FIS,Landed,16:34,in
+06/02/2018,16:50,IB8846,Valencia,VLC,Iberia Regional,CRJX,EC-LJS,Landed,16:46,in
+06/02/2018,17:05,I23952,Madrid,MAD,Iberia Express,A320,EC-ILQ,Landed,17:05,in
+06/02/2018,17:05,VY2256,Barcelona,BCN,Vueling,A320,EC-LQM,Landed,17:00,in
