@@ -10,6 +10,7 @@ from us.lsi.tools.Preconditions import checkArgument
 import re
 import random
 from collections import Counter
+from us.lsi.tools.File import absolute_path
 
 E = TypeVar('E')
 R = TypeVar('R')
@@ -38,13 +39,13 @@ def suma_aritmetica(a:int,b:int,c:int)->int:
     return s
 
 if __name__ == '__main__':
-    r = acumula("../../../resources/datos_2.txt",encoding='ISO-8859-1',inicial=set(),f=lambda r,e:r|{int(e)})
+    r = acumula(absolute_path("/resources/datos_2.txt"),encoding='ISO-8859-1',inicial=set(),f=lambda r,e:r|{int(e)})
     print(r)
     print('../../../resources/datos_2.txt'.split('/'))
     print(re.split('[ ,]','En un lugar de la Mancha, de cuyo nombre no quiero acordarme'))
     print(mcd(135,45))
     print(range(23,45))
-    print("La suma de la pregresion aritmetica de {0} a {1}\
+    print("La suma de la pregresion aritmetica de {0} a {1} \
 con razon {2} es {3}" \
     .format(2,500,7,suma_aritmetica(2,500,7)))
     r = [random.randint(0,100) for _ in range(50)]

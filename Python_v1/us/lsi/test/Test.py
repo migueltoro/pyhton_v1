@@ -9,6 +9,7 @@ from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv
 from typing import Iterable, TypeVar
 from us.lsi.tools.Iterable import flat_map, distinct, count, index_predicate, reduce2
 from functools import reduce
+from fractions import Fraction
 
 E = TypeVar('E')
 R = TypeVar('R')
@@ -56,7 +57,7 @@ def tolist(iterable:Iterable[E])->list[E]:
 def toset(iterable:Iterable[E])->set[E]:
     st= set()
     for e in iterable:
-        st.__add__(e)
+        st.add(e)
     return st
 
 def tomap(iterable:Iterable[E],t1=identity,t2=ord)->dict[E]:
@@ -110,7 +111,14 @@ if __name__ == '__main__':
     for i in range(min(len(ls),len(ls2))):
                  s.append(ls[i]+ls2[i])
     print(s)
-
-    
+  
+    print (Fraction(11, 35))
+    # returns Fraction(11, 35)
+  
+    print (Fraction(10, 18))
+    # returns Fraction(5, 9)
+ 
+    print (Fraction())
+    # returns Fraction(0, 1)
     
         

@@ -6,7 +6,6 @@ Created on 11 nov 2021
 import random
 import math
 from us.lsi.tools.File import lineas_de_fichero
-numeros = [random.randint(1, 100) for _ in range(10)]
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.tools.Draw import draw_multiline
 
@@ -36,6 +35,8 @@ def montecarlo_list(n:int):
     return ls
     
 if __name__ == '__main__':
+    numeros = [random.randint(1, 100) for _ in range(10)]
+    
     i = 0
     for n in numeros:
         print(i, n, sep=': ') 
