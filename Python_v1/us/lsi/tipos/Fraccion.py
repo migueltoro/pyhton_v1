@@ -3,25 +3,37 @@ Created on 22 nov 2021
 
 @author: migueltoro
 '''
-
 from __future__ import annotations
 from functools import total_ordering
 from random import randint
 from us.lsi.tools.Preconditions import checkArgument
 from us.lsi.tools.Iterable import str_iterable
+from us.lsi.tools.Functions import mcd
+from us.lsi.tipos.Field import Field
+from us.lsi.tipos.FieldElement import FieldElement
 
-def mcd(a:int, b:int)->int:
-    checkArgument(a>=0 and b>0,'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: \
-    a = {0}, b = {1}'.format(a,b))
-    while b > 0:
-        a, b = b, a%b
-    return a
 
-@total_ordering
-class Fraccion:
+class FraccionField(Field):
     
-    def __init__(self, n:int, d:int=1):
-        checkArgument(d != 0,'El denominador no puede ser cero')
+    def __init__(self)->FraccionField:
+        pass
+       
+    @staticmethod
+    def of()->FraccionField: 
+        return FraccionField()
+    @property
+    def one(self)-> Fraccion:
+        return Fraccion.of(1)
+    @property
+    def zero(self)->Fraccion:
+        return Fraccion.of(0)
+    
+#Fraccion mutable
+@total_ordering
+class Fraccion(FieldElement):
+    
+    def __init__(self, n:int, d:int=1)->Fraccion:
+        checkArgument(d != 0,f'El denominador no puede ser cero y es {d}')
         self._numerador = n
         self._denominador = d
         self.__normaliza()
@@ -44,30 +56,38 @@ class Fraccion:
         d = randint(1,lm)
         return Fraccion(n,d)
     
+    @property
+    def field(self)->FraccionField:
+        return FraccionField.of()
+    
     def __neg__(self):
         return Fraccion(-self.numerador,self.denominador)
         
-    def __add__(self,other)->Fraccion:
+    def __add__(self,other:Fraccion)->Fraccion:
         n = self.numerador*other._denominador +self.denominador*other.numerador
         d = self.denominador*other.denominador
         resultado = Fraccion(n,d)
         return resultado
     
-    def __sub__(self,other)->Fraccion:
+    def __sub__(self,other:Fraccion)->Fraccion:
         n = self.numerador*other.denominador - self.denominador*other.numerador
         d = self.denominador*other.denominador
         resultado = Fraccion(n,d)
         return resultado
     
-    def __mul__(self,other)->Fraccion:
+    def __mul__(self,other:Fraccion)->Fraccion:
         n = self.numerador*other.numerador
         d = self.denominador*other.denominador
         return Fraccion(n,d)
     
-    def __truediv__(self,other)->Fraccion:
+    def __truediv__(self,other:Fraccion)->Fraccion:
         n = self.numerador*other.denominador
         d = self.denominador*other.numerador
         return Fraccion(n,d)
+    
+    def __invert__(self)->Fraccion:
+        checkArgument(self._numerador != 0,f'El denominador no puede ser cero y es {self._numerador}')
+        return Fraccion.of(self.denominador,self.numerador)
     
     @property
     def numerador(self)->int:
@@ -118,6 +138,10 @@ if __name__ == '__main__':
     print('5:',f3-f2)
     print('6:',f3*f2)
     print('7:',f3/f2)
-    print('8:',-f3/f2)
-    ls = (Fraccion.random(1000) for _ in range(50))
-    print('9:',str_iterable(ls))
+    print('8:', -f3/f2)
+    print('9:', f3)
+    print('9:', f2)
+    print('9:', ~(f3/f2))
+    ls:list[Fraccion] = (Fraccion.random(1000) for _ in range(50))
+    print('10:',str_iterable(ls))
+    print(f1.field.zero)

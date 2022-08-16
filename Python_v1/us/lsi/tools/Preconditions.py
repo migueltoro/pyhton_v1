@@ -48,10 +48,10 @@ def checkNotNull(reference:E):
 * @return Index El indice del elemento
 '''
    
-def checkElementIndex(index_bool:int,size:int):
-    if(not (index_bool>=0 and index_bool<size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index_bool,size))
-    return index_bool
+def checkElementIndex(index:int,size:int):
+    if(not (index>=0 and index<size)):
+        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
+    return index
     
 '''
 * Checks that index_bool is a valid position index_bool into a list, string, or array with the specified size. 
@@ -61,10 +61,10 @@ def checkElementIndex(index_bool:int,size:int):
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
-def checkPositionIndex(index_bool:int,size:int):
-    if(not (index_bool>=0 and index_bool<=size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index_bool,size))
-    return index_bool
+def checkPositionIndex(index:int,size:int):
+    if(not (index>=0 and index<=size)):
+        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
+    return index
     
 
 if __name__ == '__main__':

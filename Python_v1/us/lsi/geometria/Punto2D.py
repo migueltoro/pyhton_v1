@@ -51,8 +51,7 @@ class Punto2D(Objeto2D):
             case Punto2D(x,y) if x <=0 and y <=0 :
                 return Cuadrante.TERCERO
             case _ :
-                return Cuadrante.CUARTO
-                
+                return Cuadrante.CUARTO    
     
     def distancia_a(self,p:Punto2D) -> float:
         dx = self.x-p.x;
