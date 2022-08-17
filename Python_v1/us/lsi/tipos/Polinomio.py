@@ -32,7 +32,7 @@ class Polinomio(Generic[E]):
     
     @property
     def grado(self) -> int:
-        return len(self.coeficientes) -1
+        return len(self.coeficientes) - 1
     
     def coeficiente(self,i:int)->E:
         checkPositionIndex(i,self.grado)
@@ -53,26 +53,29 @@ class Polinomio(Generic[E]):
         return s
     
     def __add__(self,other:Polinomio[E])-> Polinomio[E]:
-        cf = lambda p,i: p.coeficiente(i) if i <= p.grado else 0
+        zero = self.coeficiente(0)-self.coeficiente(0)
         n = max(self.grado,other.grado)
-        coef = list(cf(self,i)+cf(other,i) for i in range(n+1))
-        return Polinomio.of_list(coef)
+        p1 = self.coeficientes + list(zero for i in range(n-self.grado))
+        p2 = other.coeficientes + list(zero for i in range(n-other.grado))
+        p = list(p1[i]+p2[i] for i in range(n+1))
+        return Polinomio.of_list(p)
     
     def __sub__(self,other:Polinomio[E])-> Polinomio[E]:
-        cf = lambda p,i: p.coeficiente(i) if i <= p.grado else 0
+        zero = self.coeficiente(0)-self.coeficiente(0)
         n = max(self.grado,other.grado)
-        coef = list(cf(self,i)-cf(other,i) for i in range(n+1))
-        return Polinomio.of_list(coef)
+        p1 = self.coeficientes + list(zero for i in range(n-self.grado))
+        p2 = other.coeficientes + list(zero for i in range(n-other.grado))
+        p = list(p1[i]-p2[i] for i in range(n+1))
+        return Polinomio.of_list(p)
     
     def __mul__(self,other:Polinomio[E] | E)-> Polinomio[E]:
         if isinstance(other, Polinomio):
-            p = self*other.coeficiente(0)
-            print(p)
-            for i in range(1,other.grado+1):
-                p = p + self*other.c(i)
-                print(p)
-            return p
-            print('_______________')
+            n = self.grado+other.grado
+            p = list(None for i in range(n+1))
+            for i in range(0,self.grado+1):
+                for j in range(0,other.grado+1):
+                    p[i+j] = p[i+j] + self.coeficiente(i)*other.coeficiente(j) if p[i+j] else self.coeficiente(i)*other.coeficiente(j)
+            return Polinomio.of_list(p)
         else:
             coef = list(other*self.coeficiente(i) for i in range(self.grado+1))
             return Polinomio.of_list(coef)
@@ -92,31 +95,9 @@ class Polinomio(Generic[E]):
 
 if __name__ == '__main__':
     p0: Polinomio[Fraction] = Polinomio.of(Fraction(1),Fraction(1))
-    print(p0*p0)
-    p: Polinomio[Fraction] = Polinomio.of(Fraction(3),Fraction(-4),Fraction(5),Fraction(7))
+    p1: Polinomio[Fraction] = Polinomio.of(Fraction(3),Fraction(-4),Fraction(5),Fraction(7))
+    p = p0 - p1
+    print(p0)
+    print(p1)
     print(p)
-    print(p.grado)
-    print(isinstance(p.coeficiente(0), Number))
-    print(p.value(1))
-    print(p+p)
-    print(p*Fraction(2))
-    print('__________________')
-    print(p.derivada)
-    print(p.integral(0))
-    print('__________________')
-    p2 : Polinomio[Fraction] = Polinomio.of(Fraction(3,5),Fraction(-4,5),Fraction(7))
-    print(p2)
-    print(p2.grado)
-    print(isinstance(p2.coeficiente(0), Number))
-    print('__________________')
-    print(p2.derivada)
-    print(p2.integral(Fraction(0)))
-    print('__________________')
-    p3 : Polinomio[complex] = Polinomio.of(complex(3,5),complex(-4,5),complex(7))
-    print(p3)
-    print(p3.grado)
-    print(p3.value(complex(1,0)))
-    print('__________________')
-    print(p3.derivada)
-    print('__________________')
-    print(isinstance(p3.coeficiente(0), Number))
+    
