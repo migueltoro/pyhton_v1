@@ -6,6 +6,7 @@ Created on 15 jul. 2020
 from typing import Iterable, TypeVar, Callable, Any
 import random
 from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tipos.IntPar import IntPar
 from collections import Counter
 
 identity = lambda x:x
@@ -52,6 +53,11 @@ def iterate(initial:E, predicate:Callable[[E],bool],operator:Callable[[E],E]) ->
     while predicate(e):
         yield e
         e = operator(e)
+        
+def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[IntPar]:
+    for i in range(n0,n):
+        for j in range(m0,m):
+            yield IntPar.of(i,j)
 
 def average(iterable:Iterable[num]):
     s = 0
@@ -188,5 +194,6 @@ if __name__ == '__main__':
     print(cp.most_common(1)[0][1])
     r = ((1, 2, 3, 4)*2)[-2:-1]
     print(r)   
+    print(','.join(str(p) for p in all_pairs(3,4)))
     
     

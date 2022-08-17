@@ -21,4 +21,5 @@ class IntPar:
         return f'({self.first},{self.second})'
 
 if __name__ == '__main__':
-    pass
+    p = IntPar.of(3,4)
+    print(p)

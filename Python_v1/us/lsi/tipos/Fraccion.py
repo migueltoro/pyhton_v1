@@ -14,9 +14,6 @@ from us.lsi.tipos.FieldElement import FieldElement
 
 
 class FraccionField(Field):
-    
-    def __init__(self)->FraccionField:
-        pass
        
     @staticmethod
     def of()->FraccionField: 

@@ -20,16 +20,6 @@ class Color(Enum):
     RED = 1
     GREEN = 2
     BLUE = 3
-    
-
-def area_circulo(radio:float) -> float:
-    Preconditions.checkArgument(
-        radio>=0,'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
-    return pi*radio**2
-
-def longitud_circunferencia(radio:float) -> float:
-    Preconditions.checkArgument(radio>=0,'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
-    return 2*pi*radio
 
 def cuadrados_de_multiplos_entre(a:int,b:int,c:int)-> Iterable[int]:
     return (x**2 for x in range(a,b) if x%c == 0)
@@ -69,23 +59,7 @@ def deviacion_tipica(iterable:Iterable[num]) -> float:
     Preconditions.checkArgument(a[2]>0,'El iterador esta vacio')
     return sqrt(a[0]/a[2]-(a[1]/a[2])**2)  
 
-def sol_ecuacion_primer_grado(a:float,b:float) -> float: 
-    Preconditions.checkArgument(a>0,'El coeficiente a debe ser distinto de cero y es {0:.2f}'.format(a))
-    return -b/a
-    
-def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> tuple[float,float] | tuple[complex,complex]:
-    Preconditions.checkArgument(a>0,'El coeficiente a debe ser distinto de cero y es {0:.2f}'.format(a))
-    disc = b*b-4*a*c
-    if disc >= 0 :
-        r1 = -b/(2*a)
-        r2 = sqrt(disc)/(2*a)
-        s1,s2 = r1+r2,r1-r2
-        return (s1,s2)
-    else :
-        re = -b/(2*a)
-        im = sqrt(-disc)/(2*a)
-        s1,s2 = complex(re,im),complex(re,-im)
-        return (s1,s2) 
+
 
 def sum_file(file:str)->int:  
     itf =  lineas_de_csv(file) 
@@ -94,9 +68,6 @@ def sum_file(file:str)->int:
             
              
 if __name__ == '__main__': 
-    print(list(progresion_aritmetica(5,20, 3)))
-    print(sol_ecuacion_segundo_grado(1,-3,2))
-    print(area_circulo(5.))
     print(media(x for x in range(10,100) if x%2 == 0))
     print(deviacion_tipica(x*x for x in range(10,100) if x%3 == 0))
     it = cuadrados_de_multiplos_entre(10, 100, 3)
