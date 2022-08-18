@@ -6,8 +6,7 @@ Created on 16 ago 2022
 
 from __future__ import annotations
 from dataclasses import dataclass
-from numbers import Number
-from us.lsi.tools.Preconditions import checkPositionIndex
+from us.lsi.tools.Preconditions import checkPositionIndex, checkArgument
 from typing import TypeVar, Generic
 from fractions import Fraction
 
@@ -28,6 +27,16 @@ class Polinomio(Generic[E]):
     
     @staticmethod
     def constante(z:E) -> Polinomio[E]:
+        return Polinomio([z])
+    
+    @staticmethod
+    def zero(z:E) -> Polinomio[E]:
+        z = z-z
+        return Polinomio([z])
+    
+    @staticmethod
+    def one(z:E) -> Polinomio[E]:
+        z = z**0
         return Polinomio([z])
     
     @property
@@ -61,7 +70,7 @@ class Polinomio(Generic[E]):
         return Polinomio.of_list(p)
     
     def __sub__(self,other:Polinomio[E])-> Polinomio[E]:
-        zero = self.coeficiente(0)-self.coeficiente(0)
+        zero: E = self.coeficiente(0)-self.coeficiente(0)
         n = max(self.grado,other.grado)
         p1 = self.coeficientes + list(zero for i in range(n-self.grado))
         p2 = other.coeficientes + list(zero for i in range(n-other.grado))
@@ -71,14 +80,22 @@ class Polinomio(Generic[E]):
     def __mul__(self,other:Polinomio[E] | E)-> Polinomio[E]:
         if isinstance(other, Polinomio):
             n = self.grado+other.grado
-            p = list(None for i in range(n+1))
+            zero: E = self.coeficiente(0)-self.coeficiente(0)
+            p = list(zero for i in range(n+1))
             for i in range(0,self.grado+1):
                 for j in range(0,other.grado+1):
-                    p[i+j] = p[i+j] + self.coeficiente(i)*other.coeficiente(j) if p[i+j] else self.coeficiente(i)*other.coeficiente(j)
+                    p[i+j] = p[i+j] + self.coeficiente(i)*other.coeficiente(j)
             return Polinomio.of_list(p)
         else:
             coef = list(other*self.coeficiente(i) for i in range(self.grado+1))
             return Polinomio.of_list(coef)
+        
+    def __pow__(self,n:int)-> Polinomio[E]:
+        checkArgument(n >=0,f'elexponente no puede ser negativo y es {n}')
+        r: Polinomio[E] = Polinomio.one(self.coeficiente(0))
+        for _ in range(n):
+            r = r*self
+        return r 
     
     @property
     def derivada(self):
@@ -96,8 +113,10 @@ class Polinomio(Generic[E]):
 if __name__ == '__main__':
     p0: Polinomio[Fraction] = Polinomio.of(Fraction(1),Fraction(1))
     p1: Polinomio[Fraction] = Polinomio.of(Fraction(3),Fraction(-4),Fraction(5),Fraction(7))
-    p = p0 - p1
+    p = p0 * p1
+    r = p0**2
     print(p0)
     print(p1)
     print(p)
+    print(r)
     
