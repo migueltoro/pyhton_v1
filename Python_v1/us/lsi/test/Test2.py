@@ -11,6 +11,7 @@ import re
 import random
 from collections import Counter
 from us.lsi.tools.File import absolute_path
+from calendar import day_name
 
 E = TypeVar('E')
 R = TypeVar('R')
@@ -52,6 +53,6 @@ con razon {2} es {3}" \
     print(sorted(Counter(r).items(),reverse = True))
     it = lineas_de_csv("../../../resources/datos_2.txt",encoding='ISO-8859-1')
     print(Counter(flat_map(it)).most_common(5))
-
+    
 
     
