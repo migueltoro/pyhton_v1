@@ -40,13 +40,13 @@ class OcupacionVuelo:
     
     @staticmethod 
     def random(v:Vuelo, anyo:int)->OcupacionVuelo:
-        codigo_vuelo:str = v.codigo()
-        np:int = v.numPlazas()
-        t:time = v.hora()
-        dw:int = v.diaSemana()
+        codigo_vuelo:str = v.codigo
+        np:int = v.numPlazas
+        t:time = v.hora
+        dw:int = v.diaSemana
         d:date = find_first(iterate(date(anyo,1,1),lambda dt: dt+timedelta(days=1)),lambda dt:dt.weekday() == dw)         
         d = d+timedelta(days=7*random.randint(0,53)) #53 semanas en un anyo
-        fecha:datetime = datetime(d, t)
+        fecha:datetime = datetime.combine(d, t)
         num_pasajeros:int = random.randint(0,np) if np>0 else 0
         return OcupacionVuelo.of(codigo_vuelo,fecha,num_pasajeros)
     
@@ -75,4 +75,3 @@ if __name__ == '__main__':
     Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
     Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
     oc = OcupacionVuelo.parse('MX0435,2020-11-24 01:04:00,57')
-    print(oc)

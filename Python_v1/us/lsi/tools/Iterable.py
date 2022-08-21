@@ -48,7 +48,7 @@ def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
 
-def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=True) -> Iterable[E]:
+def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=lambda x:True) -> Iterable[E]:
     e = initial
     while predicate(e):
         yield e

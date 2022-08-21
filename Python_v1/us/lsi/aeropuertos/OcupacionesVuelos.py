@@ -54,3 +54,4 @@ if __name__ == '__main__':
     OcupacionesVuelos.lee_ocupaciones(absolute_path("/resources/ocupacionesVuelos.csv"))
     print(OcupacionesVuelos.get())
     print(OcupacionesVuelos.get().get_ocupacion(0))
+    print(OcupacionVuelo.random(Vuelos.get().get_vuelo(10),2022))

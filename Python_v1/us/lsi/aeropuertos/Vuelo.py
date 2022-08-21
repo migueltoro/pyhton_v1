@@ -42,21 +42,21 @@ class Vuelo:
     
     @staticmethod 
     def random()-> Vuelo: 
-        e: int = random.randint(0,Aerolineas.get().size());
-        codigo: str = Aerolineas.get().get(e).codigo();
-        numero: str = f'{random.randint(0,1000):4d}'
+        e: int = random.randint(0,Aerolineas.get().size())
+        codigo: str = Aerolineas.get().get_aerolinea(e).codigo
+        numero: str = f'{random.randint(0,1000):04d}'
         ad: int = random.randint(0,Aeropuertos.get().size())
-        codigo_destino: str = Aeropuertos.get().get(ad).codigo()
+        codigo_destino: str = Aeropuertos.get().get_aeropuerto(ad).codigo
         while True:
             ao: int = random.randint(0,Aeropuertos.get().size())
             if ao != ad:
                 break
-        codigo_origen:str = Aeropuertos.get().get(ao).codigo();
+        codigo_origen:str = Aeropuertos.get().get_aeropuerto(ao).codigo
         precio:float = random.uniform(0, 100)
         numPlazas: int = random.randint(0,300);
         duracion: timedelta= timedelta(minutes=random.randint(0,360))
-        hora: time = time(random.randint(0,24),random.randint(0,60));
-        diaSemana: int = random.randint(7)
+        hora: time = time(random.randint(0,23),random.randint(0,59));
+        diaSemana: int = random.randint(0,6)
         return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,numPlazas,duracion,hora,diaSemana);
 
     @staticmethod 

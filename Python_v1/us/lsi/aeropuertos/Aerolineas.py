@@ -32,7 +32,7 @@ class Aerolineas:
         return self._codigos_aerolineas[codigo]
     
     def size(self):
-        return len(self._aeroLineas)
+        return len(self._aerolineas)
     
     def get_aerolinea(self,i:int)->Aerolinea:
         return self._aerolineas[i]

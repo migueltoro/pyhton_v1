@@ -38,7 +38,7 @@ class Vuelos:
         return self._codigos_vuelos[codigo]
     
     def get_vuelo(self,index:int)->Vuelo:
-        return self._vuelos.get(index);
+        return self._vuelos[index]
 
     def size(self)->int:
         return len(self._vuelos)
@@ -60,3 +60,4 @@ if __name__ == '__main__':
     Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
     Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
     print(Vuelos.get().vuelo('MX0435'))
+    print(Vuelo.random())
