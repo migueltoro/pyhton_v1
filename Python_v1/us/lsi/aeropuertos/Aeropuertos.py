@@ -44,12 +44,12 @@ class Aeropuertos:
     
     def aeropuerto(self,codigo: str)->Aeropuerto:
         if not self._codigosAeropuertos:
-            self._codigosAeropuertos = {a.codigo():a for a in self._aeropuertos}
+            self._codigosAeropuertos = {a.codigo:a for a in self._aeropuertos}
         return self._codigosAeropuertos[codigo]
     
     def ciudad_de_aeropuerto(self, codigo:str)->str:
         if not self._ciudad_de_aeropuerto:
-            self._ciudad_de_aeropuerto = {a.codigo():a.ciudad() for a in self._aeropuertos}
+            self._ciudad_de_aeropuerto = {a.codigo:a.ciudad for a in self._aeropuertos}
         return self._ciudad_de_aeropuerto[codigo]
     
     def aeropuertos_en_ciudad(self,ciudad:str)->set[str]: 
@@ -57,8 +57,13 @@ class Aeropuertos:
             self.aeropuertosEnCiudad = grouping_set(self._aeropuertos,lambda a: a.ciudad)
         return self._aeropuertosEnCiudad[ciudad]
     
+    @property
     def size(self)->int:
         return len(self._aeropuertos)
+    
+    @property
+    def aeropuertos(self):
+        return self._aeropuertos
     
     def get_aeropuerto(self,i:int)->Aeropuerto:
         return self._aeropuertos[i]

@@ -5,7 +5,7 @@ Created on 27 August. 2021
 '''
 
 from __future__ import annotations
-from typing import TypeVar, Iterable
+from typing import TypeVar, Iterable, Callable
 from us.lsi.tools.Iterable import flat,grouping_list, grouping_set
 
 
@@ -23,6 +23,7 @@ def invert_dict_set(d:dict[K,V | Iterable[V]]) -> dict[V,set[K]]:
     fl = ((k,nv)  for k,v in d.items()  for nv in flat(v))
     return grouping_set(fl,fkey=lambda e:e[1],fvalue=lambda e:e[0])
 
-def str_dictionary(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='')->str:
-    ts = lambda x:'({}:{})'.format(str(x[0]),str(x[1]))
-    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in sorted(dictionary.items(),key=lambda x:x[0])),suffix)
+def str_dictionary(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='',
+                   strfkey:Callable[[K],str]=str,strfvalue:Callable[[K],str]=str)->str:
+    ts = lambda x:f'({strfkey(x[0])}:{strfvalue(x[1])})'
+    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in dictionary.items()),suffix)

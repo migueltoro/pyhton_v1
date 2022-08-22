@@ -8,7 +8,7 @@ from typing import OrderedDict,Iterable
 from us.lsi.tools.File import lineas_de_fichero, encoding
 from us.lsi.tools.Dict import str_dictionary, invert_dict_set
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import flat_map,average,find_first,distinct,str_iterable,grouping_set,groups_size, count
+from us.lsi.tools.Iterable import flat_map,average,first,distinct,str_iterable,grouping_set,groups_size, count
 from collections import Counter
 import re
 from us.lsi.tools.Dict import str_dictionary
@@ -48,10 +48,10 @@ def linea_mas_larga(file:str) -> str:
     return max(lineas_de_fichero(file), key= lambda x:len(x))
 
 def primera_linea_con_palabra(file:str,palabra:str) -> str:
-    return find_first(lineas_de_fichero(file),predicate=lambda ln:palabra in ln).get()
+    return first(lineas_de_fichero(file),predicate=lambda ln:palabra in ln).get()
 
 def linea_numero(file:str,n:int) -> str:
-    return find_first(enumerate(lineas_de_fichero(file)),predicate=lambda p:p[0] == n).get()[1]
+    return first(enumerate(lineas_de_fichero(file)),predicate=lambda p:p[0] == n).get()[1]
 
 def frecuencias_de_palabras(file:str) -> OrderedDict[str,int]:
     d = groups_size(palabras_no_huecas(file))

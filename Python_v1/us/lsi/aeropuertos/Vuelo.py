@@ -21,10 +21,10 @@ class Vuelo:
     codigo_destino: str
     codigo_origen: str
     precio: float
-    numPlazas: int    
+    num_plazas: int    
     duracion: timedelta
     hora: time
-    diaSemana: int
+    dia_semana: int
    
     @staticmethod 
     def parse(text: str) -> Vuelo:
@@ -34,11 +34,11 @@ class Vuelo:
         codigo_destino: str = campos[2]
         codigo_origen: str = campos[3]
         precio: float = float(campos[4])
-        numPlazas: int = int(campos[5])
+        num_plazas: int = int(campos[5])
         duracion: timedelta = timedelta(minutes = int(campos[6]))
         hora: time = datetime.strptime(campos[7], "%H:%M").time()
-        diaSemana: int = days.index(campos[8].capitalize());
-        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,numPlazas,duracion,hora,diaSemana)
+        dia_semana: int = days.index(campos[8].capitalize());
+        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
     
     @staticmethod 
     def random()-> Vuelo: 
@@ -53,11 +53,11 @@ class Vuelo:
                 break
         codigo_origen:str = Aeropuertos.get().get_aeropuerto(ao).codigo
         precio:float = random.uniform(0, 100)
-        numPlazas: int = random.randint(0,300);
+        num_plazas: int = random.randint(0,300);
         duracion: timedelta= timedelta(minutes=random.randint(0,360))
         hora: time = time(random.randint(0,23),random.randint(0,59));
-        diaSemana: int = random.randint(0,6)
-        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,numPlazas,duracion,hora,diaSemana);
+        dia_semana: int = random.randint(0,6)
+        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana);
 
     @staticmethod 
     def of(codigo_aerolinea: str, numero: str, codigo_destino: str, codigo_origen: str, 
@@ -66,16 +66,15 @@ class Vuelo:
     
     @property
     def ciudad_destino(self)-> str:
-        return Aeropuertos.get().ciudadDeAeropuerto(self.codigoDestino);
+        return Aeropuertos.get().ciudad_de_aeropuerto(self.codigo_destino)
     
     @property
     def ciudad_origen(self)-> str:
-        return Aeropuertos.get().ciudadDeAeropuerto(self.codigoOrigen); 
+        return Aeropuertos.get().ciudad_de_aeropuerto(self.codigo_origen) 
     
     @property
     def codigo(self)-> str:
-        return self.codigo_aerolinea+self.numero;
-
+        return self.codigo_aerolinea+self.numero
     
     def __str__(self):
         return  "{0},{1},{2},{3},{4:.2f},{5:d},{6:d},{7},{8}".format(
@@ -84,10 +83,10 @@ class Vuelo:
             self.codigo_destino,
             self.codigo_origen,
             self.precio,
-            self.numPlazas,
+            self.num_plazas,
             int(self.duracion/timedelta(minutes=1)),
             time.strftime(self.hora,"%H:%M"),
-            days[self.diaSemana])  
+            days[self.dia_semana])  
 
 if __name__ == '__main__':
     v1: Vuelo = Vuelo.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")

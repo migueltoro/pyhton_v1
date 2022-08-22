@@ -11,6 +11,7 @@ from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.OcupacionVuelo import OcupacionVuelo
 from us.lsi.tools.File import lineas_de_fichero,absolute_path
 import random
+from datetime import date
 
 class OcupacionesVuelos:
     __ocupaciones_vuelos = None
@@ -35,7 +36,10 @@ class OcupacionesVuelos:
         OcupacionesVuelos.__ocupaciones_vuelos = OcupacionesVuelos(r)
         return OcupacionesVuelos.__ocupaciones_vuelos
 
-
+    @property
+    def ocupaciones(self):
+        return self._ocupaciones_vuelos
+    
     def get_ocupacion(self,i:int)->OcupacionVuelo:
         return self._ocupaciones_vuelos[i]
     
@@ -52,6 +56,6 @@ if __name__ == '__main__':
     Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
     Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
     OcupacionesVuelos.lee_ocupaciones(absolute_path("/resources/ocupacionesVuelos.csv"))
-    print(OcupacionesVuelos.get())
     print(OcupacionesVuelos.get().get_ocupacion(0))
     print(OcupacionVuelo.random(Vuelos.get().get_vuelo(10),2022))
+    print(list(oc for oc in OcupacionesVuelos.get().ocupaciones if oc.fecha_salida == date(2020,6,8)))

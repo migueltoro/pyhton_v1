@@ -4,126 +4,187 @@ Created on 21 ago 2022
 @author: migueltoro
 '''
 
-from datetime import date,datetime,timedelta
+from datetime import date,datetime
 from collections import OrderedDict
 from ordered_set import OrderedSet
 from us.lsi.aeropuertos.Vuelo import Vuelo
+from us.lsi.aeropuertos.OcupacionVuelo import OcupacionVuelo
+from us.lsi.aeropuertos.OcupacionesVuelos import OcupacionesVuelos
+from us.lsi.aeropuertos.Vuelos import Vuelos
+from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
+from us.lsi.aeropuertos.Aerolineas import Aerolineas
+from us.lsi.tools.File import absolute_path
+from us.lsi.tools.Iterable import first, grouping_list,grouping_set,average, groups_size,grouping_reduce
+from us.lsi.tools.Dict import str_dictionary
+from collections import Counter
 
-#1. Dada una cadena de caracteres s devuelve el número total de pasajeros a
+#1. Dada una cadena de caracteres s devuelve el numero total de pasajeros a
 # ciudades destino que tienen
-# como prefijo s (esto es, comienzan por s).  ç
+# como prefijo s (esto es, comienzan por s).  
  
-def numero_depasajeros(self,prefix:str)->int:
-    pass
+def numero_de_pasajeros(prefix:str)->int:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return sum(ocp.num_pasajeros for ocp in ls if ocp.vuelo.ciudad_destino.startswith(prefix))
 
 #2.  Dado un conjunto de ciudades destino s y una fecha f devuelve cierto si
 # existe un vuelo en la fecha f con destino en s.
 
  
 def hay_destino(destinos:set[str], f:date)-> bool:
-    pass
+    ls:list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return any(ocp.fecha.date() == f for ocp in ls if ocp.vuelo.ciudad_destino in destinos)
 
 
 #3. Dada una fecha f devuelve el conjunto de ciudades destino diferentes de todos
 # los vuelos de fecha f
 
  
-def destinosDiferentes(f:date)->set[str]:
-    pass
+def destinos_diferentes(f:date)->set[str]:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return {ocp.vuelo.ciudad_destino for ocp in ls if ocp.fecha_salida == f}
 
 #4. Dado un anyo devuelve un OrderedDict que relacione cada destino con el
-# total de pasajeros a ese destino en el año anyo
+# total de pasajeros a ese destino en el anyo a
 
 
 def total_pasajeros_a_destino(a:int)->OrderedDict[str,int]:
-    pass
+    ls: list[OcupacionVuelo] = list(ocp for ocp in OcupacionesVuelos.get().ocupaciones if ocp.fecha.year == a)
+    d = grouping_reduce(ls,fkey=lambda ocp:ocp.vuelo.ciudad_destino,op=lambda x,y:x+y,fvalue=lambda ocp:ocp.num_pasajeros)
+    return OrderedDict(sorted(d.items()))
 
-#5. Dado un destino devuelve el código de la aerolinea del primer vuelo con plazas libres a ese
-# destino
+#5. Dado un destino devuelve el codigo de la aerolinea del primer vuelo con plazas libres a ese
+# destino y posterior a una fecha dada
 
 
-def primer_vuelo(destino:str)->str:
-    pass
+def primer_vuelo(destino:str,f:datetime)->str:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return first(ocp.vuelo.codigo_aerolinea for ocp in ls if ocp.vuelo.ciudad_destino == destino and \
+            ocp.vuelo.num_plazas > ocp.num_pasajeros and \
+            ocp.fecha > f)
 
 #6. Devuelve para los vuelos completos un Map que haga corresponder a cada ciudad
 # destino la media de los precios de los vuelos a ese destino.
 
 
-def precios_medios()->dict[str,float]:
-    pass
+def precios_medios(n:int)->dict[str,float]:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    s = (ocp for ocp in ls if ocp.vuelo.num_plazas-ocp.num_pasajeros < n)
+    r: dict[str,list[float]] = grouping_list(s,fkey=lambda x:x.vuelo.ciudad_destino,fvalue=lambda x:x.vuelo.precio)
+    return {c:average(r[c]) for c in r.keys()}
 
 #7. Devuelve un Map tal que dado un entero n haga corresponder
-# a cada fecha la lista de los n destinos con los vuelos de mayor duración.
+# a cada mes la lista de los n destinos con los vuelos de mayor duracion.
 
 
 def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    r: dict[str,list[Vuelo]] = grouping_list(ls,fkey=lambda x:x.fecha_salida.month,fvalue=lambda ocp:ocp.vuelo)
+    ld = lambda k:(v.ciudad_destino for v in sorted(r[k],key=lambda v:v.duracion.total_seconds(),reverse=True)[0:n])
+    return {k:list(ld(k)) for k in r.keys()}
 
 #8. Dada una fecha f devuelve el precio medio de los vuelos con salida posterior
 # a f. Si no hubiera vuelos devuelve 0.0
 
-def precio_medio(f:datetime)->float:
-    pass
+def precio_medio_posterior(f:datetime)->float:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return average(ocp.vuelo.precio for ocp in ls if ocp.fecha > f)
 
 #9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.
 
  
 def fechas_a_destino()->dict[str,set[date]]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return grouping_list(ls,fkey=lambda ocp:ocp.vuelo.ciudad_destino,fvalue=lambda ocp:ocp.fecha_salida)
 
-#10. Devuelve el destino con mayor número de vuelos
+#10. Devuelve el destino con mayor numero de vuelos
 
 def destino_con_mas_vuelos()->str:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return Counter(ocp.vuelo.ciudad_destino for ocp in ls).most_common(1)[0]
 
 #11. Dado un entero m devuelve un conjunto ordenado con las duraciones 
-# de todos los vuelos cuya duración es mayor que m minutos.
+# de todos los vuelos cuya duracion es mayor que m minutos.
 
 
-def duraciones(m:int)->OrderedSet[timedelta]:
-    pass
+def duraciones(m:int)->OrderedSet[int]:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    s = (ocp.vuelo.duracion.total_seconds()/60 for ocp in ls if ocp.vuelo.duracion.total_seconds()/60 > m)
+    return OrderedSet(sorted(s,reverse=True))
 
-#12. Dado un número n devuelve un conjunto con los destinos de los vuelos que están entre los n que más duración tienen.
+#12. Dado un numero n devuelve un conjunto con los n destinos de los vuelos con mayor duracion
 
 
 def destinos_mayor_duracion(n:int)->set[str]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    s = [ocp.vuelo.ciudad_destino for ocp in sorted(ls,
+               key=lambda ocp:ocp.vuelo.duracion.total_seconds(), reverse=True)][0:n]
+    return set(s)
 
-#13. Dado un número n devuelve un conjunto con los n destinos con más vuelos
+#13. Dado un numero n devuelve un conjunto con los n destinos con mas vuelos
 
  
-def entreLosMasVuelos(n:int)->set[str]:
-    pass
+def con_mas_vuelos(n:int)->list[tuple[str,int]]:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return Counter(ocp.vuelo.ciudad_destino for ocp in ls).most_common(n)
+    
 
-# 14. Dado un número entero n devuelve una lista con los destinos que tienen más de n vuelos
+# 14. Dado un numero entero n devuelve una lista con los destinos que tienen mas de n vuelos
 
 
 def mas_de_n_vuelos(n:int)->list[str]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return [d for d,c in Counter(ocp.vuelo.ciudad_destino for ocp in ls).items() if c>n]
 
-# 15. Devuelve un Map que relación cada destino con el porcentaje de los vuelos del total que van a ese destino.
+# 15. Devuelve un Map que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
 
 
 def porcentaje_a_destino()->dict[str,float]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    n = len(ls)
+    d = groups_size(ls,fkey=lambda ocp:ocp.vuelo.ciudad_destino)
+    return {k:d[k]/n for k in d.keys()}
+    
 
-
-def porcentaje_a_destino_ocupaciones_vuelos()->dict[str,float]:
-    pass
-
-# 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo de más barato
+# 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo mas barato
 
 
 def mas_barato()->dict[str,Vuelo]:
-    pass
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    return grouping_reduce(ls,fkey=lambda ocp:ocp.vuelo.ciudad_destino,
+                           op=lambda v1,v2:min((v1,v2),key=lambda v:v.precio),
+                           fvalue = lambda ocp:ocp.vuelo)
 
-# 17. Devuelve un Map que haga corresponder a cada destino el número de fechas
+# 17. Devuelve un Map que haga corresponder a cada destino el numero de fechas
 # distintas en las que hay vuelos a ese destino.
 
 
-def fechasDistintas()->dict[str,int]:
-    pass
+def fechasDistintas()->OrderedDict[str,int]:
+    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    g = grouping_set(ls,fkey=lambda ocp:ocp.vuelo.ciudad_destino,fvalue = lambda ocp:ocp.fecha_salida)
+    d =  {k:len(g[k]) for k in g.keys()}
+    return OrderedDict(sorted(d.items(),key=lambda x:x[1],reverse=True))
+
 
 if __name__ == '__main__':
-    pass
+    Aeropuertos.lee_aeropuertos(absolute_path("/resources/aeropuertos.csv"))
+    Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
+    Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
+    OcupacionesVuelos.lee_ocupaciones(absolute_path("/resources/ocupacionesVuelos.csv"))
+#    print(numero_de_pasajeros('Lon'))
+#    print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
+#    print(destinos_diferentes(date(2020,6,8)))
+#    print(str_dictionary(total_pasajeros_a_destino(2020)))
+#    print(primer_vuelo('Eindhoven',datetime(2019,6,8,0,0)))
+#    print(str_dictionary(precios_medios(5)))
+#    print(str_dictionary(destinos_con_mayor_duracion(10)))
+#    print(precio_medio_posterior(datetime(2019,6,8,0,0)))
+#    print(str_dictionary(fechas_a_destino(),strfvalue=lambda f:str_iterable(f,ts=lambda x: x.strftime("%Y-%m-%d"))))
+#    print(destino_con_mas_vuelos())
+#    print(duraciones(30))
+#    print(destinos_mayor_duracion(20))
+#    print(con_mas_vuelos(20))
+#    print(mas_de_n_vuelos(4))
+#    print(str_dictionary(porcentaje_a_destino()))
+#    print(str_dictionary(mas_barato()))
+    print(str_dictionary(fechasDistintas()))

@@ -67,7 +67,7 @@ def average(iterable:Iterable[num]):
         n = n+1
     return s/n
 
-def find_first(iterable:Iterable[E], p:Callable[[E],bool]) -> E | None:
+def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda x:True) -> E | None:
     for e in iterable:
         if p(e):
             return e
