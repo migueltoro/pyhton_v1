@@ -24,7 +24,6 @@ def dir_path()->str:
 def existe_fichero(filePath)->bool:
     return os.path.isfile(filePath)
     
-
 def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     partes = linea.split(delimiter)
     return partes

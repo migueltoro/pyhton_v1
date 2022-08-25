@@ -14,7 +14,7 @@ from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.tools.File import absolute_path
-from us.lsi.tools.Dict import str_dictionary
+from us.lsi.tools.Dict import strfdict
 
 
 
@@ -317,17 +317,17 @@ if __name__ == '__main__':
 #    print(numero_de_pasajeros('Lon'))
 #    print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
 #    print(destinos_diferentes(date(2020,6,8)))
-#    print(str_dictionary(total_pasajeros_a_destino(2020)))
+#    print(strfdict(total_pasajeros_a_destino(2020)))
 #    print(primer_vuelo('Eindhoven',datetime(2019,6,8,0,0)))
-#    print(str_dictionary(precios_medios(5)))
-#    print(str_dictionary(destinos_con_mayor_duracion(10)))
+#    print(strfdict(precios_medios(5)))
+#    print(strfdict(destinos_con_mayor_duracion(10)))
 #    print(precio_medio_posterior(datetime(2019,6,8,0,0)))
-#    print(str_dictionary(fechas_a_destino(),strfvalue=lambda f:str_iterable(f,ts=lambda x: x.strftime("%Y-%m-%d"))))
+#    print(strfdict(fechas_a_destino(),strfvalue=lambda f:str_iterable(f,ts=lambda x: x.strftime("%Y-%m-%d"))))
 #    print(destino_con_mas_vuelos())
 #    print(duraciones(30))
 #    print(destinos_mayor_duracion(20))
 #    print(con_mas_vuelos(20))
 #    print(mas_de_n_vuelos(4))
-#    print(str_dictionary(porcentaje_a_destino()))
-#    print(str_dictionary(mas_barato()))
-    print(str_dictionary(fechasDistintas()))
+#    print(strfdict(porcentaje_a_destino()))
+#    print(strfdict(mas_barato()))
+    print(strfdict(fechasDistintas()))

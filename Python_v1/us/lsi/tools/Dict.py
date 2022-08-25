@@ -17,13 +17,18 @@ R = TypeVar('R')
 
 def invert_dict_list(d:dict[K,V | Iterable[V]]) -> dict[V,list[K]]:
     fl = ((k,nv)  for k,v in d.items()  for nv in flat(v))
-    return grouping_list(fl,fkey=lambda e:e[1],fvalue=lambda e:e[0])
+    return grouping_list(fl,key=lambda e:e[1],value=lambda e:e[0])
 
 def invert_dict_set(d:dict[K,V | Iterable[V]]) -> dict[V,set[K]]:
     fl = ((k,nv)  for k,v in d.items()  for nv in flat(v))
-    return grouping_set(fl,fkey=lambda e:e[1],fvalue=lambda e:e[0])
+    return grouping_set(fl,key=lambda e:e[1],value=lambda e:e[0])
 
-def str_dictionary(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='',
-                   strfkey:Callable[[K],str]=str,strfvalue:Callable[[K],str]=str)->str:
-    ts = lambda x:f'({strfkey(x[0])}:{strfvalue(x[1])})'
-    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in dictionary.items()),suffix)
+def strfdict(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='',
+                   key:Callable[[K],str]=str,value:Callable[[K],str]=str)->str:
+    ts = lambda x:f'({key(x[0])}:{value(x[1])})'
+    r:str = sep.join(ts(x) for x in dictionary.items())
+    return f"{prefix}{r}{suffix}"
+
+
+if __name__ == '__main__':
+    pass

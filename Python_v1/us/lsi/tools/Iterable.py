@@ -147,48 +147,45 @@ def flat(e: E | Iterable[E]) -> Iterable[E]:
             yield x 
     else:
         yield e
-        
-    
-def joining(iterable:Iterable[E],tostring:Callable[[E],str]=str,separator:str='\n',prefix:str='',suffix:str='') -> str:
-        return '{0}{1}{2}'.format(prefix,separator.join(tostring(x) for x in  iterable),suffix)
   
-def str_iterable(iterable:Iterable[str],sep:str=',',prefix:str='{',suffix:str='}',ts:Callable[[E],str]=str) ->str:
-    return "{0}{1}{2}".format(prefix,sep.join(ts(x) for x in iterable),suffix)
+def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',key:Callable[[E],str]=str)->str:
+    r:str = sep.join(key(x) for x in iterable)
+    return f"{prefix}{r}{suffix}"
 
 
-def grouping_reduce(iterable:Iterable[E],fkey:Callable[[E],K], \
-                    op:Callable[[V,V],V],fvalue:Callable[[E],V]= identity) -> dict[K, E]:
+def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], \
+                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, E]:
     a = {}
     for e in iterable:
-        k = fkey(e)
+        k = key(e)
         if k in a:
-            a[k] = op(a[k],fvalue(e))
+            a[k] = op(a[k],value(e))
         else:
-            a[k] = fvalue(e)
+            a[k] = value(e)
     return a
 
 
-def grouping_list(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> dict[K,list[V]]:
-    return grouping_reduce(iterable,fkey,lambda x,y:x+y,lambda x: [fvalue(x)])
+def grouping_list(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,list[V]]:
+    return grouping_reduce(iterable,key,lambda x,y:x+y,lambda x: [value(x)])
 
-def grouping_set(iterable:Iterable[E],fkey:Callable[[E],K],fvalue:Callable[[E],V]=identity) -> dict[K,set[V]]:
-    return grouping_reduce(iterable,fkey,lambda x,y:x|y,lambda x: {fvalue(x)}) 
+def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,set[V]]:
+    return grouping_reduce(iterable,key,lambda x,y:x|y,lambda x: {value(x)}) 
 
 # similar a Counter
-def groups_size(iterable:Iterable[E],fkey:Callable[[E],K]=identity,fsum:Callable[[E],int]=lambda e:1) -> dict[K,int]:
-    return grouping_reduce(iterable,fkey,op=lambda x,y:x+y,fvalue= fsum)
+def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable[[E],int]=lambda e:1) -> dict[K,int]:
+    return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=value)
 
 if __name__ == '__main__':
-    print(str_iterable(range(0,100)))
+    print(strfiter(range(0,100)))
     print(average(range(0,100)))
-    print(str_iterable(flat_map([[0,1],[2,3,4],[5,6],[9]])))
-    print(str_iterable(geometric(2,100,5)))
+    print(strfiter(flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    print(strfiter(geometric(2,100,5)))
     print(index_bool((x%29==0 for x in aleatorios(10,1000,50))))
-    print(str_iterable(lineas_de_fichero('../../../resources/datos.txt')))
+    print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
     print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
     print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
-    g = grouping_reduce(range(0,10,2),fkey = lambda x: x%3,op=lambda x,y:x+y)
+    g = grouping_reduce(range(0,10,2),key = lambda x: x%3,op=lambda x,y:x+y)
     print(g[0])   
     cp = Counter(['a', 'b', 'c', 'a', 'b', 'b'])
     print(cp.most_common(1)[0][1])

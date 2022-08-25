@@ -62,7 +62,7 @@ class Ruta:
         distancias = list(accumulate((self.intervalo(i).longitud for i in range(0, self.n-1)),initial=0))
         alturas = [str(self.marcas[i].coordenadas.altitud) for i in range(len(self.marcas))]
         campos = ["Posicion","Altura"]
-        Graphics.lineChart(fileOut,"Ruta Ronda",campos,(distancias,alturas))
+        Graphics.line_chart(fileOut,"Ruta Ronda",campos,(distancias,alturas))
         
     def mostrar_mapa_google(self,fileOut:str)->None:
         set_tipo(TipoMapa.Google)

@@ -65,7 +65,7 @@ class Mano:
     @property
     def frecuencias_de_valores(self) -> dict[int,int]:
         if not self._frecuencias_de_valores:
-            self._frecuencias_de_valores = groups_size(self._cartas,fkey=lambda c:c.valor)           
+            self._frecuencias_de_valores = groups_size(self._cartas,key=lambda c:c.valor)           
         return self._frecuencias_de_valores
     
     @property
@@ -80,7 +80,7 @@ class Mano:
     @property
     def frecuencias_de_palos(self) -> dict[int,int]:
         if not self._frecuencias_de_palos:
-            self._frecuencias_de_palos = groups_size(self._cartas,fkey=lambda c:c.palo) 
+            self._frecuencias_de_palos = groups_size(self._cartas,key=lambda c:c.palo) 
         return self._frecuencias_de_palos
     
     @property

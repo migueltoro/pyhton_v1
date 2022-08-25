@@ -7,7 +7,7 @@ from __future__ import annotations
 from functools import total_ordering
 from random import randint
 from us.lsi.tools.Preconditions import checkArgument
-from us.lsi.tools.Iterable import str_iterable
+from us.lsi.tools.Iterable import strfiter
 from us.lsi.tools.Functions import mcd
 from us.lsi.tipos.Field import Field
 from us.lsi.tipos.FieldElement import FieldElement
@@ -140,5 +140,5 @@ if __name__ == '__main__':
     print('9:', f2)
     print('9:', ~(f3/f2))
     ls:list[Fraccion] = (Fraccion.random(1000) for _ in range(50))
-    print('10:',str_iterable(ls))
+    print('10:',strfiter(ls))
     print(f1.field.zero)

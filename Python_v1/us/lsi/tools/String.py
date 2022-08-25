@@ -24,12 +24,12 @@ def strip_non_ascii(string):
     stripped = (c for c in string if 0 < ord(c) < 127)
     return ''.join(stripped)   
 
-def split_str(text:str,sep:str=',') -> list[str]:
+def str_split(text:str,sep:str=',') -> list[str]:
     return re.split(sep,text)
 
 if __name__ == '__main__':
     e = r'[ ,;.\n():?!\"]'.encode('utf-8')
     print(e)
     e = 'Juan Antonio,Pepe fue&mail'
-    print(split_str(e,sep='[ ,&]'))
+    print(str_split(e,sep='[ ,&]'))
     print(e.split(' ,&'))

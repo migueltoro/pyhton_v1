@@ -4,7 +4,7 @@ Created on 10 nov 2021
 @author: migueltoro
 '''
 
-from us.lsi.tools.Iterable import str_iterable
+from us.lsi.tools.Iterable import strfiter
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 from us.lsi.tools import File
 from us.lsi.tools import String
@@ -114,7 +114,7 @@ def polyline(fileOut:str, ubicaciones:list[Coordenadas2D])-> None:
         center = Coordenadas2D.center(ubicaciones)
         result = getPolylinePattern()
         ub = (toPoint(x) for x in ubicaciones)
-        polylineText = str_iterable(ub,",\n","\n[", "]\n")
+        polylineText = strfiter(ub,",\n","\n[", "]\n")
         centerText = toPoint(center);
         markerCenterText = toMarker("red","C",center);
         markerBeginText = toMarker("red","S",ubicaciones[0])
@@ -135,7 +135,7 @@ def markers(fileOut:str, markerColor:str, ubicaciones:list[Coordenadas2D])->None
         center = Coordenadas2D.center(ubicaciones)
         result = getMarkersPattern();
         ub = (toMarker(markerColor,"E",x) for x in ubicaciones)
-        markersText = str_iterable(ub,"\n","\n", "\n")
+        markersText = strfiter(ub,"\n","\n", "\n")
         centerMarkerText = toMarker("red","C",center)
         centerText = toPoint(center)
         keyText = getKey()

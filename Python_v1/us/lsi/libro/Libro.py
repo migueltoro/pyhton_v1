@@ -6,12 +6,12 @@ Created on 25 jul. 2020
 
 from typing import OrderedDict,Iterable
 from us.lsi.tools.File import lineas_de_fichero, encoding
-from us.lsi.tools.Dict import str_dictionary, invert_dict_set
+from us.lsi.tools.Dict import strfdict, invert_dict_set
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import flat_map,average,first,distinct,str_iterable,grouping_set,groups_size, count
+from us.lsi.tools.Iterable import flat_map,average,first,distinct,strfiter,grouping_set,groups_size, count
 from collections import Counter
 import re
-from us.lsi.tools.Dict import str_dictionary
+from us.lsi.tools.Dict import strfdict
 
 sep = r'[ ,;.\n():?!\"]'
 
@@ -64,7 +64,7 @@ def palabras_por_frecuencias(file:str) -> OrderedDict[int,set[str]]:
 def palabra_en_lineas(file:str) -> OrderedDict[str,set[int]]:
     lns = lineas_de_fichero(file,encoding='utf-16')
     palabras = ((i,p) for i,linea in enumerate(lns) for p in re.split(sep,linea) if len(p) >0) 
-    d = grouping_set(palabras,fkey=lambda e: e[1], fvalue=lambda e: e[0])
+    d = grouping_set(palabras,key=lambda e: e[1], value=lambda e: e[0])
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
 
 def palabras_frecuentes(file:str, k:int)->str:
@@ -73,11 +73,11 @@ def palabras_frecuentes(file:str, k:int)->str:
 
 if __name__ == '__main__':
     print(encoding("../../../resources/quijote.txt"))
-#    print(str_iterable(palabras_no_huecas("../../../resources/quijote.txt"),sep='\n'))
-#    print(str_dictionary(palabras_por_frecuencias("../../../resources/quijote.txt"),sep='\n'))
+#    print(strfiter(palabras_no_huecas("../../../resources/quijote.txt"),sep='\n'))
+#    print(strfdict(palabras_por_frecuencias("../../../resources/quijote.txt"),sep='\n'))
 #    print(numero_de_palabras_distintas_no_huecas("../../../resources/quijote.txt"))
-#    print(str_iterable(palabras_por_frecuencias("../../../resources/quijote.txt").items(),sep='\n',pf='',sf=''))
-    print(str_iterable(palabra_en_lineas("../../../resources/quijote.txt").items(),sep='\n',prefix='',suffix=''))
+#    print(strfiter(palabras_por_frecuencias("../../../resources/quijote.txt").items(),sep='\n',pf='',sf=''))
+    print(strfiter(palabra_en_lineas("../../../resources/quijote.txt").items(),sep='\n',prefix='',suffix=''))
 #    print(palabras_frecuentes("../../../resources/quijote.txt"))
     print(palabras_frecuentes("../../../resources/quijote.txt", 10))
     

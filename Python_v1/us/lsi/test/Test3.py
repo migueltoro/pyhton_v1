@@ -4,7 +4,7 @@ Created on 24 nov 2021
 @author: migueltoro
 '''
 
-from us.lsi.tools.Iterable import str_iterable
+from us.lsi.tools.Iterable import strfiter
 import sys
 import calendar
 from sortedcontainers.sorteddict import SortedDict
@@ -15,7 +15,7 @@ print(list(d.values()))
 
 
 if __name__ == '__main__':
-    print(str_iterable(sys.path,sep='\n'))
+    print(strfiter(sys.path,sep='\n'))
     print(list(calendar.day_name))
     print(d)
     r = sorted(d.items(),reverse=True)
