@@ -9,12 +9,41 @@ from math import sqrt, pi
 from dataclasses import dataclass
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
-from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
-from  matplotlib.patches import Patch # type: ignore
-from typing import TypeVar
+from matplotlib.patches import Patch # type: ignore
+from abc import ABC, abstractmethod
 
-Recta2D = TypeVar('Recta2D')
+class Objeto2D(ABC):
+    
+    @abstractmethod
+    def copy(self)-> Objeto2D:
+        pass
+    
+    @abstractmethod
+    def rota(self, p:Punto2D, angulo:float) -> Objeto2D:        
+        pass
+    
+    @abstractmethod
+    def traslada(self, v:Vector2D) -> Objeto2D:
+        pass
+    
+    @abstractmethod    
+    def homotecia(self, p:Punto2D, factor:float) -> Objeto2D:
+        pass
+    
+    @abstractmethod
+    def proyecta_sobre_recta(self, r:Recta2D) -> Objeto2D:
+        pass
+    
+    @abstractmethod
+    def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Objeto2D:
+        pass
+    
+    @property
+    @abstractmethod
+    def shape(self)->Patch:
+        pass
+    
 
 @dataclass(frozen=True,order=True)
 class Punto2D(Objeto2D):
@@ -44,19 +73,16 @@ class Punto2D(Objeto2D):
         return Vector2D(self.x,self.y)
 
     @property
-    def cuadrante(self) -> Cuadrante: 
-        c: Cuadrante      
+    def cuadrante(self):    
         match self:
             case Punto2D(x,y) if x >=0 and y >= 0 :
-                c = Cuadrante.PRIMERO
+                return Cuadrante.PRIMERO
             case Punto2D(x,y) if x <=0 and y >=0 :
-                c = Cuadrante.SEGUNDO
+                return Cuadrante.SEGUNDO
             case Punto2D(x,y) if x <=0 and y <=0 :
-                c = Cuadrante.TERCERO
+                return Cuadrante.TERCERO
             case _ :
-                c = Cuadrante.CUARTO
-        return c
-            
+                return Cuadrante.CUARTO        
     
     def distancia_a(self,p:Punto2D) -> float:
         dx = self.x-p.x;
@@ -93,12 +119,39 @@ class Punto2D(Objeto2D):
     def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return self + self.vector_to(p) * 2.
+    
     @property
     def shape(self)->Patch:
-        return Draw.shape_circle([self.x,self.y],radio=0.05,fill=True)
+        return Draw.shape_circle((self.x,self.y),radio=0.05,fill=True)
     
     def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
+    
+
+@dataclass(frozen=True,order=True)
+class Recta2D:
+    punto: Punto2D
+    vector: Vector2D
+     
+    @staticmethod
+    def of(p:Punto2D,v:Vector2D) -> Recta2D:
+        return Recta2D(p,v)
+    
+    @staticmethod
+    def of_puntos(p1:Punto2D,p2:Punto2D) -> Recta2D:
+        return Recta2D(p1,p2.vector_to(p1))
+    
+    def __str__(self) -> str:
+        return '({0},{1})'.format(str(self.punto),str(self.vector))
+    
+    def punto_en_recta(self,factor:float = 0.) -> Punto2D:
+        return self.punto + self.vector * factor
+    
+    def paralela(self,p:Punto2D) -> Recta2D:
+        return Recta2D.of(p,self.vector)
+    
+    def ortogonal(self,p:Punto2D) -> Recta2D:
+        return Recta2D.of(p,self.vector.ortogonal)
 
 if __name__ == '__main__':
     p = Punto2D.parse('(2.3,-4.55)')
@@ -112,4 +165,7 @@ if __name__ == '__main__':
     print(p.vector_to(Punto2D.of(1., 5.)))
     print(p.rota(Punto2D.origen(),pi/2))
     print(p3.distancia_a(p4))
+    p2 = Punto2D.of(0., 1.)
+    r = Recta2D.of_puntos(p1, p2)
+    print(p.proyecta_sobre_recta(r))
     

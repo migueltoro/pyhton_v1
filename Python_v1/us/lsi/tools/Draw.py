@@ -10,7 +10,7 @@ from math import sin
 
 color:str='r'
 
-def shape_circle(center:tuple[float],radio:float,fill=None)->Patch:
+def shape_circle(center:tuple[float,float],radio:float,fill=None)->Patch:
     return plt.Circle(center,radio, fill=fill, color=color)
 
 def shape_multiline(points:list[tuple[float,float]],closed=None, fill=None)->Patch:

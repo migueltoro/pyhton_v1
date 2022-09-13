@@ -9,9 +9,7 @@ from __future__ import annotations
 from math import pi
 from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D
-from us.lsi.geometria.Punto2D import Punto2D
-from us.lsi.geometria.Recta2D import Recta2D
-from us.lsi.geometria.Objeto2D import Objeto2D
+from us.lsi.geometria.Punto2D import Punto2D, Objeto2D, Recta2D
 from us.lsi.tools import Preconditions
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
@@ -19,11 +17,10 @@ from matplotlib.patches import Patch # type: ignore
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
     vertices: list[Punto2D]
-    n: int
       
     @staticmethod
     def of(vertices: list[Punto2D]) -> Poligono2D:
-        return Poligono2D(vertices,len(vertices))
+        return Poligono2D(vertices)
    
     @staticmethod
     def triangulo(p1:Punto2D, p2:Punto2D, p3:Punto2D) -> Poligono2D:
@@ -58,7 +55,11 @@ class Poligono2D(Objeto2D):
     
     def __str__(self) -> str:
         return '({0})'.format(','.join(str(p) for p in self.vertices))
-           
+    
+    @property
+    def n(self) -> int:
+        return len(self.vertices)
+          
     @property
     def copy(self) -> Poligono2D:
         return Poligono2D.of(self.vertices)
@@ -94,7 +95,7 @@ class Poligono2D(Objeto2D):
     def homotecia(self, p:Punto2D, factor:float) -> Poligono2D:
         return Poligono2D.of([x.homotecia(p,factor) for x in self.vertices])
         
-    def proyecta_sobre_recta(self,r:Recta2D) -> set[Punto2D]:
+    def proyecta_sobre_recta(self,r:Recta2D) -> Poligono2D:
         return Poligono2D.of([x.proyecta_sobre_recta(r) for x in self.vertices])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Poligono2D:
@@ -102,7 +103,7 @@ class Poligono2D(Objeto2D):
     
     @property
     def shape(self)->Patch:
-        return Draw.shape_multiline([[p.x,p.y] for p in self.vertices],closed=True)
+        return Draw.shape_multiline([(p.x,p.y) for p in self.vertices],closed=True)
 
 
 if __name__ == '__main__':

@@ -6,10 +6,8 @@ Created on 21 jul. 2020
 
 from __future__ import annotations
 from dataclasses import dataclass
-from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.geometria.Vector2D import Vector2D
-from us.lsi.geometria.Punto2D import Punto2D
-from us.lsi.geometria.Recta2D import Recta2D
+from us.lsi.geometria.Punto2D import Punto2D, Objeto2D, Recta2D
 from us.lsi.geometria.Poligono2D import Poligono2D
 from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.tools import Draw
@@ -50,10 +48,10 @@ class Agregado2D(Objeto2D):
         return Agregado2D.of([x.homotecia(p,factor) for x in self.objetos])
         
     def proyecta_sobre_recta(self,r:Recta2D) -> Agregado2D:
-        return Agregado2D.of([x.proyecta_sobre_recta(r) for x in self.vertices])
+        return Agregado2D.of([x.proyecta_sobre_recta(r) for x in self.objetos])
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Agregado2D:
-        return Agregado2D.of([x.simetrico(r) for x in self.objetos])
+        return Agregado2D.of([x.simetrico_con_respecto_a_recta(r) for x in self.objetos])
     
     @property
     def shape(self):
@@ -69,7 +67,7 @@ if __name__ == '__main__':
     p3 = p.simetrico_con_respecto_a_recta(r)
     pol = Poligono2D.cuadrado(Punto2D.of(3.,4.),Vector2D.of(1,-2))
     pol2 = pol.simetrico_con_respecto_a_recta(r)
-    s = Segmento2D.of_puntos(pr, pr+vr)
+    s = Segmento2D.of(pr, pr+vr)
     a = Agregado2D.of([p,p2,p3,s,pol])
     a.add(pol)
     b = a.rota(Punto2D.origen(),-pi/3)
