@@ -5,13 +5,13 @@ Created on 17 jul. 2020
 
 '''
 from typing import Iterable
-from math import pi,sqrt
+from math import sqrt
 from us.lsi.tools import Preconditions
 from statistics import mean, stdev, quantiles, pstdev
 import random
 from enum import Enum
 from us.lsi.tools.Iterable import flat_map
-from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv, lineas_iterable
+from us.lsi.tools.File import lineas_de_csv
 
 
 num = int | float
@@ -20,7 +20,7 @@ class Color(Enum):
     RED = 1
     GREEN = 2
     BLUE = 3
-
+    
 def cuadrados_de_multiplos_entre(a:int,b:int,c:int)-> Iterable[int]:
     return (x**2 for x in range(a,b) if x%c == 0)
 
@@ -38,7 +38,7 @@ def progresion_aritmetica(a:int,b:int,c:int) -> Iterable[int]:
     return range(a,b,c)
 
 def suma(iterable:Iterable[num]) -> num:
-    a = 0 #(sum x, num elem)
+    a:num = 0 #(sum x, num elem)
     for e in iterable:
         a = a+e
     return a  
@@ -62,8 +62,9 @@ def deviacion_tipica(iterable:Iterable[num]) -> float:
 
 
 def sum_file(file:str)->int:  
-    itf =  lineas_de_csv(file) 
-    it2 = (int(e) for e in flat_map(itf))
+    it0:Iterable[list[str]] =  lineas_de_csv(file) 
+    it1:Iterable[int] = flat_map(it0)
+    it2:Iterable[int] = (int(e) for e in it1)
     return sum(it2)
             
              

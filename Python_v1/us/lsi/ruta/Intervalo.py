@@ -26,7 +26,7 @@ class Intervalo:
 
     @property
     def desnivel(self) -> float:
-        return self.fin.coordenadas.altitude-self.principio.coordenadas.altitude
+        return self.fin.coordenadas.altitud-self.principio.coordenadas.altitud
     
     @property
     def longitud(self) -> float:

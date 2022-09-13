@@ -28,8 +28,8 @@ def str_split(text:str,sep:str=',') -> list[str]:
     return re.split(sep,text)
 
 if __name__ == '__main__':
-    e = r'[ ,;.\n():?!\"]'.encode('utf-8')
-    print(e)
-    e = 'Juan Antonio,Pepe fue&mail'
-    print(str_split(e,sep='[ ,&]'))
-    print(e.split(' ,&'))
+    e0 = r'[ ,;.\n():?!\"]'.encode('utf-8')
+    print(e0)
+    e1 = 'Juan Antonio,Pepe fue&mail'
+    print(str_split(e1,sep='[ ,&]'))
+    print(e1.split(' ,&'))

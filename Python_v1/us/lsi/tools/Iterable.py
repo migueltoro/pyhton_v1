@@ -3,7 +3,7 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterable, TypeVar, Callable, Any
+from typing import Iterable, Iterator,TypeVar, Callable, Any
 import random
 from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tipos.IntPar import IntPar
@@ -19,14 +19,14 @@ E = TypeVar('E')
 R = TypeVar('R')
 
 
-def zip2(*iterables:Iterable[Iterable[Any]])->Iterable[Any]:
-    iterables = [iter(it) for it in iterables]
-    n = len(iterables)
+def zip2(*iterables:Iterable[Any])->Iterable[Any]:
+    r = [iter(it) for it in iterables]
+    n = len(r)
     try:
         while True:
             ls = []
             for i in range(n):
-                e = next(iterables[i])
+                e = next(r[i])
                 ls.append(e)          
             yield tuple(ls)               
     except StopIteration:
@@ -48,7 +48,7 @@ def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
 
-def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=lambda x:True) -> Iterable[E]:
+def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=lambda _:True) -> Iterable[E]:
     e = initial
     while predicate(e):
         yield e
@@ -60,22 +60,23 @@ def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[IntPar]:
             yield IntPar.of(i,j)
 
 def average(iterable:Iterable[num]):
-    s = 0
-    n = 0
+    s:num = 0
+    n:num = 0
     for x in iterable:
         s = s + x 
         n = n+1
     return s/n
 
-def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda x:True) -> E | None:
+def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> E | None:
     for e in iterable:
         if p(e):
             return e
     return None
     
 def first_and_last(iterable:Iterable[E],defaultvalue=None)->tuple[E,E]:
-    first = last = next(iterable, defaultvalue)
-    for last in iterable:
+    it = iter(iterable)
+    first = last = next(it, defaultvalue)
+    for last in it:
         pass
     return (first,last)
     
@@ -103,13 +104,12 @@ def count(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
             n = n+1
     return n
 
-def reduce2(f:Callable[[R,E],R], iterable:Iterable[E], initial:R=None)->R|None:
-    r = initial
+def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],f:Callable[[E],R], initial:R=None)->R|None:
+    it:Iterator[E] = iter(iterable)
     if initial is None:
-        iterable = iter(iterable)
-        r = next(iterable)
-    for e in iterable:
-        r = f(r,e)
+        r = f(next(it))
+    for e in it:
+        r = op(r,f(e))
     return r
     
 
@@ -136,10 +136,10 @@ def flat_map(iterable:Iterable[E],fm:Callable[[E],Iterable[R]]=identity) -> Iter
         for pe in fm(e):
             yield pe
             
-def enumerate_flat_map(iterable:Iterable[enumerate[E]],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[enumerate[R]]:
-    for e in iterable:
-        for pe in fm(e.item):
-            yield enumerate(e.count,pe)
+def enumerate_flat_map(iterable:enumerate[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[tuple[int,R]]:
+    for ln,lv in iterable:
+        for r in fm(lv):
+            yield (ln,r)
     
 def flat(e: E | Iterable[E]) -> Iterable[E]:
     if isinstance(e,Iterable):
@@ -154,8 +154,8 @@ def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',key:
 
 
 def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], \
-                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, E]:
-    a = {}
+                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
+    a:dict[K,V] = {}
     for e in iterable:
         k = key(e)
         if k in a:
@@ -172,7 +172,7 @@ def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=
     return grouping_reduce(iterable,key,lambda x,y:x|y,lambda x: {value(x)}) 
 
 # similar a Counter
-def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable[[E],int]=lambda e:1) -> dict[K,int]:
+def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable[[E],int]=lambda _:1) -> dict[K,int]:
     return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=value)
 
 if __name__ == '__main__':
@@ -185,7 +185,8 @@ if __name__ == '__main__':
     print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
     print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
-    g = grouping_reduce(range(0,10,2),key = lambda x: x%3,op=lambda x,y:x+y)
+    sm:Callable[[int,int],int] = lambda x,y:x+y
+    g = grouping_reduce(range(0,10,2),key = lambda x: x%3,op=sm, value= lambda x:x)
     print(g[0])   
     cp = Counter(['a', 'b', 'c', 'a', 'b', 'b'])
     print(cp.most_common(1)[0][1])

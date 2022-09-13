@@ -11,8 +11,10 @@ from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
-from  matplotlib.patches import Patch
+from  matplotlib.patches import Patch # type: ignore
+from typing import TypeVar
 
+Recta2D = TypeVar('Recta2D')
 
 @dataclass(frozen=True,order=True)
 class Punto2D(Objeto2D):
@@ -42,16 +44,19 @@ class Punto2D(Objeto2D):
         return Vector2D(self.x,self.y)
 
     @property
-    def cuadrante(self) -> Cuadrante:
+    def cuadrante(self) -> Cuadrante: 
+        c: Cuadrante      
         match self:
             case Punto2D(x,y) if x >=0 and y >= 0 :
-                return Cuadrante.PRIMERO
+                c = Cuadrante.PRIMERO
             case Punto2D(x,y) if x <=0 and y >=0 :
-                return Cuadrante.SEGUNDO
+                c = Cuadrante.SEGUNDO
             case Punto2D(x,y) if x <=0 and y <=0 :
-                return Cuadrante.TERCERO
+                c = Cuadrante.TERCERO
             case _ :
-                return Cuadrante.CUARTO    
+                c = Cuadrante.CUARTO
+        return c
+            
     
     def distancia_a(self,p:Punto2D) -> float:
         dx = self.x-p.x;
@@ -81,11 +86,11 @@ class Punto2D(Objeto2D):
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
         return p + p.vector_to(self) * factor
     
-    def proyecta_sobre_recta(self,r:'Recta2D') -> Punto2D: 
+    def proyecta_sobre_recta(self,r:Recta2D) -> Punto2D: 
         v1 = r.punto.vector_to(self).proyecta_sobre(r.vector)
         return r.punto + v1
     
-    def simetrico_con_respecto_a_recta(self,r:'Recta2D') -> Punto2D:
+    def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Punto2D:
         p = self.proyecta_sobre_recta(r)
         return self + self.vector_to(p) * 2.
     @property

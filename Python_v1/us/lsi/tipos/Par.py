@@ -12,6 +12,7 @@ from fractions import Fraction
 A = TypeVar('A')
 B = TypeVar('B')
 
+
 @dataclass(frozen=True)
 class Par(Generic[A,B]):
     first: A

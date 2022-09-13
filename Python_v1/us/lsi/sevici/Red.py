@@ -5,10 +5,11 @@ Created on 24 jul. 2020
 '''
 
 from __future__ import annotations
+from typing import Optional
 from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
-from sortedcontainers import SortedSet
+from sortedcontainers import SortedSet # type: ignore
 from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
 from us.lsi.tools.Preconditions import checkArgument
 from us.lsi.tools.Dict import strfdict
@@ -17,10 +18,10 @@ from us.lsi.tools.GraphicsMaps import markers
 
 class Red:
     
-    def __init__(self, e:list[Estacion],por_nombre_compuesto:dict[str,Estacion]=None,por_numero:dict[int,Estacion]=None):
+    def __init__(self, e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=None,por_numero:Optional[dict[int,Estacion]]=None):
         self._estaciones:list[Estacion] = e
-        self._por_nombre_compuesto:dict[str,Estacion] = por_nombre_compuesto
-        self._por_numero:dict[int,Estacion] = por_numero
+        self._por_nombre_compuesto:Optional[dict[str,Estacion]] = por_nombre_compuesto
+        self._por_numero:Optional[dict[int,Estacion]] = por_numero
     
     @staticmethod
     def of(e:list[Estacion],por_nombre_compuesto:dict[str,Estacion]=None,por_numero:dict[int,Estacion]=None) -> Red:
@@ -28,7 +29,7 @@ class Red:
     
     @staticmethod
     def data_of_file(fichero: str) -> Red:
-        estaciones = [Estacion.parse(x) for x in lineas_de_csv(fichero, delimiter =",",encoding='cp1252')[1:]]
+        estaciones = [Estacion.parse(x) for x in lineas_de_csv(fichero, delimiter =",",encoding='cp1252')][1:]
         checkArgument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
@@ -44,11 +45,15 @@ class Red:
     
     @property
     def por_nombre_compuesto(self)->dict[str,Estacion]:
-        return self._por_nombre_compuesto
+        if self._por_nombre_compuesto is None:
+            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
+        return dict(self._por_nombre_compuesto)
     
     @property
     def por_numero(self)->dict[int,Estacion]:
-        return self._por_numero
+        if self._por_numero is None:
+            self._por_numero = {e.numero:e for e in self._estaciones}
+        return dict(self._por_numero)
     
     def __add__(self,estacion:Estacion)->None:
         checkArgument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
@@ -75,11 +80,19 @@ class Red:
     def numero_de_estaciones(self) -> int:
         return len(self._estaciones)
     
-    def estacion_de_nombre_compuesto(self,name:str) -> Estacion | None:
-        return self.por_nombre_compuesto.get(name,None)
-                 
-    def estacion_de_numero(self, n:int) -> Estacion | None: 
-        return self.por_numero.get(n,None)
+    def estacion_de_nombre_compuesto(self,name:str) -> Optional[Estacion]:
+        if self._por_nombre_compuesto is None:
+            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
+            return self._por_nombre_compuesto.get(name,None) 
+        else:
+            return self._por_nombre_compuesto.get(name,None)
+                         
+    def estacion_de_numero(self, n:int) -> Optional[Estacion]: 
+        if self._por_numero is None:
+            self._por_numero = {e.numero:e for e in self._estaciones}
+            return self._por_numero.get(n,None) 
+        else:
+            return self._por_numero.get(n,None)
  
     def estaciones_con_bicis_disponibles(self, k:int=1) -> set[Estacion]:
             return {e for e in self.estaciones if e.free_bikes >= k}
@@ -109,7 +122,7 @@ if __name__ == '__main__':
     r = Red.data_of_file(absolute_path("/resources/estaciones.csv"))
 #    r.__add__(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
- #   print(r.estacion_de_numero(6).ubicacion.distancia_a())
+#   print(r.estacion_de_numero(6).ubicacion.distancia_a())
 #    print(strfdict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))
     
     

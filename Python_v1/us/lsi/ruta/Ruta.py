@@ -70,7 +70,7 @@ class Ruta:
         polyline(fileOut,coordenadas)
     
     def mostrar_mapa_bing(self,fileOut:str)->None:
-        set_tipo(TipoMapa.Bing)
+        set_tipo(TipoMapa.Google)
         coordenadas = [c.coordenadas.to2D for c in self.marcas]
         polyline(fileOut,coordenadas)
 

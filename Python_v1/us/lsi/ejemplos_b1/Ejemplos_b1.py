@@ -34,13 +34,17 @@ def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> tuple[float,float] | 
     if disc >= 0 :
         r1 = -b/(2*a)
         r2 = sqrt(disc)/(2*a)
+        s1:float
+        s2:float
         s1,s2 = r1+r2,r1-r2
         return (s1,s2)
     else :
         re = -b/(2*a)
         im = sqrt(-disc)/(2*a)
-        s1,s2 = complex(re,im),complex(re,-im)
-        return (s1,s2) 
+        d1:complex
+        d2:complex
+        d1,d2 = complex(re,im),complex(re,-im)
+        return (d1,d2) 
     
 def area_circulo(radio:float) -> float:
     checkArgument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')

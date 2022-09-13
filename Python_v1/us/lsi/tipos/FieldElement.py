@@ -22,7 +22,7 @@ class FieldElement(ABC,Generic[E]):
     def field(self)->Field[E]:
         pass
     @abstractmethod
-    def __mul__(self, n: int)->E:
+    def __mul__(self, a:E)->E:
         pass
     @abstractmethod
     def __neg__(self)-> E:

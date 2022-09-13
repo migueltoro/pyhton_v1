@@ -14,7 +14,7 @@ from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from us.lsi.tools import Draw
-from matplotlib.patches import Patch
+from matplotlib.patches import Patch # type: ignore
 
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
@@ -49,7 +49,7 @@ class Poligono2D(Objeto2D):
         return Poligono2D.of([p,p1,p2,p3])
     
     @staticmethod
-    def rectanguloHorizontal(x_min:Punto2D, x_max:Punto2D, y_min:Punto2D, y_max:Punto2D) -> Poligono2D:
+    def rectanguloHorizontal(x_min:float, x_max:float, y_min:float, y_max:float) -> Poligono2D:
         p0 = Punto2D.of(x_min, y_min)
         p1 = Punto2D.of(x_max, y_min)
         p2 = Punto2D.of(x_max, y_max)

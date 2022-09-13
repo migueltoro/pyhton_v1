@@ -64,16 +64,16 @@ class Polinomio(Generic[E]):
     def __add__(self,other:Polinomio[E])-> Polinomio[E]:
         zero = self.coeficiente(0)-self.coeficiente(0)
         n = max(self.grado,other.grado)
-        p1 = self.coeficientes + list(zero for i in range(n-self.grado))
-        p2 = other.coeficientes + list(zero for i in range(n-other.grado))
+        p1 = self.coeficientes + list(zero for _ in range(n-self.grado))
+        p2 = other.coeficientes + list(zero for _ in range(n-other.grado))
         p = list(p1[i]+p2[i] for i in range(n+1))
         return Polinomio.of_list(p)
-    
+        
     def __sub__(self,other:Polinomio[E])-> Polinomio[E]:
         zero: E = self.coeficiente(0)-self.coeficiente(0)
         n = max(self.grado,other.grado)
-        p1 = self.coeficientes + list(zero for i in range(n-self.grado))
-        p2 = other.coeficientes + list(zero for i in range(n-other.grado))
+        p1 = self.coeficientes + list(zero for _ in range(n-self.grado))
+        p2 = other.coeficientes + list(zero for _ in range(n-other.grado))
         p = list(p1[i]-p2[i] for i in range(n+1))
         return Polinomio.of_list(p)
     

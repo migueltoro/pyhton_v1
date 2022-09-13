@@ -11,7 +11,7 @@ from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
-from  matplotlib.patches import Patch
+from  matplotlib.patches import Patch # type: ignore
 
 @dataclass(frozen=True,order=True)
 class Segmento2D(Objeto2D):

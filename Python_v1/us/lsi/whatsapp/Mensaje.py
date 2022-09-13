@@ -4,6 +4,7 @@ Created on 26 jul. 2020
 @author: migueltoro
 '''
 from __future__ import annotations
+from typing import Optional
 from dataclasses import dataclass
 from datetime import time,date
 from us.lsi.tools.Dates import parse_time, str_time, parse_date, str_date
@@ -19,7 +20,7 @@ class Mensaje:
     texto: str
     
     @staticmethod   
-    def parse(mensaje: str) -> Mensaje:
+    def parse(mensaje: str) -> Optional[Mensaje]:
         matches = re.match(RE,mensaje)
         if(matches):
             fecha = parse_date(matches.group('fecha'), '%d/%m/%y')

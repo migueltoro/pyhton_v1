@@ -9,14 +9,16 @@ from datetime import datetime, timedelta, time, date
 def parse_date(s:str,ft = "%d/%m/%Y") -> date:
     return datetime.strptime(s, ft).date()
 
-def str_date(s:datetime,ft = "%d/%m/%Y") -> str:
-    return date.strftime(s, ft)
+def str_date(d:date,ft = "%d/%m/%Y") -> str:
+    r:datetime = datetime.combine(d,datetime.min.time())
+    return datetime.strftime(r, ft)
 
 def parse_time(s:str,ft = '%H:%M:%S') -> time:
     return datetime.strptime(s, ft).time()
 
-def str_time(s:datetime,ft = '%H:%M:%S') -> str:
-    return time.strftime(s, ft)
+def str_time(t:time,ft = '%H:%M:%S') -> str:
+    d: datetime = datetime.combine(date.min,t)
+    return datetime.strftime(d, ft)
 
 def to_datetime(t:time) -> datetime:
     return datetime.combine(date.min,t)

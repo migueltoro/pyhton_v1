@@ -7,6 +7,7 @@ Created on 27 jul. 2020
 from __future__ import annotations
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
+from typing import Optional
 
 nombre_valores = ["2","3","4","5","6","7","8","9","10","J","Q","K","A"]
 symbols_palos = ['C', 'H', 'S', 'D']
@@ -16,7 +17,7 @@ nombre_palos = ["clubs","hearts","spades","diamonds"]
 class Card:
     palo:int  # [0,4)
     valor:int # [0,14)
-    _ide:int = None # palo*4+valor # [0,52)
+    _ide:Optional[int] = None # palo*4+valor # [0,52)
     
     @staticmethod
     def of_text(text:str)->Card:     
@@ -37,7 +38,7 @@ class Card:
     @staticmethod
     def of(palo,valor):
         Preconditions.checkArgument(valor >= 0 and valor <14 and palo >=0 and palo < 52, 
-                    "No es posible valor = %d, palo = %d".format(valor,palo))
+                                    f"No es posible valor = {valor}, palo = {palo}")
         return Card(palo,valor)
 
     
@@ -46,9 +47,12 @@ class Card:
     
     @property
     def id(self) -> int:
-        if self._id is None:
+        if self._ide is not None:
+            return self._ide
+        else:
             self._id = self.palo*4+self.valor
-        return self._id
+            return self._id
+            
     
     @property
     def name_of_file(self):

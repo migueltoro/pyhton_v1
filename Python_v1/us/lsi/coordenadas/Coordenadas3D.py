@@ -25,9 +25,9 @@ class Coordenadas3D:
         return Coordenadas3D(latitud,longitud,altitud)
     
     @staticmethod
-    def parse(text:str) -> Coordenadas2D:
+    def parse(text:str) -> Coordenadas3D:
         lat,long,alt = text[1:-1].split(',')
-        return Coordenadas2D.of(float(lat),float(long),float(alt))
+        return Coordenadas3D.of(float(lat),float(long),float(alt))
     
     @property
     def to2D(self:Coordenadas3D) -> Coordenadas2D:

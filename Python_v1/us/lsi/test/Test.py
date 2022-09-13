@@ -18,14 +18,14 @@ identity = lambda x:x
 
 def es_iterable(m)-> bool:
     try:
-        it = m.__iter__()
+        m.__iter__()
     except: 
         print("{} no es iterable por que no tiene el metodo __iter__()".format(str(m)))
     return True
 
 def es_iterator(m)-> None:
     try:
-        it = m.__next__()
+        m.__next__()
     except: 
         print("{} no es un iterador por que no tiene el metodo __next__()".format(str(m)))
     return True
@@ -102,14 +102,14 @@ if __name__ == '__main__':
             x = next(it2) 
             s.append(e+x)               
     except StopIteration:
-       pass
+        pass
 
     print(s)
 
     s = []
     ls2 = list(range(10,3000,7))
     for i in range(min(len(ls),len(ls2))):
-                 s.append(ls[i]+ls2[i])
+        s.append(ls[i]+ls2[i])
     print(s)
   
     print (Fraction(11, 35))

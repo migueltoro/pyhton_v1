@@ -4,8 +4,8 @@ Created on 27 oct. 2020
 @author: migueltoro
 '''
 from typing import Callable
-import matplotlib.pyplot as plt
-from  matplotlib.patches import Patch
+import matplotlib.pyplot as plt # type: ignore
+from  matplotlib.patches import Patch # type: ignore
 from math import sin
 
 color:str='r'
@@ -51,7 +51,6 @@ def draw_multiline(points:list[tuple[float,float]],y_label:str='eje y',x_label:s
     plt.plot([x[0] for x in points], [x[1] for x in points])
     plt.show()
    
-
 
 if __name__ == '__main__':
 #    draw_piechar(['Python', 'C++', 'Ruby', 'Java'],[215, 130, 245, 210])

@@ -6,7 +6,7 @@ Created on 27 jul. 2020
 
 from __future__ import annotations
 from us.lsi.montecarlo.Card import Card
-from us.lsi.tools.Iterable import groups_size, index_bool, joining
+from us.lsi.tools.Iterable import groups_size, index_bool, strfiter
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
 from functools import total_ordering
@@ -73,8 +73,8 @@ class Mano:
         if not self._valores_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_valores.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
-            ls = [e[0] for e in ls]
-            self._valores_ordenados_por_frecuencias = ls
+            ls1 = [e[0] for e in ls]
+            self._valores_ordenados_por_frecuencias = ls1
         return self._valores_ordenados_por_frecuencias
 
     @property
@@ -88,8 +88,8 @@ class Mano:
         if not self._palos_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_palos.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
-            ls = [e[0] for e in ls]
-            self._palos_ordenados_por_frecuencias = ls
+            ls1 = [e[0] for e in ls]
+            self._palos_ordenados_por_frecuencias = ls1
         return self._palos_ordenados_por_frecuencias
     
     @property
@@ -141,7 +141,7 @@ class Mano:
     
     @property
     def es_escalera_real(self)-> bool:
-        return self.es_escalera_de_color and {x.valor for x in self.cartas}.contains(12)
+        return self.es_escalera_de_color and 12 in {x.valor for x in self.cartas}
     
     @property           
     def es_carta_mas_alta(self)-> bool:
@@ -188,7 +188,7 @@ class Mano:
             self.valores_ordenados_por_frecuencias[0] < mano.valores_ordenados_por_frecuencias[0]:
             return True
         return r
-          
+              
     def __eq__(self,mano):
         return self.jugada == mano.jugada and \
             self.valores_ordenados_por_frecuencias[0] == mano.valores_ordenados_por_frecuencias[0]
@@ -198,7 +198,7 @@ class Mano:
     
                         
     def __str__(self):
-        mano = joining((c for c in self.cartas),separator=',',prefix='[',suffix=']')
+        mano = strfiter((c for c in self.cartas),separator=',',prefix='[',suffix=']')
         return '{}={}={}'.format(mano,self.nombre_de_jugada,str(self.fuerza()))
 
     def to_graphics(self, file_out: str) -> None:

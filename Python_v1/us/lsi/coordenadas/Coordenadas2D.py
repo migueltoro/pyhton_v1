@@ -13,10 +13,8 @@ class Coordenadas2D:
       
     @staticmethod
     def of(latitud:float,longitud:float) -> Coordenadas2D:
-        checkArgument(-90<=latitud and latitud<=90,  
-                      f'latitud {latitud} no es correcta')
-        checkArgument(-180<=longitud and longitud<=180, 
-                      f'logitud {longitud} no es correcta')
+        checkArgument(-90<=latitud and latitud<=90, f'latitud {latitud} no es correcta')
+        checkArgument(-180<=longitud and longitud<=180, f'logitud {longitud} no es correcta')
         return Coordenadas2D(latitud,longitud)
        
     @staticmethod

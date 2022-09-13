@@ -11,7 +11,6 @@ from us.lsi.tools import String
 from enum import Enum
 
 
-
 class TipoMapa(Enum):
     Google = 1
     Bing = 2
@@ -22,7 +21,7 @@ def set_tipo(ntipo:TipoMapa)->None:
     global tipo
     tipo = ntipo
     
-def get_tipo()->TipoMapa.Google:
+def get_tipo()->TipoMapa:
     global tipo
     return tipo
 

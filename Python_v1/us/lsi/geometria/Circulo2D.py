@@ -14,7 +14,7 @@ from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from us.lsi.tools import Draw
-from matplotlib.patches import Patch
+from matplotlib.patches import Patch # type: ignore
 
 
 @dataclass(frozen=True,order=True)

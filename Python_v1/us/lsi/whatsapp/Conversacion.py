@@ -5,7 +5,7 @@ Created on 26 jul. 2020
 '''
 
 from __future__ import annotations
-from typing import TypeVar, List, Set, Dict, Callable
+from typing import TypeVar, Callable, Optional
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from us.lsi.tools.Functions import identity
@@ -17,24 +17,25 @@ from us.lsi.tools import Graphics
 
 P = TypeVar('P')
 
-week_days = ("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+week_days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+n_week_days = {"Monday":0,"Tuesday":1,"Wednesday":2,"Thursday":3,"Friday":4,"Saturday":5,"Sunday":6}
 sep = r'[ ,;.\n():?!\"]'
 
 
 class Conversacion:
     
-    def __init__(self, mensajes: List[Mensaje], palabras_huecas: Set[str]):
-        self._mensajes: List[Mensaje] = mensajes
-        self._palabras_huecas: Set[str] = palabras_huecas
-        self._usuarios: Set[str] = {m.usuario for m in self._mensajes}
-        self._mensajes_por_usuario: Dict[str,Mensaje] = None
-        self._numero_de_mensajes_por_usuario = None
-        self._frecuencia_de_palabras: Dict[str,int] = None
-        self._numero_de_palabras: int = None
-        self._frecuencia_de_palabras_por_usuario: Dict[UsuarioPalabra,int] = None
-        self._numero_de_palabras_por_usuario: Dict[str,int] = None
-        self._frecuencia_de_palabras_por_resto_de_usuarios: Dict[UsuarioPalabra,int] = None
-        self._numero_de_palabras_por_resto_de_usuarios: Dict[str,int] = None
+    def __init__(self, mensajes: list[Mensaje], palabras_huecas: set[str]):
+        self._mensajes: list[Mensaje] = mensajes
+        self._palabras_huecas: set[str] = palabras_huecas
+        self._usuarios: set[str] = {m.usuario for m in self._mensajes}
+        self._mensajes_por_usuario: Optional[dict[str,list[Mensaje]]] = None
+        self._numero_de_mensajes_por_usuario: Optional[dict[str,int]] = None
+        self._frecuencia_de_palabras: Optional[dict[str,int]] = None
+        self._numero_de_palabras: Optional[int] = None
+        self._frecuencia_de_palabras_por_usuario: Optional[dict[UsuarioPalabra,int]] = None
+        self._numero_de_palabras_por_usuario: Optional[dict[str,int]] = None
+        self._frecuencia_de_palabras_por_resto_de_usuarios: Optional[dict[UsuarioPalabra,int]] = None
+        self._numero_de_palabras_por_resto_de_usuarios: Optional[dict[str,int]] = None
 
     @staticmethod   
     def data_of_file(file: str) -> Conversacion:
@@ -45,65 +46,67 @@ class Conversacion:
     
     def __str__(self) -> str:
         it1 = strfiter(self.palabras_huecas)
-        it2 = strfiter(self.mensajes,separator='\n',prefix='',suffix='')
+        it2 = strfiter(self.mensajes,sep='\n',prefix='',suffix='')
         return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(it1, it2)       
  
-    def _mensajes_por_propiedad(self, p: Callable[[Mensaje],P]) -> Dict[P,List[Mensaje]]:
-        return grouping_list(self.mensajes,key=p)
+    def _mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> dict[P,list[Mensaje]]:
+        return grouping_list(self.mensajes,key=key)
            
-    def _numero_de_mensajes_por_propiedad(self, p: Callable[[Mensaje],P]) -> Dict[P,int]:
-        return groups_size(self.mensajes,key=p)
+    def _numero_de_mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> dict[P,int]:
+        return groups_size(self.mensajes,key=key)
     
     @property
-    def mensajes(self) -> List[Mensaje]:
+    def mensajes(self) -> list[Mensaje]:
         return self._mensajes
     
     @property
-    def palabras_huecas(self) -> Set[str]:
+    def palabras_huecas(self) -> set[str]:
         return self._palabras_huecas
     
     @property
-    def usuarios(self) -> Set[str]:
+    def usuarios(self) -> set[str]:
         return self._usuarios
        
     @property
-    def mensajes_por_usuario(self) -> Dict[str,Mensaje]:
+    def mensajes_por_usuario(self) -> dict[str,list[Mensaje]]:
         if self._mensajes_por_usuario is None:
-            self._mensajes_por_usuario = self._mensajes_por_propiedad(lambda m: m.usuario)
-        return self._mensajes_por_usuario
+            self._mensajes_por_usuario = self._mensajes_por_propiedad(key=lambda m: m.usuario)
+            return self._mensajes_por_usuario
+        else:
+            return self._mensajes_por_usuario
     
     @property
-    def mensajes_por_dia_de_semana(self) -> Dict[str,Mensaje]:
-        return   self._mensajes_por_propiedad(lambda m: m.fecha.weekday())
+    def mensajes_por_dia_de_semana(self) -> dict[str,list[Mensaje]]:
+        return  self._mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
     
     @property
-    def mensajes_por_fecha(self) -> Dict[date,Mensaje]:
+    def mensajes_por_fecha(self) -> dict[date,list[Mensaje]]:
         return self._mensajes_por_propiedad(lambda m: m.fecha) 
     
     @property
-    def mensajes_por_hora(self) -> Dict[int,Mensaje]:
+    def mensajes_por_hora(self) -> dict[int,list[Mensaje]]:
         return self._mensajes_por_propiedad(lambda m: m.hora.hour)
     
     @property
-    def numero_de_mensajes_por_usuario(self) -> Dict[str,int]:
+    def numero_de_mensajes_por_usuario(self) -> dict[str,int]:
         if self._numero_de_mensajes_por_usuario is None:
             self._numero_de_mensajes_por_usuario = self._numero_de_mensajes_por_propiedad(lambda m: m.usuario)
         return self._numero_de_mensajes_por_usuario
     
     @property
-    def numero_de_mensajes_por_dia_de_semana(self) -> Dict[str,int]:
-        return self._numero_de_mensajes_por_propiedad(lambda m: m.fecha.weekday())
+    def numero_de_mensajes_por_dia_de_semana(self) -> dict[str,int]:
+        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
     
     @property
-    def numero_de_mensajes_por_fecha(self) -> Dict[date,int]:
-        return self._numero_de_mensajes_por_propiedad(lambda m: m.fecha) 
+    def numero_de_mensajes_por_fecha(self) -> dict[date,int]:
+        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.fecha) 
     
     @property
-    def numero_de_mensajes_por_hora(self) -> Dict[int,int]:
-        return self._numero_de_mensajes_por_propiedad(lambda m: m.hora.hour) 
+    def numero_de_mensajes_por_hora(self) -> dict[int,int]:
+        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.hora.hour) 
     
     @property
-    def frecuencia_de_palabras(self) -> Dict[str,int]:
+    def frecuencia_de_palabras(self) -> dict[str,int]:
         if self._frecuencia_de_palabras is None:
             ms_tex = (m.texto for m in self.mensajes)
             ps = flat_map(ms_tex,lambda x: re.split(sep, x))
@@ -118,7 +121,7 @@ class Conversacion:
         return self._numero_de_palabras
     
     @property
-    def frecuencia_de_palabras_por_usuario(self) -> Dict[UsuarioPalabra,int]:
+    def frecuencia_de_palabras_por_usuario(self) -> dict[UsuarioPalabra,int]:
         if self._frecuencia_de_palabras_por_usuario is None:
             ms_us_tex = ((m.usuario,m.texto) for m in self.mensajes)
             plsu = (UsuarioPalabra.of(u,p) for u,t in ms_us_tex for p in re.split(sep,t))
@@ -127,14 +130,14 @@ class Conversacion:
         return self._frecuencia_de_palabras_por_usuario
     
     @property
-    def numero_de_palabras_por_usuario(self) -> Dict[str,int]:
+    def numero_de_palabras_por_usuario(self) -> dict[str,int]:
         return groups_size(self.frecuencia_de_palabras_por_usuario.items(),key=lambda e:e[0].usuario)
     
     @property     
-    def frecuencia_de_palabras_por_resto_de_usuarios(self) -> Dict[UsuarioPalabra,int]:
+    def frecuencia_de_palabras_por_resto_de_usuarios(self) -> dict[UsuarioPalabra,int]:
         if self._frecuencia_de_palabras_por_resto_de_usuarios is None:
             fpal = ((up.usuario,up.palabra,f) for up,f in self.frecuencia_de_palabras_por_usuario.items())
-            d = {}
+            d:dict[UsuarioPalabra,int] = {}
             for u,p,f in fpal:
                 for x in self.usuarios:
                     if x != u:
@@ -144,7 +147,7 @@ class Conversacion:
         return self._frecuencia_de_palabras_por_resto_de_usuarios
     
     @property     
-    def numero_de_palabras_por_resto_de_usuarios(self) -> Dict[str,int]:
+    def numero_de_palabras_por_resto_de_usuarios(self) -> dict[str,int]:
         return groups_size(self.frecuencia_de_palabras_por_resto_de_usuarios.items(),key=lambda e:e[0].usuario)
     
     def importancia_de_palabra(self,usuario:str,palabra:str) -> float:
@@ -153,7 +156,7 @@ class Conversacion:
                 (self.numero_de_palabras_por_resto_de_usuarios[usuario] \
                 /self.frecuencia_de_palabras_por_resto_de_usuarios[UsuarioPalabra.of(usuario,palabra)])
     
-    def palabras_caracteristicas_de_usuario(self,usuario:str,umbral:int) -> Dict[str,float]:
+    def palabras_caracteristicas_de_usuario(self,usuario:str,umbral:int) -> dict[str,float]:
         r1 = (e for e in self.frecuencia_de_palabras_por_usuario.items() if e[0].usuario == usuario) 
         r2 = (e for e in r1 if self.frecuencia_de_palabras.get(e[0].palabra,0) > umbral)
         r3 = (e for e in r2 if e[1] > umbral)
@@ -162,17 +165,17 @@ class Conversacion:
         return {e[0]:e[1] for e in r5}
     
     def diagrama_de_barras_mensajes_por_dia_de_semana(self,file_out:str) -> None: 
-        ls = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
+        ls:list[tuple[str,int]] = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
         ls.sort(key=lambda e:e[0])    
-        nombres_columna = [week_days[x[0]] for x in ls]       
+        nombres_columna = [x[0] for x in ls]       
         datos =  [x[1] for x in ls]     
         nombres_datos = ['DiaDeSemana','NumeroDeMensajes']       
         Graphics.columns_bar_chart(file_out, "MensajesPorDiaDeSemana", nombres_datos,nombres_columna, datos)
-        
+              
     def diagrama_de_tarta_mensajes_por_dia_de_semana(self,file_out:str) -> None: 
         ls = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
         ls.sort(key=lambda e:e[0])    
-        nombres_columna = [week_days[x[0]] for x in ls]       
+        nombres_columna = [x[0] for x in ls]       
         datos =  [x[1] for x in ls]     
         nombres_datos = ['DiaDeSemana','NumeroDeMensajes']       
         Graphics.pie_chart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)

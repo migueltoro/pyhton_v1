@@ -19,18 +19,17 @@ class Estacion:
     free_bikes: int
     ubicacion: Coordenadas2D
 
-    
     @staticmethod   
     def parse(linea: list[str]) -> Estacion:
         name,slots,empty_slots,free_bikes,longitude,latitude = linea
         checkArgument('_' in name,'{0} no contiene _'.format(name))
         numero, name = name.split("_")
-        numero = int(numero)
-        slots = int(slots)
-        empty_slots = int(empty_slots)
-        free_bikes = int(free_bikes)
+        numero0 = int(numero)
+        slots0 = int(slots)
+        empty_slots0 = int(empty_slots)
+        free_bikes0 = int(free_bikes)
         ubicacion = Coordenadas2D(float(longitude),float(latitude))
-        return Estacion.of(numero,name,slots,empty_slots,free_bikes,ubicacion)
+        return Estacion.of(numero0,name,slots0,empty_slots0,free_bikes0,ubicacion)
     
     @staticmethod   
     def of(numero:int,name:str,slots:int,empty_slots:int,free_bikes:int,ubicacion:Coordenadas2D) -> Estacion:

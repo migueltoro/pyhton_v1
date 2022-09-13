@@ -27,10 +27,9 @@ class FraccionField(Field):
     
 #Fraccion mutable
 @total_ordering
-class Fraccion(FieldElement):
+class Fraccion(FieldElement['Fraccion']):
     
-    def __init__(self, n:int, d:int=1)->Fraccion:
-        checkArgument(d != 0,f'El denominador no puede ser cero y es {d}')
+    def __init__(self,n:int,d:int):
         self._numerador = n
         self._denominador = d
         self.__normaliza()
@@ -44,7 +43,8 @@ class Fraccion(FieldElement):
         self._denominador = d//m
         
     @staticmethod
-    def of(n:int,d:int=1)->Fraccion:  
+    def of(n:int,d:int=1)->Fraccion: 
+        checkArgument(d != 0,f'El denominador no puede ser cero y es {d}') 
         return Fraccion(n,d)
     
     @staticmethod
@@ -71,7 +71,7 @@ class Fraccion(FieldElement):
         d = self.denominador*other.denominador
         resultado = Fraccion(n,d)
         return resultado
-    
+        
     def __mul__(self,other:Fraccion)->Fraccion:
         n = self.numerador*other.numerador
         d = self.denominador*other.denominador
@@ -139,6 +139,6 @@ if __name__ == '__main__':
     print('9:', f3)
     print('9:', f2)
     print('9:', ~(f3/f2))
-    ls:list[Fraccion] = (Fraccion.random(1000) for _ in range(50))
+    ls:list[Fraccion] = [Fraccion.random(1000) for _ in range(50)]
     print('10:',strfiter(ls))
     print(f1.field.zero)

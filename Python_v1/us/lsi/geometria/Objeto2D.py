@@ -6,7 +6,7 @@ Created on 21 jul. 2020
 from __future__ import annotations
 from typing import TypeVar
 from abc import ABC, abstractmethod
-from  matplotlib.patches import Patch
+from  matplotlib.patches import Patch # type: ignore
 
 Punto2D = TypeVar('Punto2D')
 Vector2D = TypeVar('Vector2D')

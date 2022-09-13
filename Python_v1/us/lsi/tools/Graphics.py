@@ -8,6 +8,8 @@ from us.lsi.tools import File
 from us.lsi.tools import String
 from us.lsi.tools.Iterable import strfiter
 from us.lsi.tools import Preconditions
+from typing import overload
+
 
 num = int | float
 
@@ -24,11 +26,16 @@ def line_chart(file_out:str,title:str,nombres_de_ejes:list[str],datos:tuple[list
     
 def file_line_chart(e,datos):
     return '[{0}]'.format(','.join(str(datos[i][e]) for i in range(len(datos))))
-    
-def pie_chart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str],datos:list[num]) -> None:
+
+@overload
+def pie_chart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str],datos:list[int]) -> None: ...
+@overload
+def pie_chart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str],datos:list[float]) -> None: ...
+   
+def pie_chart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str],datos:list[int]|list[float]) -> None:
     result = File.read("../../../resources/PieChartPattern.html")
     dt = ("'{0}'".format(e) for e in nombres_de_datos)
-    campos_text = strfiter(dt,separator=",",prefix="[",suffix="]")
+    campos_text = strfiter(dt,sep=",",prefix="[",suffix="]")
     dt = (file_pie_chart(e,nombres,datos) for e in range(0,len(datos)))
     data_text =  strfiter(dt,sep=",\n",prefix="",suffix="\n")
     reglas = {"title":"'"+title+"'","campos":campos_text,"data":data_text}
@@ -38,8 +45,12 @@ def pie_chart(fileOut:str,title:str,nombres_de_datos:list[str],nombres:list[str]
 def file_pie_chart(e,nombres,datos):
     return "['%s',%s]" % (nombres[e],str(datos[e]))
 
+@overload
+def columns_bar_chart(file_out:str,title:str,nombres_de_datos:list[str],columns_labels:list[str],datos:list[int]) -> None: ...
+@overload
+def columns_bar_chart(file_out:str,title:str,nombres_de_datos:list[str],columns_labels:list[str],datos:list[float]) -> None: ...
 
-def columns_bar_chart(file_out:str,title:str,nombres_de_datos:list[str],columns_labels:list[str],datos:list[num]) -> None:
+def columns_bar_chart(file_out:str,title:str,nombres_de_datos:list[str],columns_labels:list[str],datos:list[int]|list[float]) -> None:
     result = File.read("../../../resources/ColumnsBarPattern.html")
     dt = ("'{0}'".format(e) for e in nombres_de_datos)
     nombres_de_datos_text = strfiter(dt,sep=",",prefix="[",suffix="]")
@@ -50,8 +61,13 @@ def columns_bar_chart(file_out:str,title:str,nombres_de_datos:list[str],columns_
     print(columnas_text)
     result = String.transform(result,reglas)
     File.write(file_out,result)
- 
-def columna_columns_bar_chart(e:int,columns_labels:str,datos:num) -> str:
+    
+@overload
+def columna_columns_bar_chart(e:int,columns_labels:list[str],datos:list[int]) -> str: ...
+@overload
+def columna_columns_bar_chart(e:int,columns_labels:list[str],datos:list[float]) -> str: ...
+
+def columna_columns_bar_chart(e:int,columns_labels:list[str],datos:list[int]|list[float]) -> str:
     return "['%s',%s]" % (columns_labels[e],str(datos[e]))
 
 def cartas_graphic(file_out,cartas,fuerza,tipo):       

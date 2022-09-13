@@ -57,21 +57,21 @@ class Persona:
     def edad(self)->int:
         nw = datetime.now()
         return nw.year-self.fecha_de_nacimiento.year
-    @property
-    def siguiente_cumple(self) -> datetime:
-        return None
-    @property
-    def dia_semana_nacimiento(self)->str:
-        return None
-    @property
-    def dia_semana_siguiente_cumple(self)->str:
-        return None
-    @property
-    def mes_cumple(self)->str:
-        return None
-    @property
-    def horoscopo(self)->Horoscopo:
-        return None
+#    @property
+#    def siguiente_cumple(self) -> datetime: 
+#        return None
+#    @property
+#    def dia_semana_nacimiento(self)->str: 
+#        return None
+#    @property
+#    def dia_semana_siguiente_cumple(self)->str: 
+#        return None
+#    @property
+#    def mes_cumple(self)->str: 
+#        return None
+#    @property
+#    def horoscopo(self)->Horoscopo: 
+#        return None
     
     def __str__(self)->str:
         locale.setlocale(locale.LC_ALL, 'es_ES')
