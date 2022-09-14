@@ -14,8 +14,7 @@ E = TypeVar('E')
 * @param condition A condition
 '''
 def checkArgument(condition:bool,message=None): 
-    if(not condition):
-        raise Exception(message)
+    assert condition, message
 
 '''
 * Checks some state of the object, not dependent on the method arguments. 
@@ -23,8 +22,7 @@ def checkArgument(condition:bool,message=None):
 * @param condition A condition
 '''
 def checkState(condition:bool,message=None):
-    if(not condition):
-        raise Exception(message)
+    assert condition,message
        
 '''
 Checks that the value is not null. 
@@ -35,9 +33,7 @@ El parametro a comprobar
 '''
    
 def checkNotNull(reference:E):
-    if(not reference):
-        raise Exception("Es nulo {0:s}".format(reference))
-    return reference
+    assert reference is not None, f"Es nulo {reference}"
         
 '''
 * Checks that index_bool is a valid element index_bool into a list, string, or array with the specified size. 
@@ -49,8 +45,7 @@ def checkNotNull(reference:E):
 '''
    
 def checkElementIndex(index:int,size:int):
-    if(not (index>=0 and index<size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
+    assert (index>=0 and index<size), f"Index = {index}, size= {size}"
     return index
     
 '''
@@ -62,11 +57,10 @@ def checkElementIndex(index:int,size:int):
 * @return Index El indice del elemento
 '''
 def checkPositionIndex(index:int,size:int):
-    if(not (index>=0 and index<=size)):
-        raise Exception("Index = {0:d}, size {1:d}".format(index,size))
+    assert (index>=0 and index<=size), f"Index = {index}, size= {size}"
     return index
     
 
 if __name__ == '__main__':
     print("Index = {0:d}, size {1:d}".format(5,4))
-    checkPositionIndex(5,4)   
+    checkPositionIndex(7,4)   

@@ -5,26 +5,28 @@ Created on 24 jul. 2020
 '''
 
 from __future__ import annotations
-from typing import Optional
+from us.lsi.tipos.Optional import Optional
 from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
-from sortedcontainers import SortedSet # type: ignore
+#from sortedcontainers import SortedSet # type: ignore
 from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
 from us.lsi.tools.Preconditions import checkArgument
-from us.lsi.tools.Dict import strfdict
-from us.lsi.tools.GraphicsMaps import markers
+#from us.lsi.tools.Dict import strfdict
+#from us.lsi.tools.GraphicsMaps import markers
 
 
 class Red:
     
-    def __init__(self, e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=None,por_numero:Optional[dict[int,Estacion]]=None):
+    def __init__(self, e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=Optional.empty(),
+                 por_numero:Optional[dict[int,Estacion]]=Optional.empty()):
         self._estaciones:list[Estacion] = e
         self._por_nombre_compuesto:Optional[dict[str,Estacion]] = por_nombre_compuesto
         self._por_numero:Optional[dict[int,Estacion]] = por_numero
     
     @staticmethod
-    def of(e:list[Estacion],por_nombre_compuesto:dict[str,Estacion]=None,por_numero:dict[int,Estacion]=None) -> Red:
+    def of(e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=Optional.empty(),
+           por_numero:Optional[dict[int,Estacion]]=Optional.empty()) -> Red:
         return Red(e,por_nombre_compuesto,por_numero)
     
     @staticmethod
@@ -34,7 +36,7 @@ class Red:
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
         estaciones.sort()
-        return Red.of(estaciones,pnc,pn) 
+        return Red.of(estaciones,Optional.of(pnc),Optional.of(pn))
     
     def __str__(self) -> str:
         return strfiter(self._estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
@@ -45,15 +47,15 @@ class Red:
     
     @property
     def por_nombre_compuesto(self)->dict[str,Estacion]:
-        if self._por_nombre_compuesto is None:
-            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
-        return dict(self._por_nombre_compuesto)
+        if self._por_nombre_compuesto.is_empty:
+            self._por_nombre_compuesto = Optional.of({e.nombre_compuesto:e for e in self._estaciones})
+        return self._por_nombre_compuesto.get()
     
     @property
     def por_numero(self)->dict[int,Estacion]:
-        if self._por_numero is None:
-            self._por_numero = {e.numero:e for e in self._estaciones}
-        return dict(self._por_numero)
+        if self._por_numero.is_empty:
+            self._por_numero = Optional.of({e.numero:e for e in self._estaciones})
+        return self._por_numero.get()
     
     def __add__(self,estacion:Estacion)->None:
         checkArgument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
@@ -62,16 +64,16 @@ class Red:
         pnc = {e.nombre_compuesto:e for e in self._estaciones}
         pn = {e.numero:e for e in self._estaciones}
         self._estaciones.sort()
-        self._por_nombre_compuesto = pnc
-        self._por_numero = pn
+        self._por_nombre_compuesto = Optional.of(pnc)
+        self._por_numero = Optional.of(pn)
     
     def remove(self,estacion:Estacion)->None:
         self._estaciones.remove(estacion)
         pnc = {e.nombre_compuesto:e for e in self._estaciones}
         pn = {e.numero:e for e in self._estaciones}
         self._estaciones.sort()
-        self._por_nombre_compuesto = pnc
-        self._por_numero = pn
+        self._por_nombre_compuesto = Optional.of(pnc)
+        self._por_numero = Optional.of(pn)
     
     def estaciones_cercanas_a(self, c: Coordenadas2D, distancia:float) -> list[Estacion]:
         return sorted(e for e in self.estaciones if e.ubicacion.distancia(c) <= distancia)
@@ -81,18 +83,14 @@ class Red:
         return len(self._estaciones)
     
     def estacion_de_nombre_compuesto(self,name:str) -> Optional[Estacion]:
-        if self._por_nombre_compuesto is None:
-            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
-            return self._por_nombre_compuesto.get(name,None) 
-        else:
-            return self._por_nombre_compuesto.get(name,None)
+        if self._por_nombre_compuesto.is_empty:
+            self._por_nombre_compuesto = Optional.of({e.nombre_compuesto:e for e in self._estaciones})
+        return Optional.of_nullable(self._por_nombre_compuesto.get().get(name,None))
                          
     def estacion_de_numero(self, n:int) -> Optional[Estacion]: 
-        if self._por_numero is None:
-            self._por_numero = {e.numero:e for e in self._estaciones}
-            return self._por_numero.get(n,None) 
-        else:
-            return self._por_numero.get(n,None)
+        if self._por_numero.is_empty:
+            self._por_numero = Optional.of({e.numero:e for e in self._estaciones})
+        return Optional.of_nullable(self._por_numero.get().get(n,None))
  
     def estaciones_con_bicis_disponibles(self, k:int=1) -> set[Estacion]:
             return {e for e in self.estaciones if e.free_bikes >= k}
