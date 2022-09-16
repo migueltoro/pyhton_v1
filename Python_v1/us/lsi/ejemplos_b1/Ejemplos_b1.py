@@ -72,6 +72,7 @@ def numero_de_palabras_distintas(file: str) -> int:
             s = s+1
     return s
 
+
 if __name__ == '__main__':
     print(parte_entera(82.345))
     print(digito_decimal(82.345,4))

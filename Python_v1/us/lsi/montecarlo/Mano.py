@@ -5,6 +5,7 @@ Created on 27 jul. 2020
 '''
 
 from __future__ import annotations
+from typing import Optional
 from us.lsi.montecarlo.Card import Card
 from us.lsi.tools.Iterable import groups_size, index_bool, strfiter
 from us.lsi.tools.Graphics import cartas_graphic
@@ -18,16 +19,16 @@ numero_de_cartas: int = 5
 
 @total_ordering
 class Mano:
-    
-    def __init__(self, cartas):       
-        self._cartas: list[Card] = cartas
-        self._frecuencias_de_valores: dict[int,int] = None
-        self._valores_ordenados_por_frecuencias: list[int] = None
-        self._son_5_valores_consecutivos: bool = None
-        self._frecuencias_de_palos: dict[int,int] = None
-        self._palos_ordenados_por_frecuencias: list[int] = None
-        self._jugada: int = None
-        self._fuerza: float = None        
+  
+    def __init__(self, cartas: list[Card]):       
+        self._cartas: list[Card]  = cartas
+        self._frecuencias_de_valores: Optional[dict[int,int]] = None
+        self._valores_ordenados_por_frecuencias: Optional[list[int]] = None
+        self._son_5_valores_consecutivos: Optional[bool] = None
+        self._frecuencias_de_palos: Optional[dict[int,int]] = None
+        self._palos_ordenados_por_frecuencias: Optional[list[int]] = None
+        self._jugada: Optional[int] = None
+        self._fuerza: Optional[float] = None        
     
     @staticmethod
     def of(cartas):

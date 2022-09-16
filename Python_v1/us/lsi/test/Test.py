@@ -6,8 +6,8 @@ Created on 10 nov 2021
 
 from us.lsi.tools.GraphicsMaps import n
 from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv 
-from typing import Iterable, TypeVar
-from us.lsi.tools.Iterable import flat_map, distinct, count, index_predicate, reduce2
+from typing import Iterable, TypeVar, Iterator, Callable
+from us.lsi.tools.Iterable import flat_map, distinct, count, index_predicate, reduce2, reduce1
 from functools import reduce
 from fractions import Fraction
 
@@ -23,7 +23,7 @@ def es_iterable(m)-> bool:
         print("{} no es iterable por que no tiene el metodo __iter__()".format(str(m)))
     return True
 
-def es_iterator(m)-> None:
+def es_iterator(m)-> bool:
     try:
         m.__next__()
     except: 
@@ -37,7 +37,7 @@ def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
 
 def ej2(fichero:str)->Iterable[int]:
     it1 = lineas_de_csv(fichero)
-    it2 = flat_map(it1)
+    it2: Iterable[str] = flat_map(it1)
     it3 = map(lambda e:int(e),it2)
     it4 = distinct(it3)
     return it4
@@ -60,7 +60,7 @@ def toset(iterable:Iterable[E])->set[E]:
         st.add(e)
     return st
 
-def tomap(iterable:Iterable[E],t1=identity,t2=ord)->dict[E]:
+def tomap(iterable:Iterable[E],t1=identity,t2=ord)->dict[E,E]:
     dt = {}
     for e in iterable:
         dt[t1(e)] = t2(e)
@@ -68,11 +68,14 @@ def tomap(iterable:Iterable[E],t1=identity,t2=ord)->dict[E]:
     
 
 if __name__ == '__main__':
-    texto = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
+    texto:str = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
     print("Apariciones de la letra a:", count(texto,lambda e:e=="a"))
     print("Primera aparicion de la letra a:", index_predicate(texto,lambda e:e=="a"))
-    print(reduce(lambda s,e: s | {e}, texto, set()))
-    print(reduce2(lambda s,e: s | {e}, texto, set()))
+    f: Callable[[set[E],E],set[E]] = lambda s,e: s | {e}
+    es:set[str] = set()
+    print(reduce(f, texto, es))
+    print(reduce2(texto, op=lambda x,y:x|y, value=lambda e:{e},initial=es))
+    print(reduce1(lambda x,y:x+y,range(0,30)))
     print(count(distinct(texto)))
     e = 2
     r = e*e if e%2==0 else e*e*e

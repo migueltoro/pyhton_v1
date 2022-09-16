@@ -7,7 +7,7 @@ Created on 24 nov 2021
 from us.lsi.tools.Iterable import strfiter
 import sys
 import calendar
-from sortedcontainers.sorteddict import SortedDict
+from sortedcontainers.sorteddict import SortedDict # type: ignore
 import random
 
 d = {0:'a',3:'b',2:'c'}

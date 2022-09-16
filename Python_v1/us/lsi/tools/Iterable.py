@@ -3,7 +3,7 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterable, Iterator,TypeVar, Callable, Any
+from typing import Iterable, Iterator,TypeVar, Callable, Any, Optional
 import random
 from us.lsi.tools.File import lineas_de_fichero
 from us.lsi.tipos.IntPar import IntPar
@@ -67,7 +67,7 @@ def average(iterable:Iterable[num]):
         n = n+1
     return s/n
 
-def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> E | None:
+def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
     for e in iterable:
         if p(e):
             return e
@@ -104,12 +104,25 @@ def count(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
             n = n+1
     return n
 
-def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],f:Callable[[E],R], initial:R=None)->R|None:
+def reduce1(function:Callable[[E,E],E], iterable:Iterable[E],initializer:Optional[E]=None):
+    it = iter(iterable)
+    if initializer is None:
+        value = next(it)
+    else:
+        value = initializer
+    for element in it:
+        value = function(value, element)
+    return value
+
+def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R]=identity, initial:Optional[R]=None)->R|None:
     it:Iterator[E] = iter(iterable)
-    if initial is None:
-        r = f(next(it))
+    r: R
+    if not initial:
+        r = value(next(it))
+    else:
+        r = initial
     for e in it:
-        r = op(r,f(e))
+        r = op(r,value(e))
     return r
     
 
