@@ -11,7 +11,7 @@ from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 #from sortedcontainers import SortedSet # type: ignore
 from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 #from us.lsi.tools.Dict import strfdict
 #from us.lsi.tools.GraphicsMaps import markers
 
@@ -32,7 +32,7 @@ class Red:
     @staticmethod
     def data_of_file(fichero: str) -> Red:
         estaciones = [Estacion.parse(x) for x in lineas_de_csv(fichero, delimiter =",",encoding='cp1252')][1:]
-        checkArgument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
+        check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
         estaciones.sort()
@@ -58,8 +58,8 @@ class Red:
         return self._por_numero
     
     def __add__(self,estacion:Estacion)->None:
-        checkArgument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
-        checkArgument(estacion.nombre_compuesto not in self.por_nombre_compuesto, 'El nombre compuesto {} de la estacion esta repetido'.format(estacion.nombre_compuesto))
+        check_argument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
+        check_argument(estacion.nombre_compuesto not in self.por_nombre_compuesto, 'El nombre compuesto {} de la estacion esta repetido'.format(estacion.nombre_compuesto))
         self._estaciones.append(estacion)
         pnc = {e.nombre_compuesto:e for e in self._estaciones}
         pn = {e.numero:e for e in self._estaciones}

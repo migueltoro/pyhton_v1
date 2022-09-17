@@ -8,7 +8,7 @@ from __future__ import annotations
 from us.lsi.ruta.Marca import Marca
 from us.lsi.ruta.Intervalo import Intervalo
 from us.lsi.tools.File import lineas_de_csv, absolute_path
-from us.lsi.tools.Preconditions import checkElementIndex
+from us.lsi.tools.Preconditions import check_element_index
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
 from itertools import accumulate 
@@ -41,7 +41,7 @@ class Ruta:
         return self.longitud/self.tiempo
     
     def intervalo(self, i:int) -> Intervalo:
-        checkElementIndex(i, self.n-1)
+        check_element_index(i, self.n-1)
         return Intervalo.of(self.marcas[i],self.marcas[i+1])
         
     @property

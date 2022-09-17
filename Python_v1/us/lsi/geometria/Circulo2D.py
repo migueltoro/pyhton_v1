@@ -22,7 +22,7 @@ class Circulo2D(Objeto2D):
     
     @staticmethod
     def of(centro: Punto2D, radio:float) -> Circulo2D:
-        Preconditions.checkArgument(radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
+        Preconditions.check_argument(radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
         return Circulo2D(centro, radio)
     
     def __str__(self) -> str:

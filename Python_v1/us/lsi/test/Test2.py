@@ -6,7 +6,7 @@ Created on 17 nov 2021
 from us.lsi.tools.File import lineas_de_csv
 from us.lsi.tools.Iterable import flat_map
 from typing import Iterable, TypeVar, Callable
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 import re
 import random
 from collections import Counter
@@ -25,7 +25,7 @@ def acumula(fichero:str,inicial:R,f:Callable[[str],R],op:Callable[[R,R],R],delim
     return r
 
 def mcd(a:int, b:int)->int:
-    checkArgument(a>=0 and b>0,'El coeficiente a debe ser \
+    check_argument(a>=0 and b>0,'El coeficiente a debe ser \
          mayor o igual que cero y b mayor que cero \
         y son: a = {0}, b = {1}'.format(a,b))
     while b > 0:

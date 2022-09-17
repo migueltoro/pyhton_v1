@@ -27,12 +27,12 @@ class Vector2D:
     
     @staticmethod
     def of_grados(modulo:float,angulo:float) -> Vector2D:
-        Preconditions.checkArgument(modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
+        Preconditions.check_argument(modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
         return Vector2D.of_radianes(modulo,radians(angulo))
     
     @staticmethod
     def of_radianes(modulo:float, angulo:float)-> Vector2D:
-        Preconditions.checkArgument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
+        Preconditions.check_argument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
         return Vector2D.of(modulo*cos(angulo),modulo*sin(angulo))       
     
     @property

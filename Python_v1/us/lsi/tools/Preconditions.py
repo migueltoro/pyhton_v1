@@ -13,7 +13,7 @@ E = TypeVar('E')
 * @param message A message
 * @param condition A condition
 '''
-def checkArgument(condition:bool,message=None): 
+def check_argument(condition:bool,message=None): 
     assert condition, message
 
 '''
@@ -21,18 +21,18 @@ def checkArgument(condition:bool,message=None):
 * @param message Mensaje a imprimir
 * @param condition A condition
 '''
-def checkState(condition:bool,message=None):
+def check_state(condition:bool,message=None):
     assert condition,message
        
 '''
 Checks that the value is not null. 
-Returns the value directly, so you can use checkNotNull(value) inline.
+Returns the value directly, so you can use check_not_null(value) inline.
 T El tipo del elemento    
 reference Parametro a comprobar
 El parametro a comprobar
 '''
    
-def checkNotNull(reference:E):
+def check_not_null(reference:E):
     assert reference is not None, f"Es nulo {reference}"
         
 '''
@@ -44,7 +44,7 @@ def checkNotNull(reference:E):
 * @return Index El indice del elemento
 '''
    
-def checkElementIndex(index:int,size:int):
+def check_element_index(index:int,size:int):
     assert (index>=0 and index<size), f"Index = {index}, size= {size}"
     return index
     
@@ -56,11 +56,11 @@ def checkElementIndex(index:int,size:int):
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
-def checkPositionIndex(index:int,size:int):
+def check_position_index(index:int,size:int):
     assert (index>=0 and index<=size), f"Index = {index}, size= {size}"
     return index
     
 
 if __name__ == '__main__':
     print("Index = {0:d}, size {1:d}".format(5,4))
-    checkPositionIndex(7,4)   
+    check_position_index(7,4)   

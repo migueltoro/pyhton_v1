@@ -29,7 +29,7 @@ class Card:
     
     @staticmethod
     def of_id(ide:int)->Card:
-        Preconditions.checkArgument(ide >= 0 and ide < 52, "No es posible {0:d}".format(ide))
+        Preconditions.check_argument(ide >= 0 and ide < 52, "No es posible {0:d}".format(ide))
         palo = ide % 4
         valor = ide % 13
         return Card(palo,valor)
@@ -37,7 +37,7 @@ class Card:
     
     @staticmethod
     def of(palo,valor):
-        Preconditions.checkArgument(valor >= 0 and valor <14 and palo >=0 and palo < 52, 
+        Preconditions.check_argument(valor >= 0 and valor <14 and palo >=0 and palo < 52, 
                                     f"No es posible valor = {valor}, palo = {palo}")
         return Card(palo,valor)
 

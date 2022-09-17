@@ -7,7 +7,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum, auto
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 import locale
 
 class Horoscopo(Enum):
@@ -41,7 +41,7 @@ class Persona:
         apellidos: str =  partes[0].strip()
         nombre: str =  partes[1].strip()
         dni: str = partes[2].strip() 
-        checkArgument(Persona._check_dni(dni), f'El dni no es correcto')
+        check_argument(Persona._check_dni(dni), f'El dni no es correcto')
         fecha_de_nacimiento: datetime = datetime.strptime(partes[3].strip(), ft)
         return Persona(apellidos, nombre, dni, fecha_de_nacimiento)
     

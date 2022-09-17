@@ -14,7 +14,7 @@ from typing import overload
 num = int | float
 
 def line_chart(file_out:str,title:str,nombres_de_ejes:list[str],datos:tuple[list[int],list[float]]) -> None:  
-    Preconditions.checkArgument(len(nombres_de_ejes) ==2,'Debe haber dos nombres de ejes y hay {0:d}'.format(len(nombres_de_ejes)))
+    Preconditions.check_argument(len(nombres_de_ejes) ==2,'Debe haber dos nombres de ejes y hay {0:d}'.format(len(nombres_de_ejes)))
     result = File.read('../../../resources/LineChartPattern.html')
     cl = ("'{0:s}'".format(x) for x in nombres_de_ejes)
     camposText = strfiter(cl, sep=",",prefix="[",suffix="]")

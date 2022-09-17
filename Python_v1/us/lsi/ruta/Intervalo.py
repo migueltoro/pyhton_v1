@@ -7,7 +7,7 @@ Created on 23 jul. 2020
 from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.ruta.Marca import Marca
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Dates import to_datetime
 
 @dataclass(frozen=True,order=True)
@@ -17,7 +17,7 @@ class Intervalo:
     
     @staticmethod
     def of(principio: Marca, fin:Marca) -> Intervalo:
-        checkArgument(principio <= fin,\
+        check_argument(principio <= fin,\
                       'Principio={0}, fin={1}'.format(principio,fin))
         return Intervalo(principio,fin)
     
@@ -38,7 +38,7 @@ class Intervalo:
     
     @property
     def velocidad(self) -> float:
-        checkArgument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo))
+        check_argument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo))
         return self.longitud/self.tiempo
 
 

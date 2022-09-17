@@ -48,7 +48,7 @@ def media(iterable:Iterable[num]) -> float:
     a = (0.,0) #(sum x, num elem)
     for e in iterable:
         a = (a[0]+e,a[1]+1)
-    Preconditions.checkArgument(a[1]>0,'El iterador esta vacio')
+    Preconditions.check_argument(a[1]>0,'El iterador esta vacio')
     return a[0]/a[1]  
 
 # desv = sqrt(sum(x^2)/n-(sum(x)/n)^2)
@@ -56,7 +56,7 @@ def deviacion_tipica(iterable:Iterable[num]) -> float:
     a = (0.,0.,0)  #(sum x^2, sum x, num elem)
     for e in iterable:
         a = (a[0]+e*e,a[1]+e,a[2]+1)
-    Preconditions.checkArgument(a[2]>0,'El iterador esta vacio')
+    Preconditions.check_argument(a[2]>0,'El iterador esta vacio')
     return sqrt(a[0]/a[2]-(a[1]/a[2])**2)  
 
 

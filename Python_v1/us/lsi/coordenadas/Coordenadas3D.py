@@ -8,7 +8,7 @@ from __future__ import annotations
 from math import sqrt
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D 
 from dataclasses import dataclass, asdict, astuple
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 
 @dataclass(frozen=True,order=True)
 class Coordenadas3D:
@@ -18,9 +18,9 @@ class Coordenadas3D:
     
     @staticmethod
     def of(latitud:float,longitud:float,altitud:float) -> Coordenadas3D:
-        checkArgument(-90<=latitud and latitud<=90,  
+        check_argument(-90<=latitud and latitud<=90,  
                       f'latitud {latitud} no es correcta')
-        checkArgument(-180<=longitud and longitud<=180, 
+        check_argument(-180<=longitud and longitud<=180, 
                       f'logitud {longitud} no es correcta')
         return Coordenadas3D(latitud,longitud,altitud)
     

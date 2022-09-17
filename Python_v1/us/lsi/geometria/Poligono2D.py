@@ -74,16 +74,16 @@ class Poligono2D(Objeto2D):
         return sum(self.lado(i).modulo for i in range(self.n))
     
     def vertice(self,i)-> Punto2D:
-        Preconditions.checkElementIndex(i, self.n)
+        Preconditions.check_element_index(i, self.n)
         return self.vertices[i]
     
     def lado(self,i:int) -> Vector2D:
-        Preconditions.checkElementIndex(i, self.n);
+        Preconditions.check_element_index(i, self.n);
         return self.vertice(i).vector_to(self.vertice((i+1)%self.n))
     
     def diagonal(self,i:int,j:int) -> Vector2D:
-        Preconditions.checkElementIndex(i, self.n);
-        Preconditions.checkElementIndex(j, self.n);
+        Preconditions.check_element_index(i, self.n);
+        Preconditions.check_element_index(j, self.n);
         return self.vertice(i).vector_to(self.vertice(j))
     
     def rota(self, p:Punto2D, angulo:float) -> Poligono2D:

@@ -6,7 +6,7 @@ Created on 22 nov 2021
 from __future__ import annotations
 from functools import total_ordering
 from random import randint
-from us.lsi.tools.Preconditions import checkArgument
+from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import strfiter
 from us.lsi.tools.Functions import mcd
 from us.lsi.tipos.Field import Field
@@ -44,7 +44,7 @@ class Fraccion(FieldElement['Fraccion']):
         
     @staticmethod
     def of(n:int,d:int=1)->Fraccion: 
-        checkArgument(d != 0,f'El denominador no puede ser cero y es {d}') 
+        check_argument(d != 0,f'El denominador no puede ser cero y es {d}') 
         return Fraccion(n,d)
     
     @staticmethod
@@ -83,7 +83,7 @@ class Fraccion(FieldElement['Fraccion']):
         return Fraccion(n,d)
     
     def __invert__(self)->Fraccion:
-        checkArgument(self._numerador != 0,f'El denominador no puede ser cero y es {self._numerador}')
+        check_argument(self._numerador != 0,f'El denominador no puede ser cero y es {self._numerador}')
         return Fraccion.of(self.denominador,self.numerador)
     
     @property

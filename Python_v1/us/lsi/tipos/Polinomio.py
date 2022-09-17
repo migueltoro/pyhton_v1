@@ -6,7 +6,7 @@ Created on 16 ago 2022
 
 from __future__ import annotations
 from dataclasses import dataclass
-from us.lsi.tools.Preconditions import checkPositionIndex, checkArgument
+from us.lsi.tools.Preconditions import check_position_index, check_argument
 from typing import TypeVar, Generic
 from fractions import Fraction
 
@@ -44,11 +44,11 @@ class Polinomio(Generic[E]):
         return len(self.coeficientes) - 1
     
     def coeficiente(self,i:int)->E:
-        checkPositionIndex(i,self.grado)
+        check_position_index(i,self.grado)
         return self.coeficientes[i]
     
     def factor(self,i:int)->Polinomio[E]:
-        checkPositionIndex(i,self.grado)
+        check_position_index(i,self.grado)
         coef = list(self.coeficiente(j)-self.coeficiente(j) if j != i else  self.coeficiente(j) 
                     for j in range(self.grado+1))
         return Polinomio.of_list(coef)
@@ -91,7 +91,7 @@ class Polinomio(Generic[E]):
             return Polinomio.of_list(coef)
         
     def __pow__(self,n:int)-> Polinomio[E]:
-        checkArgument(n >=0,f'elexponente no puede ser negativo y es {n}')
+        check_argument(n >=0,f'elexponente no puede ser negativo y es {n}')
         r: Polinomio[E] = Polinomio.one(self.coeficiente(0))
         for _ in range(n):
             r = r*self
