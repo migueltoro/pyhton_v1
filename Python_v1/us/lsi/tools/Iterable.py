@@ -166,8 +166,7 @@ def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',key:
     return f"{prefix}{r}{suffix}"
 
 
-def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], \
-                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
+def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
     a:dict[K,V] = {}
     for e in iterable:
         k = key(e)
