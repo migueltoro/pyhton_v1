@@ -97,7 +97,7 @@ def limit(iterable:Iterable[E],limit:int) -> Iterable[E]:
         else:
             break
         
-def count(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
+def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
     n = 0
     for e in iterable:
         if predicate(e):
@@ -126,13 +126,13 @@ def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R]=iden
     return r
     
 
-def index_bool(iterable:Iterable[bool],default:int=-1)->int:
+def index_true(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e:
             return i
     return default
 
-def index_predicate(iterable:Iterable[E],predicate:Callable[[E],bool],default:int=-1)->int:
+def index_if(iterable:Iterable[E],predicate:Callable[[E],bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if predicate(e):
             return i
@@ -192,9 +192,9 @@ if __name__ == '__main__':
     print(average(range(0,100)))
     print(strfiter(flat_map([[0,1],[2,3,4],[5,6],[9]])))
     print(strfiter(geometric(2,100,5)))
-    print(index_bool((x%29==0 for x in aleatorios(10,1000,50))))
+    print(index_true((x%29==0 for x in aleatorios(10,1000,50))))
     print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
-    print(index_predicate((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
+    print(index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(arithmetic(3,500,29)))
     print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
     sm:Callable[[int,int],int] = lambda x,y:x+y

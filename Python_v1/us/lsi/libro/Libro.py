@@ -8,7 +8,7 @@ from typing import OrderedDict,Iterable,Optional
 from us.lsi.tools.File import lineas_de_fichero, encoding
 from us.lsi.tools.Dict import strfdict, invert_dict_set
 from us.lsi.tools.Functions import identity
-from us.lsi.tools.Iterable import flat_map,average,first,distinct,strfiter,grouping_set,groups_size,count
+from us.lsi.tools.Iterable import flat_map,average,first,distinct,strfiter,grouping_set,groups_size,count_if
 from collections import Counter
 import re
 
@@ -32,16 +32,16 @@ def numero_de_lineas(file: str) -> int:
     return len(lineas_de_fichero(file))
 
 def numero_de_palabras_no_huecas(file:str) -> int:
-    return count(palabras_no_huecas(file)) 
+    return count_if(palabras_no_huecas(file)) 
 
 def numero_de_palabras_distintas_no_huecas(file:str) -> int:    
-    return count(palabras_no_huecas_distintas(file))           
+    return count_if(palabras_no_huecas_distintas(file))           
 
 def longitud_media_de_lineas(file:str) -> float:
     return average(len(ln) for ln in lineas_de_fichero(file))
 
 def numero_de_lineas_vacias(file:str) -> int:
-    return count(ln for ln in lineas_de_fichero(file,encoding='utf-16') if len(ln) == 0)
+    return count_if(ln for ln in lineas_de_fichero(file,encoding='utf-16') if len(ln) == 0)
 
 def linea_mas_larga(file:str) -> str:
     return max(lineas_de_fichero(file), key= lambda x:len(x))

@@ -7,7 +7,7 @@ Created on 27 jul. 2020
 from __future__ import annotations
 from typing import Optional
 from us.lsi.montecarlo.Card import Card
-from us.lsi.tools.Iterable import groups_size, index_bool, strfiter
+from us.lsi.tools.Iterable import groups_size, index_true, strfiter
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
 from functools import total_ordering
@@ -151,7 +151,7 @@ class Mano:
     @property                     
     def jugada(self) -> int:
         if not self._jugada:
-            self._jugada = index_bool(self.predicados_jugadas)
+            self._jugada = index_true(self.predicados_jugadas)
         return self._jugada
     
     @property

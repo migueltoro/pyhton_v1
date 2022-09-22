@@ -6,7 +6,7 @@ Created on 18 sept 2022
 
 from typing import Iterable, Any
 from us.lsi.tools.File import lineas_de_csv, absolute_path
-from us.lsi.tools.Iterable import flat_map, distinct, index_predicate
+from us.lsi.tools.Iterable import flat_map, distinct, index_if
 from functools import reduce
 
 def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
@@ -44,4 +44,4 @@ if __name__ == '__main__':
     print(list(ej3("lunes,martes,miercoles,jueves,viernes,sabado,domingo")))
     print(list(ej1(2,45,3,4)))
     print(list(ej2(absolute_path("/resources/datos_3.txt"))))
-    print("Primera aparicion de la letra a:",index_predicate(texto,lambda e:e=="a"))
+    print("Primera aparicion de la letra a:",index_if(texto,lambda e:e=="a"))
