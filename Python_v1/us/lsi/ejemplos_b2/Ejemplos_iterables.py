@@ -6,8 +6,9 @@ Created on 18 sept 2022
 
 from typing import Iterable, Any
 from us.lsi.tools.File import lineas_de_csv, absolute_path
-from us.lsi.tools.Iterable import flat_map, distinct, index_if
-from functools import reduce
+from us.lsi.tools.Iterable import flat_map, distinct, iterate
+from itertools import accumulate
+from operator import mul
 
 def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
     it1:Iterable[int] = map(lambda x:x**2,range(a,b,c))
@@ -33,15 +34,29 @@ def hacia_atras(ls:list[Any])-> Iterable[Any]:
         yield ls[i]
         i = i-1
 
-
 dias:list[str] = ["lunes", "martes", "miercoles", "jueves","viernes", "sabado", "domingo"]
-texto:str = "En un lugar de la Mancha de cuyo nombre no quiero \ acordarme"
+dias2:Iterable[str] = flat_map(dias,fm=lambda x:x)
+texto:str = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
+languages:list[str] = ['Java', 'Python', 'JavaScript']
+versions:list[int] = [14, 3, 6]
+r1:Iterable[tuple[str,int]] = zip(languages, versions)
+r2:enumerate[str] = enumerate(dias)
+r3:list[tuple[int,str]] = list(r2)
+r4:dict[int,str]  = dict(r3)
+r5:Iterable[int] = accumulate(versions,mul)
+r6:Iterable[int] = iterate(3,lambda x:x+7,lambda x: x<100)
 
-if __name__ == '__main__':
-    print(sorted(dias, key=len))
-    print(reduce(lambda x,y: x*y,range(2,30,5)))
+
+if __name__ == '__main__': 
     print(list(hacia_atras(dias)))
+    print(list(dias2))
     print(list(ej3("lunes,martes,miercoles,jueves,viernes,sabado,domingo")))
     print(list(ej1(2,45,3,4)))
     print(list(ej2(absolute_path("/resources/datos_3.txt"))))
-    print("Primera aparicion de la letra a:",index_if(texto,lambda e:e=="a"))
+    print(list(r1))
+    print(list(r3))
+    print(r4[5])
+    print(list(r5))
+    print(list(r6))
+    
+    
