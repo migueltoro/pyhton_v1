@@ -144,9 +144,9 @@ def index_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
             return i
     return default
     
-def flat_map(iterable:Iterable[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
+def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
     for e in iterable:
-        for pe in fm(e):
+        for pe in key(e):
             yield pe
             
 def enumerate_flat_map(iterable:enumerate[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[tuple[int,R]]:

@@ -82,7 +82,7 @@ if __name__ == '__main__':
     print("__________")
 #    r.mostrar_altitud()
 #    r.mostrar_altitud_google("../../../ficheros/alturasGoogle.html")
-#    r.mostrar_mapa_google("../../../ficheros/mapaGoogle.html")
+    r.mostrar_mapa_google("../../../ficheros/mapaGoogle.html")
 #    r.mostrar_mapa_bing("../../../ficheros/mapaBing.html")
     
     

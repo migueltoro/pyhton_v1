@@ -5,10 +5,11 @@ Created on 18 sept 2022
 '''
 
 from typing import Iterable, Any
-from us.lsi.tools.File import lineas_de_csv, absolute_path
+from us.lsi.tools.File import lineas_de_csv, absolute_path, lineas_iterable, lineas_de_csv
 from us.lsi.tools.Iterable import flat_map, distinct, iterate
 from itertools import accumulate
 from operator import mul
+import re
 
 def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
     it1:Iterable[int] = map(lambda x:x**2,range(a,b,c))
@@ -35,7 +36,7 @@ def hacia_atras(ls:list[Any])-> Iterable[Any]:
         i = i-1
 
 dias:list[str] = ["lunes", "martes", "miercoles", "jueves","viernes", "sabado", "domingo"]
-dias2:Iterable[str] = flat_map(dias,fm=lambda x:x)
+dias2:Iterable[str] = flat_map(dias,key=lambda x:x)
 texto:str = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
 languages:list[str] = ['Java', 'Python', 'JavaScript']
 versions:list[int] = [14, 3, 6]
@@ -45,7 +46,12 @@ r3:list[tuple[int,str]] = list(r2)
 r4:dict[int,str]  = dict(r3)
 r5:Iterable[int] = accumulate(versions,mul)
 r6:Iterable[int] = iterate(3,lambda x:x+7,lambda x: x<100)
-
+r7:Iterable[str] = flat_map(lineas_iterable(absolute_path("/resources/datos_3.txt"),
+                        encoding='ISO-8859-1'),key=lambda ln: re.split(',',ln))
+r8:Iterable[str] = flat_map(
+                lineas_de_csv(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delimiter=' '),
+                key=lambda x:x)
+r9:Iterable[str] = filter(lambda x: len(x)>0,r8)
 
 if __name__ == '__main__': 
     print(list(hacia_atras(dias)))
@@ -58,5 +64,7 @@ if __name__ == '__main__':
     print(r4[5])
     print(list(r5))
     print(list(r6))
+    print(list(r7))
+    print(list(r9))
     
     
