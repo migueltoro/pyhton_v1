@@ -5,6 +5,7 @@ Created on 17 sept 2022
 '''
 from math import sqrt
 from us.lsi.tools.Preconditions import check_argument
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
 
 def media(ls:list[int]) -> float:
     a = (0,0)
@@ -66,5 +67,26 @@ if __name__ == '__main__':
     m,n=10000000, 10
     print(f'Suma de los primeros {n} numeros de la secuencia 0 a {m} es {suma_primeros(m, n)}')
     print(mcd(1204,56))
+    a = 5
+    b = 1
+    try:
+        r:float = a/b
+    except ArithmeticError:
+        print(f'Se ha producido una division por cero de {a} entre {b}')
+    else:
+        print(f"el resultado es {c}")
+    finally:
+        print("ejecutando clausula final")
+        
+    try:
+        ap:str=absolute_path('/resources/quij.txt')
+        lns:list[str] = lineas_de_fichero(ap,encoding='utf-16')
+    except AssertionError:
+        print(f'No se encuentra el fichero {ap}')
+    
+    x = 4
+    if x > 5:
+        raise Exception(f'x no deberia superar 5. Su valor fue: {x}')
+
 
 

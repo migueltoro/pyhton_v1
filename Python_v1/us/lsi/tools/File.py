@@ -35,7 +35,7 @@ def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
             yield line.strip()
     
 def lineas_de_fichero(file:str,encoding='utf-8') -> list[str]:
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding=encoding) as f:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero

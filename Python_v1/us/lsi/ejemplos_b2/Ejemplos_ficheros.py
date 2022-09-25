@@ -23,22 +23,34 @@ def numero_de_palabras_distintas(file: str,encoding:str) -> int:
             s = s+1
     return s
 
-def num_caracteres_no_delimitadores(file:str,encoding:str,delim:str):
-    lineas:Iterable[list[str]] = lineas_de_csv(file, encoding=encoding)
+def num_caracteres_no_delimitadores(file:str,encoding:str):
+    sep = r'[ ,;.\n():?!\"]'
+    lineas:Iterable[str] = lineas_de_fichero(file, encoding=encoding)
     n:int = 0
     for ln in lineas:
-        for p in ln:
+        for p in re.split(sep,ln):
             for _ in p:
                 n = n+1
     return n
 
-def lista_de_fichero(file:str,encoding:str)->list[int]:
-    lns = lineas_de_fichero(file,encoding=encoding)
+def lista_de_fichero(file:str,encoding:str,delim:str)->list[int]:
+    lns:Iterable[list[str]] = lineas_de_csv(file,encoding=encoding,delimiter=delim)
     r:list[int] = []
+    for linea in lns:
+        for p in linea:
+            if len(p) > 0:
+                r.append(int(p))  
+    return r
+
+def suma_elementos_fichero_if(file:str,encoding:str,pd:Callable[[int],bool])->int:
+    lns = lineas_de_fichero(file,encoding=encoding)
+    r:int = 0
     for linea in lns:
         for p in re.split(',', linea):
             if len(p) > 0:
-                r.append(int(p))  
+                e = int(p)
+                if pd(e):
+                    r = r + e 
     return r
 
 def acumula(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encoding:str='utf-8')->R:
@@ -54,7 +66,8 @@ def acumula(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encodi
 if __name__ == '__main__':
     print(encoding(absolute_path('/resources/quijote.txt')))
     print(encoding(absolute_path('/resources/lin_quijote.txt')))
-    print(num_caracteres_no_delimitadores(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delim='[ .,]'))
+    print(lista_de_fichero(absolute_path('/resources/datos_2.txt'),encoding='utf-8',delim=","))
+    print(num_caracteres_no_delimitadores(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
     print(numero_de_palabras_distintas(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
     r1:int = acumula(absolute_path("/resources/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
     print(r1)
@@ -62,5 +75,6 @@ if __name__ == '__main__':
     print(r2)
     r3:set[int]= acumula(absolute_path("/resources/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
     print(r3)
+    
 
 
