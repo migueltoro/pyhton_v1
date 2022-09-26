@@ -18,7 +18,7 @@ def transforma(ls:list[E],t: Callable[[E],R])->list[R]:
         lt.append(t(elemento))
     return lt
 
-def filtra(ls:list[E],f:Callable[[E],bool])->list[E]:
+def filtra(ls:list[E],f:Callable[[E],bool] = lambda x: True)->list[E]:
     lf = []
     for elemento in ls:
         if f(elemento):
@@ -30,7 +30,9 @@ def filtra(ls:list[E],f:Callable[[E],bool])->list[E]:
 if __name__ == '__main__':
     print(multiplica_por_dos(45))
     ls:list[int] = [1, 2, 3, 4, 5]
-    print(transforma(ls, math.sqrt))
-    print(transforma(ls, math.sin))
+    print(transforma(ls, t = math.sqrt))
+    print(transforma(ls, t = math.sin))
     print(transforma(ls, lambda y: y*y))
     print(filtra(ls,lambda x:x%2==0))
+    print(filtra(ls))
+    print(filtra(ls,f=lambda x:x%2==0))    
