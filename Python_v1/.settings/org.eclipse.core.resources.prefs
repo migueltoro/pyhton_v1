@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//us/lsi/universo/Cometa.py=utf-8
+encoding//us/lsi/universo/CometaAcelerado.py=utf-8
+encoding//us/lsi/universo/CometaErratico.py=utf-8
+encoding//us/lsi/universo/CuerpoCeleste.py=utf-8
+encoding//us/lsi/universo/Estrella.py=utf-8
+encoding//us/lsi/universo/Location.py=utf-8
+encoding//us/lsi/universo/Orbita2D.py=utf-8
+encoding//us/lsi/universo/Planeta.py=utf-8
+encoding//us/lsi/universo/Universo2D.py=utf-8
+encoding//us/lsi/universo/test.py=utf-8
