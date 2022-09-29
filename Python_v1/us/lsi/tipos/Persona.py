@@ -33,6 +33,10 @@ class Persona:
     
     @staticmethod
     def of(apellidos: str, nombre: str, dni: str, fecha_de_nacimiento: datetime) -> Persona:
+        check_argument(len(apellidos.strip()) > 0, f'Los apellidos no pueden estar en blanco' )
+        check_argument(len(nombre.strip()) > 0, f'El nombre no puede estar en blanco' )
+        check_argument(fecha_de_nacimiento < datetime.now(), f'La fecha debe estar en el pasado')
+        check_argument(Persona._check_dni(dni), f'El dni no es correcto')
         return Persona(apellidos, nombre, dni, fecha_de_nacimiento)
     
     @staticmethod
@@ -41,9 +45,8 @@ class Persona:
         apellidos: str =  partes[0].strip()
         nombre: str =  partes[1].strip()
         dni: str = partes[2].strip() 
-        check_argument(Persona._check_dni(dni), f'El dni no es correcto')
         fecha_de_nacimiento: datetime = datetime.strptime(partes[3].strip(), ft)
-        return Persona(apellidos, nombre, dni, fecha_de_nacimiento)
+        return Persona.of(apellidos, nombre, dni, fecha_de_nacimiento)
     
     @staticmethod
     def _check_dni(text:str)->bool:
@@ -82,4 +85,9 @@ class Persona:
 
 if __name__ == '__main__':
     p = Persona.parse('Ramirez Ayora, Juan, 30415004B,  29-06-2018 08:15')
+    print(p)
+    print(p.edad)
+    p = Persona.parse(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
+    print(p)
+    p = Persona.parse('      , Juan, 30415004B,  29-06-2018 08:15')
     print(p)

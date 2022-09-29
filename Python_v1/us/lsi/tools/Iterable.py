@@ -59,9 +59,11 @@ def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[IntPar]:
         for j in range(m0,m):
             yield IntPar.of(i,j)
 
-def average(iterable:Iterable[num]):
-    s:num = 0
-    n:num = 0
+U = TypeVar('U',int,float)
+
+def average(iterable:Iterable[U])->float:
+    s:U = 0
+    n:int = 0
     for x in iterable:
         s = s + x 
         n = n+1

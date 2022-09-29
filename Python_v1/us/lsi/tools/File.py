@@ -21,7 +21,7 @@ def absolute_path(file:str)->str:
 def dir_path()->str:
     return os.getcwd()
 
-def existe_fichero(filePath)->bool:
+def existe_fichero(filePath:str)->bool:
     return os.path.isfile(filePath)
     
 def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
@@ -34,20 +34,20 @@ def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
         for line in f:
             yield line.strip()
     
-def lineas_de_fichero(file:str,encoding='utf-8') -> list[str]:
+def lineas_de_fichero(file:str,encoding:str='utf-8') -> list[str]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding=encoding) as f:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
        
-def lineas_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
+def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         lineas_de_fichero =  [linea for linea in lector]
         return lineas_de_fichero
 
-def iterable_de_csv(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[list[str]]:
+def iterable_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)

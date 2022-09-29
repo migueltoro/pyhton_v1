@@ -13,7 +13,7 @@ E = TypeVar('E')
 * @param message A message
 * @param condition A condition
 '''
-def check_argument(condition:bool,message=None): 
+def check_argument(condition:bool,message=None)->None: 
     assert condition, message
 
 '''

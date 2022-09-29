@@ -4,9 +4,8 @@ Created on 10 nov 2021
 @author: migueltoro
 '''
 
-from us.lsi.tools.GraphicsMaps import n
-from us.lsi.tools.File import lineas_de_fichero, lineas_de_csv 
-from typing import Iterable, TypeVar, Iterator, Callable
+from us.lsi.tools.File import lineas_de_csv 
+from typing import Iterable, TypeVar, Callable
 from us.lsi.tools.Iterable import flat_map, distinct, count_if, index_if, reduce2, reduce1
 from functools import reduce
 from fractions import Fraction
