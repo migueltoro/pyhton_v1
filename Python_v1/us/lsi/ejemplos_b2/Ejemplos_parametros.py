@@ -10,6 +10,10 @@ import math
 E = TypeVar('E')
 R = TypeVar('R')
 
+def imprime_linea(rp:int=40, cadena:str="-=")->None:
+    linea = cadena * rp
+    print(linea)
+
 multiplica_por_dos: Callable[[int],int] = lambda n: 2 * n
 
 def transforma(ls:list[E],t: Callable[[E],R])->list[R]:
@@ -28,6 +32,10 @@ def filtra(ls:list[E],f:Callable[[E],bool] = lambda x: True)->list[E]:
 
 
 if __name__ == '__main__':
+    imprime_linea()
+    imprime_linea(20) 
+    imprime_linea(20, ":)")
+    imprime_linea(20, cadena= ")")
     print(multiplica_por_dos(45))
     ls:list[int] = [1, 2, 3, 4, 5]
     print(transforma(ls, t = math.sqrt))

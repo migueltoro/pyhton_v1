@@ -33,8 +33,8 @@ def suma_primeros(m:int,n:int)->int:
     for e in range(m):
         if i < n:
             a = a + e
-#        else:
-#            break
+        else:
+            break
         i = i +1
     return a
 
