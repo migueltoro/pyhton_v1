@@ -7,11 +7,13 @@ Created on 16 ago 2022
 from __future__ import annotations
 from typing import Generic, TypeVar
 from fractions import Fraction
+from functools import total_ordering
+from us.lsi.generic_types.Comparable import Comparable
 
-A = TypeVar('A')
-B = TypeVar('B')
+A = TypeVar('A', bound=Comparable)
+B = TypeVar('B', bound=Comparable)
 
-
+@total_ordering
 class Par(Generic[A,B]):
     
     def __init__(self,first: A,second: B)->None:
@@ -28,9 +30,13 @@ class Par(Generic[A,B]):
             r = self.first == other.first and self.second == other.second
         return r
     
+    def __lt__(self, other:Par[A,B])->bool:
+        return self.first < other.first or  (self.first == other.first and self.second < other.second)
+    
     def __str__(self) -> str:
         return f'({self.first},{self.second})'
-
+ 
 if __name__ == '__main__':
-    p = Par.of(Fraction(4,56),complex(4,56))
-    print(p)
+    p1 = Par.of(Fraction(4,56),45)
+    p2 = Par.of(Fraction(4,56),46)
+    print(p2 > p1)
