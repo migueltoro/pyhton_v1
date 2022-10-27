@@ -14,6 +14,7 @@ from us.lsi.tools import Preconditions
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
 
+
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
     vertices: list[Punto2D]

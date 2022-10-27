@@ -5,7 +5,7 @@ Created on 22 sept 2022
 '''
 from functools import reduce
 from typing import Iterable, TypeVar
-from us.lsi.tools.Iterable import count_if, index_if, distinct, first
+from us.lsi.tools.Iterable import count_if, first_index_if, distinct, first
 from fractions import Fraction
 from statistics import mean
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(all((e%2==0 for e in range(2,341,5))))
     print(first((e for e in range(2,341,5) if e%13==0)))
     print("Apariciones de la letra a:", count_if(texto,lambda e:e=="a"))
-    print("Primera aparicion de la letra a:",index_if(texto,lambda e:e=="a"))
+    print("Primera aparicion de la letra a:",first_index_if(texto,lambda e:e=="a"))
     print(count_if(distinct(texto)))
     
 

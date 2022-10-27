@@ -8,6 +8,7 @@ from __future__ import annotations
 from math import sin, cos, radians, atan2, degrees, sqrt, acos
 from dataclasses import dataclass
 from us.lsi.tools import Preconditions
+import matplotlib.pyplot as plt # type: ignore
 
 
 @dataclass(frozen=True,order=True)
@@ -33,7 +34,18 @@ class Vector2D:
     @staticmethod
     def of_radianes(modulo:float, angulo:float)-> Vector2D:
         Preconditions.check_argument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
-        return Vector2D.of(modulo*cos(angulo),modulo*sin(angulo))       
+        return Vector2D.of(modulo*cos(angulo),modulo*sin(angulo))  
+    
+    @staticmethod
+    def dibuja_vectores(vectores:list[Vector2D],titulo:str,color:str='b') -> None:
+        plt.figure()
+        plt.axis('equal')
+        plt.grid()
+        for v in vectores:
+            plt.arrow(0, 0, v.x, v.y, head_width=0.05, head_length=0.1, fc=color, ec=color)
+        plt.title(titulo)
+        plt.show()
+     
     
     @property
     def modulo(self) -> float:
@@ -102,6 +114,17 @@ if __name__ == '__main__':
     v3 = Vector2D.of(2.,3.)
     v4 = Vector2D.of(5.,0.)
     print(v3.proyecta_sobre(v4))
+    vectores=[v, v.ortogonal]
+    Vector2D.dibuja_vectores(vectores, "Prueba vectores ortogonales")
+    
+    v3 = Vector2D.of(2.,3.)
+    v4 = Vector2D.of(5.,0.)
+    vectores=[v3, v4]
+    Vector2D.dibuja_vectores(vectores, "(2,3) y (5,0)")
+     
+    vectores=[v3, v4, v3.proyecta_sobre(v4)]
+    Vector2D.dibuja_vectores(vectores, "Prueba proyección (2,3) sobre (5,0)")
+
     
     
     

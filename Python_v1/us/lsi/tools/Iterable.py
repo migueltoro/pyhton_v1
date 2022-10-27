@@ -3,10 +3,9 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterable, Iterator,TypeVar, Callable, Any, Optional
+from typing import Iterable, TypeVar, Callable, Optional
 import random
 from us.lsi.tools.File import lineas_de_fichero
-from us.lsi.tipos.IntPar import IntPar
 from collections import Counter
 
 identity = lambda x:x
@@ -17,26 +16,6 @@ K = TypeVar('K')
 V = TypeVar('V')
 E = TypeVar('E')
 R = TypeVar('R')
-
-
-def zip2(*iterables:Iterable[Any])->Iterable[Any]:
-    r = [iter(it) for it in iterables]
-    n = len(r)
-    try:
-        while True:
-            ls = []
-            for i in range(n):
-                e = next(r[i])
-                ls.append(e)          
-            yield tuple(ls)               
-    except StopIteration:
-        return
-
-def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
-    n = a
-    while n < b:
-        yield n
-        n = n+c
         
 def geometric(a:int,b:int,c:int) -> Iterable[int]:
     n = a
@@ -54,20 +33,12 @@ def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=la
         yield e
         e = operator(e)
         
-def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[IntPar]:
+def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[tuple[int,int]]:
     for i in range(n0,n):
         for j in range(m0,m):
-            yield IntPar.of(i,j)
+            yield (i,j)
 
 U = TypeVar('U',int,float)
-
-def average(iterable:Iterable[U])->float:
-    s:U = 0
-    n:int = 0
-    for x in iterable:
-        s = s + x 
-        n = n+1
-    return s/n
 
 def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
     for e in iterable:
@@ -84,7 +55,7 @@ def first_and_last(iterable:Iterable[E],defaultvalue=None)->tuple[E,E]:
     
 
 def distinct(iterable:Iterable[E])->Iterable[E]:
-    seen = set()
+    seen:set[E] = set()
     for item in iterable:
         if item not in seen:
             seen.add(item)
@@ -106,41 +77,21 @@ def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->i
             n = n+1
     return n
 
-def reduce1(function:Callable[[E,E],E], iterable:Iterable[E],initializer:Optional[E]=None):
-    it = iter(iterable)
-    if initializer is None:
-        value = next(it)
-    else:
-        value = initializer
-    for element in it:
-        value = function(value, element)
-    return value
 
-def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R]=identity, initial:Optional[R]=None)->R|None:
-    it:Iterator[E] = iter(iterable)
-    r: R
-    if not initial:
-        r = value(next(it))
-    else:
-        r = initial
-    for e in it:
-        r = op(r,value(e))
-    return r
-    
 
-def index_true(iterable:Iterable[bool],default:int=-1)->int:
+def first_index_true(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e:
             return i
     return default
 
-def index_if(iterable:Iterable[E],predicate:Callable[[E],bool],default:int=-1)->int:
+def first_index_if(iterable:Iterable[E],predicate:Callable[[E],bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
         if predicate(e):
             return i
     return default
 
-def index_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
+def first_index_with_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
     for i,e in enumerate(iterable):
         if e == elem:
             return i
@@ -191,14 +142,13 @@ def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable
 
 if __name__ == '__main__':
     print(strfiter(range(0,100)))
-    print(average(range(0,100)))
     print(strfiter(flat_map([[0,1],[2,3,4],[5,6],[9]])))
     print(strfiter(geometric(2,100,5)))
-    print(index_true((x%29==0 for x in aleatorios(10,1000,50))))
+    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
     print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
-    print(index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
-    print(first_and_last(arithmetic(3,500,29)))
-    print(list(zip2([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
+    print(first_index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
+    print(first_and_last(range(3,500,29)))
+    print(list(zip([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
     sm:Callable[[int,int],int] = lambda x,y:x+y
     g = grouping_reduce(range(0,10,2),key = lambda x: x%3,op=sm, value= lambda x:x)
     print(g[0])   

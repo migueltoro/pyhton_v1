@@ -4,7 +4,7 @@ Created on 18 sept 2022
 @author: migueltoro
 '''
 
-from typing import Iterable, Any
+from typing import Iterable
 from us.lsi.tools.File import absolute_path, lineas_iterable, lineas_de_csv
 from us.lsi.tools.Iterable import flat_map, distinct, iterate
 from itertools import accumulate
@@ -29,11 +29,10 @@ def ej3(cadena:str):
     it3:Iterable[str] = map(lambda e: e[1],it2)
     return it3
 
-def hacia_atras(ls:list[Any])-> Iterable[Any]:
-    i = len(ls)-1
-    while i>=0:
-        yield ls[i]
-        i = i-1
+def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[tuple[int,int]]:
+    for i in range(n0,n):
+        for j in range(m0,m):
+            yield (i,j)
 
 dias:list[str] = ["lunes", "martes", "miercoles", "jueves","viernes", "sabado", "domingo"]
 
@@ -57,7 +56,7 @@ r8:Iterable[str] = flat_map(
 r9:Iterable[str] = filter(lambda x: len(x)>0,r8)
 
 if __name__ == '__main__': 
-    print(list(hacia_atras(dias)))
+    print(list(all_pairs(3,3)))
     print(list(dias2))
     print(list(ej3("lunes,martes,miercoles,jueves,viernes,sabado,domingo")))
     print(list(ej1(2,45,3,4)))

@@ -52,7 +52,7 @@ class Circulo2D(Objeto2D):
     def proyecta_sobre_recta(self, r: Recta2D) -> Segmento2D:
         c = self.centro.proyecta_sobre_recta(r)
         u = r.vector.unitario
-        return Segmento2D.of_puntos(c+u*self.radio,c-u*(self.radio))
+        return Segmento2D.of(c+u*self.radio,c-u*(self.radio))
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Circulo2D:
         return Circulo2D.of(self.centro.simetrico_con_respecto_a_recta(r), self.radio)

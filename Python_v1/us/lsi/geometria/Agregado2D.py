@@ -75,11 +75,11 @@ if __name__ == '__main__':
     print(p2)
     print(p3)
     print(pol)
-    
-#    print(a.rota(Punto2D.origen(),pi/2))
-#    print(p.rota(Punto2D.origen(),pi/2))
-#    print(pol.rota(Punto2D.origen(),pi/2))
-#    print(a.rota(Punto2D.origen(),pi/3))
+
+    print(a.rota(Punto2D.origen(),pi/2))
+    print(p.rota(Punto2D.origen(),pi/2))
+    print(pol.rota(Punto2D.origen(),pi/2))
+    print(a.rota(Punto2D.origen(),pi/3))
     shape = a.shape
     Draw.color='b'
     shape = shape + b.shape
