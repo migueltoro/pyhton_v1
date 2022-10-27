@@ -25,14 +25,6 @@ class Par(Generic[A,B]):
     def of(first:A,second:B) -> Par[A,B]:
         return Par(first,second)
     
-    @property
-    def astuple(self)->tuple[A,B]:
-        return (self.first,self.second)
-    
-    @property
-    def asdict(self)->dict[str,object]:
-        return {'first':self.first,'second':self.second}
-    
     def __eq__(self,other)->bool:
         r:bool=False
         if isinstance(other, Par):
@@ -52,5 +44,3 @@ if __name__ == '__main__':
     print(p2 >= p1)
     print(p1 == p3)
     p1.second = 7
-    print(p1.asdict)
-    print(p1.astuple)
