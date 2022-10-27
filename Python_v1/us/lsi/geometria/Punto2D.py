@@ -6,7 +6,7 @@ Created on 16 jul. 2020
 
 from __future__ import annotations
 from math import sqrt, pi
-from dataclasses import dataclass
+from dataclasses import dataclass, astuple, asdict
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.tools import Draw
@@ -168,4 +168,6 @@ if __name__ == '__main__':
     p2 = Punto2D.of(0., 1.)
     r = Recta2D.of_puntos(p1, p2)
     print(p.proyecta_sobre_recta(r))
+    print(asdict(p1))
+    print(astuple(p1))
     

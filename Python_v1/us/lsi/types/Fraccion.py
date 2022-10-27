@@ -9,25 +9,10 @@ from random import randint
 from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import strfiter
 from us.lsi.tools.Functions import mcd
-from us.lsi.tipos.Field import Field
-from us.lsi.tipos.FieldElement import FieldElement
-
-
-class FraccionField(Field):
-       
-    @staticmethod
-    def of()->FraccionField: 
-        return FraccionField()
-    @property
-    def one(self)-> Fraccion:
-        return Fraccion.of(1)
-    @property
-    def zero(self)->Fraccion:
-        return Fraccion.of(0)
     
 #Fraccion mutable
 @total_ordering
-class Fraccion(FieldElement['Fraccion']):
+class Fraccion:
     
     def __init__(self,n:int,d:int):
         self._numerador = n
@@ -52,10 +37,6 @@ class Fraccion(FieldElement['Fraccion']):
         n = randint(-lm,lm)
         d = randint(1,lm)
         return Fraccion(n,d)
-    
-    @property
-    def field(self)->FraccionField:
-        return FraccionField.of()
     
     def __neg__(self):
         return Fraccion(-self.numerador,self.denominador)
@@ -107,9 +88,6 @@ class Fraccion(FieldElement['Fraccion']):
             return self._numerador == other._numerador and self._denominador == other._denominador
         return False
     
-    def __ne__(self, other)->bool:
-        return not (self == other)
-    
     def __lt__(self, other)->bool:
         return self._numerador*other._denominador < self._denominador*other._numerador
     
@@ -141,4 +119,3 @@ if __name__ == '__main__':
     print('9:', ~(f3/f2))
     ls:list[Fraccion] = [Fraccion.random(1000) for _ in range(50)]
     print('10:',strfiter(ls))
-    print(f1.field.zero)

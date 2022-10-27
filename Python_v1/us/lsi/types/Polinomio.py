@@ -5,7 +5,7 @@ Created on 16 ago 2022
 '''
 
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, astuple, asdict
 from us.lsi.tools.Preconditions import check_position_index, check_argument
 from fractions import Fraction
 
@@ -110,4 +110,6 @@ if __name__ == '__main__':
     print(f'p0+p1 = {p0 + p1}')
     print(f'p0**2 = {p0 ** 2}')
     print(p1.constains_coeficiente_zero)
+    print(astuple(p1))
+    print(asdict(p1))
     

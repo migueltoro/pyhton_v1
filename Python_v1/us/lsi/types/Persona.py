@@ -4,7 +4,7 @@ Created on 17 ago 2022
 @author: migueltoro
 '''
 from __future__ import annotations
-from dataclasses import dataclass
+from dataclasses import dataclass, astuple, asdict
 from datetime import datetime
 from enum import Enum, auto
 from us.lsi.tools.Preconditions import check_argument
@@ -87,7 +87,10 @@ if __name__ == '__main__':
     p = Persona.parse('Ramirez Ayora, Juan, 30415004B,  29-06-2018 08:15')
     print(p)
     print(p.edad)
-    p = Persona.parse(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
+#    p = Persona.parse(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
     print(p)
-    p = Persona.parse('      , Juan, 30415004B,  29-06-2018 08:15')
+#    p = Persona.parse('      , Juan, 30415004B,  29-06-2018 08:15')
     print(p)
+    print(astuple(p))
+    print(asdict(p))
+    
