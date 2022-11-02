@@ -14,7 +14,6 @@ def imprime_linea(rp:int=40, cadena:str="-=")->None:
     linea = cadena * rp
     print(linea)
     
-
 multiplica_por_dos: Callable[[int],int] = lambda n: 2 * n
 
 def transforma(ls:list[E],t: Callable[[E],R])->list[R]:

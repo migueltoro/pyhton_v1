@@ -97,7 +97,7 @@ def first_index_with_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
             return i
     return default
     
-def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
+def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]:
     for e in iterable:
         for pe in key(e):
             yield pe
@@ -142,7 +142,8 @@ def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable
 
 if __name__ == '__main__':
     print(strfiter(range(0,100)))
-    print(strfiter(flat_map([[0,1],[2,3,4],[5,6],[9]])))
+    r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
+    print(strfiter(r))
     print(strfiter(geometric(2,100,5)))
     print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
     print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))

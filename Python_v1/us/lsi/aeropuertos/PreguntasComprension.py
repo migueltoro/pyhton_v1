@@ -14,7 +14,7 @@ from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.tools.File import absolute_path
-from us.lsi.tools.Iterable import first, grouping_list,grouping_set,average, groups_size,grouping_reduce
+from us.lsi.tools.Iterable import first, grouping_list,grouping_set,median2, groups_size,grouping_reduce
 from us.lsi.tools.Dict import strfdict
 from collections import Counter
 
@@ -70,7 +70,7 @@ def precios_medios(n:int)->dict[str,float]:
     ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
     s = (ocp for ocp in ls if ocp.vuelo.num_plazas-ocp.num_pasajeros < n)
     r: dict[str,list[float]] = grouping_list(s,key=lambda x:x.vuelo.ciudad_destino,value=lambda x:x.vuelo.precio)
-    return {c:average(r[c]) for c in r.keys()}
+    return {c:median2(r[c]) for c in r.keys()}
 
 #7. Devuelve un Map tal que dado un entero n haga corresponder
 # a cada mes la lista de los n destinos con los vuelos de mayor duracion.
@@ -87,7 +87,7 @@ def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
 
 def precio_medio_posterior(f:datetime)->float:
     ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
-    return average(ocp.vuelo.precio for ocp in ls if ocp.fecha > f)
+    return median2(ocp.vuelo.precio for ocp in ls if ocp.fecha > f)
 
 #9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.

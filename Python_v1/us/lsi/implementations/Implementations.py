@@ -6,8 +6,6 @@ Created on 23 oct 2022
 
 from typing import Iterable, Iterator,TypeVar, Callable, Any, Optional
 
-identity = lambda x:x
-
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
     while n < b:
@@ -31,7 +29,7 @@ E = TypeVar('E')
 R = TypeVar('R')   
 U = TypeVar('U',int,float)
     
-def average(iterable:Iterable[U])->float:
+def median2(iterable:Iterable[U])->float:
     s:U = 0
     n:int = 0
     for x in iterable:
@@ -49,7 +47,7 @@ def reduce1(function:Callable[[E,E],E], iterable:Iterable[E],initializer:Optiona
         value = function(value, element)
     return value
 
-def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R]=identity, initial:Optional[R]=None)->R|None:
+def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R], initial:Optional[R]=None)->R|None:
     it:Iterator[E] = iter(iterable)
     r: R
     if not initial:
@@ -60,7 +58,5 @@ def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R]=iden
         r = op(r,value(e))
     return r
     
-
-
 if __name__ == '__main__':
     pass

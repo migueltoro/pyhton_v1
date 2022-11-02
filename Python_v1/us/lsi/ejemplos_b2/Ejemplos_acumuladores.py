@@ -30,7 +30,6 @@ def toset(iterable:Iterable[E])->set[E]:
         st.add(e)
     return st
 
-
 if __name__ == '__main__':
     print(sum((Fraction(51, 5), Fraction(25, 2), Fraction(59, 5))))
     print(mean((2, 3, 4, 2, 3, 6, 4, 2)))

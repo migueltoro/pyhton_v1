@@ -16,7 +16,6 @@ g4:dict[int,int] = grouping_reduce(it,key=lambda x:x%7,op=lambda x,y:x+y)
 g5:dict[int,int] = grouping_reduce(it,key = lambda x: x%7, op = lambda x,y: min(x,y))
 
 
-
 if __name__ == '__main__':
     print(strfdict(g1))
     print('_____')
