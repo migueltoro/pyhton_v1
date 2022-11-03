@@ -10,8 +10,6 @@ from collections import Counter
 
 identity = lambda x:x
 
-num = int | float
-
 K = TypeVar('K')
 V = TypeVar('V')
 E = TypeVar('E')
