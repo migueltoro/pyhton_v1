@@ -72,10 +72,10 @@ def write(file:str,texto:str) -> None:
     with open(file, "w", encoding='utf-8') as f:
         f.write(texto)
 
-def write_iterable(file:str,iterable:Iterable[str]) -> None:
-    with open(file, "w", encoding='utf-8') as f:
+def write_iterable(file:str,iterable:Iterable[str], encoding='utf-8') -> None:
+    with open(file, "w", encoding=encoding) as f:
         for ln in iterable:
-            f.write(ln)
+            f.write(ln+'\n')
 
 def encoding(file:str)->str:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
