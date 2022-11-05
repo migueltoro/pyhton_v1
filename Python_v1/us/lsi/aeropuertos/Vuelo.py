@@ -8,8 +8,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import time,timedelta,datetime
 from calendar import day_name
-import random
-from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 
 days = list(day_name)
@@ -40,24 +38,7 @@ class Vuelo:
         dia_semana: int = days.index(campos[8].capitalize());
         return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
     
-    @staticmethod 
-    def random()-> Vuelo: 
-        e: int = random.randint(0,Aerolineas.get().size())
-        codigo: str = Aerolineas.get().get_aerolinea(e).codigo
-        numero: str = f'{random.randint(0,1000):04d}'
-        ad: int = random.randint(0,Aeropuertos.get().size())
-        codigo_destino: str = Aeropuertos.get().get_aeropuerto(ad).codigo
-        while True:
-            ao: int = random.randint(0,Aeropuertos.get().size())
-            if ao != ad:
-                break
-        codigo_origen:str = Aeropuertos.get().get_aeropuerto(ao).codigo
-        precio:float = random.uniform(0, 100)
-        num_plazas: int = random.randint(0,300);
-        duracion: timedelta= timedelta(minutes=random.randint(0,360))
-        hora: time = time(random.randint(0,23),random.randint(0,59));
-        dia_semana: int = random.randint(0,6)
-        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana);
+    
 
     @staticmethod 
     def of(codigo_aerolinea: str, numero: str, codigo_destino: str, codigo_origen: str, 
@@ -66,11 +47,11 @@ class Vuelo:
     
     @property
     def ciudad_destino(self)-> str:
-        return Aeropuertos.get().ciudad_de_aeropuerto(self.codigo_destino)
+        return Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_destino)
     
     @property
     def ciudad_origen(self)-> str:
-        return Aeropuertos.get().ciudad_de_aeropuerto(self.codigo_origen) 
+        return Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_origen) 
     
     @property
     def codigo(self)-> str:

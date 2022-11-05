@@ -9,12 +9,9 @@ from collections import OrderedDict
 from ordered_set import OrderedSet
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.OcupacionVuelo import OcupacionVuelo
-from us.lsi.aeropuertos.OcupacionesVuelos import OcupacionesVuelos
-from us.lsi.aeropuertos.Vuelos import Vuelos
-from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
-from us.lsi.aeropuertos.Aerolineas import Aerolineas
-from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Dict import strfdict
+from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
+from typing import Optional
 
 
 
@@ -23,7 +20,7 @@ from us.lsi.tools.Dict import strfdict
 # como prefijo s (esto es, comienzan por s).  
  
 def numero_de_pasajeros(prefix:str)->int:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     s = 0
     for ocp in ls:
         if ocp.vuelo.ciudad_destino.startswith(prefix):
@@ -36,7 +33,7 @@ def numero_de_pasajeros(prefix:str)->int:
 
  
 def hay_destino(destinos:set[str], f:date)-> bool:
-    ls:list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls:list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     a:bool = False
     for ocp in ls:
         if ocp.fecha.date() == f:
@@ -51,7 +48,7 @@ def hay_destino(destinos:set[str], f:date)-> bool:
 
  
 def destinos_diferentes(f:date)->set[str]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     a:set[str] = set()
     for ocp in ls:
         if ocp.fecha_salida == f:
@@ -64,7 +61,7 @@ def destinos_diferentes(f:date)->set[str]:
 
 
 def total_pasajeros_a_destino(a:int)->OrderedDict[str,int]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r:dict[str,int] = {}
     for ocp in ls:
         if ocp.fecha.year == a:
@@ -80,9 +77,9 @@ def total_pasajeros_a_destino(a:int)->OrderedDict[str,int]:
 # destino y posterior a una fecha dada
 
 
-def primer_vuelo(destino:str,f:datetime)->str:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
-    a: OcupacionVuelo = None
+def primer_vuelo(destino:str,f:datetime)->Optional[str]:
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
+    a: Optional[OcupacionVuelo] = None
     for ocp in ls:
         if  ocp.vuelo.ciudad_destino == destino and \
             ocp.vuelo.num_plazas > ocp.num_pasajeros and \
@@ -97,14 +94,14 @@ def primer_vuelo(destino:str,f:datetime)->str:
 # destino la media de los precios de los vuelos a ese destino.
 
 def precio_medio(ls:list[float])->float:
-    s,n = 0,0
+    s,n = 0.,0
     for e in ls:
         s += e
         n +=1
     return s/n
 
 def precios_medios(n_libres:int)->dict[str,float]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,list[float]] = {}
     for ocp in ls:
         if ocp.vuelo.num_plazas-ocp.num_pasajeros < n_libres:
@@ -123,10 +120,10 @@ def precios_medios(n_libres:int)->dict[str,float]:
 
 
 def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[date,list[Vuelo]] = {}
     for ocp in ls:
-        key = ocp.fecha_salida.month
+        key = ocp.fecha_salida
         if key in r.keys():
             r[key].append(ocp.vuelo)
         else:
@@ -140,8 +137,8 @@ def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
 # a f. Si no hubiera vuelos devuelve 0.0
 
 def precio_medio_posterior(f:datetime)->float:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
-    s = 0
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
+    s = 0.
     n = 0
     for ocp in ls:
         if ocp.fecha > f:
@@ -155,7 +152,7 @@ def precio_medio_posterior(f:datetime)->float:
 
  
 def fechas_a_destino()->dict[str,set[date]]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,set[date]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -169,7 +166,7 @@ def fechas_a_destino()->dict[str,set[date]]:
 #10. Devuelve el destino con mayor numero de vuelos
 
 def destino_con_mas_vuelos()->tuple[str,int]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,list[Vuelo]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -177,11 +174,10 @@ def destino_con_mas_vuelos()->tuple[str,int]:
             r[key].append(ocp.vuelo)
         else:
             r[key] = [ocp.vuelo]
-    d = None
-    n = None
+    d = next(iter(r.keys()))
+    n = len(r[d])
     for k,lv in r.items():
-        if not d or len(lv) > n:
-            d,n=k,len(lv)
+        d,n=k,len(lv) 
     return (d,n)
 
 #11. Dado un entero m devuelve un conjunto ordenado con las duraciones 
@@ -189,11 +185,11 @@ def destino_con_mas_vuelos()->tuple[str,int]:
 
 
 def duraciones(m:int)->OrderedSet[int]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r = []
     for ocp in ls:
         if ocp.vuelo.duracion.total_seconds()/60 > m:
-            r.append(ocp.vuelo.duracion.total_seconds()/60)
+            r.append(int(ocp.vuelo.duracion.total_seconds()/60))
     return OrderedSet(sorted(r,reverse=True))
     
 
@@ -201,7 +197,7 @@ def duraciones(m:int)->OrderedSet[int]:
 
 
 def destinos_mayor_duracion(n:int)->set[str]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r = sorted(ls,key=lambda ocp:ocp.vuelo.duracion.total_seconds(), reverse=True)[0:n]
     s = []
     for ocp in r:
@@ -212,7 +208,7 @@ def destinos_mayor_duracion(n:int)->set[str]:
 
  
 def con_mas_vuelos(n:int)->list[tuple[str,int]]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,list[Vuelo]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -230,7 +226,7 @@ def con_mas_vuelos(n:int)->list[tuple[str,int]]:
     
 
 def mas_de_n_vuelos(n:int)->list[str]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,list[Vuelo]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -238,21 +234,17 @@ def mas_de_n_vuelos(n:int)->list[str]:
             r[key].append(ocp.vuelo)
         else:
             r[key] = [ocp.vuelo]
-    s:dict[str,int] = {}
-    for k,v in r.items():
-        if len(v) > n:
-            s[k]= len(v)
-    t = sorted(s.items(),key=lambda x:x[1], reverse=True)
-    u = []
-    for k in t:
-        u.append(k[0])
-    return u
+    t:list[tuple[str,list[Vuelo]]] = sorted(r.items(),key=lambda x:len(x[1]), reverse=True)
+    s:list[str] = []
+    for i in range(0,n):
+        s.append(t[i][0])
+    return s
 
 # 15. Devuelve un Map que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
 
 
 def porcentaje_a_destino()->dict[str,float]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     n = len(ls)
     r: dict[str,list[Vuelo]] = {}
     for ocp in ls:
@@ -270,15 +262,15 @@ def porcentaje_a_destino()->dict[str,float]:
 # 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo de mas barato
 
 def min_precio(lv:list[Vuelo])->Vuelo:   
-    vm = None
-    p = None
+    vm = next(iter(lv))
+    p = vm.precio
     for v in lv:
-        if not p or vm.precio < p:
+        if vm.precio < p:
             vm, p = v,v.precio
     return vm
     
 def mas_barato()->dict[str,Vuelo]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,list[Vuelo]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -296,7 +288,7 @@ def mas_barato()->dict[str,Vuelo]:
 
 
 def fechasDistintas()->dict[str,int]:
-    ls: list[OcupacionVuelo] = OcupacionesVuelos.get().ocupaciones
+    ls: list[OcupacionVuelo] = Espacio_aereo.of().ocupaciones_vuelos.lista
     r: dict[str,set[date]] = {}
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
@@ -310,24 +302,20 @@ def fechasDistintas()->dict[str,int]:
     return s
 
 if __name__ == '__main__':
-    Aeropuertos.lee_aeropuertos(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
-    Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
-    OcupacionesVuelos.lee_ocupaciones(absolute_path("/resources/ocupacionesVuelos.csv"))
-#    print(numero_de_pasajeros('Lon'))
-#    print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
-#    print(destinos_diferentes(date(2020,6,8)))
-#    print(strfdict(total_pasajeros_a_destino(2020)))
-#    print(primer_vuelo('Eindhoven',datetime(2019,6,8,0,0)))
-#    print(strfdict(precios_medios(5)))
-#    print(strfdict(destinos_con_mayor_duracion(10)))
-#    print(precio_medio_posterior(datetime(2019,6,8,0,0)))
-#    print(strfdict(fechas_a_destino(),strfvalue=lambda f:str_iterable(f,ts=lambda x: x.strftime("%Y-%m-%d"))))
-#    print(destino_con_mas_vuelos())
-#    print(duraciones(30))
-#    print(destinos_mayor_duracion(20))
-#    print(con_mas_vuelos(20))
-#    print(mas_de_n_vuelos(4))
-#    print(strfdict(porcentaje_a_destino()))
-#    print(strfdict(mas_barato()))
+    print(numero_de_pasajeros('Lon'))
+    print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
+    print(destinos_diferentes(date(2020,6,8)))
+    print(strfdict(total_pasajeros_a_destino(2020)))
+    print(primer_vuelo('Eindhoven',datetime(2019,6,8,0,0)))
+    print(strfdict(precios_medios(5)))
+    print(strfdict(destinos_con_mayor_duracion(10)))
+    print(precio_medio_posterior(datetime(2019,6,8,0,0)))
+    print(fechas_a_destino())
+    print(destino_con_mas_vuelos())
+    print(duraciones(30))
+    print(destinos_mayor_duracion(20))
+    print(con_mas_vuelos(20))
+    print(mas_de_n_vuelos(4))
+    print(strfdict(porcentaje_a_destino()))
+    print(strfdict(mas_barato()))
     print(strfdict(fechasDistintas()))
