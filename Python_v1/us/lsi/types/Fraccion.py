@@ -10,7 +10,7 @@ from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import strfiter
 from us.lsi.tools.Functions import mcd
     
-#Fraccion mutable
+#Fraccion inmutable
 @total_ordering
 class Fraccion:
     
@@ -71,17 +71,9 @@ class Fraccion:
     def numerador(self)->int:
         return self._numerador
     
-    def set_numerador(self,n)->None:
-        self._numerador = n
-        self.__normaliza()
-    
     @property
     def denominador(self)->int:
         return self._denominador
-    
-    def set_denominador(self,d)->None:
-        self._denominador = d
-        self.__normaliza()
     
     def __eq__(self, other)->bool:
         if isinstance(other, Fraccion):
@@ -108,7 +100,6 @@ if __name__ == '__main__':
     print('3:',f1 >= f2)
     f3 = Fraccion.of(2, -12)
     print(f3)
-    f3.set_denominador(10)
     print('4:',f3+f2)
     print('5:',f3-f2)
     print('6:',f3*f2)
