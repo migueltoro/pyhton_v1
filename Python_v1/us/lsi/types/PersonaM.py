@@ -130,4 +130,10 @@ class PersonaM:
  {fn.strftime("%d")} de {fn.strftime("%B")} de {fn.date().year}'
 
 if __name__ == '__main__':
-    pass
+    p = PersonaM.parse('Ramirez Ayora, Juan, 30415004B,  29-06-2018 08:15')
+    print(p)
+    print(p.edad)
+#    p = Persona.parse(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
+    print(p)
+#    p = Persona.parse('      , Juan, 30415004B,  29-06-2018 08:15')
+    print(p)
