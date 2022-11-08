@@ -121,7 +121,7 @@ class PersonaM:
         r += 31*r + hash(self._dni)
         r += 31*r + hash(self._fecha_de_nacimiento)
         return r
-        
+      
     
     def __str__(self)->str:
         locale.setlocale(locale.LC_ALL, 'es_ES')
