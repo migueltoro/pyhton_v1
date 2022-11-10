@@ -4,7 +4,7 @@ Created on 23 oct 2022
 @author: migueltoro
 '''
 
-from typing import Iterable, Iterator,TypeVar, Callable, Any, Optional
+from typing import Iterable, TypeVar, Any
 
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
@@ -29,34 +29,7 @@ E = TypeVar('E')
 R = TypeVar('R')   
 U = TypeVar('U',int,float)
     
-def median2(iterable:Iterable[U])->float:
-    s:U = 0
-    n:int = 0
-    for x in iterable:
-        s = s + x 
-        n = n+1
-    return s/n
 
-def reduce1(function:Callable[[E,E],E], iterable:Iterable[E],initializer:Optional[E]=None):
-    it = iter(iterable)
-    if initializer is None:
-        value = next(it)
-    else:
-        value = initializer
-    for element in it:
-        value = function(value, element)
-    return value
-
-def reduce2(iterable:Iterable[E],op:Callable[[R,R],R],value:Callable[[E],R], initial:Optional[R]=None)->R|None:
-    it:Iterator[E] = iter(iterable)
-    r: R
-    if not initial:
-        r = value(next(it))
-    else:
-        r = initial
-    for e in it:
-        r = op(r,value(e))
-    return r
     
 if __name__ == '__main__':
     pass
