@@ -1,57 +1,59 @@
 '''
-Created on 17 nov 2021
+Created on 24 nov 2021
 
 @author: migueltoro
 '''
-from us.lsi.tools.File import lineas_de_csv
-from us.lsi.tools.Iterable import flat_map
-from typing import Iterable, TypeVar, Callable
-from us.lsi.tools.Preconditions import check_argument
-import re
+
+from us.lsi.tools.Iterable import strfiter
+from us.lsi.tools.File import lineas_de_fichero,absolute_path
+import sys
+import calendar
+from sortedcontainers.sorteddict import SortedDict # type: ignore
 import random
-from collections import Counter
-from us.lsi.tools.File import absolute_path
 
-E = TypeVar('E')
-R = TypeVar('R')
+d = {0:'a',3:'b',2:'c'}
+print(list(d.values()))
+r2 = "La respuesta es correcta"
 
-def acumula(fichero:str,inicial:R,f:Callable[[str],R],op:Callable[[R,R],R],delimiter:str=',',encoding:str='utf-8')->R:
-    lineas:Iterable[list[str]] = lineas_de_csv(fichero,delimiter=delimiter,encoding=encoding)
-    r:R = inicial
-    for ln in lineas:
-        if len(ln) > 0:
-            for e in ln:
-                r = op(r,f(e))
-    return r
+def pp(file:str)->float:
+    ls: list[str] = lineas_de_fichero(file)
+    ls2: list[str] = ls [1:]
+    n:int = 0
+    s:float = 0.
+    for e in ls2:
+        s = s + float(e.split(',')[1])
+        n = n+1
+    m = s/n
+    return m
 
-def mcd(a:int, b:int)->int:
-    check_argument(a>=0 and b>0,'El coeficiente a debe ser \
-         mayor o igual que cero y b mayor que cero \
-        y son: a = {0}, b = {1}'.format(a,b))
-    while b > 0:
-        a, b = b, a%b
-    return a
+def pp2(file:str)->float:
+    ls: list[str] = lineas_de_fichero(file)
+    ls2: list[str] = ls [1:]
+    n:int = 0
+    s:float = 0.
+    for e in ls2:
+        _,v,_ = e.split(',')
+        s = s + float(v)
+        n = n+1
+    m = s/n
+    return m
 
-def suma_aritmetica(a:int,b:int,c:int)->int:
-    s = 0
-    for e in range(a,b,c):
-        s = s + e
-    return s
+numeros = [7, 3, 5, 1, 3, 1, 7]
+
 
 if __name__ == '__main__':
-    r:set[int] = acumula(absolute_path("/resources/datos_2.txt"),encoding='ISO-8859-1',inicial=set(),f=lambda e:{int(e)}, op=lambda x,y: x|y)
-    print(r)
-    print('../../../resources/datos_2.txt'.split('/'))
-    print(re.split('[ ,]','En un lugar de la Mancha, de cuyo nombre no quiero acordarme'))
-    print(mcd(135,45))
-    print(range(23,45))
-    print("La suma de la pregresion aritmetica de {0} a {1} \
-con razon {2} es {3}" \
-    .format(2,500,7,suma_aritmetica(2,500,7)))
-    s = [random.randint(0,100) for _ in range(50)]
-    print(sorted(Counter(s).items(),reverse = True))
-    it = lineas_de_csv("../../../resources/datos_2.txt",encoding='ISO-8859-1')
-    print(Counter(flat_map(it)).most_common(5))
-    
-
-    
+    print(strfiter(sys.path,sep='\n'))
+    print(list(calendar.day_name))
+    print(d)
+    r = sorted(d.items(),reverse=True)
+    random.shuffle(r)
+    print(r)    
+    print(SortedDict(r))
+    print(len(r2))
+    print(r2[23])
+    num = 29
+    print(num % 3 == 0 or 20 <= num <= 30)
+    print(4+1.)
+    print(pp(absolute_path('/resources/pp.txt')))
+    print(pp2(absolute_path('/resources/pp.txt')))
+    print(numeros[8-2])

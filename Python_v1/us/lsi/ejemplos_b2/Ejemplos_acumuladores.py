@@ -24,6 +24,7 @@ def tolist(iterable:Iterable[E])->list[E]:
     for e in iterable:
         ls.append(e)
     return ls
+
 def toset(iterable:Iterable[E])->set[E]:
     st= set()
     for e in iterable:

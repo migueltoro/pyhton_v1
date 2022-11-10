@@ -10,11 +10,15 @@ from us.lsi.tools.Preconditions import check_state
 from us.lsi.generic_types.Comparable import Comparable
 import random
 from statistics import mean
+from us.lsi.tools.File import lineas_de_csv
+from us.lsi.tools.Iterable import flat_map
 
 E = TypeVar('E')
 R = TypeVar('R', bound=Comparable)
 U = TypeVar('U',int,float)
 S = TypeVar('S')
+
+
 
 def sum2(iterable:Iterable[U],start:U=0)->U:
     s:U = start
@@ -29,6 +33,19 @@ def media(iterable:Iterable[U])->float:
         s = s + x 
         n = n+1
     return s/n
+
+def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->int:
+    n = 0
+    for e in iterable:
+        if predicate(e):
+            n = n+1
+    return n
+
+def sum_file(file:str)->int:  
+    it0:Iterable[list[str]] =  lineas_de_csv(file) 
+    it1:Iterable[str] = flat_map(it0,lambda x:x)
+    it2:Iterable[int] = (int(e) for e in it1)
+    return sum(it2)
 
 def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->Optional[R]:
     it:Iterator[E] = iter(iterable)
@@ -58,6 +75,21 @@ def min2(iterable:Iterable[E],key:Callable[[E],R])->E:
             r = e  
     return r
 
+def all2(iterable:Iterable[bool])->bool:
+    r:bool = True
+    for e in iterable:
+        if not e:
+            r = False
+            break
+    return r
+
+def any2(iterable:Iterable[bool])->bool:
+    r:bool = False
+    for e in iterable:
+        if e:
+            r = True
+            break
+    return r
 
 
 if __name__ == '__main__':
@@ -75,3 +107,8 @@ if __name__ == '__main__':
     ls = list(random.randint(100,1000) for _ in range(30))
     print(min(ls,key=lambda e:e))
     print(min2(ls,key=lambda e:e))
+    print(all((e%2==0 for e in range(2,341,5))))
+    print(all2((e%2==0 for e in range(2,341,5))))
+    print(any((e%13==0 for e in range(2,341,5))))
+    print(any2((e%13==0 for e in range(2,341,5))))
+    

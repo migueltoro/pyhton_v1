@@ -43,7 +43,7 @@ def draw_barchart(labels:list[str],sizes:list[int],title:str,y_label:str):
     plt.ylabel(y_label)
     plt.title(title)
     plt.show()
-    
+   
 def draw_multiline(points:list[tuple[float,float]],y_label:str='eje y',x_label:str='eje_x',title:str='Grafico'):
     plt.ylabel(y_label)
     plt.xlabel(x_label) 

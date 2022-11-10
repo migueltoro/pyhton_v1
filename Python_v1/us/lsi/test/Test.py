@@ -6,7 +6,7 @@ Created on 10 nov 2021
 
 from us.lsi.tools.File import lineas_de_csv 
 from typing import Iterable, TypeVar, Callable
-from us.lsi.tools.Iterable import flat_map, distinct, count_if, first_index_if, reduce2, reduce1
+from us.lsi.tools.Iterable import flat_map, distinct, count_if, first_index_if
 from functools import reduce
 from fractions import Fraction
 
@@ -15,20 +15,6 @@ R = TypeVar('R')
 
 identity = lambda x:x
 
-def es_iterable(m)-> bool:
-    try:
-        m.__iter__()
-    except: 
-        print("{} no es iterable por que no tiene el metodo __iter__()".format(str(m)))
-    return True
-
-def es_iterator(m)-> bool:
-    try:
-        m.__next__()
-    except: 
-        print("{} no es un iterador por que no tiene el metodo __next__()".format(str(m)))
-    return True
-
 def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
     it1 = map(lambda x:x**2,range(a,b,c))
     it2 = filter(lambda x:x%d==0, it1)
@@ -36,7 +22,7 @@ def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
 
 def ej2(fichero:str)->Iterable[int]:
     it1 = lineas_de_csv(fichero)
-    it2: Iterable[str] = flat_map(it1)
+    it2: Iterable[str] = flat_map(it1,lambda x:x)
     it3 = map(lambda e:int(e),it2)
     it4 = distinct(it3)
     return it4
@@ -73,8 +59,8 @@ if __name__ == '__main__':
     f: Callable[[set[E],E],set[E]] = lambda s,e: s | {e}
     es:set[str] = set()
     print(reduce(f, texto, es))
-    print(reduce2(texto, op=lambda x,y:x|y, value=lambda e:{e},initial=es))
-    print(reduce1(lambda x,y:x+y,range(0,30)))
+    print(reduce(lambda x,y:x|{y},texto,es))
+    print(reduce(lambda x,y:x+y,range(0,30)))
     print(count_if(distinct(texto)))
     e = 2
     r = e*e if e%2==0 else e*e*e

@@ -14,12 +14,20 @@ K = TypeVar('K')
 V = TypeVar('V')
 E = TypeVar('E')
 R = TypeVar('R')
-        
-def geometric(a:int,b:int,c:int) -> Iterable[int]:
-    n = a
-    while n < b:
-        yield n
-        n = n*c
+
+def es_iterable(m)-> bool:
+    try:
+        m.__iter__()
+    except: 
+        print("{} no es iterable por que no tiene el metodo __iter__()".format(str(m)))
+    return True
+
+def es_iterator(m)-> bool:
+    try:
+        m.__next__()
+    except: 
+        print("{} no es un iterador por que no tiene el metodo __next__()".format(str(m)))
+    return True
 
 def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
     for _ in range(n):
@@ -74,8 +82,6 @@ def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->i
         if predicate(e):
             n = n+1
     return n
-
-
 
 def first_index_true(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
@@ -142,7 +148,7 @@ if __name__ == '__main__':
     print(strfiter(range(0,100)))
     r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
     print(strfiter(r))
-    print(strfiter(geometric(2,100,5)))
+    print(strfiter(range(2,100,5)))
     print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
     print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
     print(first_index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
