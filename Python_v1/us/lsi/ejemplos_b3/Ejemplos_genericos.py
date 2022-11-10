@@ -1,5 +1,5 @@
 '''
-Created on 16 ago 2022
+Created on 10 nov 2022
 
 @author: migueltoro
 '''
@@ -36,6 +36,7 @@ class Par(Generic[A,B]):
     
     def __str__(self) -> str:
         return f'({self.first},{self.second})'
+
  
 if __name__ == '__main__':
     p1 = Par.of(Fraction(4,56),45)
