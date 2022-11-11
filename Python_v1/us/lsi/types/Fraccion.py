@@ -14,18 +14,18 @@ from us.lsi.tools.Functions import mcd
 @total_ordering
 class Fraccion:
     
-    def __init__(self,n:int,d:int):
-        self._numerador = n
-        self._denominador = d
+    def __init__(self,n:int,d:int)->None:
+        self.__numerador = n
+        self.__denominador = d
         self.__normaliza()
         
     def __normaliza(self)->None:
-        n = self._numerador
-        d = self._denominador
+        n = self.__numerador
+        d = self.__denominador
         sg = 1 if d > 0 else -1
         m = mcd(abs(n),abs(d))*sg
-        self._numerador = n//m
-        self._denominador = d//m
+        self.__numerador = n//m
+        self.__denominador = d//m
         
     @staticmethod
     def of(n:int,d:int=1)->Fraccion: 
@@ -42,7 +42,7 @@ class Fraccion:
         return Fraccion(-self.numerador,self.denominador)
         
     def __add__(self,other:Fraccion)->Fraccion:
-        n = self.numerador*other._denominador +self.denominador*other.numerador
+        n = self.numerador*other.__denominador +self.denominador*other.numerador
         d = self.denominador*other.denominador
         resultado = Fraccion(n,d)
         return resultado
@@ -64,33 +64,33 @@ class Fraccion:
         return Fraccion(n,d)
     
     def __invert__(self)->Fraccion:
-        check_argument(self._numerador != 0,f'El denominador no puede ser cero y es {self._numerador}')
+        check_argument(self.__numerador != 0,f'El denominador no puede ser cero y es {self.__numerador}')
         return Fraccion.of(self.denominador,self.numerador)
     
     @property
     def numerador(self)->int:
-        return self._numerador
+        return self.__numerador
     
     @property
     def denominador(self)->int:
-        return self._denominador
+        return self.__denominador
     
     def __eq__(self, other)->bool:
         if isinstance(other, Fraccion):
-            return self._numerador == other._numerador and self._denominador == other._denominador
+            return self.__numerador == other.__numerador and self.__denominador == other.__denominador
         return False
     
     def __lt__(self, other)->bool:
-        return self._numerador*other._denominador < self._denominador*other._numerador
+        return self.__numerador*other.__denominador < self.__denominador*other.__numerador
     
     def __hash__(self)->int:
-        return  hash(self._numerador)*31 + hash(self._denominador)
+        return  hash(self.__numerador)*31 + hash(self.__denominador)
     
     def __str__(self)->str:
-        if self._denominador == 1:
-            return '{0:d}'.format(self._numerador)
+        if self.__denominador == 1:
+            return '{0:d}'.format(self.__numerador)
         else:
-            return '{0:d}/{1:d}'.format(self._numerador,self._denominador)
+            return '{0:d}/{1:d}'.format(self.__numerador,self.__denominador)
 
 if __name__ == '__main__':
     f1 = Fraccion.of(3)

@@ -25,17 +25,17 @@ sep = r'[ ,;.\n():?!\"]'
 class Conversacion:
     
     def __init__(self, mensajes: list[Mensaje], palabras_huecas: set[str]):
-        self._mensajes: list[Mensaje] = mensajes
-        self._palabras_huecas: set[str] = palabras_huecas
-        self._usuarios: set[str] = {m.usuario for m in self._mensajes}
-        self._mensajes_por_usuario: Optional[dict[str,list[Mensaje]]] = None
-        self._numero_de_mensajes_por_usuario: Optional[dict[str,int]] = None
-        self._frecuencia_de_palabras: Optional[dict[str,int]] = None
-        self._numero_de_palabras: Optional[int] = None
-        self._frecuencia_de_palabras_por_usuario: Optional[dict[UsuarioPalabra,int]] = None
-        self._numero_de_palabras_por_usuario: Optional[dict[str,int]] = None
-        self._frecuencia_de_palabras_por_resto_de_usuarios: Optional[dict[UsuarioPalabra,int]] = None
-        self._numero_de_palabras_por_resto_de_usuarios: Optional[dict[str,int]] = None
+        self.__mensajes: list[Mensaje] = mensajes
+        self.__palabras_huecas: set[str] = palabras_huecas
+        self.__usuarios: set[str] = {m.usuario for m in self.__mensajes}
+        self.__mensajes_por_usuario: Optional[dict[str,list[Mensaje]]] = None
+        self.__numero_de_mensajes_por_usuario: Optional[dict[str,int]] = None
+        self.__frecuencia_de_palabras: Optional[dict[str,int]] = None
+        self.__numero_de_palabras: Optional[int] = None
+        self.__frecuencia_de_palabras_por_usuario: Optional[dict[UsuarioPalabra,int]] = None
+        self.__numero_de_palabras_por_usuario: Optional[dict[str,int]] = None
+        self.__frecuencia_de_palabras_por_resto_de_usuarios: Optional[dict[UsuarioPalabra,int]] = None
+        self.__numero_de_palabras_por_resto_de_usuarios: Optional[dict[str,int]] = None
 
     @staticmethod   
     def data_of_file(file: str) -> Conversacion:
@@ -57,23 +57,23 @@ class Conversacion:
     
     @property
     def mensajes(self) -> list[Mensaje]:
-        return self._mensajes
+        return self.__mensajes
     
     @property
     def palabras_huecas(self) -> set[str]:
-        return self._palabras_huecas
+        return self.__palabras_huecas
     
     @property
     def usuarios(self) -> set[str]:
-        return self._usuarios
+        return self.__usuarios
        
     @property
     def mensajes_por_usuario(self) -> dict[str,list[Mensaje]]:
-        if self._mensajes_por_usuario is None:
-            self._mensajes_por_usuario = self._mensajes_por_propiedad(key=lambda m: m.usuario)
-            return self._mensajes_por_usuario
+        if self.__mensajes_por_usuario is None:
+            self.__mensajes_por_usuario = self._mensajes_por_propiedad(key=lambda m: m.usuario)
+            return self.__mensajes_por_usuario
         else:
-            return self._mensajes_por_usuario
+            return self.__mensajes_por_usuario
     
     @property
     def mensajes_por_dia_de_semana(self) -> dict[str,list[Mensaje]]:
@@ -89,9 +89,9 @@ class Conversacion:
     
     @property
     def numero_de_mensajes_por_usuario(self) -> dict[str,int]:
-        if self._numero_de_mensajes_por_usuario is None:
-            self._numero_de_mensajes_por_usuario = self._numero_de_mensajes_por_propiedad(lambda m: m.usuario)
-        return self._numero_de_mensajes_por_usuario
+        if self.__numero_de_mensajes_por_usuario is None:
+            self.__numero_de_mensajes_por_usuario = self._numero_de_mensajes_por_propiedad(lambda m: m.usuario)
+        return self.__numero_de_mensajes_por_usuario
     
     @property
     def numero_de_mensajes_por_dia_de_semana(self) -> dict[str,int]:
@@ -107,27 +107,27 @@ class Conversacion:
     
     @property
     def frecuencia_de_palabras(self) -> dict[str,int]:
-        if self._frecuencia_de_palabras is None:
+        if self.__frecuencia_de_palabras is None:
             ms_tex = (m.texto for m in self.mensajes)
             ps = flat_map(ms_tex,lambda x: re.split(sep, x))
             palabras = (p for p in ps if len(p) > 0 and p not in self.palabras_huecas)
-            self._frecuencia_de_palabras = groups_size(palabras,key=identity)
-        return self._frecuencia_de_palabras
+            self.__frecuencia_de_palabras = groups_size(palabras,key=identity)
+        return self.__frecuencia_de_palabras
     
     @property
     def numero_de_palabras(self) -> int:
-        if self._numero_de_palabras is None:
-            self._numero_de_palabras = sum(n for _,n in self.frecuencia_de_palabras.items())
-        return self._numero_de_palabras
+        if self.__numero_de_palabras is None:
+            self.__numero_de_palabras = sum(n for _,n in self.frecuencia_de_palabras.items())
+        return self.__numero_de_palabras
     
     @property
     def frecuencia_de_palabras_por_usuario(self) -> dict[UsuarioPalabra,int]:
-        if self._frecuencia_de_palabras_por_usuario is None:
+        if self.__frecuencia_de_palabras_por_usuario is None:
             ms_us_tex = ((m.usuario,m.texto) for m in self.mensajes)
             plsu = (UsuarioPalabra.of(u,p) for u,t in ms_us_tex for p in re.split(sep,t))
             plsuf = (pu for pu in plsu if len(pu.palabra) > 0 and pu.palabra not in self.palabras_huecas)
-            self._frecuencia_de_palabras_por_usuario = groups_size(plsuf)
-        return self._frecuencia_de_palabras_por_usuario
+            self.__frecuencia_de_palabras_por_usuario = groups_size(plsuf)
+        return self.__frecuencia_de_palabras_por_usuario
     
     @property
     def numero_de_palabras_por_usuario(self) -> dict[str,int]:
@@ -135,7 +135,7 @@ class Conversacion:
     
     @property     
     def frecuencia_de_palabras_por_resto_de_usuarios(self) -> dict[UsuarioPalabra,int]:
-        if self._frecuencia_de_palabras_por_resto_de_usuarios is None:
+        if self.__frecuencia_de_palabras_por_resto_de_usuarios is None:
             fpal = ((up.usuario,up.palabra,f) for up,f in self.frecuencia_de_palabras_por_usuario.items())
             d:dict[UsuarioPalabra,int] = {}
             for u,p,f in fpal:
@@ -143,8 +143,8 @@ class Conversacion:
                     if x != u:
                         up = UsuarioPalabra.of(x,p)
                         d[up] = d.get(up,0) + f
-            self._frecuencia_de_palabras_por_resto_de_usuarios = d
-        return self._frecuencia_de_palabras_por_resto_de_usuarios
+            self.__frecuencia_de_palabras_por_resto_de_usuarios = d
+        return self.__frecuencia_de_palabras_por_resto_de_usuarios
     
     @property     
     def numero_de_palabras_por_resto_de_usuarios(self) -> dict[str,int]:

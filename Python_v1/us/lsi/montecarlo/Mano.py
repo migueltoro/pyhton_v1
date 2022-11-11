@@ -21,14 +21,14 @@ numero_de_cartas: int = 5
 class Mano:
   
     def __init__(self, cartas: list[Card]):       
-        self._cartas: list[Card]  = cartas
-        self._frecuencias_de_valores: Optional[dict[int,int]] = None
-        self._valores_ordenados_por_frecuencias: Optional[list[int]] = None
-        self._son_5_valores_consecutivos: Optional[bool] = None
-        self._frecuencias_de_palos: Optional[dict[int,int]] = None
-        self._palos_ordenados_por_frecuencias: Optional[list[int]] = None
-        self._jugada: Optional[int] = None
-        self._fuerza: Optional[float] = None        
+        self.__cartas: list[Card]  = cartas
+        self.__frecuencias_de_valores: Optional[dict[int,int]] = None
+        self.__valores_ordenados_por_frecuencias: Optional[list[int]] = None
+        self.__son_5_valores_consecutivos: Optional[bool] = None
+        self.__frecuencias_de_palos: Optional[dict[int,int]] = None
+        self.__palos_ordenados_por_frecuencias: Optional[list[int]] = None
+        self.__jugada: Optional[int] = None
+        self.__fuerza: Optional[float] = None        
     
     @staticmethod
     def of(cartas):
@@ -52,46 +52,46 @@ class Mano:
     
     @property
     def cartas(self) -> list[Card]:
-        return self._cartas
+        return self.__cartas
     
     @property
     def son_5_valores_consecutivos(self) -> bool:
-        if not self._son_5_valores_consecutivos:  
+        if not self.__son_5_valores_consecutivos:  
             ls = self.valores_ordenados_por_frecuencias
-            self._son_5_valores_consecutivos = False        
+            self.__son_5_valores_consecutivos = False        
             if len(ls) == 5:               
-                self._son_5_valores_consecutivos = all(ls[x+1]-ls[x]==1 for x in range(0,len(ls)-1))
-        return self._son_5_valores_consecutivos
+                self.__son_5_valores_consecutivos = all(ls[x+1]-ls[x]==1 for x in range(0,len(ls)-1))
+        return self.__son_5_valores_consecutivos
     
     @property
     def frecuencias_de_valores(self) -> dict[int,int]:
-        if not self._frecuencias_de_valores:
-            self._frecuencias_de_valores = groups_size(self._cartas,key=lambda c:c.valor)           
-        return self._frecuencias_de_valores
+        if not self.__frecuencias_de_valores:
+            self.__frecuencias_de_valores = groups_size(self.__cartas,key=lambda c:c.valor)           
+        return self.__frecuencias_de_valores
     
     @property
     def valores_ordenados_por_frecuencias(self) -> list[int]:
-        if not self._valores_ordenados_por_frecuencias:
+        if not self.__valores_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_valores.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
             ls1 = [e[0] for e in ls]
-            self._valores_ordenados_por_frecuencias = ls1
-        return self._valores_ordenados_por_frecuencias
+            self.__valores_ordenados_por_frecuencias = ls1
+        return self.__valores_ordenados_por_frecuencias
 
     @property
     def frecuencias_de_palos(self) -> dict[int,int]:
-        if not self._frecuencias_de_palos:
-            self._frecuencias_de_palos = groups_size(self._cartas,key=lambda c:c.palo) 
-        return self._frecuencias_de_palos
+        if not self.__frecuencias_de_palos:
+            self.__frecuencias_de_palos = groups_size(self.__cartas,key=lambda c:c.palo) 
+        return self.__frecuencias_de_palos
     
     @property
     def palos_ordenados_por_frecuencias(self) -> list[int]:
-        if not self._palos_ordenados_por_frecuencias:
+        if not self.__palos_ordenados_por_frecuencias:
             ls  = [e for e in self.frecuencias_de_palos.items()]
             ls.sort(key = lambda e: e[1], reverse= True)
             ls1 = [e[0] for e in ls]
-            self._palos_ordenados_por_frecuencias = ls1
-        return self._palos_ordenados_por_frecuencias
+            self.__palos_ordenados_por_frecuencias = ls1
+        return self.__palos_ordenados_por_frecuencias
     
     @property
     def es_color(self)-> bool:
@@ -150,9 +150,9 @@ class Mano:
     
     @property                     
     def jugada(self) -> int:
-        if not self._jugada:
-            self._jugada = first_index_true(self.predicados_jugadas)
-        return self._jugada
+        if not self.__jugada:
+            self.__jugada = first_index_true(self.predicados_jugadas)
+        return self.__jugada
     
     @property
     def nombre_de_jugada(self) -> str:
@@ -165,8 +165,8 @@ class Mano:
                  self.es_doble_pareja,self.es_pareja,self.es_carta_mas_alta] 
     
     def fuerza(self, n=5000) -> float:
-        if self._fuerza: 
-            return self._fuerza
+        if self.__fuerza: 
+            return self.__fuerza
         gana = 0;
         pierde = 0;
         empata = 0;
@@ -178,8 +178,8 @@ class Mano:
                 gana = gana +1
             elif self == mr:
                 empata = empata+1
-        self._fuerza = gana/(gana+pierde+empata)
-        return self._fuerza
+        self.__fuerza = gana/(gana+pierde+empata)
+        return self.__fuerza
     
     def __lt__(self,mano):
         r = False

@@ -20,9 +20,9 @@ class Red:
     
     def __init__(self, e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=None,
                  por_numero:Optional[dict[int,Estacion]]=None):
-        self._estaciones:list[Estacion] = e
-        self._por_nombre_compuesto:Optional[dict[str,Estacion]] = por_nombre_compuesto
-        self._por_numero:Optional[dict[int,Estacion]] = por_numero
+        self.__estaciones:list[Estacion] = e
+        self.__por_nombre_compuesto:Optional[dict[str,Estacion]] = por_nombre_compuesto
+        self.__por_numero:Optional[dict[int,Estacion]] = por_numero
     
     @staticmethod
     def of(e:list[Estacion],por_nombre_compuesto:Optional[dict[str,Estacion]]=None,
@@ -39,58 +39,58 @@ class Red:
         return Red.of(estaciones,pnc,pn)
     
     def __str__(self) -> str:
-        return strfiter(self._estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
+        return strfiter(self.__estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
     
     @property
     def estaciones(self)->list[Estacion]:
-        return self._estaciones
+        return self.__estaciones
     
     @property
     def por_nombre_compuesto(self)->dict[str,Estacion]:
-        if not self._por_nombre_compuesto:
-            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
-        return self._por_nombre_compuesto
+        if not self.__por_nombre_compuesto:
+            self.__por_nombre_compuesto = {e.nombre_compuesto:e for e in self.__estaciones}
+        return self.__por_nombre_compuesto
     
     @property
     def por_numero(self)->dict[int,Estacion]:
-        if not self._por_numero:
-            self._por_numero = {e.numero:e for e in self._estaciones}
-        return self._por_numero
+        if not self.__por_numero:
+            self.__por_numero = {e.numero:e for e in self.__estaciones}
+        return self.__por_numero
     
     def __add__(self,estacion:Estacion)->None:
         check_argument(estacion.numero not in self.por_numero,'El numero {} de la estacion esta repetido'.format(estacion.numero))
         check_argument(estacion.nombre_compuesto not in self.por_nombre_compuesto, 'El nombre compuesto {} de la estacion esta repetido'.format(estacion.nombre_compuesto))
-        self._estaciones.append(estacion)
-        pnc = {e.nombre_compuesto:e for e in self._estaciones}
-        pn = {e.numero:e for e in self._estaciones}
-        self._estaciones.sort()
-        self._por_nombre_compuesto = pnc
-        self._por_numero = pn
+        self.__estaciones.append(estacion)
+        pnc = {e.nombre_compuesto:e for e in self.__estaciones}
+        pn = {e.numero:e for e in self.__estaciones}
+        self.__estaciones.sort()
+        self.__por_nombre_compuesto = pnc
+        self.__por_numero = pn
     
     def remove(self,estacion:Estacion)->None:
-        self._estaciones.remove(estacion)
-        pnc = {e.nombre_compuesto:e for e in self._estaciones}
-        pn = {e.numero:e for e in self._estaciones}
-        self._estaciones.sort()
-        self._por_nombre_compuesto = pnc
-        self._por_numero = pn
+        self.__estaciones.remove(estacion)
+        pnc = {e.nombre_compuesto:e for e in self.__estaciones}
+        pn = {e.numero:e for e in self.__estaciones}
+        self.__estaciones.sort()
+        self.__por_nombre_compuesto = pnc
+        self.__por_numero = pn
     
     def estaciones_cercanas_a(self, c: Coordenadas2D, distancia:float) -> list[Estacion]:
         return sorted(e for e in self.estaciones if e.ubicacion.distancia(c) <= distancia)
    
     @property
     def numero_de_estaciones(self) -> int:
-        return len(self._estaciones)
+        return len(self.__estaciones)
     
     def estacion_de_nombre_compuesto(self,name:str) -> Optional[Estacion]:
-        if not self._por_nombre_compuesto:
-            self._por_nombre_compuesto = {e.nombre_compuesto:e for e in self._estaciones}
-        return self._por_nombre_compuesto.get(name,None)
+        if not self.__por_nombre_compuesto:
+            self.__por_nombre_compuesto = {e.nombre_compuesto:e for e in self.__estaciones}
+        return self.__por_nombre_compuesto.get(name,None)
                          
     def estacion_de_numero(self, n:int) -> Optional[Estacion]: 
-        if not self._por_numero:
-            self._por_numero = {e.numero:e for e in self._estaciones}
-        return self._por_numero.get(n,None)
+        if not self.__por_numero:
+            self.__por_numero = {e.numero:e for e in self.__estaciones}
+        return self.__por_numero.get(n,None)
  
     def estaciones_con_bicis_disponibles(self, k:int=1) -> set[Estacion]:
             return {e for e in self.estaciones if e.free_bikes >= k}
