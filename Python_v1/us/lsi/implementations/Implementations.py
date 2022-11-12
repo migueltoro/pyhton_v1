@@ -4,7 +4,7 @@ Created on 23 oct 2022
 @author: migueltoro
 '''
 
-from typing import Iterable, TypeVar, Any
+from typing import Iterable, Any
 
 def arithmetic(a:int,b:int,c:int) -> Iterable[int]:
     n = a
@@ -24,10 +24,6 @@ def zip2(*iterables:Iterable[Any])->Iterable[Any]:
             yield tuple(ls)               
     except StopIteration:
         return
-
-E = TypeVar('E')
-R = TypeVar('R')   
-U = TypeVar('U',int,float)
     
 
     

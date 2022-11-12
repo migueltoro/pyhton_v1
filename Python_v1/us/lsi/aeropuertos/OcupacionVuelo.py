@@ -30,7 +30,7 @@ class OcupacionVuelo:
     def parse(text:str)->OcupacionVuelo:
         campos:list[str] = text.split(",")
         codigo_vuelo:str = campos[0]
-        t:time = Vuelos.get().vuelo_codigo(codigo_vuelo).hora
+        t:time = Vuelos.of().vuelo_codigo(codigo_vuelo).hora
         d:date = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
         fecha:datetime = datetime.combine(d, t)
         num_pasajeros:int = int(campos[2])       
@@ -38,11 +38,11 @@ class OcupacionVuelo:
     
     @property
     def vuelo(self)->Vuelo:
-        return Vuelos.get().vuelo_codigo(self.codigo_vuelo)
+        return Vuelos.of().vuelo_codigo(self.codigo_vuelo)
     
     @property
     def llegada(self)->datetime: 
-        vuelo:Vuelo = Vuelos.get().vuelo_codigo(self.codigo_vuelo)
+        vuelo:Vuelo = Vuelos.of().vuelo_codigo(self.codigo_vuelo)
         return datetime.combine(self.fecha.date(),vuelo.hora)+vuelo.duracion
     
     @property

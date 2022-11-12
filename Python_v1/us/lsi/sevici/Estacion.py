@@ -22,7 +22,7 @@ class Estacion:
     @staticmethod   
     def parse(linea: list[str]) -> Estacion:
         name,slots,empty_slots,free_bikes,longitude,latitude = linea
-        check_argument('_' in name,'{0} no contiene _'.format(name))
+        check_argument('_' in name,f'{name} no contiene _')
         numero, name = name.split("_")
         numero0 = int(numero)
         slots0 = int(slots)

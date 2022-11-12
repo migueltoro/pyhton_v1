@@ -52,7 +52,7 @@ class Segmento2D(Objeto2D):
        
     @property
     def shape(self)->Patch:
-        return Draw.shape_multiline([(self.p1.x,self.p1.y),(self.p2.x,self.p2.y)],closed=False)
+        return Draw.shape_polygon([(self.p1.x,self.p1.y),(self.p2.x,self.p2.y)],closed=False)
 
 if __name__ == '__main__':
     print(Segmento2D.of(Punto2D.of(1., 1.),Punto2D.of(-1., -1.)))

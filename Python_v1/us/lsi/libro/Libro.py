@@ -8,9 +8,9 @@ from typing import OrderedDict,Iterable,Optional
 from us.lsi.tools.File import lineas_de_fichero, encoding
 from us.lsi.tools.Dict import strfdict, invert_dict_set
 from us.lsi.tools.Iterable import flat_map,first,distinct,strfiter,grouping_set,groups_size,count_if
-from us.lsi.implementations.Implementations import median2
 from collections import Counter
 import re
+from statistics import mean
 
 sep = r'[ ,;.\n():?!\"]'
 
@@ -38,7 +38,7 @@ def numero_de_palabras_distintas_no_huecas(file:str) -> int:
     return count_if(palabras_no_huecas_distintas(file))           
 
 def longitud_media_de_lineas(file:str) -> float:
-    return median2(len(ln) for ln in lineas_de_fichero(file))
+    return mean(len(ln) for ln in lineas_de_fichero(file))
 
 def numero_de_lineas_vacias(file:str) -> int:
     return count_if(ln for ln in lineas_de_fichero(file,encoding='utf-16') if len(ln) == 0)

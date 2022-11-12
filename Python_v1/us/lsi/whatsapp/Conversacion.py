@@ -38,7 +38,7 @@ class Conversacion:
         self.__numero_de_palabras_por_resto_de_usuarios: Optional[dict[str,int]] = None
 
     @staticmethod   
-    def data_of_file(file: str) -> Conversacion:
+    def parse(file: str) -> Conversacion:
         ms = (Mensaje.parse(m) for m in lineas_de_fichero(file))
         mensajes = [m for m in ms if m is not None]
         palabrasHuecas = {p for p in lineas_de_fichero("../../../resources/palabras_huecas.txt") if len(p) >0}
@@ -181,7 +181,7 @@ class Conversacion:
         Graphics.pie_chart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)
     
 if __name__ == '__main__':
-    c = Conversacion.data_of_file(absolute_path("/resources/bigbangtheory_es.txt"))
+    c = Conversacion.parse(absolute_path("/resources/bigbangtheory_es.txt"))
 #    print(c)    
     print(strfiter(c.numero_de_mensajes_por_usuario.items()))
     tsf = lambda e:'{0:s}={1}'.format(e[0],e[1])

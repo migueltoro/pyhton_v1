@@ -40,22 +40,22 @@ def lineas_de_fichero(file:str,encoding:str='utf-8') -> list[str]:
         lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
         return lineas_de_fichero
        
-def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list[str]]:
+    check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         lineas_de_fichero =  [linea for linea in lector]
         return lineas_de_fichero
 
 def iterable_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:
             yield line
 
 def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[str]:
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for line in lector:

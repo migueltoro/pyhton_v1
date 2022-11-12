@@ -104,7 +104,7 @@ class Poligono2D(Objeto2D):
     
     @property
     def shape(self)->Patch:
-        return Draw.shape_multiline([(p.x,p.y) for p in self.vertices],closed=True)
+        return Draw.shape_polygon([(p.x,p.y) for p in self.vertices],closed=True)
 
 
 if __name__ == '__main__':

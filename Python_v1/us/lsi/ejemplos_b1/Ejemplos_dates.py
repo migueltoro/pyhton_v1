@@ -37,7 +37,7 @@ if __name__ == '__main__':
     print(d1.year) 
     print(d1.month) 
     print(d1.hour) 
-    print(d1.second) 
+    print(d1.__second) 
     print((d2-d1).seconds)
     print(d3) 
     print(d4)

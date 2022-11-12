@@ -12,7 +12,7 @@ from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 #from sortedcontainers import SortedSet # type: ignore
 from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
 from us.lsi.tools.Preconditions import check_argument
-#from us.lsi.tools.Dict import strfdict
+from us.lsi.tools.Dict import strfdict
 #from us.lsi.tools.GraphicsMaps import markers
 
 
@@ -30,8 +30,9 @@ class Red:
         return Red(e,por_nombre_compuesto,por_numero)
     
     @staticmethod
-    def data_of_file(fichero: str) -> Red:
-        estaciones = [Estacion.parse(x) for x in lineas_de_csv(fichero, delimiter =",",encoding='cp1252')][1:]
+    def parse(fichero: str) -> Red:
+        lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='cp1252')
+        estaciones:list[Estacion] = [Estacion.parse(x) for x in lineas[1:]]
         check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
         pnc = {e.nombre_compuesto:e for e in estaciones}
         pn = {e.numero:e for e in estaciones}
@@ -117,11 +118,11 @@ if __name__ == '__main__':
     numero,name = '242_PLAZA NUEVA'.split('_')
 #    print(numero)
 #    print(name)
-    r = Red.data_of_file(absolute_path("/resources/estaciones.csv"))
+    r = Red.parse(absolute_path("/resources/estaciones.csv"))
 #    r.__add__(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
 #   print(r.estacion_de_numero(6).ubicacion.distancia_a())
-#    print(strfdict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))
+    print(strfdict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))
     
     
     

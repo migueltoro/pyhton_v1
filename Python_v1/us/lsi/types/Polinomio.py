@@ -10,7 +10,7 @@ from us.lsi.tools.Preconditions import check_position_index, check_argument
 from fractions import Fraction
 
 @dataclass(frozen=True)
-class Polinomio():
+class Polinomio:
     coeficientes: list[Fraction] 
       
     @staticmethod

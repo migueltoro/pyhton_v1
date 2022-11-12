@@ -8,12 +8,12 @@ import random
 from us.lsi.tools.File import lineas_de_fichero
 from collections import Counter
 
-identity = lambda x:x
-
 K = TypeVar('K')
 V = TypeVar('V')
 E = TypeVar('E')
 R = TypeVar('R')
+
+identity = lambda x:x
 
 def es_iterable(m)-> bool:
     try:
@@ -29,7 +29,7 @@ def es_iterator(m)-> bool:
         print("{} no es un iterador por que no tiene el metodo __next__()".format(str(m)))
     return True
 
-def aleatorios(a:int,b:int,n:int) -> Iterable[int]:
+def aleatorios(n:int,a:int,b:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
 
@@ -43,8 +43,6 @@ def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[tuple[int,int]]:
     for i in range(n0,n):
         for j in range(m0,m):
             yield (i,j)
-
-U = TypeVar('U',int,float)
 
 def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
     for e in iterable:
@@ -101,7 +99,7 @@ def first_index_with_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
             return i
     return default
     
-def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]:
+def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
     for e in iterable:
         for pe in key(e):
             yield pe
@@ -118,12 +116,14 @@ def flat(e: E | Iterable[E]) -> Iterable[E]:
     else:
         yield e
   
-def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',key:Callable[[E],str]=str)->str:
+def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',
+             key:Callable[[E],str]=str)->str:
     r:str = sep.join(key(x) for x in iterable)
     return f"{prefix}{r}{suffix}"
 
 
-def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
+def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], 
+                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
     a:dict[K,V] = {}
     for e in iterable:
         k = key(e)

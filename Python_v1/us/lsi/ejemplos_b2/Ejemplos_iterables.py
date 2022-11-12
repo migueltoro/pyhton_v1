@@ -6,7 +6,7 @@ Created on 18 sept 2022
 
 from typing import Iterable
 from us.lsi.tools.File import absolute_path, lineas_iterable, lineas_de_csv
-from us.lsi.tools.Iterable import flat_map, distinct, iterate
+from us.lsi.tools.Iterable import flat_map, distinct, iterate, all_pairs
 from itertools import accumulate
 from operator import mul
 import re
@@ -29,11 +29,6 @@ def ej3(cadena:str):
     it3:Iterable[str] = map(lambda e: e[1],it2)
     return it3
 
-def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[tuple[int,int]]:
-    for i in range(n0,n):
-        for j in range(m0,m):
-            yield (i,j)
-
 languages:list[str] = ['Java', 'Python', 'JavaScript']
 versions:list[int] = [14, 3, 6]
 dias:list[str] = ["lunes", "martes", "miercoles", "jueves","viernes", "sabado", "domingo"]
@@ -46,12 +41,11 @@ r5:Iterable[int] = accumulate(versions,mul)
 r6:Iterable[int] = iterate(3,lambda x:x+7,lambda x: x<100)
 
 
-dias2:Iterable[str] = flat_map(dias,key=lambda x:x)
+dias2:Iterable[str] = flat_map(dias)
 r7:Iterable[str] = flat_map(lineas_iterable(absolute_path("/resources/datos_3.txt"),
                         encoding='ISO-8859-1'),key=lambda ln: re.split(',',ln))
 r8:Iterable[str] = flat_map(
-                lineas_de_csv(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delimiter=' '),
-                key=lambda x:x)
+                lineas_de_csv(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delimiter=' '))
 
 texto:str = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
 

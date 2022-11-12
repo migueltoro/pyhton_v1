@@ -4,9 +4,7 @@ Created on 15 jul. 2020
 @author: migueltoro
 '''
 
-from typing import TypeVar
-
-E = TypeVar('E')
+from typing import Any
 
 '''
 * Checks that the boolean is true. Use for validating arguments to methods.
@@ -21,7 +19,7 @@ def check_argument(condition:bool,message=None)->None:
 * @param message Mensaje a imprimir
 * @param condition A condition
 '''
-def check_state(condition:bool,message=None):
+def check_state(condition:bool,message=None)->None:
     assert condition,message
        
 '''
@@ -32,7 +30,7 @@ reference Parametro a comprobar
 El parametro a comprobar
 '''
    
-def check_not_null(reference:E):
+def check_not_null(reference:Any)->None:
     assert reference is not None, f"Es nulo {reference}"
         
 '''
@@ -44,7 +42,7 @@ def check_not_null(reference:E):
 * @return Index El indice del elemento
 '''
    
-def check_element_index(index:int,size:int):
+def check_element_index(index:int,size:int)->int:
     assert (index>=0 and index<size), f"Index = {index}, size= {size}"
     return index
     
@@ -56,7 +54,7 @@ def check_element_index(index:int,size:int):
 * @param size El tamanyo de la lista
 * @return Index El indice del elemento
 '''
-def check_position_index(index:int,size:int):
+def check_position_index(index:int,size:int)->int:
     assert (index>=0 and index<=size), f"Index = {index}, size= {size}"
     return index
     
