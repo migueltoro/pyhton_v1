@@ -8,7 +8,6 @@ from __future__ import annotations
 from typing import TypeVar, Callable, Optional
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
-from us.lsi.tools.Functions import identity
 from us.lsi.tools.Iterable import strfiter, grouping_list, groups_size, flat_map
 from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
 from datetime import date
@@ -111,7 +110,7 @@ class Conversacion:
             ms_tex = (m.texto for m in self.mensajes)
             ps = flat_map(ms_tex,lambda x: re.split(sep, x))
             palabras = (p for p in ps if len(p) > 0 and p not in self.palabras_huecas)
-            self.__frecuencia_de_palabras = groups_size(palabras,key=identity)
+            self.__frecuencia_de_palabras = groups_size(palabras,key=lambda x:x)
         return self.__frecuencia_de_palabras
     
     @property

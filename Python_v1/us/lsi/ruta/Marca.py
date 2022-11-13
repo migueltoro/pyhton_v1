@@ -6,8 +6,7 @@ Created on 23 jul. 2020
 
 from __future__ import annotations
 from dataclasses import dataclass
-from datetime import time
-from us.lsi.tools.Dates import parse_time, str_time
+from datetime import time,datetime
 from us.lsi.coordenadas.Coordenadas3D import Coordenadas3D
 
 @dataclass(frozen=True,order=True)
@@ -23,7 +22,7 @@ class Marca:
     @staticmethod   
     def parse(linea: list[str]) -> Marca:
         tiempo,latitud,longitud,altitud = linea
-        t:time = parse_time(tiempo,'%H:%M:%S')
+        t:time = datetime.strptime(tiempo,'%H:%M:%S').time()
         coordenadas = Coordenadas3D.of(float(latitud), float(longitud), float(altitud)/1000)
         return Marca(t, coordenadas)        
     
@@ -43,7 +42,7 @@ class Marca:
         return self.coordenadas.distancia(other.coordenadas)
     
     def __str__(self):
-        return '({0},{1:>20},{2:>20},{3:>20})'.format(str_time(self.tiempo,"%H:%M:%S"),
+        return '({0},{1:>20},{2:>20},{3:>20})'.format(self.tiempo.strftime("%H:%M:%S"),
                                                       self.latitud,
                                                       self.longitud,
                                                       self.altitud) 

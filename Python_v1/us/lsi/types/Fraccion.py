@@ -8,7 +8,12 @@ from functools import total_ordering
 from random import randint
 from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import strfiter
-from us.lsi.tools.Functions import mcd
+
+def mcd(a:int, b:int)->int:
+    check_argument(a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}')
+    while b > 0:
+        a, b = b, a%b
+    return a
     
 #Fraccion inmutable
 @total_ordering

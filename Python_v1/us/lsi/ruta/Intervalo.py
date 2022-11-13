@@ -8,7 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.ruta.Marca import Marca
 from us.lsi.tools.Preconditions import check_argument
-from us.lsi.tools.Dates import to_datetime
+from datetime import datetime,date
 
 @dataclass(frozen=True,order=True)
 class Intervalo:
@@ -34,7 +34,7 @@ class Intervalo:
     
     @property
     def tiempo(self) -> float:
-        return ((to_datetime(self.fin.tiempo) - to_datetime(self.principio.tiempo)).seconds)/3600
+        return (datetime.combine(date.min,self.fin.tiempo) - datetime.combine(date.min,self.principio.tiempo)).seconds/3600
     
     @property
     def velocidad(self) -> float:
