@@ -19,7 +19,8 @@ from us.lsi.tools.Iterable import strfiter
 class Biblioteca:
     
     biblioteca = None
-     
+    
+        
     def __init__(self, nombre:str, codigo_postal:int, email:str, 
                  fu:str='/biblioteca/usuarios.txt',
                  fl:str='/biblioteca/libros.txt',
