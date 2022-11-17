@@ -28,7 +28,7 @@ def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     partes = linea.split(delimiter)
     return partes
 
-def lineas_iterable(file:str,encoding:str='utf-8') -> Iterable[str]:
+def iterable_de_fichero(file:str,encoding:str='utf-8') -> Iterable[str]:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
         for line in f:

@@ -5,7 +5,7 @@ Created on 18 sept 2022
 '''
 
 from typing import Iterable
-from us.lsi.tools.File import absolute_path, lineas_iterable, lineas_de_csv
+from us.lsi.tools.File import absolute_path, iterable_de_fichero, lineas_de_csv
 from us.lsi.tools.Iterable import flat_map, distinct, iterate, all_pairs
 from itertools import accumulate
 from operator import mul
@@ -42,7 +42,7 @@ r6:Iterable[int] = iterate(3,lambda x:x+7,lambda x: x<100)
 
 
 dias2:Iterable[str] = flat_map(dias)
-r7:Iterable[str] = flat_map(lineas_iterable(absolute_path("/resources/datos_3.txt"),
+r7:Iterable[str] = flat_map(iterable_de_fichero(absolute_path("/resources/datos_3.txt"),
                         encoding='ISO-8859-1'),key=lambda ln: re.split(',',ln))
 r8:Iterable[str] = flat_map(
                 lineas_de_csv(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delimiter=' '))
