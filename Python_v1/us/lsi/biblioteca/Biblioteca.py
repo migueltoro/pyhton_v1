@@ -15,7 +15,6 @@ from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.File import iterable_de_fichero, absolute_path
 from us.lsi.tools.Iterable import strfiter
 
-#En principio, las funciones que tienen parámetros, no se han incluido como propiedades derivadas
 class Biblioteca:
     
     biblioteca = None
@@ -84,6 +83,10 @@ class Biblioteca:
     
     def libro(self,i:int) -> Libro:
         return self.__libros[i]
+    
+    @property
+    def dict_libros(self)->dict[str,Libro]:
+        return self.__dict_libros
         
     def libros_de_autor(self, autor:str) -> set[Libro]:
         return set([lb for lb in self.libros if lb.autor==autor])
@@ -96,11 +99,19 @@ class Biblioteca:
         return [e for e in self.ejemplares if e.isbn==libro.isbn]
     
     @property
+    def dict_ejemplares(self)->dict[tuple[str,int],Ejemplar]:
+        return self.__dict_ejemplares
+    
+    @property
     def prestamos(self) -> list[Prestamo]:
         return self.__prestamos
     
     def prestamos_de_libro(self, libro:Libro) -> list[Prestamo]:
         return [p for p in self.prestamos if p.isbn==libro.isbn]
+    
+    @property
+    def dict_prestamos(self)->dict[int,Prestamo]:
+        return self.__dict_prestamos 
 
     def algun_ejemplar_prestado(self, libro:Libro) -> bool:    
         return any([libro.isbn==p.isbn for p in self.prestamos])
@@ -113,7 +124,6 @@ class Biblioteca:
         self.__dict_ejemplares[(e.isbn,e.codigo)] = e
         return e
     
-    #este método no estaba en el enunciado
     def add_prestamo(self:Biblioteca, ejemplar:Ejemplar, fecha:date, tipo:Tipo_prestamo) -> None:
         pass
         
