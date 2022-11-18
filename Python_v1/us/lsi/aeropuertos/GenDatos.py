@@ -14,6 +14,7 @@ from us.lsi.aeropuertos.OcupacionVuelo import OcupacionVuelo
 from us.lsi.aeropuertos.OcupacionesVuelos import OcupacionesVuelos
 from datetime import date, time, datetime, timedelta
 from us.lsi.tools.Iterable import first, iterate
+from typing import Optional
 
 def vuelo_random()-> Vuelo: 
     e: int = random.randint(0,Aerolineas.of().size())
@@ -43,9 +44,12 @@ def ocupacion_vuelo_random(v:Vuelo, anyo:int)->OcupacionVuelo:
     np:int = v.num_plazas
     t:time = v.hora
     dw:int = v.dia_semana
-    d:date = first(iterate(date(anyo,1,1),lambda dt: dt+timedelta(days=1)),lambda dt:dt.weekday() == dw)         
-    d = d+timedelta(days=7*random.randint(0,53)) #53 semanas en un anyo
-    fecha:datetime = datetime.combine(d, t)
+    d:Optional[date] = first(iterate(date(anyo,1,1),lambda dt: dt+timedelta(days=1)),lambda dt:dt.weekday() == dw)
+    d2:date
+    if d is not None:
+        d2 = d         
+    d2 = d2+timedelta(days=7*random.randint(0,53)) #53 semanas en un anyo
+    fecha:datetime = datetime.combine(d2, t)
     num_pasajeros:int = random.randint(0,np) if np>0 else 0
     return OcupacionVuelo.of(codigo_vuelo,fecha,num_pasajeros)
 
