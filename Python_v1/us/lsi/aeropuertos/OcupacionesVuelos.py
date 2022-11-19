@@ -15,6 +15,7 @@ from datetime import date
 class OcupacionesVuelos:
     __ocupaciones_vuelos: OcupacionesVuelos
     
+    
     def __init__(self,ocupaciones:list[OcupacionVuelo])->None:
         self._lista_ocupaciones_vuelos = ocupaciones
 
@@ -35,6 +36,7 @@ class OcupacionesVuelos:
     def ocupacion(self,i:int)->OcupacionVuelo:
         return self._lista_ocupaciones_vuelos[i]
     
+    @property
     def size(self)->int:
         return len(self._lista_ocupaciones_vuelos)
     

@@ -43,6 +43,7 @@ class Aeropuertos:
     def aeropuertos_en_ciudad(self,ciudad:str)->set[Aeropuerto]: 
         return self._aeropuertos_en_ciudad[ciudad]
     
+    @property
     def size(self)->int:
         return len(self._aeropuertos)
     

@@ -36,6 +36,7 @@ class Vuelos:
     def vuelo_index(self,index:int)->Vuelo:
         return self._vuelos[index]
 
+    @property
     def size(self)->int:
         return len(self._vuelos)
 

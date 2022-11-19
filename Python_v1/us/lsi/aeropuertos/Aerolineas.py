@@ -32,6 +32,7 @@ class Aerolineas:
     def aerolinea_codigo(self,codigo:str)->Aerolinea:
         return self._codigos_aerolineas[codigo]
     
+    @property
     def size(self):
         return len(self._aerolineas)
     
