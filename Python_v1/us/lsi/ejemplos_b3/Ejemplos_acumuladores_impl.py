@@ -49,11 +49,10 @@ def sum_file(file:str)->int:
 
 def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->Optional[R]:
     it:Iterator[E] = iter(iterable)
-    r: R 
     if initial is None:
         try:
             e = next(it)
-            r = cast(R,e)
+            r:R = cast(R,e)
         except StopIteration:
             check_state(False,'El iterable está vacío y no hay valor inicial')
     else:
@@ -90,6 +89,20 @@ def any2(iterable:Iterable[bool])->bool:
             r = True
             break
     return r
+
+def sorted2(iterable:Iterable[E], key:Callable[[E],R]=identity,reverse:bool=False)->list[E]:
+    ls = list(iterable)
+    n = len(ls)
+    for i in range(n):
+        for j in range(n):
+            if not reverse:
+                if key(ls[i]) < key(ls[j]):
+                    ls[i], ls[j] = ls[j], ls[i]
+            else: 
+                if key(ls[i]) > key(ls[j]):
+                    ls[i], ls[j] = ls[j], ls[i]          
+    return ls
+
 
 
 if __name__ == '__main__':

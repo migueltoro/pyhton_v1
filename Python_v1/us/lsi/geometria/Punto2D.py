@@ -43,7 +43,7 @@ class Objeto2D(ABC):
     @abstractmethod
     def shape(self)->Patch:
         pass
-    
+
 
 @dataclass(frozen=True,order=True)
 class Punto2D(Objeto2D):
@@ -127,7 +127,6 @@ class Punto2D(Objeto2D):
     def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
     
-
 @dataclass(frozen=True,order=True)
 class Recta2D:
     punto: Punto2D
@@ -153,6 +152,7 @@ class Recta2D:
     def ortogonal(self,p:Punto2D) -> Recta2D:
         return Recta2D.of(p,self.vector.ortogonal)
 
+    
 if __name__ == '__main__':
     p = Punto2D.parse('(2.3,-4.55)')
     p1 = Punto2D.parse('(2.3,4.55)')

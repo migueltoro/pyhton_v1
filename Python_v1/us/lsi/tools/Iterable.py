@@ -15,20 +15,6 @@ R = TypeVar('R')
 
 identity = lambda x:x
 
-def es_iterable(m)-> bool:
-    try:
-        m.__iter__()
-    except: 
-        print("{} no es iterable por que no tiene el metodo __iter__()".format(str(m)))
-    return True
-
-def es_iterator(m)-> bool:
-    try:
-        m.__next__()
-    except: 
-        print("{} no es un iterador por que no tiene el metodo __next__()".format(str(m)))
-    return True
-
 def aleatorios(n:int,a:int,b:int) -> Iterable[int]:
     for _ in range(n):
         yield random.randint(a,b)
