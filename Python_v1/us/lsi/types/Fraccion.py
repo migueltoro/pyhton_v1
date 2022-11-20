@@ -47,7 +47,7 @@ class Fraccion:
         return Fraccion(-self.numerador,self.denominador)
         
     def __add__(self,other:Fraccion)->Fraccion:
-        n = self.numerador*other.__denominador +self.denominador*other.numerador
+        n = self.numerador*other.denominador +self.denominador*other.numerador
         d = self.denominador*other.denominador
         resultado = Fraccion(n,d)
         return resultado
@@ -82,20 +82,20 @@ class Fraccion:
     
     def __eq__(self, other)->bool:
         if isinstance(other, Fraccion):
-            return self.__numerador == other.__numerador and self.__denominador == other.__denominador
+            return self.numerador == other.numerador and self.denominador == other.denominador
         return False
     
     def __lt__(self, other)->bool:
-        return self.__numerador*other.__denominador < self.__denominador*other.__numerador
+        return self.numerador*other.denominador < self.denominador*other.numerador
     
     def __hash__(self)->int:
-        return  hash(self.__numerador)*31 + hash(self.__denominador)
+        return  hash(self.numerador)*31 + hash(self.denominador)
     
     def __str__(self)->str:
-        if self.__denominador == 1:
-            return '{0:d}'.format(self.__numerador)
+        if self.denominador == 1:
+            return '{0:d}'.format(self.numerador)
         else:
-            return '{0:d}/{1:d}'.format(self.__numerador,self.__denominador)
+            return '{0:d}/{1:d}'.format(self.numerador,self.denominador)
 
 if __name__ == '__main__':
     f1 = Fraccion.of(3)

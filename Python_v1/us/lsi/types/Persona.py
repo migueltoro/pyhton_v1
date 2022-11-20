@@ -10,7 +10,7 @@ from datetime import datetime
 from enum import Enum, auto
 from us.lsi.tools.Preconditions import check_argument
 import locale
-from us.lsi.biblioteca.Direccion import Direccion
+from us.lsi.types.Direccion import Direccion
 from datetime import date
 
 class Horoscopo(Enum):

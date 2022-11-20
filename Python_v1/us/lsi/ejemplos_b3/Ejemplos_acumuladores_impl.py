@@ -18,7 +18,7 @@ R = TypeVar('R', bound=Comparable)
 U = TypeVar('U',int,float)
 S = TypeVar('S')
 
-
+identity = lambda x:x
 
 def sum2(iterable:Iterable[U],start:U=0)->U:
     s:U = start
@@ -63,7 +63,7 @@ def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)-
     return r
 
 
-def min2(iterable:Iterable[E],key:Callable[[E],R])->E:
+def min2(iterable:Iterable[E],key:Callable[[E],R] = identity)->E:
     it:Iterator[E] = iter(iterable)
     r:E
     try:

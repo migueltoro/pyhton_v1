@@ -7,7 +7,7 @@ Created on 17 nov 2022
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime,date
-from us.lsi.biblioteca.Persona import Persona
+from us.lsi.types.Persona import Persona
 
 @dataclass(frozen=True,order=True)
 class Usuario(Persona):

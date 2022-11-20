@@ -11,6 +11,8 @@ from itertools import accumulate
 from operator import mul
 import re
 
+
+
 def ej1(a:int,b:int,c:int,d:int)->Iterable[int]:
     it1:Iterable[int] = map(lambda x:x**2,range(a,b,c))
     it2:Iterable[int] = filter(lambda x:x%d==0, it1)

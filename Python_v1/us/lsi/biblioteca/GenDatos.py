@@ -8,7 +8,7 @@ import random
 from us.lsi.biblioteca.Libro import Libro
 from us.lsi.biblioteca.Ejemplar import Ejemplar
 from us.lsi.biblioteca.Prestamo import Tipo_prestamo
-from us.lsi.biblioteca.Persona import Persona
+from us.lsi.types.Persona import Persona
 from us.lsi.biblioteca.Usuario import Usuario
 from us.lsi.tools.File import write_iterable, iterable_de_fichero, absolute_path
 from us.lsi.tools.Iterable import flat_map

@@ -42,21 +42,7 @@ def iterate(initial:E, operator:Callable[[E],E], predicate:Callable[[E],bool]=la
 def all_pairs(n:int,m:int,n0:int = 0, m0:int= 0)-> Iterable[tuple[int,int]]:
     for i in range(n0,n):
         for j in range(m0,m):
-            yield (i,j)
-
-def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
-    for e in iterable:
-        if p(e):
-            return e
-    return None
-    
-def first_and_last(iterable:Iterable[E],defaultvalue=None)->tuple[E,E]:
-    it = iter(iterable)
-    first = last = next(it, defaultvalue)
-    for last in it:
-        pass
-    return (first,last)
-    
+            yield (i,j)   
 
 def distinct(iterable:Iterable[E])->Iterable[E]:
     seen:set[E] = set()
@@ -80,6 +66,19 @@ def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->i
         if predicate(e):
             n = n+1
     return n
+
+def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
+    for e in iterable:
+        if p(e):
+            return e
+    return None
+    
+def first_and_last(iterable:Iterable[E],defaultvalue=None)->Optional[tuple[E,E]]:
+    it = iter(iterable)
+    first = last = next(it, defaultvalue)
+    for last in it:
+        pass
+    return (first,last)
 
 def first_index_true(iterable:Iterable[bool],default:int=-1)->int:
     for i,e in enumerate(iterable):
