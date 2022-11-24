@@ -1,17 +1,15 @@
 '''
-Created on 24 jul. 2020
+Created on 24 nov 2022
 
 @author: migueltoro
 '''
 
 from __future__ import annotations
-from typing import Optional
+from typing import Optional, Iterator
 from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
-#from sortedcontainers import SortedSet # type: ignore
-from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
-from us.lsi.tools.Preconditions import check_argument
+from us.lsi.tools.Preconditions import check_argument, check_state
 from us.lsi.tools.Dict import strfdict
 #from us.lsi.tools.GraphicsMaps import markers
 
@@ -32,15 +30,27 @@ class Red:
     @staticmethod
     def of_file(fichero: str) -> Red:
         lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
-        estaciones:list[Estacion] = [Estacion.parse(x) for x in lineas[1:]]
-        check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
-        pnc = {e.nombre_compuesto:e for e in estaciones}
-        pn = {e.numero:e for e in estaciones}
+        estaciones:list[Estacion] = []
+        for x in lineas[1:]:
+            e = Estacion.parse(x)
+            estaciones.append(e)
+        st:set[int] = set()
+        for e in estaciones:
+            n = e.numero
+            st.add(n)
+        check_argument(len(estaciones) == len(st),'Hay numeros de estacion repetidos')
+        pnc:dict[str,Estacion] = {}
+        for e in estaciones:
+            pnc[e.nombre_compuesto] = e
+        pn:dict[int,Estacion] = {}
+        for e in estaciones:
+            pn[e.numero] = e    
         estaciones.sort()
         return Red.of(estaciones,pnc,pn)
     
     def __str__(self) -> str:
-        return strfiter(self.__estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
+        s:str = '\n'.join(str(e) for e in self.estaciones)
+        return f'Estaciones\n{s}\n---------------------'
     
     @property
     def estaciones(self)->list[Estacion]:
@@ -82,24 +92,53 @@ class Red:
         return self.__por_numero.get(n,None)
  
     def estaciones_con_bicis_disponibles(self, k:int=1) -> set[Estacion]:
-            return {e for e in self.estaciones if e.free_bikes >= k}
+        st:set[Estacion] = set()
+        for e in self.estaciones:
+            if e.free_bikes >= k:
+                st.add(e)
+        return st
     
     def ubicaciones_con_bicis_disponibles(self, k:int=1) -> set[Coordenadas2D]:
-            return {e.ubicacion for e in self.estaciones if e.free_bikes >= k}
+        st:set[Coordenadas2D] = set()
+        for e in self.estaciones:
+            if e.free_bikes >= k:
+                st.add(e.ubicacion)
+        return st
         
     @property
     def estacion_con_mas_bicis_disponibles(self) -> Estacion:
-        return max(self.estaciones, key = lambda e:e.free_bikes)
+        it:Iterator[Estacion] = iter(self.estaciones)
+        r:Estacion
+        try:
+            r = next(it)
+        except StopIteration:
+            check_state(False,'El iterable está vacío')
+        for e in it:
+            if e.free_bikes < r.free_bikes :
+                r = e  
+        return r
     
     @property
     def estaciones_por_bicis_disponibles(self) -> dict[int,list[Estacion]]:
-        return grouping_list(self.estaciones, lambda e: e.free_bikes)
+        d:dict[int,list[Estacion]] = {}
+        for e in self.estaciones:
+            k = e.free_bikes
+            if k in d:
+                d[k] = d[k]+[e]
+            else:
+                d[k] = [e]
+        return d
    
     @property
     def numero_de_estaciones_por_bicis_disponibles(self) ->  dict[int,int]:
-        return groups_size(self.estaciones, lambda e: e.free_bikes)  
-    
-
+        d:dict[int,int] = {}
+        for e in self.estaciones:
+            k = e.free_bikes
+            if k in d:
+                d[k] = d[k]+1
+            else:
+                d[k] = 1
+        return d
 
 if __name__ == '__main__':
     print(encoding(absolute_path("/resources/estaciones.csv")))
