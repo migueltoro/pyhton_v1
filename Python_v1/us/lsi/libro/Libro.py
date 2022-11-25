@@ -22,7 +22,7 @@ def palabras_no_huecas(file: str) -> Iterable[str]:
     huecas = palabras_huecas()
     lns = lineas_de_fichero(file,encoding='utf-16')
     pls = flat_map(lns,lambda x: re.split(sep, x))
-    palabras = (p for p in pls if p not in huecas if len(p) > 0)
+    palabras = (p for p in pls if p not in huecas and len(p) > 0)
     return palabras
 
 def palabras_no_huecas_distintas(file: str) -> Iterable[str]:
