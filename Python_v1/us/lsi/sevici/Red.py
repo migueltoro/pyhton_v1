@@ -65,8 +65,8 @@ class Red:
     def remove(self,estacion:Estacion)->None:
         self.__estaciones.remove(estacion)
         self.__estaciones.sort()
-        self.__por_nombre_compuesto
-        self.__por_numero
+        del self.__por_nombre_compuesto[estacion.nombre_compuesto]
+        del self.__por_numero[estacion.numero]
     
     def estaciones_cercanas_a(self, c: Coordenadas2D, distancia:float) -> list[Estacion]:
         return sorted(e for e in self.estaciones if e.ubicacion.distancia(c) <= distancia)

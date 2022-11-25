@@ -134,7 +134,7 @@ if __name__ == '__main__':
     r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
     print(strfiter(r))
     print(strfiter(range(2,100,5)))
-    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
+#    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
     print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
     print(first_index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(range(3,500,29)))
@@ -147,5 +147,6 @@ if __name__ == '__main__':
     r = ((1, 2, 3, 4)*2)[-2:-1]
     print(r)   
     print(','.join(str(p) for p in all_pairs(3,4)))
+    print(len(range(10,3000,7)))
     
     
