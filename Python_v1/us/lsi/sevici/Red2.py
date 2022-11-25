@@ -5,11 +5,11 @@ Created on 24 nov 2022
 '''
 
 from __future__ import annotations
-from typing import Optional, Iterator
+from typing import Optional
 from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
-from us.lsi.tools.Preconditions import check_argument, check_state
+from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Dict import strfdict
 #from us.lsi.tools.GraphicsMaps import markers
 
@@ -23,17 +23,7 @@ class Red:
         self.__por_numero:dict[int,Estacion] = por_numero
     
     @staticmethod
-    def of(e:list[Estacion],por_nombre_compuesto:dict[str,Estacion],
-           por_numero:dict[int,Estacion]) -> Red:
-        return Red(e,por_nombre_compuesto,por_numero)
-    
-    @staticmethod
-    def of_file(fichero: str) -> Red:
-        lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
-        estaciones:list[Estacion] = []
-        for x in lineas[1:]:
-            e = Estacion.parse(x)
-            estaciones.append(e)
+    def of(estaciones:list[Estacion]) -> Red:
         st:set[int] = set()
         for e in estaciones:
             n = e.numero
@@ -46,7 +36,16 @@ class Red:
         for e in estaciones:
             pn[e.numero] = e    
         estaciones.sort()
-        return Red.of(estaciones,pnc,pn)
+        return Red(estaciones,pnc,pn)
+    
+    @staticmethod
+    def of_file(fichero: str) -> Red:
+        lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
+        estaciones:list[Estacion] = []
+        for x in lineas[1:]:
+            e = Estacion.parse(x)
+            estaciones.append(e)
+        return Red.of(estaciones)
     
     def __str__(self) -> str:
         s:str = '\n'.join(str(e) for e in self.estaciones)
@@ -107,13 +106,8 @@ class Red:
         
     @property
     def estacion_con_mas_bicis_disponibles(self) -> Estacion:
-        it:Iterator[Estacion] = iter(self.estaciones)
-        r:Estacion
-        try:
-            r = next(it)
-        except StopIteration:
-            check_state(False,'El iterable está vacío')
-        for e in it:
+        r:Estacion = self.estaciones[0]
+        for e in self.estaciones[1:]:
             if e.free_bikes < r.free_bikes :
                 r = e  
         return r

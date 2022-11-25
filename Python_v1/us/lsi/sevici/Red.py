@@ -25,19 +25,18 @@ class Red:
         self.__por_numero:dict[int,Estacion] = por_numero
     
     @staticmethod
-    def of(e:list[Estacion],por_nombre_compuesto:dict[str,Estacion],
-           por_numero:dict[int,Estacion]) -> Red:
-        return Red(e,por_nombre_compuesto,por_numero)
+    def of(estaciones:list[Estacion]) -> Red:
+        check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
+        pnc:dict[str,Estacion] = {e.nombre_compuesto:e for e in estaciones}
+        pn:dict[int,Estacion] = {e.numero:e for e in estaciones}
+        estaciones.sort()
+        return Red(estaciones,pnc,pn)
     
     @staticmethod
     def of_file(fichero: str) -> Red:
         lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
         estaciones:list[Estacion] = [Estacion.parse(x) for x in lineas[1:]]
-        check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
-        pnc = {e.nombre_compuesto:e for e in estaciones}
-        pn = {e.numero:e for e in estaciones}
-        estaciones.sort()
-        return Red.of(estaciones,pnc,pn)
+        return Red.of(estaciones)
     
     def __str__(self) -> str:
         return strfiter(self.__estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
