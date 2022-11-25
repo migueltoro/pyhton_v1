@@ -5,7 +5,7 @@ Created on 25 jul. 2020
 '''
 
 from typing import OrderedDict,Iterable,Optional
-from us.lsi.tools.File import lineas_de_fichero, encoding
+from us.lsi.tools.File import lineas_de_fichero, encoding, absolute_path
 from us.lsi.tools.Dict import strfdict, invert_dict_set
 from us.lsi.tools.Iterable import flat_map,first,distinct,strfiter,grouping_set,groups_size,count_if
 from collections import Counter
@@ -15,7 +15,7 @@ from statistics import mean
 sep = r'[ ,;.\n():?!\"]'
 
 def palabras_huecas() -> set[str]:
-    lns = lineas_de_fichero("../../../resources/palabras_huecas.txt")
+    lns = lineas_de_fichero(absolute_path("/resources/palabras_huecas.txt"))
     return {p for p in lns}
 
 def palabras_no_huecas(file: str) -> Iterable[str]:
@@ -72,12 +72,11 @@ def palabras_frecuentes(file:str, k:int)->list[str]:
 
     
 if __name__ == '__main__':
-    print(encoding("../../../resources/quijote.txt"))
-#    print(strfiter(palabras_no_huecas("../../../resources/quijote.txt"),sep='\n'))
-    print(strfdict(palabras_por_frecuencias("../../../resources/quijote.txt"),sep='\n'))
-#    print(numero_de_palabras_distintas_no_huecas("../../../resources/quijote.txt"))
-#    print(strfiter(palabras_por_frecuencias("../../../resources/quijote.txt").items(),sep='\n',pf='',sf=''))
-    print(strfiter(palabra_en_lineas("../../../resources/quijote.txt").items(),sep='\n',prefix='',suffix=''))
-#    print(palabras_frecuentes("../../../resources/quijote.txt"))
-    print(palabras_frecuentes("../../../resources/quijote.txt", 10))
+    print(encoding(absolute_path("/resources/quijote.txt")))
+    print(strfiter(palabras_no_huecas(absolute_path("/resources/quijote.txt")),sep='\n'))
+    print(strfdict(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")),sep='\n'))
+    print(numero_de_palabras_distintas_no_huecas(absolute_path("/resources/quijote.txt")))
+    print(strfiter(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(strfiter(palabra_en_lineas(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(palabras_frecuentes(absolute_path("/resources/quijote.txt"), 10))
     
