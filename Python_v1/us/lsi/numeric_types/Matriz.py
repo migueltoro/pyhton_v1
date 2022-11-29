@@ -70,8 +70,8 @@ class Matriz(Generic[E]):
         return '\n'.join(fs(f) for f in range(self.nf))
 
 if __name__ == '__main__':
-    print(encoding(absolute_path('/ficheros/matriz1.txt')))
-    m:Matriz[str]= Matriz.of_file(absolute_path('/ficheros/matriz1.txt'))
+    print(encoding(absolute_path('/resources/matriz1.txt')))
+    m:Matriz[str]= Matriz.of_file(absolute_path('/resources/matriz1.txt'))
     print(m)
     print('_________________')
     print(m.traspuesta)

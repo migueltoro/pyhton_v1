@@ -15,6 +15,8 @@ from us.lsi.numeric_types.Field import FieldElement,Field,FractionField
 from us.lsi.numeric_types.Matriz import Matriz
 
 S = TypeVar('S',bound=FieldElement)
+
+identity = lambda x:x
    
 class Matriz_field(Matriz[S]):
     
@@ -23,12 +25,13 @@ class Matriz_field(Matriz[S]):
         self.field = field
     
     @staticmethod
-    def of_datos(datos:list[list[S]],field: Field[S])->Matriz_field[S]:
+    def of_datos(datos: list[list[S]],field:Field[S]):
         return Matriz_field(datos,field)
     
     @staticmethod
-    def of_file_type(file:str,field:Field[S])->Matriz_field[S]:
-        return Matriz_field.of_datos(Matriz.of_file(file).map(lambda x: field.of_file(x)).datos,field)
+    def of_file_field(file:str,field:Field[S],delimiter=' ',encoding='utf-8')->Matriz_field[S]:
+        m:Matriz[S]= Matriz.of_file(file,lambda x:field.parse(x),delimiter,encoding)
+        return Matriz_field(m.datos,field)
     
     @staticmethod
     def matriz_unidad(nf:int,field:Field[S])->Matriz_field[S]:
@@ -64,8 +67,7 @@ class Matriz_field(Matriz[S]):
     
     def __sub__(self,other:Matriz_field[S])->Matriz_field[S]:
         datos:list[list[S]] = [[self.get(f,c) - other.get(f,c) for c in range(self.nc)] for f in range(self.nf)]
-        return Matriz_field.of_datos(datos,self.field)
-    
+        return Matriz_field.of_datos(datos,self.field)  
 
     def __mul__(self,other:Matriz_field[S])->Matriz_field[S]:
         check_argument(self.nc == other.nf, f'No se pueden multiplicar')
@@ -81,11 +83,13 @@ class Matriz_field(Matriz[S]):
     @property
     def es_antisimetrica(self):
         indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf,self.nc) if p[0] >= p[1])
-        return all(self.get(i,j) == -self.get(j,i) for i,j in indices)
+        print(type(self.get(0,0)))
+        return all(self.get(i,j) == self.field.zero - self.get(j,i) for i,j in indices)
     
     @property
     def traza(self):
-        return sum((self.get(i,i) if i<self.nf and i<self.nc else Matriz_field.zero_data() for i in range(self.nf)),Fraction(0))
+        return sum((self.get(i,i) for i in range(self.nf) if i<self.nf and i<self.nc),self.field.zero)
+   
     @property
     def aumentada(self):
         one = self.field.one
@@ -152,17 +156,18 @@ class Matriz_field(Matriz[S]):
         return mi*v
 
 if __name__ == '__main__':
-    m2:Matriz_field[Fraction] = Matriz_field.of_file_type(absolute_path('/resources/matriz2.txt'),FractionField())
+    m2:Matriz_field[Fraction] = Matriz_field.of_file_field(absolute_path('/resources/matriz2.txt'),FractionField())
+    print(m2)
     print(m2.es_antisimetrica)
     print('_________________')
-    m3:Matriz_field[Fraction] = Matriz_field.of_file_type(absolute_path('/resources/matriz3.txt'),FractionField())
+    m3:Matriz_field[Fraction] = Matriz_field.of_file_field(absolute_path('/resources/matriz3.txt'),FractionField())
     print(m2+m3)
     print(m2-m3)
     print(m2*m3)
     print(m2**5)
     print(m3.traza)
     print('_________________')
-    m4:Matriz_field[Fraction] = Matriz_field.of_file_type(absolute_path('/resources/matriz6.txt'),FractionField())
+    m4:Matriz_field[Fraction] = Matriz_field.of_file_field(absolute_path('/resources/matriz6.txt'),FractionField())
     print(m4.solve)
     print('_________________')
     print(m4)

@@ -23,6 +23,10 @@ class Polinomio(Generic[S]):
         return Polinomio(coeficientes,field)
     
     @staticmethod
+    def of_value(v: S,field: Field[S]) -> Polinomio[S]:
+        return Polinomio([v],field)
+    
+    @staticmethod
     def of(field: Field[S],*n:S) -> Polinomio[S]:
         coeficientes = list(n)
         return Polinomio(coeficientes,field)
@@ -93,8 +97,8 @@ class Polinomio(Generic[S]):
         coeficientes = [self.coeficiente(i)*i for i in range(1,self.grado+1)]
         return Polinomio.of_list(coeficientes,self.field)
     
-    def integral(self,v:Fraction = Fraction(0,1))->Polinomio:
-        coeficientes:list[Fraction] = [v]+[self.coeficiente(i)/(i+1) for i in range(self.grado+1)]
+    def integral(self,v:S)->Polinomio:
+        coeficientes:list[S] = [v]+[self.coeficiente(i)/(i+1) for i in range(self.grado+1)]
         return Polinomio.of_list(coeficientes,self.field)
     
     def __str__(self) -> str:
@@ -108,7 +112,7 @@ if __name__ == '__main__':
     print(f'p0 = {p0}')
     print(f'p1 = {p1}')
     print(f'Derivada de p1 = {p1.derivada}')
-    print(f'Integral de p1 = {p1.integral()}')
+    print(f'Integral de p1 = {p1.integral(Fraction(0))}')
     print(f'Valor de p0 en 1 = {p0.value(Fraction(1,1))}')
     print(f'p1 = {p1}')
     print(f'p0*p1 = {p0 * p1}')
@@ -121,7 +125,7 @@ if __name__ == '__main__':
     print(f'p2 = {p2}')
     print(f'p3 = {p3}')
     print(f'Derivada de p3 = {p3.derivada}')
-    print(f'Integral de p3 = {p3.integral()}')
+    print(f'Integral de p3 = {p3.integral(complex(0))}')
     print(f'Valor de p2 en 1 = {p2.value(complex(1,1))}')
     print(f'p1 = {p2}')
     print(f'p2*p3 = {p2 * p3}')
@@ -134,7 +138,7 @@ if __name__ == '__main__':
     print(f'p4 = {p4}')
     print(f'p5 = {p5}')
     print(f'Derivada de p5 = {p5.derivada}')
-    print(f'Integral de p5 = {p5.integral()}')
+    print(f'Integral de p5 = {p5.integral(0.)}')
     print(f'Valor de p4 en 1 = {p4.value(1)}')
     print(f'p5 = {p5}')
     print(f'p4*p5 = {p4 * p5}')

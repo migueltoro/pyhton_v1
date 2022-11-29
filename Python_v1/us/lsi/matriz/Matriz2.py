@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import TypeVar, Generic, Callable
 from us.lsi.tools import Preconditions
 from us.lsi.tools.File import lineas_de_csv, encoding, absolute_path
-from pickle import FALSE
+
 
 E = TypeVar("E")
 
@@ -101,7 +101,7 @@ class Matriz(Generic[E]):
         return r
            
 if __name__ == '__main__':
-    m3:Matriz[int] = Matriz.of_file(absolute_path('/ficheros/matriz4.txt'),lambda x:int(x))
+    m3:Matriz[int] = Matriz.of_file(absolute_path('/resources/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
     print(m3.traspuesta)     

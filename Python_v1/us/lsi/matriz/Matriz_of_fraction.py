@@ -52,10 +52,10 @@ class Matriz_of_fraction(Matriz[Fraction]):
         return Matriz_of_fraction.of(datos)
     
 if __name__ == '__main__':
-    m3:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/ficheros/matriz4.txt'))
+    m3:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz4.txt'))
     print(m3)
     print('----------------')
-    m5:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/ficheros/matriz7.txt'))
+    m5:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz7.txt'))
     print(m5)
     print('----------------')
     print(m3+m5)

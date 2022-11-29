@@ -43,9 +43,9 @@ class Field(Generic[R]):
     @property 
     def zero(self)->R:
         pass
-    @staticmethod
-    def of_file(text:str)->R:
+    def parse(self,text:str)->R:
         pass
+    
     
 class FractionField(Field[Fraction]):
     
@@ -55,8 +55,7 @@ class FractionField(Field[Fraction]):
     @property 
     def zero(self)->Fraction:
         return Fraction(0)
-    @staticmethod
-    def of_file(text:str)->Fraction:
+    def parse(self,text:str)->Fraction:
         return Fraction(text)
 
 class ComplexField(Field[complex]):
@@ -67,8 +66,7 @@ class ComplexField(Field[complex]):
     @property 
     def zero(self)->complex:
         return complex(0,0)
-    @staticmethod
-    def of_file(text:str)->complex:
+    def parse(self,text:str)->complex:
         return complex(text)
     
 class FloatField(Field[float]):
@@ -78,9 +76,8 @@ class FloatField(Field[float]):
         return 1.
     @property 
     def zero(self)->float:
-        return 0.
-    @staticmethod
-    def of_file(text:str)->float:
+        return 0. 
+    def parse(self,text:str)->float:
         return float(text) 
        
 

@@ -4,13 +4,13 @@ Created on 10 oct 2022
 @author: migueltoro
 '''
 from us.lsi.tools.File import absolute_path
-from novedades.generic_types.Matriz_field import Matriz_field
+from us.lsi.numeric_types.Matriz_field import Matriz_field
 from fractions import Fraction
-from novedades.generic_types.Field import FractionField,Field
+from us.lsi.numeric_types.Field import FractionField,Field
 
 if __name__ == '__main__':
     f: Field[Fraction] = FractionField()
-    m3:Matriz_field[Fraction] = Matriz_field.of_file_type(absolute_path('/ficheros/matriz4.txt'),f)
+    m3:Matriz_field[Fraction] = Matriz_field.of_file_field(absolute_path('/resources/matriz4.txt'),f)
     print(m3)
     print('----------------')
     m5:Matriz_field[Fraction] = Matriz_field.matriz_unidad(3, f)
