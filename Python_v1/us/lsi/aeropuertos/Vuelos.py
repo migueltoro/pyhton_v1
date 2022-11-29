@@ -11,47 +11,48 @@ from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
 
 class Vuelos:
-    __vuelos: Vuelos
+    __vuelos_class: Vuelos
     
     def __init__(self,vuelos: list[Vuelo])->None:
-        self._vuelos=vuelos
-        self._codigos_vuelos = {v.codigo:v for v in self._vuelos}
+        self.__vuelos=vuelos
+        self.__codigos_vuelos = {v.codigo:v for v in self.__vuelos}
     
     @staticmethod  
     def of()->Vuelos:
-        return Vuelos.__vuelos
+        return Vuelos.__vuelos_class
 
     @staticmethod  
-    def lee_vuelos(fichero: str)->Vuelos:
-        vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(fichero)]
-        Vuelos.__vuelos = Vuelos(vuelos)
-        return Vuelos.__vuelos
+    def of_file(fichero: str)->Vuelos:
+        vuelos:list[Vuelo] = [Vuelo.of_file(x) for x in lineas_de_fichero(fichero)]
+        Vuelos.__vuelos_class = Vuelos(vuelos)
+        return Vuelos.__vuelos_class
+    
     @property
     def lista(self)->list[Vuelo]:
-        return self._vuelos
+        return self.__vuelos
     
     def vuelo_codigo(self,codigo:str)->Vuelo:
-        return self._codigos_vuelos[codigo]
+        return self.__codigos_vuelos[codigo]
     
     def vuelo_index(self,index:int)->Vuelo:
-        return self._vuelos[index]
+        return self.__vuelos[index]
 
     @property
     def size(self)->int:
-        return len(self._vuelos)
+        return len(self.__vuelos)
 
     def add_vuelo(self,v:Vuelo)->None:
-        self._vuelos.append(v)
+        self.__vuelos.append(v)
     
     def remove_vuelo(self,v:Vuelo)->None:
-        self._vuelos.remove(v)
+        self.__vuelos.remove(v)
         
     def __str__(self):
-        txt = "\n\t".join(str(a) for a in self._vuelos)
+        txt = "\n\t".join(str(a) for a in self.__vuelos)
         return f'Vuelos\n\t{txt}'
 
 if __name__ == '__main__':
-    Aeropuertos.lee_aeropuertos(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.lee_aerolineas(absolute_path("/resources/aerolineas.csv"))
-    Vuelos.lee_vuelos(absolute_path("/resources/vuelos.csv"))
+    Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
+    Aerolineas.of_file(absolute_path("/resources/ocupaciones_vuelos.csv"))
+    Vuelos.of_file(absolute_path("/resources/__vuelos.csv"))
     print(Vuelos.of().vuelo_codigo('MX0435'))

@@ -47,11 +47,11 @@ class Prestamo:
     ''' 
     
     @staticmethod
-    def parse(text:str)->Prestamo:
+    def of_file(text:str)->Prestamo:
         ls:list[str] = text.split(',')
         fecha:date = datetime.strptime(ls[3],"%Y-%m-%d").date()
         return Prestamo.of(ls[0],int(ls[1]),ls[2],fecha,Tipo_prestamo[ls[4]])       
     
 if __name__ == '__main__':
-    p = Prestamo.parse('978-1-04-876475-8,1,52240178W,2020-02-03,MENSUAL')
+    p = Prestamo.of_file('978-1-04-876475-8,1,52240178W,2020-02-03,MENSUAL')
     print(p)

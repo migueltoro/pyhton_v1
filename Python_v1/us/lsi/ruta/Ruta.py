@@ -22,7 +22,7 @@ class Ruta:
     
     @staticmethod
     def of_file(fichero: str) -> Ruta: 
-        marcas = [Marca.parse(x) for x in iterable_de_csv(fichero)]
+        marcas = [Marca.of_file(x) for x in iterable_de_csv(fichero)]
         return Ruta(marcas)
     
     @property

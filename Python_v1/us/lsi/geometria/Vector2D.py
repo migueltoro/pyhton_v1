@@ -21,7 +21,7 @@ class Vector2D:
         return Vector2D(x,y)
     
     @staticmethod
-    def parse(txt:str) -> Vector2D:
+    def of_file(txt:str) -> Vector2D:
         txt = txt[1:-1]
         x,y = txt.split(',')
         return Vector2D(float(x),float(y))
@@ -100,7 +100,7 @@ class Vector2D:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
 
 if __name__ == '__main__':
-    v0 = Vector2D.parse('(-23.4,67')
+    v0 = Vector2D.of_file('(-23.4,67')
     print(v0)
     v = Vector2D.of(1.,1.)
     print(v)

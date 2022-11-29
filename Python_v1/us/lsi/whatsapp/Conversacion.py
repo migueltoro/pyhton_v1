@@ -8,160 +8,166 @@ from __future__ import annotations
 from typing import TypeVar, Callable, Optional
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
-from us.lsi.tools.Iterable import strfiter, grouping_list, groups_size, flat_map
-from us.lsi.whatsapp.UsuarioPalabra import UsuarioPalabra
+from us.lsi.tools.Iterable import strfiter, grouping_list, groups_size,\
+    grouping_set
 from datetime import date
-import re
 from us.lsi.tools import Graphics
+from collections import Counter
+from functools import reduce
 
 P = TypeVar('P')
 
 week_days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 n_week_days = {"Monday":0,"Tuesday":1,"Wednesday":2,"Thursday":3,"Friday":4,"Saturday":5,"Sunday":6}
-sep = r'[ ,;.\n():?!\"]'
 
 
 class Conversacion:
     
-    def __init__(self, mensajes: list[Mensaje], palabras_huecas: set[str]):
+    def __init__(self, mensajes: list[Mensaje],ph:set[str]):
         self.__mensajes: list[Mensaje] = mensajes
-        self.__palabras_huecas: set[str] = palabras_huecas
-        self.__usuarios: set[str] = {m.usuario for m in self.__mensajes}
+        self.__palabras_huecas = ph
+        self.__usuarios: Optional[set[str]] = None
         self.__mensajes_por_usuario: Optional[dict[str,list[Mensaje]]] = None
-        self.__numero_de_mensajes_por_usuario: Optional[dict[str,int]] = None
-        self.__frecuencia_de_palabras: Optional[dict[str,int]] = None
+        self.__numero_de_mensajes_por_usuario: Optional[Counter[str]] = None
+        self.__frecuencia_de_palabras: Optional[Counter[str]] =  None
         self.__numero_de_palabras: Optional[int] = None
-        self.__frecuencia_de_palabras_por_usuario: Optional[dict[UsuarioPalabra,int]] = None
-        self.__numero_de_palabras_por_usuario: Optional[dict[str,int]] = None
-        self.__frecuencia_de_palabras_por_resto_de_usuarios: Optional[dict[UsuarioPalabra,int]] = None
-        self.__numero_de_palabras_por_resto_de_usuarios: Optional[dict[str,int]] = None
-
+        self.__frecuencia_de_palabras_por_usuario: Optional[Counter[tuple[str,str]]] = None
+        self.__numero_de_palabras_por_usuario: Optional[Counter[str]] = None
+        self.__palabras_de_usuario: Optional[dict[str,set[str]]]  = None
+        self.__frecuencia_de_palabras_por_resto_de_usuarios: Optional[Counter[tuple[str,str]]] = None
+        self.__numero_de_palabras_por_resto_de_usuarios: Optional[Counter[str]] = None
+        
     @staticmethod   
-    def parse(file: str) -> Conversacion:
-        ms = (Mensaje.parse(m) for m in lineas_de_fichero(file))
+    def of_file(file: str) -> Conversacion:
+        fph: str = absolute_path('/resources/palabras_huecas.txt')
+        ph = {p for p in lineas_de_fichero(fph) if len(p) >0}
+        ms = (Mensaje.parse(m,ph) for m in lineas_de_fichero(file))
         mensajes = [m for m in ms if m is not None]
-        palabrasHuecas = {p for p in lineas_de_fichero("../../../resources/palabras_huecas.txt") if len(p) >0}
-        return Conversacion(mensajes,palabrasHuecas)
+        return Conversacion(mensajes,ph)
     
     def __str__(self) -> str:
         it1 = strfiter(self.palabras_huecas)
         it2 = strfiter(self.mensajes,sep='\n',prefix='',suffix='')
-        return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(it1, it2)       
- 
-    def _mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> dict[P,list[Mensaje]]:
-        return grouping_list(self.mensajes,key=key)
-           
-    def _numero_de_mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> dict[P,int]:
-        return groups_size(self.mensajes,key=key)
+        return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(it1, it2) 
     
     @property
-    def mensajes(self) -> list[Mensaje]:
+    def mensajes(self)->list[Mensaje]:
         return self.__mensajes
     
     @property
-    def palabras_huecas(self) -> set[str]:
+    def palabras_huecas(self)->set[str]:
         return self.__palabras_huecas
     
+    def __mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> dict[P,list[Mensaje]]:
+        return grouping_list(self.mensajes,key=key)
+           
+    def __numero_de_mensajes_por_propiedad(self, key: Callable[[Mensaje],P]) -> Counter[P]:
+        return Counter(groups_size(self.mensajes,key=key))
+    
     @property
-    def usuarios(self) -> set[str]:
+    def usuarios(self)->set[str]:
+        if self.__usuarios is None:
+            self.__usuarios = {m.usuario for m in self.mensajes}
         return self.__usuarios
-       
+    
     @property
-    def mensajes_por_usuario(self) -> dict[str,list[Mensaje]]:
+    def mensajes_por_usuario(self)->dict[str,list[Mensaje]]:
         if self.__mensajes_por_usuario is None:
-            self.__mensajes_por_usuario = self._mensajes_por_propiedad(key=lambda m: m.usuario)
-            return self.__mensajes_por_usuario
-        else:
-            return self.__mensajes_por_usuario
+            self.__mensajes_por_usuario = self.__mensajes_por_propiedad(key=lambda m: m.usuario)
+        return self.__mensajes_por_usuario
     
     @property
-    def mensajes_por_dia_de_semana(self) -> dict[str,list[Mensaje]]:
-        return  self._mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
-    
-    @property
-    def mensajes_por_fecha(self) -> dict[date,list[Mensaje]]:
-        return self._mensajes_por_propiedad(lambda m: m.fecha) 
-    
-    @property
-    def mensajes_por_hora(self) -> dict[int,list[Mensaje]]:
-        return self._mensajes_por_propiedad(lambda m: m.hora.hour)
-    
-    @property
-    def numero_de_mensajes_por_usuario(self) -> dict[str,int]:
+    def numero_de_mensajes_por_usuario(self)->Counter[str]:
         if self.__numero_de_mensajes_por_usuario is None:
-            self.__numero_de_mensajes_por_usuario = self._numero_de_mensajes_por_propiedad(lambda m: m.usuario)
+            self.__numero_de_mensajes_por_usuario = self.__numero_de_mensajes_por_propiedad(lambda m: m.usuario)
         return self.__numero_de_mensajes_por_usuario
     
     @property
-    def numero_de_mensajes_por_dia_de_semana(self) -> dict[str,int]:
-        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
-    
-    @property
-    def numero_de_mensajes_por_fecha(self) -> dict[date,int]:
-        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.fecha) 
-    
-    @property
-    def numero_de_mensajes_por_hora(self) -> dict[int,int]:
-        return self._numero_de_mensajes_por_propiedad(key = lambda m: m.hora.hour) 
-    
-    @property
-    def frecuencia_de_palabras(self) -> dict[str,int]:
+    def frecuencia_de_palabras(self)->dict[str,int]:
         if self.__frecuencia_de_palabras is None:
-            ms_tex = (m.texto for m in self.mensajes)
-            ps = flat_map(ms_tex,lambda x: re.split(sep, x))
-            palabras = (p for p in ps if len(p) > 0 and p not in self.palabras_huecas)
-            self.__frecuencia_de_palabras = groups_size(palabras,key=lambda x:x)
+            c:Counter[str] = Counter()
+            self.__frecuencia_de_palabras =  reduce(lambda x,y: x+y,(m.frecuencia_de_palabras for m in self.mensajes),c)
         return self.__frecuencia_de_palabras
     
     @property
-    def numero_de_palabras(self) -> int:
+    def numero_de_palabras(self)->int:
         if self.__numero_de_palabras is None:
             self.__numero_de_palabras = sum(n for _,n in self.frecuencia_de_palabras.items())
         return self.__numero_de_palabras
     
     @property
-    def frecuencia_de_palabras_por_usuario(self) -> dict[UsuarioPalabra,int]:
+    def frecuencia_de_palabras_por_usuario(self)->Counter[tuple[str,str]]:
         if self.__frecuencia_de_palabras_por_usuario is None:
-            ms_us_tex = ((m.usuario,m.texto) for m in self.mensajes)
-            plsu = (UsuarioPalabra.of(u,p) for u,t in ms_us_tex for p in re.split(sep,t))
-            plsuf = (pu for pu in plsu if len(pu.palabra) > 0 and pu.palabra not in self.palabras_huecas)
-            self.__frecuencia_de_palabras_por_usuario = groups_size(plsuf)
+            cv: Counter[tuple[str,str]] = Counter()
+            cf:Callable[[Counter[str],str],Counter[tuple[str,str]]] = lambda c,u: Counter({(u,p):f for p,f in c.items()})
+            self.__frecuencia_de_palabras_por_usuario = \
+                reduce(lambda x,y: x+y,(cf(m.frecuencia_de_palabras,m.usuario) for m in self.mensajes),cv)
         return self.__frecuencia_de_palabras_por_usuario
     
     @property
-    def numero_de_palabras_por_usuario(self) -> dict[str,int]:
-        return groups_size(self.frecuencia_de_palabras_por_usuario.items(),key=lambda e:e[0].usuario)
+    def numero_de_palabras_por_usuario(self)->Counter[str]:     
+        if self.__numero_de_palabras_por_usuario is None:
+            self.__numero_de_palabras_por_usuario = \
+                Counter(groups_size(self.frecuencia_de_palabras_por_usuario.items(), \
+                                key=lambda e:e[0][0],value=lambda e:e[1]))                              
+        return self.__numero_de_palabras_por_usuario
     
-    @property     
-    def frecuencia_de_palabras_por_resto_de_usuarios(self) -> dict[UsuarioPalabra,int]:
+    @property
+    def palabras_de_usuario(self)->dict[str,set[str]]:
+        if self.__palabras_de_usuario is None:
+            self.__palabras_de_usuario  = \
+                grouping_set(self.frecuencia_de_palabras_por_usuario.keys(),key=lambda x:x[0],value=lambda x:x[1])
+        return self.__palabras_de_usuario
+    
+    @property
+    def frecuencia_de_palabras_por_resto_de_usuarios(self)->Counter[tuple[str,str]]:
         if self.__frecuencia_de_palabras_por_resto_de_usuarios is None:
-            fpal = ((up.usuario,up.palabra,f) for up,f in self.frecuencia_de_palabras_por_usuario.items())
-            d:dict[UsuarioPalabra,int] = {}
-            for u,p,f in fpal:
-                for x in self.usuarios:
-                    if x != u:
-                        up = UsuarioPalabra.of(x,p)
-                        d[up] = d.get(up,0) + f
-            self.__frecuencia_de_palabras_por_resto_de_usuarios = d
+            self.__frecuencia_de_palabras_por_resto_de_usuarios = \
+                Counter({(u,p):self.frecuencia_de_palabras[p]-self.frecuencia_de_palabras_por_usuario[(u,p)] \
+                     for u,p in self.frecuencia_de_palabras_por_usuario.keys()})
         return self.__frecuencia_de_palabras_por_resto_de_usuarios
     
-    @property     
-    def numero_de_palabras_por_resto_de_usuarios(self) -> dict[str,int]:
-        return groups_size(self.frecuencia_de_palabras_por_resto_de_usuarios.items(),key=lambda e:e[0].usuario)
+    @property
+    def numero_de_palabras_por_resto_de_usuarios(self)->Counter[str]:
+        if self.__numero_de_palabras_por_resto_de_usuarios is None:
+            self.__numero_de_palabras_por_resto_de_usuarios = \
+                Counter(groups_size(self.frecuencia_de_palabras_por_resto_de_usuarios.items(), \
+                                key=lambda e:e[0][0],value=lambda e:e[1]))
+        return self.__numero_de_palabras_por_resto_de_usuarios      
     
-    def importancia_de_palabra(self,usuario:str,palabra:str) -> float:
-        return (self.frecuencia_de_palabras_por_usuario[UsuarioPalabra.of(usuario,palabra)] \
-                / self.numero_de_palabras_por_usuario[usuario]) * \
-                (self.numero_de_palabras_por_resto_de_usuarios[usuario] \
-                /self.frecuencia_de_palabras_por_resto_de_usuarios[UsuarioPalabra.of(usuario,palabra)])
+    @property
+    def mensajes_por_dia_de_semana(self) -> dict[str,list[Mensaje]]:
+        return  self.__mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
     
-    def palabras_caracteristicas_de_usuario(self,usuario:str,umbral:int) -> dict[str,float]:
-        r1 = (e for e in self.frecuencia_de_palabras_por_usuario.items() if e[0].usuario == usuario) 
-        r2 = (e for e in r1 if self.frecuencia_de_palabras.get(e[0].palabra,0) > umbral)
-        r3 = (e for e in r2 if e[1] > umbral)
-        r4 = (e for e in r3 if self.frecuencia_de_palabras_por_resto_de_usuarios.get(e[0],0) > umbral)
-        r5 = ((e[0].palabra,self.importancia_de_palabra(e[0].usuario,e[0].palabra)) for e in r4)
-        return {e[0]:e[1] for e in r5}
+    @property
+    def mensajes_por_fecha(self) -> dict[date,list[Mensaje]]:
+        return self.__mensajes_por_propiedad(lambda m: m.fecha) 
+    
+    @property
+    def mensajes_por_hora(self) -> dict[int,list[Mensaje]]:
+        return self.__mensajes_por_propiedad(lambda m: m.hora.hour)
+    
+    @property
+    def numero_de_mensajes_por_dia_de_semana(self) -> Counter[str]:
+        return self.__numero_de_mensajes_por_propiedad(key = lambda m: m.fecha.strftime('%A'))
+    
+    @property
+    def numero_de_mensajes_por_fecha(self) -> Counter[date]:
+        return self.__numero_de_mensajes_por_propiedad(key = lambda m: m.fecha) 
+    
+    @property
+    def numero_de_mensajes_por_hora(self) -> Counter[int]:
+        return self.__numero_de_mensajes_por_propiedad(key = lambda m: m.hora.hour) 
+    
+    def importancia_de_palabra(self,usuario:str,palabra:str) -> float:             
+        return (self.frecuencia_de_palabras_por_usuario[(usuario,palabra)] \
+                * self.numero_de_palabras_por_resto_de_usuarios[usuario]) \
+                 / (self.numero_de_palabras_por_usuario[usuario] \
+                 * max(0.00001,self.frecuencia_de_palabras_por_resto_de_usuarios.get((usuario,palabra),0.00001)))
+    
+    def palabras_caracteristicas_de_usuario(self,usuario:str) -> dict[str,float]:
+        return {p:self.importancia_de_palabra(usuario, p) 
+                    for p in self.palabras_de_usuario[usuario] if self.importancia_de_palabra(usuario, p) >0}
     
     def diagrama_de_barras_mensajes_por_dia_de_semana(self,file_out:str) -> None: 
         ls:list[tuple[str,int]] = [x for x in self.numero_de_mensajes_por_dia_de_semana.items()] 
@@ -180,16 +186,22 @@ class Conversacion:
         Graphics.pie_chart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)
     
 if __name__ == '__main__':
-    c = Conversacion.parse(absolute_path("/resources/bigbangtheory_es.txt"))
+    c = Conversacion.of_file(absolute_path("/resources/bigbangtheory_es.txt"))
 #    print(c)    
     print(strfiter(c.numero_de_mensajes_por_usuario.items()))
+    print('___________')
     tsf = lambda e:'{0:s}={1}'.format(e[0],e[1])
     print(strfiter(c.numero_de_palabras_por_usuario.items(),key=tsf,sep='\n',prefix='',suffix=''))
+    print('___________')
     print(strfiter(c.numero_de_palabras_por_resto_de_usuarios.items(),key=tsf,sep='\n',prefix='',suffix=''))
+    print('___________')
     print(c.numero_de_palabras_por_resto_de_usuarios['Leonard'])
-#    c.diagrama_de_barras_mensajes_por_dia_de_semana("../../../ficheros/por_dia_de_semana_barras.html")
-#    c.diagrama_de_tarta_mensajes_por_dia_de_semana("../../../ficheros/por_dia_de_semana_tarta.html")
-    ls = [e for e in c.palabras_caracteristicas_de_usuario('Leonard',3).items()]
+    c.diagrama_de_barras_mensajes_por_dia_de_semana(absolute_path("/ficheros/por_dia_de_semana_barras.html"))
+    c.diagrama_de_tarta_mensajes_por_dia_de_semana(absolute_path("/ficheros/por_dia_de_semana_tarta.html"))
+    print('___________')
+    ls = [e for e in c.palabras_caracteristicas_de_usuario('Sheldon').items()]
     ls.sort(key= lambda e: e[1], reverse = True)
-    print(strfiter(ls,sep='\n'))
+    print(strfiter(ls,sep='\n',key=lambda x:f'{x[0]:15}{x[1]:.2f}',prefix='',suffix=''))
+    
+    
     

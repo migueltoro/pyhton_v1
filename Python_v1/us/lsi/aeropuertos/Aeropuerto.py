@@ -15,7 +15,7 @@ class Aeropuerto:
     nombre:str
     
     @staticmethod 
-    def parse(text: str)-> Aeropuerto:
+    def of_file(text: str)-> Aeropuerto:
         campos: list[str] = text.split(",")
         codigo: str = campos[2];
         ciudad: str = campos[3];

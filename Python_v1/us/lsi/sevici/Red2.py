@@ -43,7 +43,7 @@ class Red:
         lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
         estaciones:list[Estacion] = []
         for x in lineas[1:]:
-            e = Estacion.parse(x)
+            e = Estacion.of_file(x)
             estaciones.append(e)
         return Red.of(estaciones)
     
@@ -140,7 +140,7 @@ if __name__ == '__main__':
 #    print(numero)
 #    print(name)
     r = Red.of_file(absolute_path("/resources/estaciones.csv"))
-#    r.__add__(Estacion.parse('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
+#    r.__add__(Estacion.of_file('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
 #   print(r.estacion_de_numero(6).ubicacion.distancia_a())
     print(strfdict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))

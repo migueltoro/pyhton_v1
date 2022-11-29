@@ -37,15 +37,15 @@ class Biblioteca:
         self.__usuarios:list[Usuario] = \
             [Usuario.parse_usuario(u) for u in iterable_de_fichero(absolute_path(fu))]
         self.__libros: list[Libro] = \
-            [Libro.parse(p) for p in iterable_de_fichero(absolute_path(fl))]
+            [Libro.of_file(p) for p in iterable_de_fichero(absolute_path(fl))]
         self.__dict_libros:dict[str,Libro] = {lb.isbn:lb for lb in self.__libros}  
                 #diccionario de libros, las claves son los isbn
         self.__ejemplares:list[Ejemplar] = \
-            [Ejemplar.parse(e) for e in iterable_de_fichero(absolute_path(fe))]
+            [Ejemplar.of_file(e) for e in iterable_de_fichero(absolute_path(fe))]
         self.__dict_ejemplares:dict[tuple[str,int],Ejemplar] = {(e.isbn,e.codigo):e for e in self.__ejemplares}  
                 #diccionario de ejemplares, las claves son tuplas (isbn, codigo)
         self.__prestamos: list[Prestamo] = \
-            [Prestamo.parse(p) for p in iterable_de_fichero(absolute_path(fp))]
+            [Prestamo.of_file(p) for p in iterable_de_fichero(absolute_path(fp))]
         self.__dict_prestamos: dict[int,Prestamo] = {p.codigo_prestamo:p for p in self.__prestamos}
                 #diccionario de préstamos, las claves son los códigos
                 

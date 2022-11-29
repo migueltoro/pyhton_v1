@@ -25,7 +25,7 @@ class Vuelo:
     dia_semana: int
    
     @staticmethod 
-    def parse(text: str) -> Vuelo:
+    def of_file(text: str) -> Vuelo:
         campos: list[str] = text.split(",")
         codigo: str = campos[0]
         numero: str = campos[1]
@@ -70,5 +70,5 @@ class Vuelo:
             days[self.dia_semana])  
 
 if __name__ == '__main__':
-    v1: Vuelo = Vuelo.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")
+    v1: Vuelo = Vuelo.of_file("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")
     print(v1)

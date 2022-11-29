@@ -16,7 +16,7 @@ R = TypeVar('R')
 
 
 def invert_dict_list(d:dict[K,V | Iterable[V]]) -> dict[V,list[K]]:
-    fl = ((k,nv)  for k,v in d.items()  for nv in flat(v))
+    fl:Iterable[tuple[K,V]] = ((k,nv)  for k,v in d.items() for nv in flat(v))
     return grouping_list(fl,key=lambda e:e[1],value=lambda e:e[0])
 
 def invert_dict_set(d:dict[K,V | Iterable[V]]) -> dict[V,set[K]]:
