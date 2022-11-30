@@ -44,9 +44,9 @@ class Intervalo:
 
 if __name__ == '__main__':
     linea1 = '00:00:00,36.74991256557405,-5.147951105609536,712.2000122070312'.split(',')
-    m1 = Marca.of_file(linea1)
+    m1 = Marca.parse(linea1)
     linea2 = '00:00:30,36.75008556805551,-5.148005923256278,712.7999877929688'.split(',')
-    m2 = Marca.of_file(linea2)
+    m2 = Marca.parse(linea2)
     it = Intervalo.of(m1,m2)
     print(it)
     print(it.desnivel)

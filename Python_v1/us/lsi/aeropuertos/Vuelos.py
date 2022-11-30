@@ -23,7 +23,7 @@ class Vuelos:
 
     @staticmethod  
     def of_file(fichero: str)->Vuelos:
-        vuelos:list[Vuelo] = [Vuelo.of_file(x) for x in lineas_de_fichero(fichero)]
+        vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(fichero)]
         Vuelos.__vuelos_class = Vuelos(vuelos)
         return Vuelos.__vuelos_class
     

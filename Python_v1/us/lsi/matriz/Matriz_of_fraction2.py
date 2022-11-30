@@ -30,10 +30,11 @@ class Matriz_of_fraction(Matriz[Fraction]):
     #===========================================================================
     @property
     def es_antisimetrica(self)->bool:
-        r1:bool = True
+        r:bool = True
         for f in range(self.nf):
             for c in range(self.nc):
-                if not self.get(f, c) != -self.get(f, c):
+                r = self.get(f, c) == -self.get(f, c)
+                if not r:
                     r1 = False
                     break
         return r1
@@ -76,6 +77,9 @@ class Matriz_of_fraction(Matriz[Fraction]):
     
 
 if __name__ == '__main__':
+    m2:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz2.txt'))
+    print(m2)
+    print(m2.es_antisimetrica)
     m3:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz4.txt'))
     print(m3)
     print('----------------')

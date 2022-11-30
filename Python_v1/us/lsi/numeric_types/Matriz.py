@@ -66,7 +66,7 @@ class Matriz(Generic[E]):
         return self.datos == other.datos
            
     def __str__(self) -> str:
-        fs:Callable[[int],str] = lambda f:' '.join(f'{str(x):>5s}' for x in self.datos[f])
+        fs:Callable[[int],str] = lambda f:' '.join(f'{str(x):s}' for x in self.datos[f])
         return '\n'.join(fs(f) for f in range(self.nf))
 
 if __name__ == '__main__':

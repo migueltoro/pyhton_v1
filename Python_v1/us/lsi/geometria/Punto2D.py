@@ -59,7 +59,7 @@ class Punto2D(Objeto2D):
         return Punto2D(x,y)
     
     @staticmethod
-    def of_file(linea:str) -> Punto2D:
+    def parse(linea:str) -> Punto2D:
         linea = linea[1:-1]
         x,y = linea.split(',')
         return Punto2D(float(x),float(y))
@@ -154,10 +154,10 @@ class Recta2D:
 
     
 if __name__ == '__main__':
-    p = Punto2D.of_file('(2.3,-4.55)')
-    p1 = Punto2D.of_file('(2.3,4.55)')
-    p3 = Punto2D.of_file('(3.,4.)')
-    p4 = Punto2D.of_file('(0.,0.)')
+    p = Punto2D.parse('(2.3,-4.55)')
+    p1 = Punto2D.parse('(2.3,4.55)')
+    p3 = Punto2D.parse('(3.,4.)')
+    p4 = Punto2D.parse('(0.,0.)')
     print(p)
     print(p.cuadrante)
     print(p1.cuadrante)

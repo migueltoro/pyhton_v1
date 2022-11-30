@@ -20,7 +20,7 @@ class Marca:
         return Marca(tiempo,coordenadas)
         
     @staticmethod   
-    def of_file(linea: list[str]) -> Marca:
+    def parse(linea: list[str]) -> Marca:
         tiempo,latitud,longitud,altitud = linea
         t:time = datetime.strptime(tiempo,'%H:%M:%S').time()
         coordenadas = Coordenadas3D.of(float(latitud), float(longitud), float(altitud)/1000)
@@ -49,7 +49,7 @@ class Marca:
 
 if __name__ == '__main__':
     linea = '00:00:00,36.74991256557405,-5.147951105609536,712.2000122070312'.split(',')
-    m = Marca.of_file(linea)
+    m = Marca.parse(linea)
     print(m)
     m2 = Marca.of(m.tiempo,m.latitud,m.longitud,m.altitud)
     print(m2)

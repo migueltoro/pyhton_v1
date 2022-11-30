@@ -30,7 +30,7 @@ class Libro:
     Xiomara Brunilda Menéndez Cabeza,628,20.59,2002-07-05,7231
     '''
     @staticmethod 
-    def of_file(text:str)->Libro:
+    def parse(text:str)->Libro:
         partes:list[str] = text.split(',')
         isbn: str = partes[0]
         titulo:str = partes[1]

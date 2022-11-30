@@ -43,7 +43,7 @@ class Red:
         lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
         estaciones:list[Estacion] = []
         for x in lineas[1:]:
-            e = Estacion.of_file(x)
+            e = Estacion.parse(x)
             estaciones.append(e)
         return Red.of(estaciones)
     
@@ -108,7 +108,7 @@ class Red:
     def estacion_con_mas_bicis_disponibles(self) -> Estacion:
         r:Estacion = self.estaciones[0]
         for e in self.estaciones[1:]:
-            if e.free_bikes < r.free_bikes :
+            if e.free_bikes > r.free_bikes :
                 r = e  
         return r
     

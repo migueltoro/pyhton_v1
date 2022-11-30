@@ -36,56 +36,72 @@ class FieldElement(Protocol[E]):
 R = TypeVar("R",bound=FieldElement)
 
 class Field(Generic[R]):
-            
-    @property
-    def one(self)->R:
+    
+    @staticmethod       
+    def one()->R:
         pass
-    @property 
-    def zero(self)->R:
+    @staticmethod 
+    def zero()->R:
         pass
-    def parse(self,text:str)->R:
+    @staticmethod
+    def parse(text:str)->R:
+        pass
+    @staticmethod
+    def str(v:R)->str:
         pass
     
     
 class FractionField(Field[Fraction]):
     
-    @property
-    def one(self)->Fraction:
+    @staticmethod   
+    def one()->Fraction:
         return Fraction(1)
-    @property 
-    def zero(self)->Fraction:
+    @staticmethod 
+    def zero()->Fraction:
         return Fraction(0)
-    def parse(self,text:str)->Fraction:
+    @staticmethod   
+    def parse(text:str)->Fraction:
         return Fraction(text)
+    @staticmethod   
+    def str(v:Fraction)->str:
+        return str(v)
 
 class ComplexField(Field[complex]):
     
-    @property
-    def one(self)->complex:
+    @staticmethod
+    def one()->complex:
         return complex(1,0)
-    @property 
-    def zero(self)->complex:
+    @staticmethod
+    def zero()->complex:
         return complex(0,0)
-    def parse(self,text:str)->complex:
+    @staticmethod
+    def parse(text:str)->complex:
         return complex(text)
+    @staticmethod
+    def str(v:complex)->str:
+        return f'{v.real:.2f}{"+"if v.imag > 0 else ""}{v.imag:.2f}i'
     
 class FloatField(Field[float]):
     
-    @property
-    def one(self)->float:
+    @staticmethod
+    def one()->float:
         return 1.
-    @property 
-    def zero(self)->float:
-        return 0. 
-    def parse(self,text:str)->float:
-        return float(text) 
+    @staticmethod 
+    def zero()->float:
+        return 0.
+    @staticmethod 
+    def parse(text:str)->float:
+        return float(text)
+    @staticmethod
+    def str(v:float)->str:
+        return f'{v:.2f}'
        
 
 if __name__ == '__main__':
-    f:Fraction = FractionField().one
+    f:Fraction = FractionField().one()
     print(f)
-    cf:complex = ComplexField().one
+    cf:complex = ComplexField().one()
     print(cf)
-    ff:float = FloatField().one
+    ff:float = FloatField().one()
     print(ff)
     

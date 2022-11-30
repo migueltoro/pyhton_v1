@@ -23,7 +23,7 @@ class Ejemplar:
     978-0-04-228215-2,0,2019-01-29
     '''
     @staticmethod
-    def of_file(text:str)->Ejemplar:
+    def parse(text:str)->Ejemplar:
         partes:list[str] = text.split(',')
         isbn:str = partes[0]
         codigo:int = int(partes[1])

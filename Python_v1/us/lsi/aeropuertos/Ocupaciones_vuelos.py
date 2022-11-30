@@ -25,7 +25,7 @@ class Ocupaciones_vuelos:
 
     @staticmethod
     def of_file(fichero:str)->Ocupaciones_vuelos:
-        r:list[Ocupacion_vuelo] = [Ocupacion_vuelo.of_file(x) for x in lineas_de_fichero(fichero)]
+        r:list[Ocupacion_vuelo] = [Ocupacion_vuelo.parse(x) for x in lineas_de_fichero(fichero)]
         Ocupaciones_vuelos.__ocupaciones_vuelos_class = Ocupaciones_vuelos(r)
         return Ocupaciones_vuelos.__ocupaciones_vuelos_class
     

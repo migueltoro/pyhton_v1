@@ -58,7 +58,7 @@ def ejemplar_random(libro:Libro, codigo:int) -> str:
     return f'{libro.isbn},{codigo},{fecha}'
 
 def ejemplares_random(k:int,file_libros:str,file:str):
-    libros: Iterable[Libro] = (Libro.of_file(x) for x in iterable_de_fichero(file_libros))
+    libros: Iterable[Libro] = (Libro.parse(x) for x in iterable_de_fichero(file_libros))
     f = lambda lb: (ejemplar_random(lb,cd) for cd in range(k))
     r:Iterable[str] = flat_map(libros,f)
     write_iterable(file,r)
@@ -69,7 +69,7 @@ def prestamo_random(ejemplar:Ejemplar,usuario:Usuario)->str:
     return f'{ejemplar.isbn},{ejemplar.codigo},{usuario.dni},{fecha},{tipo}'
     
 def prestamos_random(file_ejemplares:str,file_usuarios:str,file:str):
-    ejemplares: Iterable[Ejemplar] = (Ejemplar.of_file(x) for x in iterable_de_fichero(file_ejemplares) 
+    ejemplares: Iterable[Ejemplar] = (Ejemplar.parse(x) for x in iterable_de_fichero(file_ejemplares) 
                                       if random.uniform(0.,1.) > 0.6)
     usuarios: Iterable[Usuario] = (Usuario.parse_usuario(x) for x in iterable_de_fichero(file_usuarios)
                                     if random.uniform(0.,1.) > 0.6)

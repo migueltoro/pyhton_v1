@@ -17,7 +17,7 @@ from us.lsi.numeric_types.Matriz import Matriz
 S = TypeVar('S',bound=FieldElement)
 
 identity = lambda x:x
-   
+
 class Matriz_field(Matriz[S]):
     
     def __init__(self,datos: list[list[S]], field:Field[S])->None:
@@ -35,23 +35,27 @@ class Matriz_field(Matriz[S]):
     
     @staticmethod
     def matriz_unidad(nf:int,field:Field[S])->Matriz_field[S]:
-        one = field.one
-        zero = field.zero
+        one:S = field.one()
+        zero:S = field.zero()
         datos:list[list[S]] = [[one if c == f else zero for c in range(nf)] for f in range(nf)]
         m = Matriz_field(datos,field)
         return m
     
     @staticmethod
     def matriz_zero(nf:int,field:Field[S])->Matriz_field[S]:
-        zero = field.zero
+        zero:S = field.zero()
         datos:list[list[S]] = [[zero for _ in range(nf)] for _ in range(nf)]
         return Matriz_field(datos,field)
+    
+    def __str__(self) -> str:
+        fs:Callable[[int],str] = lambda f:' '.join(f'{self.field.str(x):s}' for x in self.datos[f])
+        return '\n'.join(fs(f) for f in range(self.nf))
        
     def __cambia_filas(self,f1:int,f2:int)->None:
         self.datos[f1],self.datos[f2] = self.datos[f1],self.datos[f2]
 
     def __busca_primera_fila(self,c:int)->int:
-        zero = self.field.zero
+        zero:S = self.field.zero()
         it:Iterable[S]=(self.datos[i][c] for i in range(c,len(self.datos)))
         return first_index_if(it, lambda e: e!=zero)
     
@@ -71,7 +75,7 @@ class Matriz_field(Matriz[S]):
 
     def __mul__(self,other:Matriz_field[S])->Matriz_field[S]:
         check_argument(self.nc == other.nf, f'No se pueden multiplicar')
-        zero = self.field.zero
+        zero:S = self.field.zero()
         ss:Callable[[int,int],S] = \
             lambda f,c:sum((self.get(f,k)*other.get(k,c) for k in range(self.nc)),zero)
         datos:list[list[S]] = [[ss(f,c) for c in range(other.nc)] for f in range(self.nf)]
@@ -82,25 +86,24 @@ class Matriz_field(Matriz[S]):
     
     @property
     def es_antisimetrica(self):
-        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf,self.nc) if p[0] >= p[1])
-        print(type(self.get(0,0)))
-        return all(self.get(i,j) == self.field.zero - self.get(j,i) for i,j in indices)
+        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf,self.nc) if f >= c)
+        return all(self.get(i,j) == self.field.zero() - self.get(j,i) for i,j in indices)
     
     @property
     def traza(self):
-        return sum((self.get(i,i) for i in range(self.nf) if i<self.nf and i<self.nc),self.field.zero)
+        return sum((self.get(i,i) for i in range(self.nf) if i<self.nf and i<self.nc),self.field.zero())
    
     @property
     def aumentada(self):
-        one = self.field.one
-        zero = self.field.zero
+        one:S = self.field.one()
+        zero:S = self.field.zero()
         ff:Callable[[int],list[S]] = lambda c: [one if i == c else zero for i in range(self.nc)]
         datos:list[list[S]] = [self.datos[f]+ff(f) for f in range(self.nf)]
         return Matriz_field.of_datos(datos,self.field)
    
     def __invert__(self)->Matriz_field:
         check_argument(self.nc == self.nf, f'Debe ser cuadrada')
-        one = self.field.one
+        one:S = self.field.one()
         ma:Matriz_field = self.aumentada
         for fp in range(ma.nf):
             pf:int=ma.__busca_primera_fila(fp)
@@ -122,8 +125,8 @@ class Matriz_field(Matriz[S]):
     @property
     def determinante(self)->S:
         check_argument(self.nc == self.nf, f'Debe ser cuadrada')
-        one = self.field.one
-        zero = self.field.zero
+        one:S = self.field.one()
+        zero:S = self.field.zero()
         det: S = one
         ma:Matriz_field = self.aumentada
         for fp in range(ma.nf):

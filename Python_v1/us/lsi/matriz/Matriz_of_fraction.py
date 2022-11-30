@@ -31,8 +31,8 @@ class Matriz_of_fraction(Matriz[Fraction]):
     #===========================================================================
     @property
     def es_antisimetrica(self)->bool:
-        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf,self.nc) if p[0] >= p[1])
-        return all(self.get(par[0],par[1]) == -self.get(par[0],par[1]) for par in indices)
+        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf,self.nc) if f > c)
+        return all(self.get(f,c) == -self.get(c,f) for f,c in indices)
     
     #===========================================================================
     # OTROS MÉTODOS
@@ -52,8 +52,12 @@ class Matriz_of_fraction(Matriz[Fraction]):
         return Matriz_of_fraction.of(datos)
     
 if __name__ == '__main__':
+    m2:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz2.txt'))
+    print(m2)
+    print(m2.es_antisimetrica)
     m3:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz4.txt'))
     print(m3)
+    print(m3.es_antisimetrica)
     print('----------------')
     m5:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz7.txt'))
     print(m5)

@@ -27,7 +27,7 @@ class Ocupacion_vuelo:
         return Ocupacion_vuelo(codigoVuelo,fecha,numPasajeros)
     
     @staticmethod 
-    def of_file(text:str)->Ocupacion_vuelo:
+    def parse(text:str)->Ocupacion_vuelo:
         campos:list[str] = text.split(",")
         codigo_vuelo:str = campos[0]
         t:time = Vuelos.of().vuelo_codigo(codigo_vuelo).hora
@@ -60,4 +60,4 @@ if __name__ == '__main__':
     Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
     Aerolineas.of_file(absolute_path("/resources/aerolineas.csv"))
     Vuelos.of_file(absolute_path("/resources/vuelos.csv"))
-    oc = Ocupacion_vuelo.of_file('MX0435,2020-11-24 01:04:00,57')
+    oc = Ocupacion_vuelo.parse('MX0435,2020-11-24 01:04:00,57')

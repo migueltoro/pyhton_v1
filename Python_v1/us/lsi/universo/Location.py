@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 '''
-Created on 12 ago 2022
+Created on 30 nov 2022
 
-@author: mateosg
+@author: migueltoro
 '''
 
 from enum import Enum, auto

@@ -20,7 +20,7 @@ class Estacion:
     ubicacion: Coordenadas2D
 
     @staticmethod   
-    def of_file(linea: list[str]) -> Estacion:
+    def parse(linea: list[str]) -> Estacion:
         name,slots,empty_slots,free_bikes,longitude,latitude = linea
         check_argument('_' in name,f'{name} no contiene _')
         numero, name = name.split("_")
@@ -46,5 +46,5 @@ class Estacion:
         return '{0:3d} {1:>35s} {2:2d} {3:2d} {4:2d} {5:>40s}'.format(self.numero,self.name,self.slots,self.empty_slots,self.free_bikes,str(self.ubicacion))
 
 if __name__ == '__main__':
-    e = Estacion.of_file('149_CALLE ARROYO,20,11,9,37.397829929383,-5.97567172039552'.split(','))
+    e = Estacion.parse('149_CALLE ARROYO,20,11,9,37.397829929383,-5.97567172039552'.split(','))
     print(e)

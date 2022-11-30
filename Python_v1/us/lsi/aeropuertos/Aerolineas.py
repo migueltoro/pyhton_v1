@@ -21,7 +21,7 @@ class Aerolineas:
                
     @staticmethod
     def of_file(fichero:str)->Aerolineas:
-        datos: list[Aerolinea] = [Aerolinea.of_file(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]
+        datos: list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]
         Aerolineas.__aerolineas_class = Aerolineas(datos)
         return Aerolineas.__aerolineas_class
 

@@ -24,7 +24,7 @@ class Aeropuertos:
     
     @staticmethod  
     def of_file(fichero:str)-> Aeropuertos:
-        aeropuertos:list[Aeropuerto] = [Aeropuerto.of_file(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
+        aeropuertos:list[Aeropuerto] = [Aeropuerto.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
         Aeropuertos.__aeropuertos_class = Aeropuertos(aeropuertos)
         return Aeropuertos.__aeropuertos_class
     

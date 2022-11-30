@@ -35,7 +35,7 @@ class Red:
     @staticmethod
     def of_file(fichero: str) -> Red:
         lineas:list[list[str]] = lineas_de_csv(fichero, delimiter =",",encoding='utf-8')
-        estaciones:list[Estacion] = [Estacion.of_file(x) for x in lineas[1:]]
+        estaciones:list[Estacion] = [Estacion.parse(x) for x in lineas[1:]]
         return Red.of(estaciones)
     
     def __str__(self) -> str:

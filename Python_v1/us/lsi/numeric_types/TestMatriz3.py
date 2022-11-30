@@ -36,5 +36,5 @@ if __name__ == '__main__':
     m8 = ~m7
     print(m8)
     print('----------------')
-    print(m7.determinante)
-    print(m8.determinante)
+    print(f3.str(m7.determinante))
+    print(f3.str(m8.determinante))

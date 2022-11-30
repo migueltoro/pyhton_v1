@@ -10,44 +10,39 @@ from abc import ABC, abstractmethod
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.universo.Location import Location
 
-
-    
 class CuerpoCeleste(ABC):
     
     def __init__(self:CuerpoCeleste, nombre:str, diametro:int, color:str):
-        self._nombre:str=nombre
-        self._diametro:int=diametro
-        self._color:str=color
-        self._id_canvas:int=0 #se modifica en Universo2D
+        self.__nombre:str=nombre
+        self.__diametro:int=diametro
+        self.__color:str=color
+        self.id:int=0
        
      
     @property
     def nombre(self:CuerpoCeleste) -> str:
-        return self._nombre
+        return self.__nombre
     @property   
     def diametro(self:CuerpoCeleste) -> int:
-        return self._diametro
+        return self.__diametro
     @property
     def color(self:CuerpoCeleste) -> str:
-        return self._color
-    @property
-    def id_canvas(self:CuerpoCeleste) -> int:
-        return self._id_canvas
+        return self.__color
     
     
     #################### Métodos abstractos ############################
     @abstractmethod
-    def coordenadas(self:CuerpoCeleste) -> Punto2D:
+    def coordenadas(self) -> Punto2D:
         pass
     @abstractmethod
-    def un_paso(self:CuerpoCeleste) -> None:
+    def un_paso(self) -> None:
         pass
     @abstractmethod
-    def cambiar_propiedades(self:CuerpoCeleste, l:Location) -> None:
+    def cambiar_propiedades(self, location:Location) -> None:
         pass
     
     #####################################################################
-    def distancia_a(self:CuerpoCeleste, cuerpo:CuerpoCeleste):
+    def distancia_a(self, cuerpo:CuerpoCeleste):
         distanciaCentros=self.coordenadas().distancia_a(cuerpo.coordenadas())
         d = distanciaCentros - self.diametro / 2 - cuerpo.diametro / 2
         return d

@@ -17,7 +17,7 @@ class Aerolinea:
         return Aerolinea(codigo,nombre)
     
     @staticmethod 
-    def of_file(text:str) -> Aerolinea:
+    def parse(text:str) -> Aerolinea:
         campos: list[str] = text.split(",")
         codigo: str = campos[0].strip()
         nombre: str = campos[1].strip()
