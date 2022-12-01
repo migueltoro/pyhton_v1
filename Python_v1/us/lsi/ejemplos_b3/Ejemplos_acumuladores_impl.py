@@ -11,7 +11,8 @@ from us.lsi.generic_types.Comparable import Comparable
 import random
 from statistics import mean
 from us.lsi.tools.File import lineas_de_csv
-from us.lsi.tools.Iterable import flat_map
+from us.lsi.tools.Iterable import flat_map, first
+from us.lsi.tools.Functions import optional_get
 
 E = TypeVar('E')
 R = TypeVar('R', bound=Comparable)
@@ -47,17 +48,13 @@ def sum_file(file:str)->int:
     it2:Iterable[int] = (int(e) for e in it1)
     return sum(it2)
 
-def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->Optional[R]:
-    it:Iterator[E] = iter(iterable)
+def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->R:
+    r:R
     if initial is None:
-        try:
-            e = next(it)
-            r:R = cast(R,e)
-        except StopIteration:
-            check_state(False,'El iterable está vacío y no hay valor inicial')
+        r = cast(R,optional_get(first(iterable)))
     else:
-        r = initial
-    for e in it:
+        r = optional_get(initial)
+    for e in iterable:
         r = op(r,e)
     return r
 
