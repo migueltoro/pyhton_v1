@@ -6,12 +6,11 @@ Created on 10 nov 2022
 
 from typing import Iterable, Iterator,TypeVar, Callable, Optional, cast
 from functools import reduce
-from us.lsi.tools.Preconditions import check_state
 from us.lsi.generic_types.Comparable import Comparable
 import random
 from statistics import mean
 from us.lsi.tools.File import lineas_de_csv
-from us.lsi.tools.Iterable import flat_map, first
+from us.lsi.tools.Iterable import flat_map
 from us.lsi.tools.Functions import optional_get
 
 E = TypeVar('E')
@@ -48,10 +47,14 @@ def sum_file(file:str)->int:
     it2:Iterable[int] = (int(e) for e in it1)
     return sum(it2)
 
-def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->R:
-    r:R
+
+def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->Optional[R]:
+    r:Optional[R]
     if initial is None:
-        r = cast(R,optional_get(first(iterable)))
+        it:Iterator[E] = iter(iterable)
+        r = cast(R,next(it,None))
+        if r is None:
+            return r
     else:
         r = optional_get(initial)
     for e in iterable:
@@ -59,17 +62,16 @@ def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)-
     return r
 
 
-def min2(iterable:Iterable[E],key:Callable[[E],R] = identity)->E:
+def min2(iterable:Iterable[E],key:Callable[[E],R] = identity)->Optional[E]:
     it:Iterator[E] = iter(iterable)
-    r:E
-    try:
-        r = next(it)
-    except StopIteration:
-        check_state(False,'El iterable está vacío')
+    r:Optional[E] = next(it,None)
+    if r is None:
+        return r
+    s: E = optional_get(r)
     for e in it:
-        if key(e) < key(r) :
-            r = e  
-    return r
+        if key(e) < key(s):
+            s = e  
+    return s
 
 def all2(iterable:Iterable[bool])->bool:
     r:bool = True

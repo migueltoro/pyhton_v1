@@ -33,7 +33,7 @@ class Cometa(CuerpoCeleste):
     def un_paso(self:Cometa)->None:
         pass
     
-    def cambiar_propiedades(self:Cometa, l:Location)->None:
+    def cambia_propiedades(self:Cometa, l:Location)->None:
         
         match l:
             case Location.DOWN:

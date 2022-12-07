@@ -28,7 +28,7 @@ if __name__ == '__main__':
     tierra = Planeta.of_estrella("Tierra", sol)
     universo.agregar(tierra)
     
-    luna=tierra.satelite("Luna")
+    luna = Planeta.satelite("Luna",tierra)
     universo.agregar(luna)
     
     marte =Planeta.of_estrella("Marte", sol)

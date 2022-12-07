@@ -25,5 +25,5 @@ class Estrella(CuerpoCeleste):
     def un_paso(self:Estrella)->None:
         pass
     
-    def cambiar_propiedades(self:Estrella, l:Location)->None:
+    def cambia_propiedades(self:Estrella, l:Location)->None:
         pass

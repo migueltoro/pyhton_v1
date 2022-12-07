@@ -82,7 +82,7 @@ class Marco:
             self.ocultar_cuerpo_celeste(cuerpo)
                        
         cuerpo.un_paso()
-        cuerpo.cambiar_propiedades(self.location(cuerpo))
+        cuerpo.cambia_propiedades(self.location(cuerpo))
         
         if self.es_visible(cuerpo):
             self.mostrar_cuerpo_celeste(cuerpo) 

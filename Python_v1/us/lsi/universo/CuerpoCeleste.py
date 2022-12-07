@@ -38,7 +38,7 @@ class CuerpoCeleste(ABC):
     def un_paso(self) -> None:
         pass
     @abstractmethod
-    def cambiar_propiedades(self, location:Location) -> None:
+    def cambia_propiedades(self, location:Location) -> None:
         pass
     
     #####################################################################
@@ -46,8 +46,6 @@ class CuerpoCeleste(ABC):
         distanciaCentros=self.coordenadas().distancia_a(cuerpo.coordenadas())
         d = distanciaCentros - self.diametro / 2 - cuerpo.diametro / 2
         return d
-    
-    #quitamos mostrar/ocultar_cuerpo_celeste, location, comprobar_posicion, es visible y mover. Lo ponemos todo en Universo2D
    
    
         

@@ -7,7 +7,6 @@ from typing import Iterable, Iterator, TypeVar, Callable, Optional
 import random
 from us.lsi.tools.File import lineas_de_fichero
 from collections import Counter
-import itertools
 from us.lsi.tools.Functions import optional_get
 
 K = TypeVar('K')
@@ -55,24 +54,6 @@ def count_if(iterable:Iterable[E],predicate:Callable[[E],bool]=lambda _:True)->i
             n = n+1
     return n
 
-def is_empty(iterable:Iterable[E]) -> bool:
-    it:Iterator[E] = iter(iterable)
-    e:Optional[E] = next(it,None)
-    if e is None:
-        return True
-    else:
-        iterable = itertools.chain([e], iterable)
-        return False
-
-def peek(iterable:Iterable[E]) -> Optional[E]:
-    it:Iterator[E] = iter(iterable)
-    e:Optional[E] = next(it,None)
-    if e is None:
-        return None
-    else:
-        iterable = itertools.chain([e], iterable)
-        return e
-
 def first(iterable:Iterable[E], p:Callable[[E],bool]=lambda _:True) -> Optional[E]:
     r:Optional[E] = None
     for e in iterable:
@@ -89,11 +70,15 @@ def first_and_rest(iterable:Iterable[E]) -> Optional[tuple[E,Iterable[E]]]:
     else:
         return (e,it)
     
-def first_and_last(iterable:Iterable[E],defaultvalue=None)->Optional[tuple[E,E]]:
+def first_and_last(iterable:Iterable[E])->Optional[tuple[E,E]]:
     it = iter(iterable)
-    first = last = next(it, defaultvalue)
-    for last in it:
-        pass
+    first =  next(it, None)
+    if first is None:
+        return None
+    else:
+        last = first
+        for last in it:
+            pass
     return (first,last)
 
 def first_index_true(iterable:Iterable[bool],default:int=-1)->int:
@@ -181,13 +166,14 @@ if __name__ == '__main__':
     e,it = optional_get(first_and_rest(range(10,3000,7)))
     print(e)
     print(list(it))
+    it2:Iterable[int] = (x for x in range(10,3000,7))
+    e = optional_get(first(it2))
+    print(f"first = {e}, iterable = {list(it2)}")
+    it4:Iterable[int] = (x for x in range(10,3000,7))
+    e2:tuple[int,Iterable[int]] = optional_get(first_and_rest(it4))
+    print(f"first = {e2[0]}, rest = {list(e2[1])}")
+    print(first_and_last((x for x in range(10,3000,7))))
     it = range(10,3000,7)
-    e = optional_get(peek(it))
-    print(e)
-    print(list(it))
-    it = range(10,3000,7)
-    r2 = is_empty(range(10,20))
-    print(r2)
     
     
     

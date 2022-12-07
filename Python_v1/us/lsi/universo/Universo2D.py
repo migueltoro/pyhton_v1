@@ -49,9 +49,12 @@ class Universo2D:
 
     def loop(self, tiempo:float, d_min:tuple[float,CuerpoCeleste,CuerpoCeleste], veces_en_riesgo:int) -> None:   
         
-        id1=self.marco.canvas.create_text(37,11,text="Tiempo: {0:.2f}".format(tiempo))
-        id2=self.marco.canvas.create_text(57, self.marco.yMax - 20,text="Veces en riesgo: {0}".format(veces_en_riesgo))
-        id3=self.marco.canvas.create_text(67, self.marco.yMax - 5,text="Distancia mínima: {0:.2f}".format(d_min[0]))
+        id1=self.marco.canvas.create_text(60,20,
+                text="Tiempo: {0:.2f}".format(tiempo),fill="white", font=('Helvetica 10 bold'))
+        id2=self.marco.canvas.create_text(60,self.marco.yMax - 40,
+                text="Veces en riesgo: {0}".format(veces_en_riesgo), fill="white", font=('Helvetica 10 bold'))
+        id3=self.marco.canvas.create_text(80,self.marco.yMax - 20,text="Distancia mínima: {0:.2f}".format(d_min[0]),
+                fill="white", font=('Helvetica 10 bold'))
         
         d_min=self.distancia_minima()
         
