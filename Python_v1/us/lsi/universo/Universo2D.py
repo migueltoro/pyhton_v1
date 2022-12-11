@@ -53,8 +53,8 @@ class Universo2D:
         id1=self.marco.canvas.create_text(60,20,
                 text=f"Tiempo: {tiempo:.2f}",fill="white", font='Helvetica 10 bold',justify=tk.RIGHT)
         id2=self.marco.canvas.create_text(60,self.marco.yMax - 40,
-                text=f"  Veces en riesgo: {veces_en_riesgo}", fill="white",font='Helvetica 10 bold',justify=tk.RIGHT)
-        id3=self.marco.canvas.create_text(60,self.marco.yMax - 20,text=f"   Distancia mínima: {d_min[0]:.2f}",
+                text=f"Veces en riesgo: {veces_en_riesgo}", fill="white",font='Helvetica 10 bold',justify=tk.RIGHT)
+        id3=self.marco.canvas.create_text(60,self.marco.yMax - 20,text=f"Distancia mínima: {d_min[0]:.2f}",
                 fill="white", font='Helvetica 10 bold',justify=tk.RIGHT)
         
         d_min=self.distancia_minima()
