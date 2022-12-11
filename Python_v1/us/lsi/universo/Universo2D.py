@@ -9,6 +9,7 @@ from __future__ import annotations
 from us.lsi.universo.CuerpoCeleste import CuerpoCeleste
 from us.lsi.universo.Marco import Marco
 from us.lsi.geometria.Punto2D import Punto2D
+import  tkinter as tk
 
 umbralRiesgo: int = 10
 
@@ -50,11 +51,11 @@ class Universo2D:
     def loop(self, tiempo:float, d_min:tuple[float,CuerpoCeleste,CuerpoCeleste], veces_en_riesgo:int) -> None:   
         
         id1=self.marco.canvas.create_text(60,20,
-                text="Tiempo: {0:.2f}".format(tiempo),fill="white", font=('Helvetica 10 bold'))
+                text=f"Tiempo: {tiempo:.2f}",fill="white", font='Helvetica 10 bold',justify=tk.RIGHT)
         id2=self.marco.canvas.create_text(60,self.marco.yMax - 40,
-                text="Veces en riesgo: {0}".format(veces_en_riesgo), fill="white", font=('Helvetica 10 bold'))
-        id3=self.marco.canvas.create_text(80,self.marco.yMax - 20,text="Distancia mínima: {0:.2f}".format(d_min[0]),
-                fill="white", font=('Helvetica 10 bold'))
+                text=f"  Veces en riesgo: {veces_en_riesgo}", fill="white",font='Helvetica 10 bold',justify=tk.RIGHT)
+        id3=self.marco.canvas.create_text(60,self.marco.yMax - 20,text=f"   Distancia mínima: {d_min[0]:.2f}",
+                fill="white", font='Helvetica 10 bold',justify=tk.RIGHT)
         
         d_min=self.distancia_minima()
         
@@ -65,14 +66,14 @@ class Universo2D:
             pm = Punto2D.of((p1.x + p2.x) / 2, (p1.y + p2.y) / 2)
             
             self.cuerpos_celestes.remove(d_min[1]) 
-            self.marco.canvas.delete(d_min[1].id)
+            self.marco.canvas.delete(self.marco.cuerpo_celeste_id(d_min[1]))
             
             self.cuerpos_celestes.remove(d_min[2])  
-            self.marco.canvas.delete(d_min[2].id) 
+            self.marco.canvas.delete(self.marco.cuerpo_celeste_id(d_min[2]))
     
             x=int(pm.x)
             y=int(pm.y)
-            choque:int=self.marco.canvas.create_oval(x-25,y-25,x+25,y+25,fill='white')
+            choque:int=self.marco.canvas.create_oval(x-25,y-25,x+25,y+25,fill='red')
             self.marco.canvas.after(1500, self.__marco.canvas.delete,choque)
             self.marco.canvas.after(5000, exit)
 

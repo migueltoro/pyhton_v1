@@ -16,9 +16,7 @@ class CuerpoCeleste(ABC):
         self.__nombre:str=nombre
         self.__diametro:int=diametro
         self.__color:str=color
-        self.id:int=0
        
-     
     @property
     def nombre(self:CuerpoCeleste) -> str:
         return self.__nombre
@@ -29,6 +27,16 @@ class CuerpoCeleste(ABC):
     def color(self:CuerpoCeleste) -> str:
         return self.__color
     
+    def __hash__(self)->int:
+        return  hash(self.__nombre)
+    
+    def __eq__(self, other)->bool:
+        if isinstance(other, CuerpoCeleste):
+            return self.__nombre == other.__nombre
+        return False
+    
+    def __str__(self)->str:
+        return self.__nombre
     
     #################### Métodos abstractos ############################
     @abstractmethod
@@ -45,12 +53,6 @@ class CuerpoCeleste(ABC):
     def distancia_a(self, cuerpo:CuerpoCeleste):
         distanciaCentros=self.coordenadas().distancia_a(cuerpo.coordenadas())
         d = distanciaCentros - self.diametro / 2 - cuerpo.diametro / 2
-        return d
-   
-   
-        
-        
-        
-           
+        return d  
     
         

@@ -25,6 +25,8 @@ class Marco:
         t=Tk()
         t.title(nombre)
         self.__canvas:Canvas = Canvas(t, width=xMax, height=yMax, bg=color_fondo)
+        self.__id_cuerpo_celeste:dict[int,CuerpoCeleste] = {}
+        self.__cuerpo_celeste_id:dict[CuerpoCeleste,int] = {}
       
     @staticmethod
     def of(nombre:str,xMax:int=xMaxDeFault, yMax:int=yMaxDeFault, color_fondo:str=colorDeFondoDefault):
@@ -42,6 +44,9 @@ class Marco:
     
     def punto_aleatorio(self, xmin:int, ymin:int) -> Punto2D:
         return Punto2D.of(random.randint(xmin, self.xMax), random.randint(ymin, self.yMax))
+    
+    def cuerpo_celeste_id(self,cuerpo:CuerpoCeleste)->int:
+        return self.__cuerpo_celeste_id.get(cuerpo,0)
         
     def location(self, cuerpo:CuerpoCeleste) -> Location:
 
@@ -72,10 +77,20 @@ class Marco:
         return self.location(cuerpo)==Location.INSIDE
     
     def mostrar_cuerpo_celeste(self, c:CuerpoCeleste) -> None:
-        c.id=self.canvas.create_oval(c.coordenadas().x - c.diametro/2, c.coordenadas().y - c.diametro/2, c.coordenadas().x + c.diametro/2, c.coordenadas().y + c.diametro/2, fill=c.color)
+        id_cc: int =self.canvas.create_oval(c.coordenadas().x - c.diametro/2, 
+                                   c.coordenadas().y - c.diametro/2, 
+                                   c.coordenadas().x + c.diametro/2, 
+                                   c.coordenadas().y + c.diametro/2, 
+                                   fill=c.color)
+        self.__id_cuerpo_celeste[id_cc] = c
+        self.__cuerpo_celeste_id[c] = id_cc
     
     def ocultar_cuerpo_celeste(self, c:CuerpoCeleste) -> None:
-        self.canvas.delete(c.id)
+        if c in self.__cuerpo_celeste_id.keys():
+            id_cc = self.__cuerpo_celeste_id.get(c,0)
+            self.canvas.delete(id_cc)
+            del self.__cuerpo_celeste_id[c]
+            del self.__id_cuerpo_celeste[id_cc]
     
     def mover(self, cuerpo:CuerpoCeleste) -> None: 
         if self.es_visible(cuerpo):
