@@ -29,7 +29,8 @@ def filtra(ls:list[E],f:Callable[[E],bool] = lambda x: True)->list[E]:
             lf.append(elemento)
     return lf
 
-
+def f(fn,*p):
+    return fn(*p)
 
 if __name__ == '__main__':
     imprime_linea()
@@ -43,4 +44,7 @@ if __name__ == '__main__':
     print(transforma(ls, lambda y: y*y))
     print(filtra(ls,lambda x:x%2==0))
     print(filtra(ls))
-    print(filtra(ls,f=lambda x:x%2==0))    
+    print(filtra(ls,f=lambda x:x%2==0))   
+    print('_____')
+    print(f(filtra,ls,lambda x:x%2==0))
+    print(*ls,sep=';') 
