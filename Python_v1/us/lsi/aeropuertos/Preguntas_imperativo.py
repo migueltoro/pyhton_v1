@@ -84,11 +84,12 @@ def primer_vuelo(destino:str,f:datetime)->Optional[str]:
         if  ocp.vuelo.ciudad_destino == destino and \
             ocp.vuelo.num_plazas > ocp.num_pasajeros and \
             ocp.fecha > f:
-            if not a or ocp.fecha < a.fecha:
-                a = ocp
-    if not a:
+            a = ocp
+            break
+    if a:
+        return a.vuelo.codigo_aerolinea
+    else:
         return None
-    return a.vuelo.codigo_aerolinea
 
 #6. Devuelve para los vuelos con menos de n plazas libres un Map que haga corresponder a cada ciudad
 # destino la media de los precios de los vuelos a ese destino.

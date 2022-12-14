@@ -61,7 +61,7 @@ def primer_vuelo(destino:str,f:datetime)->Optional[str]:
             ocp.vuelo.num_plazas > ocp.num_pasajeros and \
             ocp.fecha > f)
 
-#6. Devuelve para los vuelos completos un Map que haga corresponder a cada ciudad
+#6. Devuelve para los vuelos con menos n de plazas libres un Map que haga corresponder a cada ciudad
 # destino la media de los precios de los vuelos a ese destino.
 
 
