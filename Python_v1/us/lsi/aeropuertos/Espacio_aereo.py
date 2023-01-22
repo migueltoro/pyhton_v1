@@ -29,10 +29,10 @@ class Espacio_aereo:
         return Espacio_aereo.__espacio_aereo_class
     
     @staticmethod
-    def of_files(faeropuertos:str=absolute_path("/resources/aeropuertos.csv"),
-        faerolineas:str=absolute_path("/resources/aerolineas.csv"),         
-        fvuelos:str = absolute_path("/resources/vuelos.csv"),
-        focupaciones_vuelos:str =absolute_path("/resources/ocupacionesVuelos.csv"))->Espacio_aereo:
+    def of_files(faeropuertos:str=absolute_path("/aeropuertos/aeropuertos.csv"),
+        faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv"),         
+        fvuelos:str = absolute_path("/aeropuertos/vuelos.csv"),
+        focupaciones_vuelos:str =absolute_path("/aeropuertos/ocupacionesVuelos.csv"))->Espacio_aereo:
         aeropuertos = Aeropuertos.of_file(faeropuertos)
         aerolineas = Aerolineas.of_file(faerolineas)
         vuelos =  Vuelos.of_file(fvuelos)
