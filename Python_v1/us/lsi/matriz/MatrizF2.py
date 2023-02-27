@@ -7,23 +7,23 @@ Created on 24 nov 2022
 from __future__ import annotations
 
 from fractions import Fraction
-from us.lsi.matriz.Matriz import Matriz
+from us.lsi.matriz.Matriz2 import Matriz
 from us.lsi.tools import Preconditions
 from us.lsi.tools.File import absolute_path
 
 
-class Matriz_of_fraction(Matriz[Fraction]):
+class MatrizF(Matriz[Fraction]):
     #===========================================================================
     # MÉTODOS DE FACTORÍA
     #===========================================================================
         
     @staticmethod
-    def of(datos:list[list[Fraction]])->Matriz_of_fraction:
-        return Matriz_of_fraction(datos)
+    def of(datos:list[list[Fraction]])->MatrizF:
+        return MatrizF(datos)
     
     @staticmethod
-    def of_file_fraction(file:str)->Matriz_of_fraction:
-        return Matriz_of_fraction.of(Matriz.of_file(file, lambda x: Fraction(x)).datos)
+    def of_file_fraction(file:str)->MatrizF:
+        return MatrizF.of(Matriz.of_file(file, lambda x: Fraction(x)).datos)
 
     #===========================================================================
     # PROPIEDADES DERIVADAS
@@ -42,7 +42,7 @@ class Matriz_of_fraction(Matriz[Fraction]):
     #===========================================================================
     # OTROS MÉTODOS
     #===========================================================================
-    def __add__(self,other:Matriz_of_fraction)->Matriz_of_fraction:
+    def __add__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden sumar')
         dt:list[list[Fraction]] = []
         for f in range(self.nf):
@@ -50,9 +50,9 @@ class Matriz_of_fraction(Matriz[Fraction]):
             for c in range(self.nc):
                 fila.append(self.get(f,c) + other.get(f,c))
             dt.append(fila)
-        return Matriz_of_fraction.of(dt)
+        return MatrizF.of(dt)
     
-    def __sub__(self,other:Matriz_of_fraction)->Matriz_of_fraction:
+    def __sub__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden restar')
         dt:list[list[Fraction]] = []
         for f in range(self.nf):
@@ -60,9 +60,9 @@ class Matriz_of_fraction(Matriz[Fraction]):
             for c in range(self.nc):
                 fila.append(self.get(f,c) - other.get(f,c))
             dt.append(fila)
-        return Matriz_of_fraction.of(dt)
+        return MatrizF.of(dt)
     
-    def __mul__(self,other:Matriz_of_fraction)->Matriz_of_fraction:
+    def __mul__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nc == other.nf, f'No se pueden multiplicar')
         dt:list[list[Fraction]] = []
         for f in range(self.nf):
@@ -73,17 +73,17 @@ class Matriz_of_fraction(Matriz[Fraction]):
                     s = s + self.get(f,k)*other.get(k,c)
                 fila.append(s)
             dt.append(fila)
-        return Matriz_of_fraction.of(dt)
+        return MatrizF.of(dt)
     
 
 if __name__ == '__main__':
-    m2:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz2.txt'))
+    m2:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz2.txt'))
     print(m2)
     print(m2.es_antisimetrica)
-    m3:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz4.txt'))
+    m3:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz4.txt'))
     print(m3)
     print('----------------')
-    m5:Matriz_of_fraction = Matriz_of_fraction.of_file_fraction(absolute_path('/resources/matriz7.txt'))
+    m5:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz7.txt'))
     print(m5)
     print('----------------')
     print(m3+m5)

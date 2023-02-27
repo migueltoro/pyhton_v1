@@ -101,7 +101,7 @@ class Matriz(Generic[E]):
         return r
            
 if __name__ == '__main__':
-    m3:Matriz[int] = Matriz.of_file(absolute_path('/resources/matriz4.txt'),lambda x:int(x))
+    m3:Matriz[int] = Matriz.of_file(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
     print(m3.traspuesta)     
