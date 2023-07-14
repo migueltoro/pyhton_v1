@@ -4,7 +4,7 @@ Created on 24 nov 2021
 @author: migueltoro
 '''
 
-from us.lsi.tools.Iterable import strfiter
+from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import lineas_de_fichero,absolute_path
 import sys
 import calendar
@@ -42,7 +42,7 @@ numeros = [7, 3, 5, 1, 3, 1, 7]
 
 
 if __name__ == '__main__':
-    print(strfiter(sys.path,sep='\n'))
+    print(str_iter(sys.path,sep='\n'))
     print(list(calendar.day_name))
     print(d)
     r = sorted(d.items(),reverse=True)

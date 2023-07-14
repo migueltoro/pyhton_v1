@@ -11,7 +11,7 @@ from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
 
 class Vuelos:
-    __vuelos_class: Vuelos
+    __gestor_de_vuelos: Vuelos
     
     def __init__(self,vuelos: list[Vuelo])->None:
         self.__vuelos=vuelos
@@ -19,16 +19,16 @@ class Vuelos:
     
     @staticmethod  
     def of()->Vuelos:
-        return Vuelos.__vuelos_class
+        return Vuelos.__gestor_de_vuelos
 
     @staticmethod  
     def of_file(fichero: str)->Vuelos:
         vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(fichero)]
-        Vuelos.__vuelos_class = Vuelos(vuelos)
-        return Vuelos.__vuelos_class
+        Vuelos.__gestor_de_vuelos = Vuelos(vuelos)
+        return Vuelos.__gestor_de_vuelos
     
     @property
-    def lista(self)->list[Vuelo]:
+    def todos(self)->list[Vuelo]:
         return self.__vuelos
     
     def vuelo_codigo(self,codigo:str)->Vuelo:

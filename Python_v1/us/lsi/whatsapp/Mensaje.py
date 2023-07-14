@@ -8,7 +8,7 @@ from typing import Optional
 from dataclasses import dataclass
 from datetime import time,date,datetime
 import re
-from us.lsi.tools.Dict import strfdict
+from us.lsi.tools.Dict import str_dict
 from us.lsi.tools.Functions import optional_get
 from collections import Counter
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
@@ -48,4 +48,4 @@ if __name__ == '__main__':
     ph = {p for p in lineas_de_fichero(fph) if len(p) >0}
     m = Mensaje.parse('26/2/16 9:16 - Leonard: De acuerdo, ¿cuál es tu punto?',ph)
     print(m)
-    print(strfdict(optional_get(m).frecuencia_de_palabras,sep='\n'))
+    print(str_dict(optional_get(m).frecuencia_de_palabras,sep='\n'))

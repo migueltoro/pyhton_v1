@@ -1,0 +1,52 @@
+  0,Fundamentos básicos de la informática,6,3
+  1,Fundamentos matemáticos de la informática,6,1
+  2,Fundamentos de sistemas digitales,6,1
+  3,Fundamentos de programación,6,1
+  4,Lógica y estructuras discretas,6,0
+  5,Estrategias de programación y estructuras de datos,6,3
+  6,Estadística,6,0
+  7,Ingeniería de computadores i,6,1
+  8,Programación orientada a objetos,6,4
+  9,Redes de computadores,6,3
+ 10,Programación y estructuras de datos avanzadas,6,0
+ 11,Ingeniería de computadores ii,6,3
+ 12,Gestión de empresas informáticas,6,0
+ 13,Sistemas operativos,6,2
+ 14,Ingenieria de computadores iii,6,0
+ 15,Teoria de los lenguajes de programación,6,4
+ 16,Fundamentos de inteligencia artificial,6,3
+ 17,Introducción a la ingeniería de software,6,4
+ 18,Bases de datos,6,2
+ 19,Diseño y administración de sistemas operativos,6,4
+ 20,Sistemas distribuidos,6,3
+ 21,Diseño del software,6,4
+ 22,Sistemas de bases de datos,6,2
+ 23,Procesadores del lenguaje i,6,1
+ 24,Alimentación de equipos informáticos,5,1
+ 25,Sistemas en tiempo real,6,0
+ 26,Ingeniería de sistemas,6,1
+ 27,Informática grafica,6,3
+ 28,Fundamentos de robótica,6,4
+ 29,Tratamiento digital de señales,6,4
+ 30,Procesadores del lenguaje ii,6,1
+ 31,Seguridad,6,1
+ 32,Pruebas de software,6,4
+ 33,Usabilidad y accesibilidad,6,4
+ 34,Arquitecturas y protocolos tcp/ip,6,3
+ 35,Matemática discreta,6,4
+ 36,Complejidad y computabilidad,6,3
+ 37,Aprendizaje automático,6,0
+ 38,Visión artificial,6,3
+ 39,Ampliación de sistemas inteligentes,6,3
+ 40,Robótica autónoma,6,4
+ 41,Fundamentos de control automático,6,0
+ 42,Periféricos e interfaces,6,1
+ 43,Modelado y simulación,6,0
+ 44,Minería de datos,6,0
+ 45,Modelos probabilistas y análisis de decisiones,6,3
+ 46,Sistemas interactivos de enseñanza/aprendizaje,6,3
+ 47,Teoria de la información y criptografía básica,6,2
+ 48,Tecnicas de compresión de datos,6,4
+ 49,Proyecto fin de grado,18,4
+ 50,Gestión de proyectos informáticos,6,4
+ 51,Etica y legislación,6,1

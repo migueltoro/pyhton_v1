@@ -18,7 +18,7 @@ class Tipo_prestamo(Enum):
 
 @dataclass(frozen=True,order=True)
 class Prestamo:
-    codigo_prestamo: int
+    codigo: int
     isbn:str
     codigo_ejemplar:int
     dni:str
@@ -38,9 +38,9 @@ class Prestamo:
             
     @staticmethod
     def of(isbn:str,codigo_ejemplar:int,dni:str,fecha_prestamo:date,tipo:Tipo_prestamo) -> Prestamo:    
-        codigo_prestamo = Prestamo.__np
+        codigo = Prestamo.__np
         Prestamo.__np = Prestamo.__np+1
-        return Prestamo(codigo_prestamo,isbn,codigo_ejemplar,dni,fecha_prestamo,tipo)   
+        return Prestamo(codigo,isbn,codigo_ejemplar,dni,fecha_prestamo,tipo)   
     
     '''
     978-1-04-876475-8,1,52240178W,2020-02-03,MENSUAL

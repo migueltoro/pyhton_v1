@@ -116,14 +116,15 @@ def flat(e: E | Iterable[E]) -> Iterable[E]:
     else:
         yield e
   
-def strfiter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',
+def str_iter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',
              key:Callable[[E],str]=str)->str:
     r:str = sep.join(key(x) for x in iterable)
     return f"{prefix}{r}{suffix}"
 
 
 def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], 
-                    op:Callable[[V,V],V],value:Callable[[E],V]= identity) -> dict[K, V]:
+                    op:Callable[[V,V],V],
+                    value:Callable[[E],V]=identity)->dict[K, V]:
     a:dict[K,V] = {}
     for e in iterable:
         k = key(e)
@@ -145,12 +146,12 @@ def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable
     return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=value)
 
 if __name__ == '__main__':
-    print(strfiter(range(0,100)))
+    print(str_iter(range(0,100)))
     r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
-    print(strfiter(r))
-    print(strfiter(range(2,100,5)))
+    print(str_iter(r))
+    print(str_iter(range(2,100,5)))
 #    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
-    print(strfiter(lineas_de_fichero('../../../resources/datos.txt')))
+    print(str_iter(lineas_de_fichero('../../../resources/datos.txt')))
     print(first_index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
     print(first_and_last(range(3,500,29)))
     print(list(zip([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 

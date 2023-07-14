@@ -13,7 +13,7 @@ from us.lsi.tools.File import lineas_de_fichero,absolute_path
 from datetime import date
 
 class Ocupaciones_vuelos:
-    __ocupaciones_vuelos_class: Ocupaciones_vuelos
+    __gestor_de_ocupaciones_vuelos: Ocupaciones_vuelos
     
     
     def __init__(self,ocupaciones:list[Ocupacion_vuelo])->None:
@@ -21,16 +21,16 @@ class Ocupaciones_vuelos:
 
     @staticmethod
     def of()->Ocupaciones_vuelos:
-        return Ocupaciones_vuelos.__ocupaciones_vuelos_class
+        return Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos
 
     @staticmethod
     def of_file(fichero:str)->Ocupaciones_vuelos:
         r:list[Ocupacion_vuelo] = [Ocupacion_vuelo.parse(x) for x in lineas_de_fichero(fichero)]
-        Ocupaciones_vuelos.__ocupaciones_vuelos_class = Ocupaciones_vuelos(r)
-        return Ocupaciones_vuelos.__ocupaciones_vuelos_class
+        Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos = Ocupaciones_vuelos(r)
+        return Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos
     
     @property
-    def lista(self):
+    def todas(self):
         return self.__lista_ocupaciones_vuelos
     
     def ocupacion_index(self,i:int)->Ocupacion_vuelo:
@@ -47,8 +47,8 @@ class Ocupaciones_vuelos:
 
 if __name__ == '__main__':
     Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.of_file(absolute_path("/resources/__ocupaciones_vuelos_class.csv"))
+    Aerolineas.of_file(absolute_path("/resources/__gestor_de_ocupaciones_vuelos.csv"))
     Vuelos.of_file(absolute_path("/resources/vuelos.csv"))
     oc = Ocupaciones_vuelos.of_file(absolute_path("/resources/ocupacionesVuelos.csv"))
     print(oc.ocupacion_index(0))
-    print(list(oc for oc in oc.lista if oc.fecha_salida == date(2020,6,8)))
+    print(list(oc for oc in oc.todas if oc.fecha_salida == date(2020,6,8)))

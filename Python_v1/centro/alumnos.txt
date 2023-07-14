@@ -1,0 +1,600 @@
+Plaza Rivero,Apolinar,72842943B,1999-01-17 19:14,+34664759382,Callejón Virginia Collado 21;Lugo;37687,8.4
+Cabrero Otero,Toño,25168616S,1999-07-14 16:16,+34938778408,Plaza de Emma Uriarte 63;Cantabria;38192,8.5
+Girona Gómez,Nieves,92521023G,1998-01-20 02:07,+34721158714,Paseo de Herminio Maestre 71;Ourense;16866,8.3
+Manrique Espejo,Gonzalo,19443264F,2003-10-31 04:30,+34709471122,Pasadizo de Leoncio Vélez 73;León;33286,7.3
+Palau Blanca,Moreno,47124551N,2002-01-20 00:48,+34695330413,Ronda de Olalla Barrios 3;Alicante;38608,8.9
+Benavent Amor,Edelmiro,54561899B,2002-03-30 16:55,+34749161510,Via Alejandra Galvez 1;Salamanca;07651,5.7
+Juan Becerra,Ismael,45499293A,1997-06-15 10:13,+34715620870,Callejón Plinio Sosa 123 Puerta 2;Guipúzcoa;35699,8.7
+Iglesia Carpio,Edelmira,14602811L,2004-09-05 18:35,+34702076984,Vial de Chelo Alberola 61 Puerta 0;Barcelona;16737,6.6
+Tirado Ortuño,Emilia,21790531D,1999-04-17 12:48,+34749924661,Rambla de Jose Gisbert 76;La Coruña;46995,8.7
+Ripoll Artigas,Fito,88282662Z,2000-08-18 21:40,+34927878900,Pasaje de Aureliano Ribes 28 Puerta 2;La Coruña;45467,8.6
+Rios Molina,Abraham,77767689C,1998-08-29 05:06,+34730891319,Rambla de Cornelio Tamarit 11 Piso 7;Córdoba;09743,9.1
+Viñas Oliver,Darío,82687154S,2004-04-04 15:07,+34800034855,Ronda de Ramón Escalona 56 Apt. 22;Guipúzcoa;23119,6.6
+Pedrero Bueno,Nilo,70946161Q,2003-06-22 13:24,+34700422945,Via de Ale Heras 5;Melilla;48753,8.8
+Belda Mate,Samuel,79519637N,2003-12-13 10:14,+34716118775,Via de Juana Valenciano 50;Valencia;46030,9.3
+Cortés Diaz,Eugenia,66049756N,2001-08-23 21:02,+34911133060,Pasaje de Zoraida Torres 236 Piso 3;Palencia;51928,7.0
+Diaz Rosado,Gregorio,04545867D,1999-11-22 15:34,+34720873176,Glorieta Estrella Coll 4;Jaén;24700,9.0
+Corbacho Calvo,Débora,33603842Z,2000-12-28 13:15,+34726687577,Alameda Julieta Monreal 90;Córdoba;40491,6.3
+Costa Pinilla,Dafne,46799876M,1999-05-07 06:12,+34737118013,Plaza de Martina Sanabria 32;Huesca;34095,8.0
+Piña Vallés,Anastasio,72074089R,2001-09-21 00:58,+34718916348,Camino de Joaquín Almagro 3 Piso 8;Guipúzcoa;05300,9.2
+Uriarte Juárez,Paloma,44814793Y,1999-06-02 02:21,+34706602234,Cuesta Silvestre Chico 29;Zaragoza;24119,5.5
+Reina Aranda,Emma,26135933K,2000-10-22 01:23,+34730172009,Paseo Florencia Olivares 86 Apt. 09;Salamanca;42439,8.3
+Nebot Casanova,Isabel,73846744T,2002-11-30 19:47,+34702641830,Glorieta de Xavier Palacios 1 Apt. 74;Melilla;44680,7.9
+Garzón Gras,Ciro,83870553H,2003-06-13 19:13,+34986841269,Ronda Bernardino Cabezas 12;Las Palmas;45985,6.1
+Rincón Andrés,Anabel,54832693A,2004-08-30 11:16,+34744151150,Plaza Paulina Gual 31 Apt. 03;Valencia;01470,9.5
+Marcos Peinado,Jenny,62675313Z,1997-01-19 14:01,+34742271754,Acceso Nico Sáenz 94;Cádiz;39864,7.8
+Berrocal Calderon,Bibiana,94448608M,2001-10-13 11:29,+34706223583,Acceso de Simón Arteaga 19;Asturias;47017,9.0
+Beltran Catalán,Sosimo,52272223P,1999-05-23 15:23,+34702964513,C. Sebastian Aguirre 85 Apt. 54;Ávila;13154,8.2
+Camps Lluch,Dani,95969868E,2001-08-04 22:10,+34722762662,Pasadizo de Erasmo Padilla 81 Apt. 40;Salamanca;31278,5.3
+Aguilera Gil,Marc,37778515A,1997-10-25 12:11,+34948926717,Plaza de Dionisio León 1 Piso 6;León;07686,7.7
+Iriarte Otero,Loreto,14429725P,2004-04-03 03:58,+34713910144,Rambla Borja Ribera 94;Ourense;35279,5.3
+Gallo Calzada,Segismundo,93281350C,2002-03-29 14:00,+34844759221,Camino de Adelina Chaparro 845 Puerta 6;Lugo;33037,9.4
+Valls Monreal,América,23185819W,2002-05-22 19:53,+34724270930,Plaza de Raquel Zurita 2 Puerta 6;Huesca;03698,6.0
+Carmona Acevedo,Julián,07721324V,2004-04-08 13:31,+34724329431,C. de Florentino Muro 36 Piso 2;Barcelona;14688,5.0
+Estévez Saldaña,Paco,53749377X,2003-07-23 13:03,+34717633739,Urbanización Evita Blazquez 15 Puerta 2;Salamanca;20498,7.9
+Bolaños Vigil,Maricruz,54564847S,1999-04-06 00:16,+34746708869,Cuesta de Ildefonso Navas 10 Apt. 25;Girona;43901,7.5
+Aguilar Checa,Bernardo,51289826X,2003-07-15 15:34,+34713968373,Alameda Mohamed Sarmiento 14;Cantabria;25163,6.6
+Bernat Gallego,Ruth,25267632Q,2001-04-21 14:14,+34723444864,Calle Mariano Belmonte 8 Piso 7;Zaragoza;28008,9.2
+Uriarte Serna,Valerio,67526945A,1997-11-05 23:46,+34733126379,Calle de Geraldo Iborra 33 Piso 5;Las Palmas;08031,5.1
+Machado Fortuny,Leonor,82264015F,1999-05-14 14:12,+34997844301,Urbanización de Isaías Luís 9;Almería;08981,5.3
+Planas Llamas,Diego,57221629K,2003-02-11 20:57,+34743843318,Acceso Eusebia Tenorio 39 Apt. 08;Huesca;39366,9.8
+Amaya Castilla,Sarita,82964572F,2000-03-17 14:08,+34718123793,C. Patricio Cazorla 11;Madrid;30858,7.1
+Mendizábal Alberola,Isidro,68893022H,2001-07-26 12:32,+34707785142,Cañada de Rodrigo Barranco 60;Guipúzcoa;29914,7.8
+Gonzalez Juan,Omar,38694711V,2002-07-22 18:55,+34710598025,Plaza Jose Antonio Arrieta 4 Puerta 5;Almería;23605,6.4
+Rocamora Cerdán,Tecla,61770812B,2004-09-07 17:45,+34726254256,Callejón de Bibiana Sevillano 2;Jaén;12227,8.8
+Acero Valle,Emiliano,86261445Z,2002-02-18 12:23,+34921532302,Via de Estela Sebastián 19;Guipúzcoa;49366,9.9
+Peñas Amores,Eufemia,15009864H,2004-10-09 15:22,+34615427385,Callejón de Nieves Ugarte 50 Puerta 4;Alicante;51653,7.0
+Jáuregui Arenas,Xavier,56331030M,2000-03-15 04:32,+34665700404,C. de Perlita Iglesia 61;Palencia;45162,9.4
+Osuna Cámara,Yésica,86742239Q,2004-03-23 05:20,+34730909255,Cuesta de Micaela Quintanilla 162 Apt. 90;Barcelona;23370,6.3
+Agustí Tenorio,Virginia,98518952Q,2002-06-29 21:25,+34993186428,Camino Damián Varela 796;Granada;19675,6.4
+Alcalde Romero,Melania,71683487P,2003-10-25 22:55,+34848885536,Camino Rodrigo Paniagua 90;Santa Cruz de Tenerife;41247,8.7
+Gracia Alcázar,Porfirio,65952835J,2001-05-05 22:50,+34713570393,Avenida de Constanza Samper 97;Cantabria;11779,5.7
+Saez Bas,Íngrid,06364989S,2000-06-21 18:29,+34844659514,Callejón Hermenegildo Puga 76 Puerta 0;Huelva;38276,7.4
+Castañeda Lopez,Nacio,48559266X,2003-11-01 00:16,+34878201955,Via Hilda Sotelo 6;Guadalajara;26732,8.0
+Casares Llopis,Santos,48348471X,2002-07-20 17:00,+34742648022,Pasadizo Armando Ponce 25 Apt. 82;Cantabria;18102,5.1
+Mosquera Izaguirre,Micaela,08206968Q,1999-01-18 22:35,+34732782092,Glorieta Flora Saura 937 Apt. 52;Vizcaya;37432,5.8
+Barceló Blanca,Otilia,93599938N,2001-03-31 19:49,+34911695975,Vial Maximiliano Alsina 12 Piso 9;Alicante;28121,6.3
+Barrios Merino,Natividad,21852882F,2000-02-27 04:59,+34742516075,Ronda de Gerardo Anglada 44 Piso 1;Badajoz;09084,7.7
+Amo Orozco,Alfonso,12738437W,1998-05-08 14:11,+34605787710,Pasadizo Clemente Bernat 25 Piso 0;Melilla;41994,5.9
+Madrid Arco,Aarón,30548444M,2000-01-18 08:33,+34708222239,C. de Arsenio Gonzalo 64;Ciudad;24074,7.4
+Gonzalez Céspedes,Selena,89811040L,2000-06-03 09:53,+34692690290,Plaza Amador Morales 100;Ourense;41073,9.3
+Coloma Coronado,Ignacia,50109305X,2003-07-15 19:51,+34866953258,Vial Saturnino Orozco 7 Piso 3;Jaén;15747,6.1
+Prat Heredia,Filomena,56047804R,2000-12-07 23:02,+34731448580,Calle de Emiliana Montoya 91;Burgos;47758,9.7
+Poza Amor,María Jesús,23834827L,2000-06-04 03:57,+34861797225,Camino Zaida Luz 615 Apt. 57;Cantabria;17884,5.8
+Elorza Morata,Manu,27780548K,2000-01-28 16:04,+34704860646,Vial Damián Palau 70 Puerta 6;Asturias;43067,6.4
+Bermejo Roig,Candelas,77841616W,2003-01-08 16:13,+34922323082,Alameda de Isaura Carrasco 34 Piso 8;Murcia;46557,9.8
+Coca Peñalver,Manola,48808326A,2003-03-03 12:02,+34713656784,Vial Eusebio Adadia 298 Puerta 3;Cuenca;46124,7.8
+Domingo Peña,Che,34569636S,2003-08-04 07:24,+34915751759,Rambla Chita Bermejo 320 Puerta 6;León;47408,6.2
+Quirós Laguna,Alfonso,62930827K,2001-11-03 05:27,+34927906196,Calle de Alexandra Cal 88;Lugo;18387,9.1
+Escrivá Gras,Calixta,25443704T,1999-12-10 09:09,+34719271176,Cuesta de Jeremías Cantero 62;Barcelona;44151,9.2
+Barberá Cerro,Delia,47039003R,2001-08-05 19:37,+34906897178,Plaza Jose Antonio González 54 Apt. 07;Málaga;23339,9.3
+Bravo Berenguer,Marcos,24762842F,2001-09-21 03:42,+34745623437,Vial de Paz Carreras 95 Piso 3;Santa Cruz de Tenerife;24511,6.0
+Rosales Lobato,Plinio,07755563D,2000-04-02 22:34,+34734174172,Alameda Angelina Granados 7;Lleida;34654,6.6
+Serrano Giménez,Imelda,88389004G,2000-03-28 19:12,+34717358017,Ronda Atilio Arjona 51 Apt. 52;Cádiz;46786,9.5
+Pascual Anaya,Joaquín,78299869A,1997-03-19 03:19,+34980219931,Pasadizo Teófila Ribes 9;Ceuta;15873,8.5
+Ribes Piña,Aitana,04848540W,2003-09-17 04:37,+34713609409,Pasaje de Felipa Cañizares 581 Apt. 14;Tarragona;10299,6.6
+Cerdán Pinilla,Hipólito,66580533H,2001-09-19 01:34,+34723688181,Cuesta de Gaspar Sanz 752;Jaén;06147,8.2
+Vega Narváez,Oriana,98451845T,2003-11-01 05:00,+34733576070,Ronda Jose Angel Isern 37 Apt. 74;Segovia;32862,5.3
+Comas Yuste,Isaura,44720748P,1997-08-03 23:48,+34718102505,Glorieta de Sergio Valderrama 72 Apt. 58;Toledo;22499,6.0
+Español Vives,Águeda,29751562G,2001-06-17 04:28,+34749629793,Cuesta Verónica Moll 130;Barcelona;16915,8.3
+Salazar Goicoechea,Gertrudis,63560706E,2002-08-31 13:21,+34864573258,Pasaje de Gracia Moll 31 Apt. 12;Lleida;47383,8.8
+Gallo Pedro,Julie,50906113Y,1997-03-28 20:53,+34831699683,Cañada de Ricardo Batalla 8;Castellón;28482,8.6
+Palomino Miguel,Celso,95744519G,2003-03-07 12:09,+34690985274,Urbanización de Roberto Plana 553 Apt. 02;Santa Cruz de Tenerife;39284,5.6
+Toro Barroso,Belen,77374093T,2000-12-02 12:14,+34726016922,Urbanización de Amílcar Lladó 26;Girona;25493,7.0
+Falcó Barreda,Nilo,27768934E,2001-03-24 21:28,+34927045251,Camino de Cristóbal Viñas 3;Alicante;35093,9.5
+Godoy Olivera,Cleto,65997696R,2001-08-02 06:44,+34732363975,Paseo de Reyes Font 67 Apt. 48;Ávila;44272,6.5
+Mosquera Mendez,Salud,04672716J,2002-11-07 20:58,+34701904124,Avenida de Severino Valverde 261 Puerta 7;Cádiz;20435,5.3
+Hernando Rueda,Ignacia,62387277F,2002-10-14 18:29,+34700041558,Pasadizo Enrique Jover 706;Palencia;15774,6.9
+Izaguirre Milla,Visitación,43273241Y,2003-09-21 16:30,+34671652803,Urbanización Ceferino Mendez 3 Apt. 70;Melilla;28125,9.1
+Casanovas Águila,Jose Manuel,26978544G,2001-02-03 11:07,+34866702853,Cañada Modesta Codina 58;Cádiz;16245,5.3
+Rincón Crespo,Jose Francisco,60675744L,2003-04-17 04:34,+34992384073,C. Anselma Pons 96 Puerta 7;Barcelona;06633,9.0
+Alberdi Bilbao,Agustín,38264871R,2003-03-13 12:59,+34667465641,Calle María Baeza 417;Teruel;51984,8.1
+Cañizares Vergara,Luis Miguel,05111738B,1996-12-15 11:01,+34855548420,Alameda de Ainara Mata 82;Zaragoza;46939,9.7
+Mármol Oller,Reyna,10021342N,2002-04-08 21:48,+34969684933,Pasadizo de Florencio Vergara 99;Guipúzcoa;17972,9.4
+Rosselló Mata,Yago,55119907Q,2004-07-20 01:25,+34803471039,Glorieta Teresita Esteban 525 Apt. 00;Granada;16475,8.0
+Pozo Valero,Mamen,01344465T,1999-12-07 13:34,+34739610209,C. Haroldo Montaña 82 Puerta 2;Palencia;42121,6.3
+González Acedo,Baltasar,23949283G,2000-07-21 10:45,+34702816459,Vial de Maximiano Lledó 67;Segovia;06105,6.9
+Segarra Cuervo,Tomasa,68061784T,1997-10-04 12:26,+34986976296,Rambla Margarita Toledo 71;Cuenca;08250,9.1
+Pagès Verdú,Paola,78421842F,2001-05-27 10:39,+34909021667,Avenida Julia Pou 430 Piso 0;Pontevedra;27174,9.6
+Cazorla Martinez,Santos,90504211Q,2000-04-14 11:45,+34717828239,Cañada de Julio Iriarte 16;Melilla;51715,9.8
+Becerra Alarcón,Feliciana,21527243W,1999-04-07 06:26,+34882150525,Glorieta de José Luis Sanmartín 87;Ávila;21678,8.6
+Ródenas Pla,Maxi,06209370Z,2000-04-10 16:20,+34748681326,Vial Fabricio Aramburu 29;Melilla;18538,5.4
+Mate Ortuño,Graciela,66167541Z,2004-03-27 05:01,+34746959785,Acceso de Octavio Vila 4;Lugo;08271,7.8
+Pedro Rozas,María Dolores,31604815D,2002-02-09 00:44,+34700881095,Alameda Julio César Torre 16 Puerta 3;Valencia;48531,7.2
+Ocaña Cuevas,Ágata,44654845T,1997-03-19 20:38,+34678264973,Pasaje Maxi Mosquera 39 Puerta 6;Ciudad;25158,8.2
+Piquer Marquez,Jose Angel,08358765J,1998-08-22 00:11,+34689573959,Vial Rafaela Jerez 228 Piso 7;Tarragona;12896,6.1
+Palma Ibañez,Leire,78282639T,2003-09-01 00:39,+34707346483,Plaza de Armando Fernandez 39 Puerta 7;Córdoba;33864,5.3
+Maestre Torrecilla,Simón,73482094S,2003-10-07 00:27,+34716010524,Cuesta de Reinaldo Giménez 2 Puerta 1;Sevilla;39176,9.7
+Vilalta Muro,Luz,99988712F,2003-10-16 02:28,+34749300141,Callejón Manolo Cuenca 49;Barcelona;15962,7.0
+Jordá Valcárcel,Modesta,89024586G,1999-06-04 16:07,+34694312623,Vial de Marisol Lillo 5 Puerta 3;Burgos;14574,5.1
+Acero Ripoll,Edu,99763981D,1998-01-29 21:54,+34700853275,Glorieta de Cornelio Olmo 64;Castellón;19726,8.7
+Poza Bastida,Gabino,95798896D,2000-01-14 09:28,+34731827264,Callejón Valero Morillo 18;Jaén;49208,9.4
+Plana Casas,María Pilar,75741496N,2002-11-18 23:34,+34709204978,Glorieta de Rosendo Bonilla 9;Baleares;34208,8.1
+Soler Diez,Anacleto,63492045Q,1998-07-23 11:40,+34619661838,Avenida de Gregorio Cabo 429;Pontevedra;26880,9.9
+Juárez Soto,Felicidad,40697621H,2002-03-16 05:33,+34855303738,Urbanización Wilfredo Suarez 5;La Coruña;22564,6.3
+Martorell Borrego,Encarnacion,31271842F,1997-11-25 15:51,+34699132630,Pasadizo Rafaela Pellicer 91 Piso 5;Huesca;13557,6.0
+Fonseca Marquez,Azahar,61219068Z,2002-10-10 17:28,+34866027142,Vial de Delfina Comas 464 Apt. 22;Murcia;28775,9.0
+Escobar Arenas,Marcelino,79752220L,2003-03-23 19:13,+34721511738,Pasaje Paca Juan 748;Ciudad;41979,9.4
+Carro Villaverde,Feliciano,28479231X,2001-01-25 10:40,+34930329229,Callejón Claudio Lerma 579;Alicante;47415,8.1
+Benavides Cid,Pastora,49555510D,2000-09-06 19:53,+34745466043,Urbanización Salud Yáñez 67;Valladolid;17415,8.8
+Rivero Vives,Carla,92711958Q,1997-12-10 04:30,+34739863417,Cañada de Cesar Pedro 17;Segovia;30314,5.4
+Azorin Machado,Arcelia,34154954T,2002-02-18 07:00,+34717998320,Callejón de Hector Tormo 94;Barcelona;40890,9.0
+Valencia Ledesma,Samanta,99001050B,1998-04-22 01:14,+34935410645,Vial de Felipa Casals 85 Piso 2;Las Palmas;29597,5.7
+Redondo Pastor,Daniela,96345949F,1997-09-27 04:58,+34717210867,Ronda Baudelio Marti 524 Puerta 1;Álava;10466,5.5
+Abellán Buendía,Norberto,42595539E,2003-04-01 12:07,+34723359748,Plaza de Cristian Acuña 6 Puerta 3;Murcia;08539,6.8
+Vallejo Mascaró,Tamara,77315673T,1997-08-18 02:14,+34709403127,Callejón de Vera Diez 19;Albacete;09041,5.6
+Cabrera Menendez,Celestino,49973206W,2002-03-16 21:44,+34934637988,Plaza de Dolores Robledo 634;Lugo;42214,8.1
+Solsona Isern,Omar,75062128H,1999-03-01 17:07,+34702375057,Via Ángel Villar 73;Navarra;09709,6.6
+Aparicio Tur,Severiano,82633195Z,2004-06-06 05:36,+34725039317,Callejón de Hipólito Bermúdez 90;Teruel;49739,9.1
+Noriega Acedo,Hector,70516905D,2002-02-01 08:54,+34707841015,Urbanización de Lorenzo Tormo 18 Puerta 6;Soria;32792,7.3
+Correa Pujol,Ileana,13810498X,2003-11-09 22:07,+34899478546,Ronda Valentín Saez 41 Piso 3;Albacete;41953,9.6
+Nevado Costa,Gervasio,13196107H,2003-11-01 18:26,+34721290320,Cañada Régulo Sacristán 18 Apt. 72;Sevilla;08649,9.0
+Sáenz Luna,Macarena,20011220R,2003-08-19 07:47,+34716094571,Pasaje Evita Mendoza 236 Piso 0;Zamora;06992,9.3
+Peinado Aguilar,Macario,58130892W,1999-06-21 14:28,+34909029271,Via Carmelo Bas 213;Las Palmas;06262,6.1
+Cardona Sáenz,Liliana,91731321F,2004-02-26 14:09,+34928125682,Via Luisina Pineda 68;Granada;16871,8.0
+Bravo Corominas,Elodia,76363400L,2000-04-15 23:12,+34645850002,Rambla David Tovar 52;Barcelona;03675,6.0
+Dueñas Ortega,Odalis,39103851X,2003-03-13 00:06,+34721872453,C. de María José Calderón 96;Alicante;42797,9.2
+Mármol Guardiola,Rufino,77625679N,1997-02-16 17:28,+34708424041,Callejón Javi Escobar 95 Puerta 1;Madrid;14057,5.1
+Benavent Raya,Lucho,85598760M,2003-10-06 22:43,+34710400925,Camino Carlota Figuerola 9 Apt. 78;Palencia;41571,6.9
+Nadal Olivares,Pánfilo,13446460Q,1997-11-02 19:53,+34865273690,C. de Felix Correa 86 Puerta 3;Asturias;46944,5.5
+Cuadrado Abril,Marcial,81553815R,2004-08-04 00:44,+34711242648,Cuesta de Abril Carretero 69 Piso 4;Jaén;40840,6.0
+Vilaplana Alvarado,Angelina,16072919J,2004-10-25 05:20,+34983646006,Plaza América Porta 858 Puerta 7;Palencia;13125,9.1
+Amaya Pagès,Humberto,00137474A,1999-06-18 10:56,+34723129727,Cuesta Micaela Iniesta 95 Puerta 3;Huesca;34468,5.6
+Laguna Prada,Odalis,71210307F,2001-05-24 12:27,+34741428221,Plaza Amelia Sotelo 9;Barcelona;42213,6.1
+Soler Cerdá,Chus,88604673W,1999-01-15 00:56,+34715275051,Cañada de Custodia Pavón 80;La Coruña;42475,8.0
+Gargallo Bravo,Silvestre,95740636P,2004-02-11 16:02,+34667626363,Pasaje Modesto Parejo 67;Cáceres;31222,8.5
+Castell Nieto,Nieves,37129158M,1998-09-15 11:42,+34818997521,Acceso de Gloria Carnero 7;Valladolid;22478,5.9
+Menendez Mínguez,Roberta,99151540N,2003-04-29 08:51,+34724228273,Calle Reyes Borrell 87 Puerta 2;Almería;08408,9.4
+Corbacho Carretero,Perlita,32293994Q,2000-04-12 19:24,+34744199134,Callejón de María Cristina Nebot 56;Cáceres;48473,6.6
+Boada Galván,Febe,75552638F,2001-04-07 21:23,+34747158647,Rambla de Angelina Gonzalo 31;Las Palmas;07522,7.5
+Palomo Gomila,Dionisio,49004134N,1999-08-02 02:16,+34723985759,Plaza de Esther Escribano 93 Puerta 1;León;12402,5.4
+Canals Atienza,Xavier,93745563R,2001-05-09 19:33,+34719986659,Cuesta de Espiridión Vizcaíno 8;Álava;06508,5.7
+Alfonso Chacón,María Del Carmen,57684193D,2004-04-02 21:35,+34715431032,Ronda de Hugo Poza 4 Puerta 0;Valencia;01705,5.7
+Ribera Corral,Maura,48997073N,1998-07-22 01:44,+34732544758,Callejón de Ascensión Mayo 68 Piso 5;Valladolid;19370,9.9
+Alcaraz Gargallo,Priscila,34130625M,2004-07-29 06:12,+34734662273,Callejón Ani Velasco 39;Baleares;32540,7.3
+Hurtado Roura,Gerónimo,68541152W,1997-10-31 01:58,+34801192293,Via Renato Torres 95 Apt. 93;Pontevedra;19807,6.2
+Bustos Checa,Silvio,93032682M,2003-12-27 20:50,+34632244527,C. Aitor Barrios 75;Zaragoza;22685,8.8
+Roma Casals,Nando,16108779Q,1997-05-26 01:48,+34747436055,Pasaje de Adolfo Cuesta 68;Tarragona;05430,8.4
+Porras Llabrés,Adelina,49801589B,1999-04-02 07:45,+34807124549,Plaza de Emelina Morata 16 Piso 2;Ávila;28602,6.4
+Vigil Santamaría,Ruth,74664902W,2003-10-11 14:52,+34826528592,Via Hermenegildo Tejera 70;Córdoba;24268,8.8
+Iriarte Salazar,Violeta,15485357D,2001-04-05 19:53,+34704763708,Camino Paco Marin 52 Apt. 15;Burgos;20778,6.8
+Jaume Diez,Rosaura,37207586A,2000-04-17 07:27,+34701266119,Alameda Manuelita Santamaría 391;Vizcaya;40688,6.9
+Atienza Río,Maura,26411199T,1999-01-21 03:07,+34700710093,Pasadizo Luis Ángel Bonilla 95 Apt. 95;Murcia;15823,6.6
+Mateu Albero,Consuela,38055874M,2000-05-08 18:04,+34725451492,C. Adán Rosales 86;Álava;12501,6.0
+Santos Bauzà,Flora,24951168D,2003-06-13 07:26,+34700126692,Calle Rufino Ramirez 72;Sevilla;21895,8.5
+Rivera Villena,Herberto,40552907C,2004-09-11 17:01,+34749306780,Rambla de Clementina Figueras 40 Apt. 45;Toledo;20972,7.9
+Cobo Escribano,Corona,94247739H,2002-12-21 00:18,+34806197263,Paseo Evangelina Salas 950 Apt. 38;Madrid;15696,7.7
+Bermudez Cantero,Ezequiel,46513618M,2004-04-29 13:54,+34710512989,Plaza de María Del Carmen Pazos 90 Apt. 79;Vizcaya;28312,5.9
+Barreda Ibañez,Dolores,99667902R,1999-02-09 00:06,+34731475404,Glorieta de Yésica Niño 43 Apt. 61;Sevilla;12068,7.7
+Olivares Portillo,Amando,02775045A,2004-04-21 04:25,+34700861438,Pasadizo Telmo Osorio 22;Toledo;49442,6.4
+Mariño Dávila,Amalia,65205021K,2004-06-29 01:33,+34689317356,Vial Abigaíl Ortega 821 Piso 7;Salamanca;21419,9.0
+Tomé Chico,Loreto,98437090B,1997-03-25 06:59,+34721792116,Ronda Eugenia Marquez 109 Piso 6;Ceuta;51837,5.5
+Higueras Cánovas,Francisca,21216337X,2002-05-22 02:31,+34689245783,Alameda Gerardo Almeida 22;Pontevedra;17244,5.1
+Calatayud Calleja,Magdalena,33059924T,2002-08-28 18:22,+34897459130,Urbanización de Dionisia Nieto 81 Apt. 01;Teruel;19416,5.3
+Nadal Izquierdo,Vicente,89716207S,1996-12-29 23:04,+34745355563,C. de Nadia Alonso 115 Piso 2;Barcelona;04324,8.9
+Manzanares Figueras,Marisa,98584872H,2002-06-01 04:22,+34691365401,Glorieta de Felipe Santamaría 3 Apt. 29;Ávila;25235,5.5
+Ballester Gomez,Rosaura,71929582A,1998-10-07 20:48,+34949585798,Glorieta Jesús Cabello 11;Palencia;48613,5.1
+Roura Santana,Florina,43996520G,2000-09-01 12:22,+34998583294,Pasaje Concepción Huertas 94 Puerta 4;Guadalajara;38572,6.0
+Jaume Vilaplana,Juanito,30689707W,2000-09-08 04:56,+34749451650,Paseo Haroldo Adadia 1 Piso 7;Melilla;44643,9.9
+Aller Valero,Manu,40423936X,1998-11-08 21:04,+34944369774,Via de Néstor Bou 86;Huelva;19241,6.7
+Giralt España,Carmen,35335183F,2000-09-15 06:42,+34971128045,C. Herminia Nogueira 84 Apt. 88;Guadalajara;18703,7.8
+Montero Benavides,Olimpia,24696133K,1999-10-24 10:20,+34729259447,Urbanización Ovidio Guijarro 1 Piso 7;Segovia;40234,6.5
+Arco Morata,Amancio,61007912K,2002-08-12 07:41,+34734327168,Vial Bautista Alarcón 96 Puerta 9;Zaragoza;05471,9.6
+Múgica Tirado,Daniela,14167518R,1999-09-21 20:55,+34733083780,Pasadizo Selena Franco 9 Apt. 08;Burgos;47880,9.4
+Hernando Ugarte,Calixta,46548623G,2001-01-16 23:36,+34717420545,Plaza de Benigno Cabrera 69;Albacete;03724,6.1
+Cánovas Cortina,Cayetano,18203919V,1998-01-11 09:36,+34712660545,Acceso Matilde Pedrero 61;Asturias;27832,6.9
+Expósito Paniagua,Consuelo,79365835B,1998-12-27 01:14,+34738292815,Callejón de Adelina Jáuregui 72;Huesca;07383,7.3
+Molins Conde,Juan Antonio,49685660W,2004-02-14 04:25,+34737155452,Rambla Dafne Segura 469;Huesca;09944,6.1
+Anguita Sainz,Sebastian,00919713N,2004-08-26 01:11,+34740649360,Cuesta de Eli Rodríguez 16 Piso 2;Guadalajara;08986,6.1
+Varela Sancho,Federico,70567182P,2001-09-26 11:36,+34742407575,Cuesta Josefa Cervantes 63 Apt. 49;Toledo;15851,6.0
+Agudo Giménez,Reyes,09928435W,2003-08-13 17:38,+34924983269,Vial de Américo Prieto 55 Apt. 47;La Coruña;47497,8.9
+Hernando Sevilla,Nuria,26661903G,2004-10-05 20:53,+34722770638,Cañada Julián Cánovas 53 Apt. 25;Ourense;39861,6.9
+Cuervo Barreda,Cruz,83010748E,1997-12-02 00:51,+34724420495,Alameda de Leyre Zamorano 91 Puerta 0;Guipúzcoa;48749,8.2
+Rodrigo Tomé,Narcisa,27320189F,1999-07-18 06:12,+34733166194,Plaza Edmundo Pomares 60;Melilla;39828,8.4
+Pujol Cantero,Cruz,04784888Z,2002-02-05 07:22,+34723586201,Ronda Clotilde Carmona 63 Apt. 12;Ciudad;44074,7.6
+Donoso Garriga,Ximena,54683750P,2004-01-22 11:15,+34713308463,Callejón de Araceli Guillen 49 Puerta 0;Córdoba;29324,5.5
+Cadenas Arcos,Cornelio,72808583J,1999-08-19 20:24,+34694134911,Alameda Jafet Castrillo 12 Puerta 9;Lleida;32235,7.9
+Gutierrez Rodrigo,Ruperta,30418530H,1998-12-12 09:19,+34615241773,Glorieta de Noa Santamaría 49 Puerta 6;Las Palmas;18180,5.3
+Portero Diego,Eleuterio,77647067X,2003-01-04 14:37,+34707139594,Glorieta de Ruperto Gomila 69 Apt. 50;Toledo;50272,5.7
+Amaya Almeida,Maribel,21976544K,1997-04-02 15:41,+34709475086,Calle de Nereida Nicolau 1 Piso 1;Santa Cruz de Tenerife;35456,6.7
+Cabello Aramburu,Ibán,19785210N,2001-11-17 19:53,+34704112128,Callejón de Salomón Fuente 9;Asturias;15975,6.3
+Castillo Prada,Jessica,27440582H,2004-10-15 19:21,+34731331267,Paseo Angelino Portero 37 Apt. 46;Sevilla;30895,6.9
+Rivero Márquez,María Teresa,04419164J,2002-04-15 21:33,+34741488354,Cañada de Mirta Pintor 45 Apt. 44;Badajoz;16892,8.8
+Real Céspedes,Maximiano,61400657H,1998-08-27 12:40,+34733485619,Rambla Feliciana Carreño 144 Piso 6;Albacete;40575,5.7
+Cánovas Barrena,Severo,17401086E,2000-06-18 01:12,+34716047990,Paseo Jordi Córdoba 36;Valladolid;32880,6.4
+Huerta Benavente,Julio César,11124164F,1998-02-03 10:06,+34723200744,Rambla de Antonio Diego 9 Piso 5;Guadalajara;02711,9.3
+Sevilla Verdú,Jesús,56167485J,1999-01-17 00:53,+34716772318,Alameda de Leonel Gual 505;Teruel;40384,5.7
+Esteve Campos,Ángel,26303808L,2003-06-14 14:37,+34745462082,Cañada Elodia Azcona 4 Apt. 95;Lleida;48504,9.3
+Luján Lorenzo,Beatriz,32212989V,1999-08-29 01:57,+34917811225,Acceso de Eugenia Otero 18;Sevilla;28559,7.4
+Cantero Rivero,Ángel,75207893D,2003-07-26 13:26,+34617262680,Cañada de Epifanio Blanes 678 Puerta 3;Ceuta;30130,7.4
+Vendrell Real,Elías,25903361W,2001-07-21 12:15,+34703483408,Vial de Angelino Ferrando 843 Piso 0;Las Palmas;29595,8.1
+Alarcón Diaz,Inmaculada,33295171A,1997-09-20 11:34,+34703468592,Calle Rubén Peña 45 Puerta 3;Zamora;33192,9.5
+Huerta Fuertes,Lisandro,56680080F,1998-03-18 12:43,+34723013666,Cañada de Gabriela Arribas 834;Baleares;41188,9.3
+Oller Borrell,Graciela,49792258H,2000-09-26 02:48,+34749901573,Plaza Borja Rozas 47 Piso 8;Melilla;31983,8.3
+Cuevas Cortes,Adalberto,12045576Q,2001-04-22 03:41,+34726521995,Ronda de Aurelio Criado 94;Sevilla;29552,7.0
+Abellán Ureña,Bruno,63911283X,2000-11-08 17:32,+34747857914,Acceso de Venceslás Coca 25 Piso 9;Palencia;09876,6.5
+Zaragoza Macias,Gabriela,33680050T,1997-07-13 16:39,+34740898787,Ronda Pastor Matas 10;Ciudad;28736,9.1
+Bravo Artigas,Remigio,23438496R,2000-11-02 22:10,+34731402790,Vial de Urbano Cuadrado 43;Almería;30429,7.8
+Torres Mármol,Evaristo,07110776G,2002-05-04 10:43,+34719003640,Paseo Eutimio Bernal 95 Puerta 3;Navarra;34736,5.4
+Martínez Zabaleta,Jose Miguel,79936630S,1998-03-09 23:45,+34741146684,C. de Dionisio Estrada 7;Ourense;18822,7.4
+Miró Guzman,Marina,87463832F,1996-12-26 05:09,+34700351144,Ronda Joaquín Landa 29;Murcia;08731,6.1
+Pellicer Pardo,Zoraida,15381242S,2003-07-20 03:23,+34601645402,Glorieta Carlos Rodrigo 28 Apt. 29;Navarra;06819,5.2
+Macías Valle,María,59161541K,2003-06-08 06:27,+34715379937,Acceso Rufina Millán 19 Piso 1;Jaén;28664,6.0
+Pereira Haro,Eligio,03786503J,2004-01-30 16:51,+34968433163,Alameda Nuria Pina 2;Huesca;11015,5.8
+Córdoba Pallarès,Íñigo,84689900J,2000-05-17 00:31,+34714562727,Alameda de Domingo Andrés 65 Puerta 3;Teruel;19974,6.1
+Parejo Atienza,Ciríaco,22966091Q,2002-10-13 08:52,+34989307713,Glorieta Pelayo Pera 5;Soria;01631,7.5
+Nicolau Barranco,Omar,38459133M,1998-03-30 18:06,+34736827785,Avenida Adela Torre 4 Puerta 0;Jaén;07520,8.0
+Redondo Castejón,Remedios,33945575J,2000-11-23 20:15,+34724960809,Pasaje Gaspar Santamaria 90;Málaga;31845,8.9
+Tormo Pont,Julio,47834267V,2003-12-23 04:22,+34735998129,Cuesta de Juanito Rodriguez 10 Puerta 5;Madrid;16428,9.4
+Alvarado Flores,Claudia,66191293F,2003-06-20 21:08,+34722488269,Glorieta de Bernardino Peiró 72 Puerta 7;Córdoba;28667,5.5
+Palau Pedraza,Tomasa,13746879D,2004-01-04 11:46,+34856403753,C. Rosalinda Riquelme 79 Apt. 65;Albacete;14568,6.9
+Martí Benavente,Iker,68279691M,1999-05-30 20:48,+34732396542,Vial Amalia Batalla 5 Piso 4;Málaga;36596,9.1
+Checa Niño,Marcos,24813778K,1997-12-31 09:50,+34726457762,Ronda de Florinda Ruiz 60;Guipúzcoa;42016,9.5
+Avilés Morales,Ana Belén,15797873R,1999-12-12 04:19,+34971184496,Acceso Iris Salvador 18 Piso 8;Santa Cruz de Tenerife;01425,5.4
+Pablo Alvarado,Dora,73185383G,2000-11-04 16:18,+34663048839,Via de Carmela Baeza 65;León;45921,6.9
+Company Verdugo,Dionisia,07160121Z,1996-12-30 07:18,+34899647498,Urbanización Ángela Font 43 Piso 5;Ourense;47975,5.3
+Moreno Company,Bernardino,22649781W,2003-07-20 05:54,+34723993627,Cañada Isaías Andres 6;León;20021,7.3
+Mesa Ugarte,Renato,98829179L,1999-03-09 18:39,+34718589156,Cuesta Emilia Planas 954;Soria;09958,5.4
+Benitez Corral,Ciro,75327087V,1999-01-12 17:14,+34723856851,Paseo Nilda Reig 7;Palencia;37205,6.5
+Hervás Calzada,Cecilio,94149429X,2004-02-28 23:26,+34708437729,Via de Petrona Abellán 85 Apt. 84;Asturias;30598,8.2
+Escrivá Uribe,Fátima,35464664K,2004-05-21 08:01,+34982291382,Pasadizo Pastor Narváez 45;La Rioja;49665,9.7
+Torralba Vilanova,Susanita,76185189N,1997-08-07 08:28,+34749740587,Acceso Ariel Escudero 62 Piso 3;Guipúzcoa;42082,7.3
+Alcalde Peralta,Águeda,27848641B,1999-09-22 20:40,+34723769956,Rambla Alexandra Azcona 80 Apt. 21;Melilla;14882,9.9
+Caparrós Carrión,Regina,78543265J,2000-06-26 22:07,+34802621658,Via Damián Flor 911 Puerta 1;Álava;12792,9.5
+Iñiguez Seco,Custodia,11471166P,2001-04-22 22:38,+34714999354,Alameda Úrsula Folch 72 Piso 6;Palencia;12934,5.7
+Aliaga Lucena,Clímaco,48974334C,2003-11-04 20:12,+34710234130,Cuesta de Hipólito Lledó 6 Piso 6;Salamanca;02150,8.3
+Antón Cardona,Dora,08788682Z,2001-12-16 12:00,+34723780430,Calle de Rosendo Pedraza 43 Piso 0;Almería;06799,7.8
+Gilabert Pablo,Elba,29113180X,2002-12-26 14:02,+34706432777,Via Noemí Nogueira 521;Granada;14555,9.0
+Cañas Camps,Itziar,05658713T,1998-11-29 18:17,+34734401287,Via Martina Font 483;León;13937,5.7
+Valdés Valcárcel,Cristian,71008301X,2004-03-13 16:49,+34718206992,Pasadizo de Candelas Fiol 45 Puerta 7;Vizcaya;28097,5.7
+Simó Arnal,Calixta,46305983Z,1999-07-29 06:17,+34722057189,Urbanización Graciana Alegria 41 Piso 4;Girona;01469,6.2
+Orozco León,Graciela,32575767Q,1997-08-14 02:53,+34740702104,Avenida Jacobo Aramburu 85;Murcia;45154,8.1
+Torrent Quintero,Luis Miguel,10153996W,2004-02-13 11:51,+34835552636,Paseo de Ignacio Martínez 19;Córdoba;17243,7.3
+Aliaga Ariño,Emperatriz,54075582Y,1998-05-10 02:06,+34729239546,Callejón Juan Luis Aragonés 59 Puerta 4;Tarragona;21123,8.3
+Márquez Zamorano,Odalis,89006851W,1999-05-01 20:00,+34971163234,Ronda de Humberto Sales 41 Puerta 7;Palencia;50401,7.3
+Calzada Alonso,Amílcar,12435228W,2004-10-14 04:56,+34713865811,Pasaje de Socorro Barreda 98 Piso 5;Barcelona;44553,8.9
+Gonzalo Ayala,Vinicio,35814517K,2001-08-30 11:50,+34693041656,Pasaje de Eduardo Ribera 13;Lleida;44107,6.6
+Santiago Carballo,Isaura,50824308N,1999-08-24 11:00,+34742403844,Via de Bernardita Torrens 52;Álava;14331,5.2
+Giner Parejo,Bárbara,38772241Z,2004-05-05 04:39,+34653438064,Avenida de Eugenia Barco 3 Apt. 80;Palencia;41935,5.8
+Maldonado Duque,Felipe,00267494G,2001-10-23 01:26,+34707948351,Vial Lino Villalobos 84;Cantabria;23491,9.6
+Fábregas Cepeda,Íñigo,55236937E,2000-11-28 00:31,+34936643547,Pasaje de Sebastian Galván 904 Puerta 0;Ourense;04082,8.6
+Revilla Dávila,Amaro,75563295S,1996-12-21 10:52,+34921045046,Alameda de Maricruz Fuster 82 Piso 5;Murcia;49294,6.5
+Colomer Cabanillas,Macaria,80952647F,2003-06-18 18:25,+34729124838,Avenida de Sara Parejo 20 Apt. 24;Barcelona;16687,6.9
+Cáceres Olmedo,Néstor,60725009H,2002-08-27 17:04,+34743908387,Cuesta de Ana Sofía Frutos 78;Ceuta;08924,7.2
+Villalobos Sevillano,Máxima,14673147K,2000-05-15 19:57,+34744511237,Rambla de Begoña Terrón 40;Cantabria;40340,5.5
+Angulo Niño,Paco,64666648D,2003-06-13 09:22,+34715955146,Camino de Pancho Rosado 2 Puerta 0;Murcia;38050,5.5
+Pedraza Herranz,Amador,56768804C,1997-07-07 08:18,+34744664570,Ronda de Modesta Morera 2 Apt. 05;Valencia;04437,8.5
+Matas Lamas,Sol,42935072Y,2003-09-29 06:45,+34743858332,Avenida Juan Luis Peña 55 Puerta 6;Zaragoza;43434,6.3
+Ferrero Alemany,Narcisa,27004618L,2003-04-16 10:08,+34712512382,Pasaje Ligia Sainz 728 Apt. 99;Lleida;42677,7.3
+Riera Morán,Cayetana,95076809F,1998-10-02 19:29,+34849623396,Urbanización Ángela Cabanillas 203;Segovia;03710,8.6
+Fernandez Huguet,Fabio,03800206P,1998-09-10 16:26,+34708615915,Calle de Carlito Atienza 14;Badajoz;25466,5.8
+Osorio Luís,Francisco Javier,65830928Y,2000-09-14 22:26,+34713311627,Via Ale Terrón 63;Ávila;34049,7.1
+Yuste Jaume,Nilda,95877285Z,1997-12-07 19:52,+34736160484,Cañada de Baltasar Alemany 22 Puerta 0;Córdoba;15878,9.0
+Carretero Villena,Jacinto,30045416X,2004-09-30 14:24,+34728464779,Plaza Julieta Garzón 52;Alicante;37530,9.5
+Rozas Rebollo,Calixta,41686126Y,1999-09-24 03:55,+34941205021,Via Eugenio Pi 840;Cantabria;40790,7.8
+Verdú Alberola,Noelia,68658104E,1998-10-29 07:15,+34997449928,Rambla Dimas Coca 12 Puerta 0;Castellón;08779,9.8
+Juan Jordá,Vinicio,30108320D,2000-12-20 01:16,+34898674739,C. de Herberto Carro 49;Málaga;45507,6.7
+Bayona Almansa,Liliana,21935354R,2000-04-21 19:45,+34723561076,Callejón de Rodolfo Cortes 20 Apt. 05;Melilla;31635,8.0
+Ruano Franco,Salvador,28433763J,1997-05-11 21:38,+34718679969,Cañada Francisco Javier Quiroga 22;Las Palmas;20897,7.0
+Rovira Acedo,Anastasia,40328224R,1998-08-01 04:45,+34703098416,C. de Purificación Gallo 10 Apt. 98;Baleares;28172,5.8
+Navarrete Gimenez,Noé,04392851N,1999-09-08 20:37,+34745255145,Ronda Daniela Prieto 29 Apt. 47;Zaragoza;19654,9.6
+Chacón Llorente,Asdrubal,42303487R,1996-12-03 03:35,+34651704273,Via Juan Francisco Trujillo 74 Puerta 5;Ávila;51758,6.0
+Carpio Casas,Sancho,04666788L,1999-02-27 14:41,+34709482763,Alameda de Félix Jove 51 Piso 6;Lleida;48874,5.7
+Bustos Bayón,Úrsula,58987576M,2004-01-01 10:59,+34627395402,Cañada de Gisela Merino 12 Puerta 4;Albacete;29854,5.7
+Salcedo Carreño,Teodora,12798837G,2000-07-24 03:57,+34727107634,Avenida de Flora Osuna 58 Piso 7;Guadalajara;38203,5.4
+Mendoza Blanco,Darío,48557525V,1997-09-30 12:04,+34667197082,Rambla de Javiera Narváez 83 Piso 2;Huesca;11442,8.8
+Sarmiento Caballero,Leonor,20148763G,1998-02-20 23:19,+34701444293,Callejón Evelia Páez 614 Puerta 8;Girona;20358,6.5
+Bernal Sanchez,Josefina,24324537J,1998-10-05 02:41,+34740301056,Via Olga Cabañas 57 Puerta 2;Córdoba;51257,7.4
+Pardo Jover,Silvio,93120184S,2000-06-06 10:28,+34849763274,Vial José Lucena 61;Álava;13901,5.4
+Bastida Monreal,Benita,40211826Y,1997-03-23 02:08,+34747612433,Calle Abel Ferrán 1;Ávila;21090,8.4
+Ferrándiz Vargas,Pelayo,49062687F,2002-12-07 00:53,+34712388927,Pasadizo María Cristina Roma 772;Cádiz;38637,7.3
+Dominguez Molina,Ester,04068174A,1998-03-16 06:56,+34705966436,Pasaje Che Alarcón 178 Piso 5;Lugo;42541,8.6
+Lumbreras Bellido,Benjamín,40664806R,2003-11-18 11:52,+34724243119,Ronda de José María Blasco 190;Sevilla;16324,8.8
+Blasco Rodríguez,Eleuterio,70060807R,2002-11-08 06:31,+34739513379,Rambla de Zacarías Perera 22;Madrid;34035,6.8
+Barral Quintana,Isaac,13272269G,2000-07-07 00:08,+34732608083,Avenida Beatriz Camacho 72;Castellón;05693,9.2
+Rebollo Flor,Leticia,55678377T,2003-04-29 13:58,+34733796452,Acceso de Jorge Hervia 36 Piso 4;Cáceres;03731,9.7
+Monreal Niño,Tomasa,84906376J,2002-07-09 05:28,+34710437202,Ronda de Javier Ángel 82 Puerta 9;Teruel;02359,9.0
+Ariño Quevedo,Eligio,17321933N,1997-05-15 02:57,+34719637068,Calle de Pastora Miranda 80 Apt. 29;Lleida;22441,6.5
+Barrera Blanes,Hector,97940733V,2001-11-05 21:18,+34601643153,Paseo de Gregorio Gual 81 Piso 0;Cantabria;01113,6.4
+Figueras González,Martin,45335474J,2002-01-08 10:38,+34701796620,Cuesta Edelmira Bustamante 4;Guadalajara;18977,5.5
+Baquero Valle,Delfina,77836967E,2003-06-17 18:09,+34748851540,C. Paco Adán 69;Ciudad;51309,6.7
+Esteve Verdugo,Oriana,42474997T,2001-11-29 22:02,+34704772342,Avenida Julián Sancho 15;Cantabria;23978,7.9
+Huerta Aroca,Yolanda,61195010Z,1996-12-31 07:10,+34719074591,C. de Néstor Peñalver 45 Puerta 4;Toledo;13892,6.1
+Arévalo Arregui,León,67073223W,2004-03-15 00:39,+34709974630,C. Sol Mateu 640 Apt. 95;Melilla;47332,5.9
+Morillo Gisbert,Lorena,66800586F,2003-03-13 01:19,+34640825839,C. Omar Pinedo 75 Piso 4;Segovia;36114,5.6
+Camacho Lopez,Ramona,25786801Y,1997-07-27 10:16,+34732878143,Alameda de Carmela Alcázar 18;Huesca;32521,6.0
+Calatayud Hervia,Roldán,24103581H,2002-06-29 03:41,+34900958945,Urbanización de Édgar Tomé 72;Castellón;15921,6.6
+Rocamora Barón,Nidia,75024597T,1997-08-19 14:50,+34711526113,Glorieta Blanca Pedrosa 9;Sevilla;45233,7.0
+Lledó Ferrán,Angelita,00088721X,1998-06-25 04:23,+34733973195,Glorieta Alejandro Solé 485 Piso 2;Valladolid;34296,5.2
+Verdejo Cueto,Ana Sofía,39718840W,1997-06-23 16:46,+34657964207,Calle Narcisa Ocaña 876;Cantabria;44335,9.3
+Ayala Pelayo,Roque,41139448S,2004-05-27 18:31,+34748952521,Acceso de Sabas Calvet 39;Málaga;19542,6.0
+Isern Pallarès,Valentina,05633640C,1998-03-23 10:32,+34711371534,Glorieta de Carolina Vélez 872;Lugo;32548,7.6
+Palomares Vallés,María Carmen,83426405T,2002-10-19 02:27,+34732156769,Vial de Feliciano Jáuregui 39;Vizcaya;07545,6.9
+Ortega Goicoechea,Brígida,45250280B,2002-04-13 01:52,+34852989781,Alameda de Vasco Montaña 27 Apt. 77;Cádiz;50959,5.0
+Gargallo Duque,Julie,25962364X,1997-10-19 23:48,+34735298298,Paseo Saturnino Soriano 90;Girona;33793,9.9
+Busquets Almazán,Amparo,81459120C,1999-03-13 04:49,+34704708779,Paseo de Leoncio Arenas 2 Apt. 33;Segovia;43270,5.9
+Molina Díez,Candelaria,90566397X,2000-04-15 18:59,+34681050246,Acceso Noemí Casal 72;Sevilla;32942,5.2
+Soria Morante,Lorena,11459517C,2004-01-28 05:00,+34703559296,Paseo de Ofelia Ramón 27 Puerta 4;Cantabria;02646,8.9
+Vélez Saavedra,Ismael,10320436Z,1999-06-12 09:30,+34700490093,Avenida de Aránzazu Losada 3 Apt. 18;Asturias;39675,9.1
+Leiva Coca,Omar,79243658X,2003-07-11 14:09,+34733906856,Via de Belen Adadia 24 Piso 1;Guipúzcoa;35580,9.4
+Prat Pinedo,Cosme,62079722P,2001-05-21 13:51,+34926650092,Cañada de Encarnación Tomas 24;Cádiz;33380,5.1
+Arco Seco,Miriam,95453874X,2000-07-07 19:39,+34630539813,Plaza Simón Peralta 772 Piso 3;Huelva;42819,6.6
+Milla Peña,Eliana,20515350V,2001-12-15 12:54,+34739616303,Paseo Marianela Iborra 47 Apt. 22;Vizcaya;21776,8.7
+Castells Arnaiz,Clotilde,99085283H,2002-08-26 22:17,+34738626704,C. de África Rosell 816 Puerta 4;Albacete;28269,6.8
+Marin Salvà,Virginia,72966355M,2001-09-17 05:19,+34746559254,Cañada Che Sebastián 24;Huesca;34600,9.0
+Tejada Armas,Carmina,17815760Y,2004-09-16 03:01,+34716340950,Glorieta Cipriano Piñeiro 7 Puerta 9;Ciudad;09270,9.7
+Cabezas Oliva,Nicolasa,96580790H,2001-08-03 02:01,+34723862604,Pasaje Manolo Llorente 70;Salamanca;03775,6.5
+Figueras Abellán,Espiridión,24516912Q,1997-07-29 18:30,+34966511351,Cuesta Beatriz Bueno 99;Málaga;47955,6.0
+Nadal Linares,Aránzazu,49452513Y,2000-02-03 14:45,+34749061548,Rambla de Conrado Huerta 18;Navarra;16473,6.6
+Goicoechea Molins,Chuy,42877997V,2004-03-22 21:50,+34730157667,Vial Vidal Buendía 752 Piso 0;La Rioja;41042,9.2
+Duque Palacios,Adelaida,96396900J,2003-09-09 23:36,+34659909381,Ronda Valero Hernandez 29;Madrid;42701,6.5
+Barragán Alcázar,Tatiana,90917280M,1998-03-02 05:09,+34807236203,Avenida Fabio Acuña 96;Tarragona;41923,9.9
+Agustí Serrano,Azeneth,00501428M,2000-03-31 00:46,+34872731370,C. Germán Plaza 586 Apt. 68;Segovia;35343,8.1
+Carreño Ricart,Pili,85383607V,2003-02-17 13:19,+34735087469,Cuesta de Anselma Vazquez 60 Apt. 34;Las Palmas;29646,7.1
+Lobato Luján,Edmundo,19713561P,1997-01-19 23:15,+34997388770,Via Jacinta Gracia 418;Las Palmas;38258,6.3
+Mayo Cifuentes,Fabiola,88739915G,2002-06-01 07:04,+34999744243,Calle Apolonia Cerdán 69;Córdoba;15349,6.3
+Alfaro Zabaleta,Elisa,08730562S,2002-11-18 05:13,+34648305667,Callejón de Calixta Manso 59 Apt. 05;Jaén;24209,9.6
+Valentín Tena,Juliana,65130046A,1999-12-16 05:24,+34820693123,Callejón de Jaime Mate 9 Apt. 39;Guipúzcoa;44205,5.7
+Fonseca Tomas,Demetrio,46827163Z,2002-03-24 08:12,+34936606061,Plaza de Primitiva Cisneros 88;Málaga;03346,9.8
+Castrillo Conde,Nereida,20772265E,1998-09-21 11:38,+34720180085,Glorieta Adoración Bejarano 534 Apt. 37;Valladolid;16569,6.5
+Núñez Baeza,Bernabé,96367839R,2003-12-30 08:53,+34725860080,Cuesta Iris Vallejo 40;Álava;09218,6.4
+Arranz Domingo,Víctor,80851722Y,2004-06-01 23:11,+34741586979,Callejón Macarena Peña 36;Teruel;20183,9.2
+Juárez Adán,Ibán,52729764X,2003-10-11 13:27,+34747016517,Cuesta de Augusto Llobet 343 Puerta 8;Córdoba;34612,9.4
+Borrego Camacho,Saturnino,03671029E,2000-01-19 00:12,+34725944677,Callejón de Soraya Calatayud 98 Puerta 9;Zaragoza;47179,8.1
+Alfonso Moll,Gervasio,00705104Q,2000-03-30 23:41,+34728405000,Avenida Hilario Arnal 39 Piso 8;La Rioja;07776,8.2
+Uriarte Corbacho,Sofía,75036670K,2000-06-18 13:03,+34952975004,Cuesta de Cintia Tudela 63;Palencia;24757,6.4
+Rosa Viñas,Manolo,58588127C,2004-08-14 06:17,+34947910046,C. Concepción Zaragoza 6;Ciudad;24790,6.1
+Muro Barrio,Leire,21853869M,1997-02-17 14:28,+34726744910,Urbanización Bernardita Morante 82;Vizcaya;08761,8.6
+Osuna Arévalo,Ciro,44674585Y,1998-02-24 21:48,+34746762570,Camino de Olga Haro 96 Puerta 4;Badajoz;26553,5.2
+Yuste Ochoa,Ceferino,22937539F,2002-12-21 04:43,+34639651070,Via de Clarisa Iniesta 50;Tarragona;47995,9.9
+Peñas Gallego,Bienvenida,12431564H,2000-01-09 08:34,+34871861828,Rambla Lupe Milla 19 Puerta 4;La Rioja;04014,5.2
+Fernandez Beltrán,Rita,47795620X,2003-08-27 02:51,+34713770614,Avenida Cosme Carretero 53 Apt. 15;Ourense;02921,7.3
+Portero Arellano,Emiliano,54213965K,1997-09-22 07:46,+34721753924,Cañada de Florina Miralles 481 Apt. 66;Pontevedra;06047,8.9
+Heras Gisbert,Luís,75316628T,2004-10-22 16:42,+34664600664,Plaza Daniel Almagro 10 Piso 8;Madrid;07190,9.4
+Bou Avilés,Sebastian,26597676Q,1998-08-03 05:18,+34601133758,Ronda Roque Pinilla 676 Apt. 03;La Coruña;27041,6.4
+Castillo Trillo,María Dolores,56385142K,1999-02-12 04:01,+34888065306,Urbanización Mar Moll 65;Cantabria;51204,8.6
+Hurtado Perez,César,69667692W,2000-02-15 07:09,+34738934029,Pasadizo de Nicodemo Rebollo 62 Apt. 35;Cantabria;03554,6.5
+Morera Villalba,Pepita,53594829E,2002-09-10 23:07,+34745490142,Avenida de Blanca Berenguer 229 Apt. 83;Barcelona;37831,8.0
+Navarrete Báez,Carlos,68087852D,2003-07-16 13:56,+34722524874,Glorieta de Paco Ferrán 67;Álava;40008,6.5
+Codina Lara,Jeremías,17158557M,1999-06-06 14:04,+34935281175,Rambla de Aníbal Llorens 1;Granada;17986,7.8
+Monreal Rojas,Susanita,40489066G,2000-05-29 01:11,+34898196754,Ronda de Tomasa Capdevila 51;Córdoba;11910,7.6
+Portillo Catalá,Clementina,15708655T,2000-04-24 09:52,+34928133544,Alameda Leopoldo Mariscal 88 Puerta 0;Las Palmas;02235,5.6
+Ferrer Bermúdez,Jose Angel,25280917F,1999-04-10 07:21,+34930619831,C. de Serafina Carvajal 11;Zamora;11683,7.6
+Palma Valencia,Jonatan,91368856E,1998-08-24 00:25,+34743227372,Plaza de Fabricio Julián 8 Puerta 8;Las Palmas;49861,7.1
+Heras Salvà,Fernanda,25899979R,2001-06-03 02:38,+34715164991,Avenida Gil Bayona 7 Apt. 59;Baleares;45845,7.1
+Cruz Muñoz,Marcelo,65314073F,2001-05-12 14:26,+34702562205,Cañada Urbano Adadia 248;Castellón;13119,9.0
+Raya Amat,Eladio,37740063F,2000-09-06 05:52,+34878758771,Glorieta de Melisa Bernad 6;Jaén;46531,9.3
+Pozo Riera,Gonzalo,72762294T,1999-10-06 17:22,+34705824490,Paseo Leonardo Morante 59;Teruel;15985,9.2
+Ferrández Mármol,Alma,23000195B,2003-09-07 11:35,+34722042438,Pasaje de Valero Ramírez 11;Granada;01368,9.5
+Grau Catalán,Gerardo,02066619T,2004-06-07 13:28,+34703698020,Callejón de Julio César Real 21;Granada;15329,5.1
+Zurita Alemán,Guadalupe,32395877D,1999-08-12 05:06,+34818539817,Camino de Crescencia Sierra 29 Puerta 8;Pontevedra;43409,7.4
+Arenas Barbero,Teodoro,40307987G,2001-12-23 03:24,+34743050693,Callejón Sandra Ramón 44;Valencia;49435,7.5
+Escudero Roselló,Carmela,49839081J,1998-09-15 08:31,+34602676164,Vial Ricardo Duque 93 Apt. 56;Albacete;16553,8.2
+Beltrán Perales,Gertrudis,61177732D,1998-03-22 21:24,+34681817857,Pasaje Hilario Valera 56;Zaragoza;31578,6.3
+Córdoba Fabregat,Reina,83321051D,2000-12-21 15:54,+34969136744,Ronda de Jimena Pino 62;Albacete;18123,7.2
+Gordillo Miró,Cesar,16938689V,2003-09-19 05:05,+34703860401,Pasadizo de Catalina Arribas 411;Tarragona;28165,6.2
+Arias Quintanilla,Maximino,89871126Y,2001-11-01 12:10,+34907845704,Urbanización de Gabriel Martín 28 Puerta 3;León;28251,9.8
+Caro Aguilera,Arcelia,80265608R,1997-12-14 04:58,+34742688377,Cañada Eloy Barba 54;Navarra;41474,8.3
+Soto Puente,Leocadia,85530239R,1999-01-03 04:07,+34736191712,Ronda Juana Lluch 52 Puerta 4;Melilla;21061,7.6
+Viña Corbacho,Alba,26990317R,1998-06-23 21:04,+34903494197,Alameda Bautista Daza 66 Piso 0;Burgos;43639,6.5
+Pedraza Osorio,Sofía,03342359E,2000-06-23 17:37,+34619959527,Pasaje Reyes Toledo 447 Piso 5;Madrid;27764,9.9
+Colomer Mariscal,Paz,24088944D,2004-03-13 22:02,+34731329607,Cuesta de Curro Abril 6 Puerta 4;Soria;38901,8.7
+Guerra Pons,Isidro,75601540B,2001-10-04 17:40,+34729149064,Acceso Renato Casals 565 Piso 1;León;16633,10.0
+Falcón Cabello,Victorino,77929495K,2002-10-20 23:28,+34992504321,Camino Daniela Moreno 1 Piso 1;La Rioja;32477,6.5
+Pinilla Olivé,Leoncio,53996840Q,2001-12-18 18:53,+34720343808,Plaza Carlito Echeverría 87;Vizcaya;27471,5.3
+Cuesta Sevilla,Gilberto,89650724J,2004-01-15 03:25,+34732170769,Camino de Pepita Blanch 3;Cáceres;48794,5.2
+Aramburu Casanovas,Armando,27718668B,2000-07-08 18:28,+34731567910,Pasaje Agustín Uribe 38;Toledo;10175,5.5
+Quintana Canals,Edelmiro,64560355E,2001-02-24 22:15,+34743901109,Via de Maximiano Castellanos 13;Badajoz;38977,7.6
+Castro Mosquera,Paloma,41371828A,2000-11-27 11:41,+34927520245,Camino de Severiano Maestre 19;Zaragoza;20242,7.7
+Cordero Jover,Guiomar,55338724B,2004-04-02 14:51,+34647015398,C. Clemente Egea 51 Apt. 82;La Rioja;26107,8.4
+Ribas Guardiola,Pastora,00240003K,2001-08-16 15:15,+34741654766,C. de Jose Ramón Antúnez 5 Piso 8;Guadalajara;20842,6.1
+Morillo Trillo,Casemiro,52126500J,2002-01-27 22:03,+34909163043,Ronda de Leoncio Bartolomé 4;Navarra;02524,9.8
+Belda Vicens,Dominga,57532478W,1999-02-08 04:22,+34743341137,Vial de Maristela Pablo 66;Barcelona;41423,7.7
+Aguilera Ferrández,Pacífica,26587478F,2004-10-09 23:54,+34731481947,Urbanización de Cristian Raya 2;Guipúzcoa;21199,5.7
+Dalmau Castellanos,Estela,06993042F,1997-01-31 18:09,+34914032696,Avenida de Gisela Pina 19;Cáceres;32010,6.6
+Reguera Juárez,Isaías,12021972X,2002-10-24 11:26,+34712117042,Urbanización Jovita Capdevila 42 Apt. 75;Albacete;50856,9.2
+Pol Amo,Roberta,52946687C,2000-04-25 16:37,+34958881351,Pasadizo Flavia Ramis 2;Salamanca;20992,7.2
+Arce Pont,Amaro,91823072B,2001-10-03 17:49,+34861537201,Camino de Urbano Grau 86;Cuenca;18570,8.9
+Ribas Becerra,Eusebia,31001774M,2002-05-27 08:09,+34965911243,Cuesta Gonzalo Fortuny 74;Murcia;36685,6.0
+Gámez Jaume,Consuela,03656407M,2000-11-29 23:54,+34627305176,Calle Valero Girona 99 Puerta 3;Álava;43209,8.0
+Herranz Sureda,Olimpia,14352225H,2003-09-10 22:54,+34988658710,Glorieta Aránzazu Solís 24;Sevilla;22709,6.8
+Arjona Lucas,Emigdio,84923599D,2004-08-14 12:12,+34731856879,Cuesta Pepito Garcés 2;Melilla;39286,8.5
+Falcón Méndez,Teresita,97597349T,2000-06-25 17:45,+34734671684,Vial Florencia Pavón 85;Granada;50243,9.1
+Asensio Salazar,Nacio,12898925L,1999-11-01 00:17,+34650231562,Camino de Máximo Jover 752;Ourense;47213,5.4
+Conde Busquets,Arsenio,60283958S,2000-11-01 18:57,+34748375568,Avenida Lisandro Menendez 40 Piso 4;Barcelona;11539,7.8
+Casal Verdugo,Leocadia,36747064X,2002-08-07 01:09,+34912666079,Rambla Herminio Pablo 39 Puerta 8;Huesca;41212,9.5
+Rivas Zabaleta,María,32936675P,2003-10-27 17:31,+34959060497,Via Maribel Hoyos 52;Valencia;13438,5.7
+Lastra Mendoza,Horacio,28426269V,2004-08-31 10:43,+34953094497,Acceso de Duilio Abascal 25 Puerta 1;Cuenca;48556,7.1
+Roselló Tovar,Anselmo,48121633K,2002-04-11 08:11,+34951743576,Acceso de Paloma Casanovas 55;Ourense;15588,7.3
+Barros Feijoo,Nicodemo,72448841Z,1999-01-18 12:53,+34747665827,Glorieta de Macaria Olmo 24;Murcia;06672,8.4
+Vallejo Ramos,Joan,59113927V,1998-12-30 22:35,+34932134408,Alameda de Melisa Calvet 7 Puerta 1;Sevilla;02405,8.9
+Tomás Giménez,Gerónimo,95228829C,2000-06-28 14:01,+34709667124,Pasaje de Lina Luís 69;Zamora;17571,6.0
+Domínguez Tamarit,Pascuala,93216909W,2004-01-30 17:32,+34711230778,Alameda de Filomena Lobato 90 Puerta 5;Cáceres;30042,9.1
+Miró Cerdán,Estrella,12270981K,2001-05-24 09:16,+34731272164,Pasadizo de Severo Armengol 549;Ourense;10036,9.1
+Iriarte Clemente,Lucía,23469261S,2004-07-14 06:21,+34727974071,Calle Noa Ibarra 40;Teruel;13832,7.3
+Benítez Valls,Iker,09842921W,1999-04-18 18:20,+34998396211,Camino de Aitor Cabañas 89;Salamanca;27926,6.0
+Barceló Arranz,Goyo,21809893M,2001-02-27 18:42,+34700255303,Vial Pedro Carranza 1;Cuenca;49315,9.4
+Llano Rubio,Concepción,82627479W,2004-04-10 19:21,+34722519833,Vial de Eusebio Maldonado 403;Jaén;46807,5.6
+Jáuregui Martinez,Cecilia,01642635K,1998-09-15 07:12,+34823609716,Ronda de Jose Antonio Carrión 9;Barcelona;10799,5.7
+Rosa Sastre,Luz,72582508M,1999-02-25 12:12,+34730956953,Cuesta de Horacio Sastre 79 Piso 3;La Coruña;15438,8.2
+Gárate Ferrández,Mario,11945387S,2003-07-26 06:57,+34716871504,Avenida Florina Lledó 101;Granada;27070,9.8
+Cabrera Roselló,Jesús,52162533M,2000-10-29 06:20,+34718499243,Plaza de Danilo Barrena 951 Piso 7;Jaén;17702,6.1
+Lladó Piquer,Heliodoro,14475372T,2001-08-23 23:11,+34626448492,Acceso Agustina Marco 81;Soria;40428,9.6
+Coca Cánovas,Nieves,04569679Q,1999-10-23 10:21,+34730773129,Cuesta Amor Páez 93 Apt. 60;Cáceres;34282,8.3
+Tomás Mayoral,Lupe,13399121B,2001-07-09 14:01,+34741900395,Avenida de Liliana Viñas 95;Guipúzcoa;45560,5.8
+Llabrés Pedro,Valerio,08676566T,2001-08-02 09:56,+34716055613,Cañada de María Pilar Otero 420 Puerta 4;Ávila;30853,10.0
+Cerezo Romero,María Pilar,45827797K,2001-02-16 10:20,+34721821463,Plaza Dafne Céspedes 30 Apt. 24;Castellón;38563,7.2
+Armas Escobar,Nacho,63244585J,2004-07-31 02:14,+34708982958,Pasaje de Sarita Carpio 34;León;21058,6.2
+Heras Arranz,Vidal,01328904X,2000-02-28 15:04,+34904381935,Avenida de Nicodemo Domínguez 291;Teruel;43397,7.7
+Becerra Garrido,Sabas,10249488K,1998-12-15 17:33,+34611985859,Pasaje Arsenio Becerra 1 Piso 9;Soria;08905,9.3
+Luís Cardona,Imelda,85482617N,2003-08-08 12:50,+34833807133,Glorieta Julie Huerta 42;Ciudad;11346,9.2
+Solsona Carlos,Haydée,49864076F,2003-02-08 22:33,+34717522244,Vial Geraldo Alemán 8 Apt. 72;Guipúzcoa;25292,7.4
+Rueda Falcó,Celso,33506702A,1999-02-13 01:23,+34708717974,Plaza de León Girón 41 Apt. 67;Asturias;40163,7.0
+Pinto Mayo,Domitila,72634672M,2001-07-10 20:38,+34999876792,Via Jordana Moliner 71 Apt. 72;Cádiz;42846,8.5
+Badía Zaragoza,Joan,91026511D,2001-02-07 09:43,+34739622545,Rambla de María Jesús Ávila 296;Cádiz;14299,8.2
+Zurita Molina,Luís,37057319H,1997-01-06 15:02,+34663459729,Paseo Emiliana Román 5;Alicante;02343,8.8
+Tejada Pozo,Flavia,89142562J,2002-12-22 15:04,+34746952645,Rambla de Luz Benavent 99;Soria;25841,5.2
+Arrieta Camacho,Verónica,98327843Z,2002-11-24 07:27,+34862317336,Pasadizo de Bartolomé Amaya 8;Ourense;38774,5.1
+Sobrino Aller,Teodora,48319245V,1998-06-03 01:02,+34748483596,Ronda Felicidad Pera 183;León;26377,7.6
+Soriano Vilalta,Paz,43305855Y,1999-06-07 02:01,+34712202240,Rambla de Angelino Cámara 61 Puerta 7;Melilla;46373,6.2
+Cáceres Clavero,Adelardo,78224609E,2003-10-16 22:05,+34713053789,Glorieta Juan Manuel Gallardo 18;Badajoz;32466,9.0
+Rosales Mosquera,Aroa,08962829M,2002-01-24 21:05,+34720844146,Rambla Jose Miguel Grau 95 Piso 3;Vizcaya;29122,5.9
+Montenegro Ortiz,Jose Manuel,99514869X,2002-06-01 01:12,+34705201673,Vial Pío Dávila 49 Piso 3;Madrid;03798,6.4
+Romero Barceló,Néstor,66896243F,2002-11-02 21:57,+34715140904,Calle Reinaldo Posada 261 Piso 1;Burgos;37842,6.6
+Piña Gaya,Alejo,35599879L,2003-01-02 19:42,+34641924420,Avenida Hugo Piñol 10 Puerta 6;Castellón;05158,5.5
+Calleja Jaume,Cornelio,33705886F,2000-10-06 18:46,+34723865060,Plaza Jeremías Macías 50;Soria;15609,8.4
+Roig Higueras,Marcio,81169167M,2001-08-17 19:23,+34669500194,Pasaje Sebastián Pujol 59 Apt. 45;Guipúzcoa;22947,6.2
+Serrano Padilla,Victoriano,68969674B,2001-07-06 16:49,+34712754239,Plaza de Martirio Adán 42;León;31930,9.2
+Puerta Catalán,Javiera,10528128Q,2000-04-20 15:02,+34728085488,Alameda de Jose Ramón Blázquez 20;Alicante;21794,7.4
+Quintero Calvo,Daniela,00758791K,1998-04-09 19:50,+34721686166,Ronda Moreno Rivas 45 Piso 8;Cantabria;07146,5.2
+Fabra Monreal,Abraham,99404955J,2001-01-04 09:57,+34966876275,Rambla Carlito Piñeiro 37;Granada;49196,7.5
+Porcel Corral,Fernando,92443674G,2002-04-02 15:37,+34703114572,Ronda Samuel Perez 99 Puerta 6;Cádiz;15904,7.6
+Torres Rueda,Roque,96832131S,1997-02-04 04:34,+34706872188,Cañada de Josefina Chamorro 78 Piso 0;Valladolid;34858,5.6
+Aranda Vicente,José Antonio,70412834J,1998-10-27 19:59,+34737819995,Urbanización Iris Ropero 14;Salamanca;35005,5.1
+Mendoza Bastida,María Carmen,04075164R,1998-12-05 06:11,+34722651445,Camino Bibiana Manzano 27 Piso 7;Albacete;10116,5.2
+Reguera Egea,Odalys,73112621Z,2004-06-07 07:00,+34936680598,Calle de Mónica Garmendia 59;Las Palmas;48341,6.9
+Tena Angulo,Gabriela,20917661N,2000-10-12 01:17,+34730895255,C. Severino Colom 7 Piso 0;Santa Cruz de Tenerife;36989,9.5
+Sanmiguel Cid,Paula,22969264S,1997-09-18 18:17,+34815930501,Paseo Violeta Rocha 75 Apt. 12;Pontevedra;23740,7.5
+Ripoll Cardona,Tito,00775356A,1997-10-30 10:06,+34814286263,Pasadizo Javiera Mateos 780;Baleares;16047,6.2
+Cuervo Oller,Celestino,71771834N,2004-09-06 02:16,+34675874747,Cuesta Juan Pablo Maestre 29;Ciudad;42409,9.6
+Gomez Querol,Lucho,24405180H,2000-07-10 06:48,+34745077253,Acceso de Yolanda Iriarte 97 Puerta 7;La Rioja;07915,5.8
+Alegre Alemán,Mateo,15508892S,2003-12-08 09:46,+34739822178,Acceso de Ramón Sánchez 64 Apt. 60;Málaga;22339,5.4
+Gelabert Vidal,Herminia,86424553Y,1997-12-17 21:20,+34826422329,Via Leocadio Sáez 44 Apt. 20;Huesca;21277,5.0
+Iñiguez Bas,Albano,99319282S,1999-07-06 00:18,+34700323614,Pasadizo Ibán Dominguez 30 Piso 5;Guipúzcoa;45970,5.3
+Sarmiento Morata,Florina,65713886B,2002-12-07 11:23,+34728089833,C. Angelino Arévalo 864;Soria;04287,9.2
+Reguera Reina,Vicente,03420701A,1997-04-30 15:57,+34736607321,Avenida de Luna Arnal 9;Granada;10471,6.8
+Sáez Hernandez,Hilario,69538701H,2002-07-25 13:47,+34729514987,C. Jose Miguel Menendez 824;Castellón;47623,7.6
+Valcárcel Sabater,Rico,21398349T,2004-10-17 12:12,+34858941304,Glorieta Pepito Lucena 2 Puerta 7;Álava;06654,10.0
+Albero Giménez,Virginia,57669526Q,1997-12-21 23:11,+34852019518,Calle María Ángeles Andres 87 Apt. 06;Toledo;27843,9.8
+Echevarría Blanca,Hermenegildo,39205872A,2001-04-01 08:46,+34628117209,Cañada de Ismael Sáez 354;Jaén;50698,5.6
+Alba Álvaro,María Del Carmen,65323151T,2004-04-06 02:47,+34740061997,Alameda de Hilario Armengol 4 Piso 5;Navarra;31558,7.0
+Neira Murillo,Faustino,91335794B,1998-02-14 10:50,+34732953656,Plaza de Aitor Ariza 99 Piso 8;Ciudad;16439,7.3
+Marqués Frías,Leandra,93214767E,1997-11-07 07:01,+34977464666,Callejón Juan Luis Buendía 869;Toledo;36202,8.0
+Marcos Rosado,Chus,01152156V,1998-12-17 06:50,+34741472254,Urbanización Dora Pérez 23 Puerta 0;Soria;41756,9.4
+Bertrán Bernal,Gastón,90125278P,2001-01-11 19:43,+34909262194,Avenida Ricarda Carbó 51 Apt. 83;Ciudad;14723,5.2
+Camino Serra,Dalila,58360946X,1998-08-06 08:28,+34638196961,Plaza de Ruth Cánovas 11;Madrid;48540,8.1
+Rincón Montalbán,Dalila,44421824S,1998-02-12 19:01,+34721969795,Acceso de Alejandro Crespi 1;Ourense;37232,5.7
+Montes Casals,Clara,18929139R,2003-04-27 04:20,+34617773083,Alameda Sabas Casals 92 Puerta 9;Palencia;05238,7.5
+Real Santos,Amaro,50285768V,1998-01-13 22:09,+34718187957,Camino Seve Márquez 59;Zaragoza;35031,8.3
+Herrera Rubio,Trinidad,09311935V,2004-05-12 02:33,+34969531372,Ronda África Garcés 11;La Coruña;32172,8.6
+Dalmau Ropero,Socorro,25858081D,2002-03-17 19:13,+34622110848,Calle de Dorita Llano 5;Vizcaya;47153,8.4
+Merino Royo,Cintia,66958912R,2004-05-08 16:22,+34943727068,Alameda de Andrés Soria 18;Baleares;14466,5.2
+Segura Fernandez,Nazaret,55482148F,2002-11-07 11:28,+34948960247,Pasadizo de Marcelino Amores 643 Puerta 8;Melilla;26466,5.6
+Echevarría Sainz,Luisa,46989422P,2004-04-15 16:33,+34745988559,Camino Bernardino Abad 80 Puerta 3;Jaén;20083,9.7
+Priego Herrero,Custodia,40732265R,1999-08-05 07:22,+34730974107,Plaza de Salomón Carretero 165 Puerta 7;Ávila;34272,5.5
+Aguilera Lerma,Claudia,28727124D,1997-07-06 14:16,+34717088335,Calle Olivia Jáuregui 76;Granada;02270,9.7
+Giménez Crespi,Abigaíl,67358343Z,1999-11-12 12:18,+34703651309,Via Nico Diego 57 Puerta 8;Valladolid;01781,5.6
+Carbonell Guzman,Adelaida,61647378H,2000-07-14 14:28,+34739706179,Vial de Martirio Escobar 75 Puerta 3;La Rioja;20759,6.1
+Robledo Gallo,Fabiana,69634082H,2004-03-18 20:52,+34610957935,Vial Georgina Macias 4 Piso 0;Ourense;18016,8.5
+Benito Blanco,Remigio,05425685P,2000-05-02 21:10,+34659419294,Pasadizo de Jordi Roig 36;Ourense;30030,8.9
+Ortuño Mateu,Francisco Javier,40995292T,2002-04-09 08:46,+34730996654,Alameda Rogelio Franco 15 Puerta 9;Huelva;34249,8.4
+Figueroa Hoz,Onofre,68304954Z,1998-02-10 17:01,+34738616736,Calle de Teófila Elorza 761 Puerta 3;La Coruña;25050,8.6
+Valencia Andres,Fidel,60767879Q,2000-12-29 08:58,+34741530940,Paseo de Blas Mosquera 9 Puerta 0;Ávila;27422,7.6
+Santamaria Zabaleta,Macarena,30909374L,1998-08-25 02:54,+34608687889,Urbanización Bartolomé Manuel 78;Guipúzcoa;28114,5.9
+Piñeiro Carballo,Raquel,28163358L,2000-05-02 13:10,+34707309468,Alameda Modesta Quirós 18 Piso 7;Zamora;01689,9.4
+Diaz Herranz,Beatriz,96810735D,1998-08-16 00:41,+34708731388,Pasadizo Zacarías Patiño 22 Piso 8;Girona;27219,9.2
+Cano Tomas,Patricia,78033758W,2003-09-12 19:14,+34746599816,Calle de Lorenza Llopis 411;Barcelona;51840,5.8
+Pla Francisco,Reinaldo,81560619C,2000-10-28 01:22,+34742724209,Calle Odalys Villalobos 96 Apt. 35;Jaén;26176,10.0
+Montesinos Llano,Jacinto,11052158Z,2004-06-17 16:32,+34675495290,Calle Diego Pinto 822 Apt. 43;Barcelona;48599,5.8
+Pallarès Gallardo,Candelaria,28807084K,1997-12-13 09:37,+34720360497,Cuesta de Alba Campo 29 Piso 0;Murcia;45243,5.7
+Barrio Asensio,Saturnina,62789624S,2001-09-14 12:37,+34727578574,Ronda Ruperto Asenjo 47 Piso 8;Cantabria;32617,7.6
+Palomar Oller,Jesusa,43568796B,2002-02-09 15:45,+34707628818,Camino Heraclio Jiménez 263 Piso 9;Lleida;40969,8.7
+Gonzalez Izquierdo,Alejandro,00354311L,2002-09-11 09:05,+34716654034,Acceso Aarón Cerezo 15;Almería;48943,5.2
+Llano Piñol,Teresita,55931892D,2000-07-30 15:06,+34707210996,Acceso de Ofelia Vilanova 89;Almería;30903,6.3
+Martín Gisbert,Mohamed,33571710J,1998-08-18 20:43,+34729705975,Camino de Felisa Morante 281 Puerta 2;Ourense;48916,8.4
+Suarez Llamas,Chus,41364170G,1997-06-25 01:48,+34725238463,Calle de Beatriz Morales 92 Puerta 7;Ciudad;46438,8.0
+Reyes Alonso,Gervasio,13841036G,1998-03-12 11:03,+34608460002,Callejón Angélica Tormo 90;Teruel;41866,8.9
+Palau Iborra,Faustino,54756144K,2002-02-03 16:02,+34721750526,Cuesta Roxana Álvaro 88;Madrid;35483,5.6
+Pont Mariscal,Silvio,92103642G,1998-07-08 14:01,+34709164001,Plaza Manu Echeverría 4;Zaragoza;30920,8.6
+Barco Paz,Paloma,14383770F,2003-05-08 04:33,+34733856957,Pasaje Ariel Feijoo 71;Melilla;27529,5.8
+Manuel Perera,Cruz,56701335X,2002-01-15 09:49,+34708901370,Callejón Pepito Arribas 11;Soria;11916,5.9
+Vilar Gargallo,Nacho,91662605S,1999-06-28 05:24,+34683971874,Calle Virginia Segarra 86 Apt. 78;Ciudad;22988,8.1
+Villegas Mínguez,Ramón,61471534D,2002-12-11 09:16,+34705881884,Cuesta Fabiana Chamorro 31 Piso 1;Zamora;36302,8.6
+Arnal Alcántara,Abril,16288554T,1997-06-25 21:22,+34748068840,Paseo Gracia Alcántara 65;Teruel;35445,8.8
+Coca Piña,Oriana,07069863P,1997-02-23 06:08,+34697950242,Vial de Heliodoro Nuñez 370;La Rioja;08257,8.8
+Casanovas Rivas,Rafa,25193456S,2000-10-29 04:52,+34745150754,Ronda Cruz Vigil 3 Apt. 32;Palencia;27682,8.0
+Marín Medina,Lorenza,42250753Y,1996-11-13 10:34,+34713770128,Rambla de Ema Varela 6 Piso 4;Valladolid;20147,8.4
+Cózar Ojeda,Maite,47607216E,2002-04-24 16:23,+34703707246,Rambla Hilda Pou 2 Apt. 64;Soria;19205,8.8
+Valero Elías,Sabas,87864116E,1998-07-26 10:15,+34883017536,Acceso Brígida Francisco 835;Madrid;05798,9.0
+Feliu Perea,Evelia,04378813G,1999-12-15 14:15,+34723828166,Pasadizo de Carolina Grau 65 Apt. 15;Asturias;17840,8.2
+Franch Calvo,Balduino,57508279E,2000-06-02 12:16,+34749628240,C. Chucho Guzman 86 Apt. 25;Burgos;22838,9.1
+Duarte Planas,Leonor,99518752Y,2001-07-16 23:26,+34745627627,Calle Victorino Julián 11;Madrid;15949,8.2
+Heredia Castrillo,Josefina,49951537E,2001-09-07 22:13,+34724806088,Avenida Natividad Oliva 453 Puerta 7;Badajoz;04590,7.5
+Diez Montero,Azahara,00498816S,2000-12-12 09:00,+34732149472,Paseo de Román Velasco 85 Puerta 9;Cádiz;30236,5.9
+Riera Campoy,Saturnino,21206336Z,2002-02-24 08:16,+34740332387,Camino Martirio Rebollo 45;Pontevedra;07234,5.4
+Ferrando Pedro,José Antonio,44504949H,2001-09-28 08:20,+34706030754,Callejón de Segismundo Córdoba 16;Soria;15980,7.6
+Menéndez Martínez,Efraín,39266685G,1998-08-03 11:14,+34831643489,Cuesta Angélica Roca 8;Soria;36240,8.4
+Vilaplana Cid,Ulises,60735338C,2000-04-21 11:30,+34700455513,Rambla de Florentino Goñi 84 Piso 7;Almería;47310,7.0
+Pelayo Asensio,Nicanor,86283165E,1997-09-11 13:16,+34602403890,Plaza Amalia Díaz 54;Huelva;34229,7.6
+Burgos Olivera,Apolinar,95949220M,1999-09-18 05:04,+34730544722,Avenida Óscar Ortiz 52 Piso 1;Huelva;23072,6.3
+Plana Badía,Flavio,61402976Z,1998-03-28 15:08,+34904065364,Urbanización de Maxi Rico 1;La Rioja;31883,7.5
+Huertas Nevado,Fátima,19407385P,1998-11-27 04:34,+34734946421,Cañada de Anita Bárcena 9;Cáceres;22592,7.2
+Pelayo Abascal,Tristán,40710447X,2000-09-14 18:36,+34627038382,Callejón Elba Espada 21 Puerta 8;Valencia;48355,5.3
+Cid Zaragoza,Pascuala,18747899R,2002-12-08 22:23,+34985986125,Pasaje de Itziar Villena 1;Segovia;28445,9.1
+Delgado Vicente,Merche,85044221L,2001-08-23 17:59,+34706143237,Calle Luz Galindo 5 Apt. 80;Navarra;13693,5.4
+Salmerón Villaverde,Hugo,43610383Z,2002-09-24 15:22,+34744332165,Vial de Miguela Barral 208 Piso 5;Soria;04640,6.3
+Robledo Marco,Rómulo,39027887S,1998-04-20 07:57,+34720128479,Avenida de Irene Giménez 798 Piso 5;Sevilla;26745,8.6
+Cervantes Ramos,Álvaro,20470175Z,2000-03-07 01:19,+34703430205,Paseo Felicia Pujol 20;Teruel;47171,7.8
+Figueras Carreño,Benito,11646327R,2000-05-13 04:21,+34749222935,Pasaje de Ramiro Chaves 63 Puerta 0;Castellón;12287,9.1
+Quintero Cabello,José,15367075Q,2004-06-27 09:04,+34709114585,Rambla Sara Valbuena 63 Puerta 1;Alicante;08313,5.6
+Salvador Valcárcel,Eugenia,61848898N,2003-05-05 10:26,+34701494025,Glorieta de Elodia Sanchez 237 Apt. 43;Zaragoza;23759,6.3
+Ibañez Bueno,Salomé,05636844G,2002-01-14 19:15,+34742589372,Glorieta Reyes Sastre 57;Albacete;14501,6.4
+Chico Hervia,María Luisa,40182165S,2002-01-23 16:15,+34703374786,C. Celestino Cuadrado 7 Piso 1;Tarragona;03032,8.2
+Chaves Pintor,Luis,12292222X,2000-06-02 12:48,+34971182153,Calle Rosario Doménech 37 Piso 4;Pontevedra;38603,7.7
+Marcos Castejón,Efraín,68971500C,2003-12-29 03:08,+34906491658,Calle Maxi Vergara 9 Piso 4;Lugo;02440,9.4
+Bermúdez Valle,Violeta,62002601Y,1999-04-28 12:45,+34690477230,Pasaje de Áurea Cortina 2;Santa Cruz de Tenerife;28234,7.4
+Chacón Badía,Sebastián,17827392T,2004-06-19 08:46,+34625210292,Callejón Godofredo Adán 7;Ourense;36113,6.5
+Nicolás Frías,Hernán,27592210F,1997-05-09 06:32,+34841595135,Alameda de Leire Sola 9 Piso 5;Zaragoza;37790,8.6
+Hervia Asensio,María Del Carmen,64644310G,2000-05-16 22:14,+34749024970,Urbanización Ana Ayuso 7;Guadalajara;28430,5.0
+Torrents Peñalver,Gabriela,50315264G,2003-12-08 09:11,+34722888108,Via de Plinio Cabello 40;Cádiz;05604,9.2
+Soria Quintana,Yago,30370792M,2003-09-18 04:19,+34728939937,Plaza Rafaela Amores 16;Alicante;47449,9.6
+Esteve Manrique,Lola,26600840Y,1999-12-08 16:34,+34717579938,Acceso de Ernesto Cabeza 8 Apt. 51;Barcelona;13017,7.6
+Bustos Caro,Micaela,67313491N,1999-11-16 11:32,+34994405675,Ronda Lilia Figueras 91;Lugo;34175,6.8
+Lerma Bou,Germán,10626351Y,2004-06-06 22:23,+34824732995,Paseo de América Anguita 401;Albacete;24644,5.9
+Garzón Baeza,Rosalinda,18209769W,2002-09-20 06:10,+34718342543,Camino Cruz Jimenez 75;Guadalajara;17467,5.1
+Antón Calleja,Alejandro,97403207R,2003-05-06 01:04,+34747231124,Pasadizo Anabel Lozano 599;Valencia;08743,6.1
+Donaire Catalán,Esther,73383879X,2002-10-06 03:53,+34921919848,Vial Jeremías Fuertes 76 Piso 3;Segovia;50694,7.8
+Páez Pina,Selena,50479843H,1998-01-26 11:33,+34731313562,Cuesta Balduino Murillo 8;La Coruña;37370,5.1
+Campos Girón,Cornelio,71020468X,1999-11-01 00:41,+34846442065,C. de Heraclio Bertrán 35 Puerta 9;Zamora;21716,8.3
+Barros Rincón,Lupe,91841751Z,2002-09-24 05:53,+34880628173,Cuesta Ricardo Antón 7 Puerta 0;Cuenca;35609,9.3
+Iñiguez Silva,Luciano,99823099V,2004-09-11 16:40,+34736175274,Pasadizo de María Del Carmen Hoyos 414 Apt. 70;Granada;13414,8.1
+Canet Perez,Luís,11503729A,2001-01-08 11:27,+34714250107,Urbanización de Alfredo Herrero 87 Piso 8;Santa Cruz de Tenerife;22261,6.2
+Gómez Teruel,Basilio,76643527Y,2002-07-09 18:27,+34659900507,Avenida Casandra Blasco 960 Piso 0;Ceuta;03804,9.6
+Mur Amaya,Tere,37653063Q,2002-05-09 19:12,+34979649074,C. de Sebastián Valls 834 Piso 5;Sevilla;38293,6.9
+Olmedo Gomis,Basilio,09842778C,1997-11-03 13:10,+34852588467,Pasadizo Lara Carrión 90 Piso 4;La Rioja;04651,7.0
+Ayala Mascaró,Nydia,36117610C,1998-02-13 20:16,+34653939900,Ronda de Ligia Zorrilla 72;Teruel;01320,5.6
+Gracia Rius,Silvia,70811798L,1996-12-24 17:54,+34933571898,Cuesta de Máximo Mancebo 35 Puerta 9;Guadalajara;22708,7.5
+Capdevila Valera,Macarena,37330200G,2004-10-11 15:24,+34849462336,Plaza Casandra Andres 7;Vizcaya;16623,5.7
+Salom Álvaro,Ciro,16758993C,2003-06-26 00:12,+34702758847,Avenida Maximino Soriano 86 Puerta 1;Soria;46269,9.2
+Gallart Carreño,Alcides,95866641L,2001-03-11 08:43,+34810311121,Camino de Gabino Lasa 13 Puerta 5;Lleida;24255,9.7
+Bastida Taboada,Yago,50137857L,1999-12-09 13:20,+34831372178,Glorieta Cirino Prieto 3;Soria;20172,6.2
+Higueras Arcos,Dimas,31781804J,1999-08-05 10:55,+34734969583,Cañada Esther Sanmiguel 85;Huesca;45778,9.3
+Nebot Perez,María Luisa,26573082D,2001-12-18 11:10,+34742675741,Paseo Luisina Ballesteros 66 Apt. 30;Vizcaya;42611,6.3
+Catalán Roselló,Jose,93575819C,2001-03-29 12:08,+34820987709,Via de Balduino Alberdi 4;Ourense;34047,10.0
+Murillo Lobato,Víctor,25207563T,2003-01-30 02:21,+34845534510,Camino de Heliodoro Benavente 51 Piso 9;Zamora;40965,9.9
+Rodriguez Pastor,Otilia,66834971F,2000-04-11 07:28,+34708401528,Urbanización Jenaro Sosa 28;Badajoz;22743,7.3
+Folch Sandoval,Cipriano,98183796Q,1997-08-10 19:46,+34972741729,Avenida Ariel Arenas 84;Lleida;34927,7.6
+Franch Patiño,Macaria,34326130X,2000-01-27 19:45,+34718921936,Vial de Fausto Llobet 31;Soria;46384,7.3
+Rivero Caparrós,Mónica,44084524X,2003-05-17 10:47,+34662264920,Cuesta de Miguel Ángel Donoso 131;Albacete;33674,5.7
+Palacios Pozuelo,Alondra,54937076N,1997-05-26 15:42,+34743136337,Rambla Albano Piquer 90;Las Palmas;05567,5.4
+Pardo Rodriguez,Tecla,37934914W,2002-07-08 07:22,+34706555655,Pasadizo Celia Casado 286 Apt. 14;Córdoba;19074,8.9
+Farré Santos,Cristina,06559090L,1998-01-04 09:08,+34997481141,Alameda Delia Marco 29 Puerta 8;Lugo;24686,6.0
+Castillo Ribas,César,76398948D,2000-02-23 18:00,+34701037584,Plaza Perla Antúnez 65 Apt. 27;Valencia;01198,6.7
+Llorente Baena,Amador,19058172G,2004-01-07 13:30,+34712168656,Avenida de Felisa Losada 32;Palencia;50157,7.4
+Delgado Ibáñez,Olga,86439536Q,2002-08-05 11:29,+34745642157,Cuesta de Nereida Hurtado 11;Tarragona;21869,6.6
+Guardia Anaya,Gervasio,29967012J,2002-10-27 13:36,+34745873514,Vial Paz Ávila 890 Apt. 77;Cáceres;42620,5.5
+Heras Díez,Samuel,04982023Q,1997-01-08 12:49,+34823765971,Pasaje David Alfaro 30;Castellón;05721,9.3
+Cazorla Roman,Nydia,56337621H,2003-04-08 00:36,+34738026559,Callejón Eutimio Menendez 54;Málaga;02633,7.1
+Amigó Nuñez,Sebastián,27947025R,2002-07-08 08:56,+34719353588,Vial Máximo Vázquez 35;Cuenca;40974,9.3
+Naranjo Morales,Montserrat,91103919E,1997-12-29 06:59,+34721401870,C. de Prudencio Criado 3;Cuenca;51551,7.9
+Alemán Parejo,Lilia,62183903E,1999-08-23 23:07,+34715823735,Avenida Reynaldo Guerra 71;Ceuta;01073,8.3
+Priego Dueñas,Rufina,08949186R,2001-04-22 05:26,+34653409157,Avenida de Nazaret Pla 52;Burgos;35984,6.9
+Asenjo Escolano,Serafina,67962169K,1999-03-12 22:15,+34960379109,Rambla de Loreto Farré 8;Murcia;25482,8.5
+Ojeda Sosa,Blas,67823184W,2000-07-13 06:56,+34729769266,Calle de Rafaela Marqués 50 Piso 5;Cantabria;17215,9.7
+Colom Lastra,Cintia,55151182B,2001-10-08 01:46,+34721627408,Calle de Mónica Agustín 15;Barcelona;50469,6.2
+Jordá Cadenas,Lalo,04712586R,2004-10-15 03:10,+34726725329,Callejón Saturnino Juárez 6;Lleida;06942,6.6
+Santamaria Casanova,Casandra,72200728W,1999-09-05 07:56,+34732150490,Glorieta Morena Calvet 11;Álava;36234,8.8
+Camacho Riera,Tecla,39755734G,2000-10-13 06:28,+34736370875,Camino Pánfilo Tamarit 43 Puerta 1;Cuenca;03610,9.4
+Nogués Bonilla,Nicanor,75320123E,2004-09-02 16:16,+34822380624,Pasadizo Rafaela Bilbao 49;Barcelona;11152,8.8
+Castrillo Valle,Miguela,23628937W,1998-08-19 02:39,+34868430725,Paseo Eligia Benet 495 Puerta 3;Alicante;03478,5.8
+Meléndez Reig,Omar,29309112M,1997-08-24 00:00,+34810458954,Cañada Juan Manuel Zorrilla 7;Badajoz;21137,9.3

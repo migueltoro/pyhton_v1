@@ -5,7 +5,7 @@ Created on 18 sept 2022
 '''
 
 import random
-from us.lsi.tools.Dict import strfdict
+from us.lsi.tools.Dict import str_dict
 from us.lsi.tools.Iterable import grouping_set,grouping_reduce, grouping_list,groups_size
 
 it: list[int] = [random.randint(0,100) for _ in range(0,200)]
@@ -17,13 +17,13 @@ g5:dict[int,int] = grouping_reduce(it,key = lambda x: x%7, op = lambda x,y: min(
 
 
 if __name__ == '__main__':
-    print(strfdict(g1))
+    print(str_dict(g1))
     print('_____')
-    print(strfdict(g2))
+    print(str_dict(g2))
     print('_____')
-    print(strfdict(g3))
+    print(str_dict(g3))
     print('_____')
-    print(strfdict(g4))
+    print(str_dict(g4))
     print('_____')
-    print(strfdict(g5))
+    print(str_dict(g5))
 

@@ -10,7 +10,7 @@ from us.lsi.tools.Iterable import grouping_set
 
 
 class Aeropuertos:
-    __aeropuertos_class: Aeropuertos
+    __gestor_de_aeropuertos: Aeropuertos
     
     def __init__(self,aeropuertos:list[Aeropuerto])->None:
         self.__aeropuertos= aeropuertos
@@ -20,13 +20,13 @@ class Aeropuertos:
     
     @staticmethod
     def of()->Aeropuertos:
-        return Aeropuertos.__aeropuertos_class
+        return Aeropuertos.__gestor_de_aeropuertos
     
     @staticmethod  
     def of_file(fichero:str)-> Aeropuertos:
         aeropuertos:list[Aeropuerto] = [Aeropuerto.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
-        Aeropuertos.__aeropuertos_class = Aeropuertos(aeropuertos)
-        return Aeropuertos.__aeropuertos_class
+        Aeropuertos.__gestor_de_aeropuertos = Aeropuertos(aeropuertos)
+        return Aeropuertos.__gestor_de_aeropuertos
     
     def add_aeropuerto(self, a: Aeropuerto)->None:
         self.__aeropuertos.append(a)
@@ -48,7 +48,7 @@ class Aeropuertos:
         return len(self.__aeropuertos)
     
     @property
-    def lista(self)->list[Aeropuerto]:
+    def todos(self)->list[Aeropuerto]:
         return self.__aeropuertos
     
     def aeropuerto_index(self,i:int)->Aeropuerto:

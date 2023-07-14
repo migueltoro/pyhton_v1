@@ -5,8 +5,8 @@ Created on 16 sept 2022
 '''
 
 from typing import Iterable
-from us.lsi.tools.Iterable import strfiter
-from us.lsi.tools.Dict import strfdict
+from us.lsi.tools.Iterable import str_iter
+from us.lsi.tools.Dict import str_dict
 
 jugador: tuple[str,str,int] = ("Mark", "Lenders", 15) 
 rango = range(10,20)
@@ -35,17 +35,17 @@ if __name__ == '__main__':
     temperaturas[1] = 35 
     print(temperaturas)
     print(temperaturas_conjunto)
-    print(strfiter(temperaturas,sep=';'))
+    print(str_iter(temperaturas,sep=';'))
     print('---------------')
     print(temperaturas_por_provincias)
     print("Temperatura en Sevilla:", temperaturas_por_provincias["Sevilla"]) 
     temperaturas_por_provincias["Sevilla"] = 21.0 
     print(temperaturas_por_provincias)
-    print(strfdict(temperaturas_por_provincias,sep='\n'))
+    print(str_dict(temperaturas_por_provincias,sep='\n'))
     print('---------------')
     print(kt)
     print(kv)
-    print(strfdict(dict(tp)))
+    print(str_dict(dict(tp)))
     print('---------------')
     temperaturas.append(29) 
     temperaturas_conjunto.add(29) 

@@ -6,14 +6,13 @@ Created on 9 ago 2022
 '''
 
 from __future__ import annotations
-from us.lsi.biblioteca.Libro import Libro
-from us.lsi.biblioteca.Ejemplar import Ejemplar
-from us.lsi.biblioteca.Usuario import Usuario
-from us.lsi.biblioteca.Prestamo import Prestamo, Tipo_prestamo
-from datetime import date, datetime
+from us.lsi.biblioteca.Libros import Libros
+from us.lsi.biblioteca.Ejemplares import Ejemplares
+from us.lsi.biblioteca.Usuarios import Usuarios
+from us.lsi.biblioteca.Prestamos import Prestamos
 from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.File import iterable_de_fichero, absolute_path
-from us.lsi.tools.Iterable import strfiter
+from us.lsi.tools.Iterable import str_iter
 
 class Biblioteca:
     
@@ -21,10 +20,10 @@ class Biblioteca:
     
         
     def __init__(self, nombre:str, codigo_postal:int, email:str, 
-                 fu:str='/biblioteca/usuarios.txt',
-                 fl:str='/biblioteca/libros.txt',
-                 fe:str='/biblioteca/ejemplares.txt',
-                 fp:str='/biblioteca/prestamos.txt')->None:
+                 fu:str=absolute_path('/biblioteca/usuarios.txt'),
+                 fl:str=absolute_path('/biblioteca/libros.txt'),
+                 fe:str=absolute_path('/biblioteca/ejemplares.txt'),
+                 fp:str=absolute_path('/biblioteca/prestamos.txt'))->None:
         check_argument(nombre!=None, "El nombre no puede ser None")
         check_argument(len(str(codigo_postal))==5, "Código postal incorrecto")
         check_argument('@' in email, "Email incorrecto")
@@ -34,29 +33,19 @@ class Biblioteca:
         self._email: str = email
         
         
-        self.__usuarios:list[Usuario] = \
-            [Usuario.parse_usuario(u) for u in iterable_de_fichero(absolute_path(fu))]
-        self.__libros: list[Libro] = \
-            [Libro.parse(p) for p in iterable_de_fichero(absolute_path(fl))]
-        self.__dict_libros:dict[str,Libro] = {lb.isbn:lb for lb in self.__libros}  
-                #diccionario de libros, las claves son los isbn
-        self.__ejemplares:list[Ejemplar] = \
-            [Ejemplar.parse(e) for e in iterable_de_fichero(absolute_path(fe))]
-        self.__dict_ejemplares:dict[tuple[str,int],Ejemplar] = {(e.isbn,e.codigo):e for e in self.__ejemplares}  
-                #diccionario de ejemplares, las claves son tuplas (isbn, codigo)
-        self.__prestamos: list[Prestamo] = \
-            [Prestamo.parse(p) for p in iterable_de_fichero(absolute_path(fp))]
-        self.__dict_prestamos: dict[int,Prestamo] = {p.codigo_prestamo:p for p in self.__prestamos}
-                #diccionario de préstamos, las claves son los códigos
-                
+        self.__usuarios:Usuarios = Usuarios.of_file(fu)
+        self.__libros: Libros = Libros.of_file(fl)
+        self.__ejemplares:Ejemplares = Ejemplares.of_file(fe)       
+        self.__prestamos: Prestamos = Prestamos.of_file(fp)  
+        
     @staticmethod
     def of_files(nombre:str='Reina Mercedes',
                  codigo_postal:int=41012,
                  email:str='bib@us.es',
-                 fu:str='/biblioteca/usuarios.txt',
-                 fl:str='/biblioteca/libros.txt',
-                 fe:str='/biblioteca/ejemplares.txt',
-                 fp:str='/biblioteca/prestamos.txt')->Biblioteca: 
+                 fu:str=absolute_path('/biblioteca/usuarios.txt'),
+                 fl:str=absolute_path('/biblioteca/libros.txt'),
+                 fe:str=absolute_path('/biblioteca/ejemplares.txt'),
+                 fp:str=absolute_path('/biblioteca/prestamos.txt'))->Biblioteca: 
         return Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)   
     
     @staticmethod
@@ -78,69 +67,22 @@ class Biblioteca:
         return self._email
     
     @property
-    def libros(self) -> list[Libro]:
+    def libros(self) -> Libros:
         return self.__libros
-    
-    def libro(self,i:int) -> Libro:
-        return self.__libros[i]
-    
+           
     @property
-    def dict_libros(self)->dict[str,Libro]:
-        return self.__dict_libros
-        
-    def libros_de_autor(self, autor:str) -> set[Libro]:
-        return set([lb for lb in self.libros if lb.autor==autor])
-    
-    @property
-    def ejemplares(self:Biblioteca) -> list[Ejemplar]:
+    def ejemplares(self) -> Ejemplares:
         return self.__ejemplares
     
-    def ejemplares_de_libro(self, libro:Libro) -> list[Ejemplar]:
-        return [e for e in self.ejemplares if e.isbn==libro.isbn]
-    
     @property
-    def dict_ejemplares(self)->dict[tuple[str,int],Ejemplar]:
-        return self.__dict_ejemplares
-    
-    @property
-    def prestamos(self) -> list[Prestamo]:
+    def prestamos(self) -> Prestamos:
         return self.__prestamos
-    
-    def prestamos_de_libro(self, libro:Libro) -> list[Prestamo]:
-        return [p for p in self.prestamos if p.isbn==libro.isbn]
-    
-    @property
-    def dict_prestamos(self)->dict[int,Prestamo]:
-        return self.__dict_prestamos 
 
-    def algun_ejemplar_prestado(self, libro:Libro) -> bool:    
-        return any([libro.isbn==p.isbn for p in self.prestamos])
-    
-    def add_ejemplar(self,libro:Libro,fecha:date) -> Ejemplar:
-        ejemplares:list[Ejemplar] = self.ejemplares_de_libro(libro)
-        mc:int = max(e.codigo for e in ejemplares)
-        e:Ejemplar =  Ejemplar.of(libro.isbn,mc+1,fecha)  
-        self.__ejemplares.append(e)
-        self.__dict_ejemplares[(e.isbn,e.codigo)] = e
-        return e
-    
-    def add_prestamo(self:Biblioteca, ejemplar:Ejemplar, fecha:date, tipo:Tipo_prestamo) -> None:
-        pass
-        
-    def devuelve_libro(self, prestamo:Prestamo) -> None:
-        pass
-    
-    def elimina_libro(self:Biblioteca, libro:Libro) ->None:
-        pass
-        
-    def elimina_ejemplar(self:Biblioteca, ejemplar:Ejemplar) -> None:
-        pass
 
 if __name__ == '__main__':
     b:Biblioteca = Biblioteca.of()
-    print(len(b.libros))
-    print(strfiter(b.libros[0:10],sep='\n',prefix='',suffix=''))
-    print(b.add_ejemplar(b.libro(50),datetime.now()))
+    print(b.libros.size)
+    print(str_iter(b.libros.libros_range(0,10),sep='\n',prefix='',suffix=''))
    
           
                 

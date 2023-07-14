@@ -12,13 +12,13 @@ from fractions import Fraction
 from functools import reduce
 from operator import mul
 from us.lsi.numeric_types.Field import FieldElement,Field,FractionField
-from us.lsi.numeric_types.Matriz import Matriz
+from us.lsi.matriz.MatrizC import MatrizC
 
 S = TypeVar('S',bound=FieldElement)
 
 identity = lambda x:x
 
-class Matriz_field(Matriz[S]):
+class Matriz_field(MatrizC[S]):
     
     def __init__(self,datos: list[list[S]], field:Field[S])->None:
         super().__init__(datos)
@@ -30,7 +30,7 @@ class Matriz_field(Matriz[S]):
     
     @staticmethod
     def of_file_field(file:str,field:Field[S],delimiter=' ',encoding='utf-8')->Matriz_field[S]:
-        m:Matriz[S]= Matriz.of_file(file,lambda x:field.parse(x),delimiter,encoding)
+        m:MatrizC[S]= MatrizC.of_file(file,lambda x:field.parse(x),delimiter,encoding)
         return Matriz_field(m.datos,field)
     
     @staticmethod

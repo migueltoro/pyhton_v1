@@ -7,7 +7,7 @@ from __future__ import annotations
 from functools import total_ordering
 from random import randint
 from us.lsi.tools.Preconditions import check_argument
-from us.lsi.tools.Iterable import strfiter
+from us.lsi.tools.Iterable import str_iter
 
 def mcd(a:int, b:int)->int:
     check_argument(a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}')
@@ -114,4 +114,4 @@ if __name__ == '__main__':
     print('9:', f2)
     print('9:', ~(f3/f2))
     ls:list[Fraccion] = [Fraccion.random(1000) for _ in range(50)]
-    print('10:',strfiter(ls))
+    print('10:',str_iter(ls))

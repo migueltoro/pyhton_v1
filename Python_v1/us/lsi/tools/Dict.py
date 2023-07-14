@@ -23,7 +23,7 @@ def invert_dict_set(d:dict[K,V | Iterable[V]]) -> dict[V,set[K]]:
     fl = ((k,nv)  for k,v in d.items()  for nv in flat(v))
     return grouping_set(fl,key=lambda e:e[1],value=lambda e:e[0])
 
-def strfdict(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='',
+def str_dict(dictionary:dict[K,V],sep:str='\n',prefix:str='',suffix:str='',
                    key:Callable[[K],str]=str,value:Callable[[V],str]=str)->str:
     ts = lambda x:f'({key(x[0])}:{value(x[1])})'
     r:str = sep.join(ts(x) for x in dictionary.items())

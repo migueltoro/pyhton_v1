@@ -7,7 +7,9 @@ Created on 16 jul. 2020
 from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D
-from us.lsi.geometria.Punto2D import Punto2D, Objeto2D, Recta2D
+from us.lsi.geometria.Punto2D import Punto2D
+from us.lsi.geometria.Recta2D import Recta2D
+from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
 
@@ -33,7 +35,7 @@ class Segmento2D(Objeto2D):
     
     @property
     def modulo(self) -> float:        
-        return self.p1.distancia_a(self.p2)
+        return self.p1.distancia(self.p2)
 
     def rota(self,p:Punto2D,angulo) -> Segmento2D:
         return Segmento2D.of(self.p1.rota(p,angulo),self.p2.rota(p,angulo))
@@ -45,10 +47,10 @@ class Segmento2D(Objeto2D):
         return Segmento2D.of(self.p1.homotecia(p,factor), self.p2.homotecia(p,factor))
     
     def proyecta_sobre_recta(self,r:Recta2D) -> Segmento2D:
-        return Segmento2D.of(self.p1.proyecta_sobre_recta(r), self.p2.proyecta_sobre_recta(r))
+        return Segmento2D.of(r.proyecta_sobre_recta(self.p1), r.proyecta_sobre_recta(self.p2))
     
     def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Segmento2D:
-        return Segmento2D.of(self.p1.simetrico_con_respecto_a_recta(r), self.p2.simetrico_con_respecto_a_recta(r)) 
+        return Segmento2D.of(r.simetrico_con_respecto_a_recta(self.p1), r.simetrico_con_respecto_a_recta(self.p2)) 
        
     @property
     def shape(self)->Patch:

@@ -9,7 +9,7 @@ from us.lsi.aeropuertos.Aerolinea import Aerolinea
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, encoding
 
 class Aerolineas:  
-    __aerolineas_class: Aerolineas
+    __gestor_de_aerolineas: Aerolineas
     
     def __init__(self,ocupaciones_vuelos:list[Aerolinea])->None:
         self.__aerolineas = ocupaciones_vuelos
@@ -17,16 +17,16 @@ class Aerolineas:
         
     @staticmethod
     def of()->Aerolineas:
-        return Aerolineas.__aerolineas_class
+        return Aerolineas.__gestor_de_aerolineas
                
     @staticmethod
     def of_file(fichero:str)->Aerolineas:
         datos: list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]
-        Aerolineas.__aerolineas_class = Aerolineas(datos)
-        return Aerolineas.__aerolineas_class
+        Aerolineas.__gestor_de_aerolineas = Aerolineas(datos)
+        return Aerolineas.__gestor_de_aerolineas
 
     @property
-    def lista(self)->list[Aerolinea]:
+    def todas(self)->list[Aerolinea]:
         return self.__aerolineas
 
     def aerolinea_codigo(self,codigo:str)->Aerolinea:

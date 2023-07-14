@@ -50,8 +50,8 @@ class CuerpoCeleste(ABC):
         pass
     
     #####################################################################
-    def distancia_a(self, cuerpo:CuerpoCeleste):
-        distanciaCentros=self.coordenadas().distancia_a(cuerpo.coordenadas())
+    def distancia(self, cuerpo:CuerpoCeleste):
+        distanciaCentros=self.coordenadas().distancia(cuerpo.coordenadas())
         d = distanciaCentros - self.diametro / 2 - cuerpo.diametro / 2
         return d  
     

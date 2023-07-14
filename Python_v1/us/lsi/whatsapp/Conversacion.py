@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import TypeVar, Callable, Optional
 from us.lsi.whatsapp.Mensaje import Mensaje
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
-from us.lsi.tools.Iterable import strfiter, grouping_list, groups_size,\
+from us.lsi.tools.Iterable import str_iter, grouping_list, groups_size,\
     grouping_set
 from datetime import date
 from us.lsi.tools import Graphics
@@ -46,8 +46,8 @@ class Conversacion:
         return Conversacion(mensajes,ph)
     
     def __str__(self) -> str:
-        it1 = strfiter(self.palabras_huecas)
-        it2 = strfiter(self.mensajes,sep='\n',prefix='',suffix='')
+        it1 = str_iter(self.palabras_huecas)
+        it2 = str_iter(self.mensajes,sep='\n',prefix='',suffix='')
         return 'Palabras huecas = \n{0:s}\nMensajes = \n{1:s}'.format(it1, it2) 
     
     @property
@@ -188,12 +188,12 @@ class Conversacion:
 if __name__ == '__main__':
     c = Conversacion.of_file(absolute_path("/resources/bigbangtheory_es.txt"))
 #    print(c)    
-    print(strfiter(c.numero_de_mensajes_por_usuario.items()))
+    print(str_iter(c.numero_de_mensajes_por_usuario.items()))
     print('___________')
     tsf = lambda e:'{0:s}={1}'.format(e[0],e[1])
-    print(strfiter(c.numero_de_palabras_por_usuario.items(),key=tsf,sep='\n',prefix='',suffix=''))
+    print(str_iter(c.numero_de_palabras_por_usuario.items(),key=tsf,sep='\n',prefix='',suffix=''))
     print('___________')
-    print(strfiter(c.numero_de_palabras_por_resto_de_usuarios.items(),key=tsf,sep='\n',prefix='',suffix=''))
+    print(str_iter(c.numero_de_palabras_por_resto_de_usuarios.items(),key=tsf,sep='\n',prefix='',suffix=''))
     print('___________')
     print(c.numero_de_palabras_por_resto_de_usuarios['Leonard'])
     c.diagrama_de_barras_mensajes_por_dia_de_semana(absolute_path("/ficheros/por_dia_de_semana_barras.html"))
@@ -201,7 +201,7 @@ if __name__ == '__main__':
     print('___________')
     ls = [e for e in c.palabras_caracteristicas_de_usuario('Sheldon').items()]
     ls.sort(key= lambda e: e[1], reverse = True)
-    print(strfiter(ls,sep='\n',key=lambda x:f'{x[0]:15}{x[1]:.2f}',prefix='',suffix=''))
+    print(str_iter(ls,sep='\n',key=lambda x:f'{x[0]:15}{x[1]:.2f}',prefix='',suffix=''))
     
     
     

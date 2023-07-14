@@ -10,9 +10,9 @@ from us.lsi.sevici.Estacion import Estacion
 from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 #from sortedcontainers import SortedSet # type: ignore
-from us.lsi.tools.Iterable import grouping_list, strfiter,groups_size
+from us.lsi.tools.Iterable import grouping_list, str_iter,groups_size
 from us.lsi.tools.Preconditions import check_argument
-from us.lsi.tools.Dict import strfdict
+from us.lsi.tools.Dict import str_dict
 #from us.lsi.tools.GraphicsMaps import markers
 
 
@@ -39,7 +39,7 @@ class Red:
         return Red.of(estaciones)
     
     def __str__(self) -> str:
-        return strfiter(self.__estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
+        return str_iter(self.__estaciones,sep='\n',prefix='Estaciones\n',suffix='\n---------------------')
     
     @property
     def estaciones(self)->list[Estacion]:
@@ -109,7 +109,7 @@ if __name__ == '__main__':
 #    r.__add__(Estacion.of_file('361_ESTACA DE VARES,17,12,5,37.38369648551305,-5.914819934855601'.split(',')))
 #    print(r)
 #   print(r.estacion_de_numero(6).ubicacion.distancia_a())
-    print(strfdict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))
+    print(str_dict(r.numero_de_estaciones_por_bicis_disponibles,sep='\n'))
     
     
     

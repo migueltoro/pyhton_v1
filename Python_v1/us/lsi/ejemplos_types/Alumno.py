@@ -6,7 +6,7 @@ Created on 4 nov 2022
 
 from __future__ import annotations
 from dataclasses import dataclass
-from us.lsi.types.Persona import Persona
+from us.lsi.ejemplos_types.Persona import Persona
 
 @dataclass(frozen=True)
 class Alumno(Persona):

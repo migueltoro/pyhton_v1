@@ -6,8 +6,8 @@ Created on 25 jul. 2020
 
 from typing import OrderedDict,Iterable,Optional
 from us.lsi.tools.File import lineas_de_fichero, encoding, absolute_path, iterable_de_fichero
-from us.lsi.tools.Dict import strfdict, invert_dict_set
-from us.lsi.tools.Iterable import flat_map,first,distinct,strfiter,grouping_set,groups_size,count_if
+from us.lsi.tools.Dict import str_dict, invert_dict_set
+from us.lsi.tools.Iterable import flat_map,first,distinct,str_iter,grouping_set,groups_size,count_if
 from collections import Counter
 import re
 from statistics import mean
@@ -80,10 +80,10 @@ def palabras_frecuentes(file:str, k:int)->list[str]:
     
 if __name__ == '__main__':
     print(encoding(absolute_path("/resources/quijote.txt")))
-    print(strfiter(palabras_no_huecas(absolute_path("/resources/quijote.txt")),sep='\n'))
-    print(strfdict(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")),sep='\n'))
+    print(str_iter(palabras_no_huecas(absolute_path("/resources/quijote.txt")),sep='\n'))
+    print(str_dict(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")),sep='\n'))
     print(numero_de_palabras_distintas_no_huecas(absolute_path("/resources/quijote.txt")))
-    print(strfiter(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
-    print(strfiter(palabra_en_lineas(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(str_iter(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(str_iter(palabra_en_lineas(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
     print(palabras_frecuentes(absolute_path("/resources/quijote.txt"), 10))
     

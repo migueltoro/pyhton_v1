@@ -8,6 +8,8 @@ from typing import TypeVar, Optional
 
 E = TypeVar('E')
 
+identity = lambda x: x
+
 def optional_has_value(value:Optional[E])->bool:
     if value is None:
         return False

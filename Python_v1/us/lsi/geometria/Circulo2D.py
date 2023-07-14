@@ -9,7 +9,8 @@ from math import pi
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.geometria.Vector2D import Vector2D
-from us.lsi.geometria.Punto2D import Recta2D, Objeto2D 
+from us.lsi.geometria.Recta2D import Recta2D 
+from us.lsi.geometria.Objeto2D import Objeto2D 
 from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from us.lsi.tools import Draw
@@ -40,7 +41,7 @@ class Circulo2D(Objeto2D):
     def perimetro(self) -> float:
         return 2*pi*self.radio
         
-    def rota(self, p:Punto2D, angulo:float) -> Objeto2D:        
+    def rota(self, p:Punto2D, angulo:float) -> Circulo2D:        
         return Circulo2D.of(self.centro.rota(p,angulo), self.radio)
     
     def traslada(self, v: Vector2D) -> Circulo2D:
@@ -49,13 +50,13 @@ class Circulo2D(Objeto2D):
     def homotecia(self, p: Punto2D, factor:float) -> Circulo2D:
         return Circulo2D.of(self.centro.homotecia(p,factor), self.radio*factor)
     
-    def proyecta_sobre_recta(self, r: Recta2D) -> Segmento2D:
-        c = self.centro.proyecta_sobre_recta(r)
+    def proyecta_sobre_recta(self, r: Recta2D) -> Objeto2D:
+        c = r.proyecta_sobre_recta(self.centro)
         u = r.vector.unitario
         return Segmento2D.of(c+u*self.radio,c-u*(self.radio))
     
     def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Circulo2D:
-        return Circulo2D.of(self.centro.simetrico_con_respecto_a_recta(r), self.radio)
+        return Circulo2D.of(r.simetrico_con_respecto_a_recta(self.centro), self.radio)
     
     @property
     def shape(self)->list[Patch]:

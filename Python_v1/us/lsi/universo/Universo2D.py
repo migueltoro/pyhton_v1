@@ -42,7 +42,7 @@ class Universo2D:
         self.__cuerpos_celestes.append(c)
     
     def distancia_minima(self) -> tuple[float, CuerpoCeleste,  CuerpoCeleste]: #(dist. mín., c. celestes más cercanos)
-        distancias=[(c1.distancia_a(c2),c1,c2) for c1,c2 in zip(self.cuerpos_celestes, self.cuerpos_celestes[1:])]
+        distancias=[(c1.distancia(c2),c1,c2) for c1,c2 in zip(self.cuerpos_celestes, self.cuerpos_celestes[1:])]
         return min(distancias, key=lambda x:x[0])
     
     #####################################################################################

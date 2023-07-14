@@ -1,5 +1,5 @@
 '''
-Created on 16 jul. 2020
+Created on 2 jul 2023
 
 @author: migueltoro
 '''
@@ -9,40 +9,9 @@ from math import sqrt, pi
 from dataclasses import dataclass, astuple, asdict
 from us.lsi.geometria.Cuadrante import Cuadrante
 from us.lsi.geometria.Vector2D import Vector2D
+from us.lsi.geometria.Objeto2D import Objeto2D
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
-from abc import ABC, abstractmethod
-
-class Objeto2D(ABC):
-    
-    @abstractmethod
-    def copy(self)-> Objeto2D:
-        pass
-    
-    @abstractmethod
-    def rota(self, p:Punto2D, angulo:float) -> Objeto2D:        
-        pass
-    
-    @abstractmethod
-    def traslada(self, v:Vector2D) -> Objeto2D:
-        pass
-    
-    @abstractmethod    
-    def homotecia(self, p:Punto2D, factor:float) -> Objeto2D:
-        pass
-    
-    @abstractmethod
-    def proyecta_sobre_recta(self, r:Recta2D) -> Objeto2D:
-        pass
-    
-    @abstractmethod
-    def simetrico_con_respecto_a_recta(self, r:Recta2D) -> Objeto2D:
-        pass
-    
-    @property
-    @abstractmethod
-    def shape(self)->Patch:
-        pass
 
 
 @dataclass(frozen=True,order=True)
@@ -84,14 +53,10 @@ class Punto2D(Objeto2D):
             case _ :
                 return Cuadrante.CUARTO        
     
-    def distancia_a(self,p:Punto2D) -> float:
+    def distancia(self,p:Punto2D) -> float:
         dx = self.x-p.x;
         dy = self.y-p.y
         return sqrt(dx*dx+dy*dy)
-    
-    @property
-    def distancia_al_origen(self: Punto2D) -> float:
-        return self.distancia_a(Punto2D.origen())
     
     def __add__(self,v:Vector2D) -> Punto2D:
         return Punto2D.of(self.x+v.x,self.y+v.y)
@@ -112,13 +77,11 @@ class Punto2D(Objeto2D):
     def homotecia(self,p:Punto2D,factor:float) -> Punto2D:
         return p + p.vector_to(self) * factor
     
-    def proyecta_sobre_recta(self,r:Recta2D) -> Punto2D: 
-        v1 = r.punto.vector_to(self).proyecta_sobre(r.vector)
-        return r.punto + v1
+    def proyecta_sobre_recta(self,r) -> Punto2D:
+        return r.proyecta_sobre_recta(self)
     
-    def simetrico_con_respecto_a_recta(self,r:Recta2D) -> Punto2D:
-        p = self.proyecta_sobre_recta(r)
-        return self + self.vector_to(p) * 2.
+    def simetrico_con_respecto_a_recta(self,r) -> Punto2D:
+        return r.simetrico_con_respecto_a_recta(self) 
     
     @property
     def shape(self)->Patch:
@@ -127,30 +90,6 @@ class Punto2D(Objeto2D):
     def __str__(self) -> str:
         return '({0:.2f},{1:.2f})'.format(self.x,self.y)
     
-@dataclass(frozen=True,order=True)
-class Recta2D:
-    punto: Punto2D
-    vector: Vector2D
-     
-    @staticmethod
-    def of(p:Punto2D,v:Vector2D) -> Recta2D:
-        return Recta2D(p,v)
-    
-    @staticmethod
-    def of_puntos(p1:Punto2D,p2:Punto2D) -> Recta2D:
-        return Recta2D(p1,p2.vector_to(p1))
-    
-    def __str__(self) -> str:
-        return '({0},{1})'.format(str(self.punto),str(self.vector))
-    
-    def punto_en_recta(self,factor:float = 0.) -> Punto2D:
-        return self.punto + self.vector * factor
-    
-    def paralela(self,p:Punto2D) -> Recta2D:
-        return Recta2D.of(p,self.vector)
-    
-    def ortogonal(self,p:Punto2D) -> Recta2D:
-        return Recta2D.of(p,self.vector.ortogonal)
 
     
 if __name__ == '__main__':
@@ -161,13 +100,10 @@ if __name__ == '__main__':
     print(p)
     print(p.cuadrante)
     print(p1.cuadrante)
-    print(p.distancia_al_origen)
+    print(p.distancia(Punto2D.origen()))
     print(p.vector_to(Punto2D.of(1., 5.)))
     print(p.rota(Punto2D.origen(),pi/2))
-    print(p3.distancia_a(p4))
+    print(p3.distancia(p4))
     p2 = Punto2D.of(0., 1.)
-    r = Recta2D.of_puntos(p1, p2)
-    print(p.proyecta_sobre_recta(r))
     print(asdict(p1))
     print(astuple(p1))
-    

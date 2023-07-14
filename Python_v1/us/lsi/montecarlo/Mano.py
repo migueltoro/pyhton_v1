@@ -7,7 +7,7 @@ Created on 27 jul. 2020
 from __future__ import annotations
 from typing import Optional
 from us.lsi.montecarlo.Card import Card
-from us.lsi.tools.Iterable import groups_size, first_index_true, strfiter
+from us.lsi.tools.Iterable import groups_size, first_index_true, str_iter
 from us.lsi.tools.Graphics import cartas_graphic
 import random 
 from functools import total_ordering
@@ -199,7 +199,7 @@ class Mano:
     
                         
     def __str__(self):
-        mano = strfiter((c for c in self.cartas),separator=',',prefix='[',suffix=']')
+        mano = str_iter((c for c in self.cartas),separator=',',prefix='[',suffix=']')
         return '{}={}={}'.format(mano,self.nombre_de_jugada,str(self.fuerza()))
 
     def to_graphics(self, file_out: str) -> None:

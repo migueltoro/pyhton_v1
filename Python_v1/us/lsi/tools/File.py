@@ -78,7 +78,7 @@ def write_iterable(file:str,iterable:Iterable[str], encoding='utf-8') -> None:
             f.write(ln+'\n')
 
 def encoding(file:str)->str:
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    check_argument(existe_fichero(file),'El fichero {0} no existe'.format(file))
     with open(file,"rb") as f:
         data = f.read()
         enc = chardet.detect(data)
