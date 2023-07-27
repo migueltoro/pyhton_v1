@@ -23,7 +23,7 @@ class Usuarios:
         return Usuarios.__gestor_de_usuarios
                
     @staticmethod
-    def of_file(fichero:str)->Usuarios:
+    def parse(fichero:str)->Usuarios:
         usuarios:set[Usuario] = {Usuario.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Usuarios.__gestor_de_usuarios = Usuarios(usuarios)
         return Usuarios.__gestor_de_usuarios

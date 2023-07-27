@@ -25,7 +25,7 @@ class Matriz(Generic[E]):
     
     
     @staticmethod
-    def of_file(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8')->Matriz[E]:
+    def parse(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8')->Matriz[E]:
         pass
     
     @abstractmethod

@@ -22,7 +22,7 @@ class Vuelos:
         return Vuelos.__gestor_de_vuelos
 
     @staticmethod  
-    def of_file(fichero: str)->Vuelos:
+    def parse(fichero: str)->Vuelos:
         vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(fichero)]
         Vuelos.__gestor_de_vuelos = Vuelos(vuelos)
         return Vuelos.__gestor_de_vuelos
@@ -52,7 +52,7 @@ class Vuelos:
         return f'Vuelos\n\t{txt}'
 
 if __name__ == '__main__':
-    Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.of_file(absolute_path("/resources/ocupaciones_vuelos.csv"))
-    Vuelos.of_file(absolute_path("/resources/__vuelos.csv"))
+    Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
+    Aerolineas.parse(absolute_path("/resources/ocupaciones_vuelos.csv"))
+    Vuelos.parse(absolute_path("/resources/__vuelos.csv"))
     print(Vuelos.of().vuelo_codigo('MX0435'))

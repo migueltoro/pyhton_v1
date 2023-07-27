@@ -22,7 +22,7 @@ class Asignaciones:
         return Asignaciones.__gestor_de_asignaciones
                
     @staticmethod
-    def of_file(fichero:str)->Asignaciones:
+    def parse(fichero:str)->Asignaciones:
         asignaciones:set[Asignacion] = {Asignacion.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Asignaciones.__gestor_de_asignaciones = Asignaciones(asignaciones)
         return Asignaciones.__gestor_de_asignaciones

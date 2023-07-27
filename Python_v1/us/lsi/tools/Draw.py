@@ -3,6 +3,7 @@ Created on 27 oct. 2020
 
 @author: migueltoro
 '''
+
 from typing import Callable
 import matplotlib.pyplot as plt # type: ignore
 from  matplotlib.patches import Patch # type: ignore

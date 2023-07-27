@@ -33,10 +33,10 @@ class Espacio_aereo:
         faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv"),         
         fvuelos:str = absolute_path("/aeropuertos/vuelos.csv"),
         focupaciones_vuelos:str =absolute_path("/aeropuertos/ocupacionesVuelos.csv"))->Espacio_aereo:
-        aeropuertos = Aeropuertos.of_file(faeropuertos)
-        aerolineas = Aerolineas.of_file(faerolineas)
-        vuelos =  Vuelos.of_file(fvuelos)
-        ocupaciones_vuelos = Ocupaciones_vuelos.of_file(focupaciones_vuelos)
+        aeropuertos = Aeropuertos.parse(faeropuertos)
+        aerolineas = Aerolineas.parse(faerolineas)
+        vuelos =  Vuelos.parse(fvuelos)
+        ocupaciones_vuelos = Ocupaciones_vuelos.parse(focupaciones_vuelos)
         
         return Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
  

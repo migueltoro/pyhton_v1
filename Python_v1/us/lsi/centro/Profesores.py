@@ -23,7 +23,7 @@ class Profesores:
         return Profesores.__gestor_de_profesores
                
     @staticmethod
-    def of_file(fichero:str)->Profesores:
+    def parse(fichero:str)->Profesores:
         profesores:set[Profesor] = {Profesor.parse_profesor(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Profesores.__gestor_de_profesores = Profesores(profesores)
         return Profesores.__gestor_de_profesores

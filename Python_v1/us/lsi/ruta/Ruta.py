@@ -21,7 +21,7 @@ class Ruta:
         self.__n = len(marcas)
     
     @staticmethod
-    def of_file(fichero: str) -> Ruta: 
+    def parse(fichero: str) -> Ruta: 
         marcas = [Marca.parse(x) for x in iterable_de_csv(fichero)]
         return Ruta(marcas)
     
@@ -83,7 +83,7 @@ class Ruta:
 
 if __name__ == '__main__':
     print("/resources/ruta.csv")
-    r = Ruta.of_file(absolute_path("/resources/ruta.csv"));
+    r = Ruta.parse(absolute_path("/resources/ruta.csv"));
     print(r.marcas[:30])
     print(r)
     print("__________")

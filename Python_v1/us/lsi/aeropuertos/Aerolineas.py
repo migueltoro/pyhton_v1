@@ -20,7 +20,7 @@ class Aerolineas:
         return Aerolineas.__gestor_de_aerolineas
                
     @staticmethod
-    def of_file(fichero:str)->Aerolineas:
+    def parse(fichero:str)->Aerolineas:
         datos: list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]
         Aerolineas.__gestor_de_aerolineas = Aerolineas(datos)
         return Aerolineas.__gestor_de_aerolineas
@@ -46,7 +46,7 @@ class Aerolineas:
 
 if __name__ == '__main__':
     print(encoding(absolute_path("/resources/__ocupaciones_vuelos.csv")))
-    a = Aerolineas.of_file(absolute_path("/resources/__ocupaciones_vuelos.csv"))
+    a = Aerolineas.parse(absolute_path("/resources/__ocupaciones_vuelos.csv"))
     print(a)
     print(a.aerolinea_index(0))
     

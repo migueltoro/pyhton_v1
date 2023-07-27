@@ -45,11 +45,11 @@ class Centro:
            fichero_asignaturas:str=absolute_path('/centro/asignaturas.txt'),
            fichero_matriculas:str=absolute_path('/centro/matriculas.txt'),
            fichero_asignaciones:str=absolute_path('/centro/asignaciones.txt'))->Centro:
-        alumnos:Alumnos = Alumnos.of_file(fichero_alumnos)
-        profesores:Profesores = Profesores.of_file(fichero_profesores)
-        asignaturas:Asignaturas = Asignaturas.of_file(fichero_asignaturas)
-        matriculas:Matriculas = Matriculas.of_file(fichero_matriculas)
-        asignaciones: Asignaciones = Asignaciones.of_file(fichero_asignaciones)
+        alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
+        profesores:Profesores = Profesores.parse(fichero_profesores)
+        asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)
+        matriculas:Matriculas = Matriculas.parse(fichero_matriculas)
+        asignaciones: Asignaciones = Asignaciones.parse(fichero_asignaciones)
         return Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
 
    

@@ -33,10 +33,10 @@ class Biblioteca:
         self._email: str = email
         
         
-        self.__usuarios:Usuarios = Usuarios.of_file(fu)
-        self.__libros: Libros = Libros.of_file(fl)
-        self.__ejemplares:Ejemplares = Ejemplares.of_file(fe)       
-        self.__prestamos: Prestamos = Prestamos.of_file(fp)  
+        self.__usuarios:Usuarios = Usuarios.parse(fu)
+        self.__libros: Libros = Libros.parse(fl)
+        self.__ejemplares:Ejemplares = Ejemplares.parse(fe)       
+        self.__prestamos: Prestamos = Prestamos.parse(fp)  
         
     @staticmethod
     def of_files(nombre:str='Reina Mercedes',

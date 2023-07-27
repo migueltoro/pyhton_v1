@@ -24,7 +24,7 @@ class Asignaturas:
         return Asignaturas.__gestor_de_asignaturas
                
     @staticmethod
-    def of_file(fichero:str)->Asignaturas:
+    def parse(fichero:str)->Asignaturas:
         asignaturas:set[Asignatura] = {Asignatura.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Asignaturas.__gestor_de_asignaturas = Asignaturas(asignaturas)
         return Asignaturas.__gestor_de_asignaturas

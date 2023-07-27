@@ -22,7 +22,7 @@ class Prestamos:
         return Prestamos.__gestor_de_prestamos
                
     @staticmethod
-    def of_file(fichero:str)->Prestamos:
+    def parse(fichero:str)->Prestamos:
         prestamos:set[Prestamo] = {Prestamo.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Prestamos.__gestor_de_prestamos = Prestamos(prestamos)
         return Prestamos.__gestor_de_prestamos

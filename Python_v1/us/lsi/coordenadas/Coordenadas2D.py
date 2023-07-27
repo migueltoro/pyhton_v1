@@ -18,7 +18,7 @@ class Coordenadas2D:
         return Coordenadas2D(latitud,longitud)
        
     @staticmethod
-    def of_file(text:str) -> Coordenadas2D:
+    def parse(text:str) -> Coordenadas2D:
         lat,long = text[1:-1].split(',')
         return Coordenadas2D.of(float(lat),float(long))
     
@@ -57,7 +57,7 @@ class Coordenadas2D:
         return '({0},{1})'.format(self.latitud,self.longitud)  
 
 if __name__ == '__main__':
-    s = Coordenadas2D.of_file('(37.3828300, -5.9731700)')   
+    s = Coordenadas2D.parse('(37.3828300, -5.9731700)')   
     print(s)
     print(astuple(s))
     print(asdict(s))

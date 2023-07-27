@@ -33,7 +33,7 @@ def persona_random(a:int,b:int)->Persona:
     direccion = re.sub(' \n|\n',';',direccion)
     direccion = direccion.replace(', ',';')
     s = f'{apellidos},{nombre},{dni},{fecha_nacimiento},{telefono},{direccion}'
-    return Persona.of_file(s)
+    return Persona.parse(s)
 
 def usuario_random(a:int,b:int)->str:
     p:Persona = persona_random(a,b)

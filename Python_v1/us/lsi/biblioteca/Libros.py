@@ -23,7 +23,7 @@ class Libros:
         return Libros.__gestor_de_libros
                
     @staticmethod
-    def of_file(fichero:str)->Libros:
+    def parse(fichero:str)->Libros:
         libros:set[Libro] = {Libro.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Libros.__gestor_de_libros = Libros(libros)
         return Libros.__gestor_de_libros

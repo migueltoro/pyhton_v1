@@ -23,7 +23,7 @@ class Aeropuertos:
         return Aeropuertos.__gestor_de_aeropuertos
     
     @staticmethod  
-    def of_file(fichero:str)-> Aeropuertos:
+    def parse(fichero:str)-> Aeropuertos:
         aeropuertos:list[Aeropuerto] = [Aeropuerto.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
         Aeropuertos.__gestor_de_aeropuertos = Aeropuertos(aeropuertos)
         return Aeropuertos.__gestor_de_aeropuertos
@@ -60,6 +60,6 @@ class Aeropuertos:
     
 
 if __name__ == '__main__':
-    a = Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
+    a = Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
     print(a)
     print(a.aeropuerto_index(0))

@@ -33,7 +33,7 @@ class MatrizC(Matriz[E]):
         return MatrizC(datos)
     
     @staticmethod
-    def of_file(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8') -> MatrizC[E]:
+    def parse(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8') -> MatrizC[E]:
         datos_aux: list[list[str]] = list(lineas_de_csv(file,delimiter=delimiter,encoding=encoding))
         datos: list[list[E]] = [[t(datos_aux[f][c]) for c in range(len(datos_aux[0]))] for f in range(len(datos_aux))]
         return MatrizC.of(datos)
@@ -90,12 +90,12 @@ class MatrizC(Matriz[E]):
     
         
 if __name__ == '__main__':
-    m3:MatrizC[int] = MatrizC.of_file(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
+    m3:MatrizC[int] = MatrizC.parse(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
     print(m3.traspuesta)
     print(encoding(absolute_path('/datos/matriz1.txt')))
-    m:MatrizC[str]= MatrizC.of_file(absolute_path('/datos/matriz1.txt'))
+    m:MatrizC[str]= MatrizC.parse(absolute_path('/datos/matriz1.txt'))
     print(m)
     print('_________________')
     print(m.traspuesta)

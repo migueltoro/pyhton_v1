@@ -57,7 +57,7 @@ class Ocupacion_vuelo:
         return f'{self.codigo_vuelo},{self.fecha.strftime("%Y-%m-%d %H:%M:%S")},{self.num_pasajeros}'
 
 if __name__ == '__main__':
-    Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.of_file(absolute_path("/resources/aerolineas.csv"))
-    Vuelos.of_file(absolute_path("/resources/vuelos.csv"))
+    Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
+    Aerolineas.parse(absolute_path("/resources/aerolineas.csv"))
+    Vuelos.parse(absolute_path("/resources/vuelos.csv"))
     oc = Ocupacion_vuelo.parse('MX0435,2020-11-24 01:04:00,57')

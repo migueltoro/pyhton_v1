@@ -23,7 +23,7 @@ class MatrizF(Matriz[Fraction]):
     
     @staticmethod
     def of_file_fraction(file:str)->MatrizF:
-        return MatrizF.of(Matriz.of_file(file, lambda x: Fraction(x)).datos)
+        return MatrizF.of(Matriz.parse(file, lambda x: Fraction(x)).datos)
 
     #===========================================================================
     # PROPIEDADES DERIVADAS

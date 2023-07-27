@@ -42,7 +42,7 @@ class MatrizI(Matriz[E]):
         return MatrizI(datos)
     
     @staticmethod
-    def of_file(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8') -> MatrizI[E]:
+    def parse(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8') -> MatrizI[E]:
         datos_f: list[list[str]] = list(lineas_de_csv(file,delimiter=delimiter,encoding=encoding))
         dt:list[list[E]] = []
         for ln in datos_f:
@@ -109,7 +109,7 @@ class MatrizI(Matriz[E]):
         return r
            
 if __name__ == '__main__':
-    m3:MatrizI[int] = MatrizI.of_file(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
+    m3:MatrizI[int] = MatrizI.parse(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
     print(m3.traspuesta)     

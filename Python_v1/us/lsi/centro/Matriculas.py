@@ -22,7 +22,7 @@ class Matriculas:
         return Matriculas.__gestor_de_matriculas
                
     @staticmethod
-    def of_file(fichero:str)->Matriculas:
+    def parse(fichero:str)->Matriculas:
         matriculas:set[Matricula] = {Matricula.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Matriculas.__gestor_de_matriculas = Matriculas(matriculas)
         return Matriculas.__gestor_de_matriculas

@@ -38,7 +38,7 @@ class Conversacion:
         self.__numero_de_palabras_por_resto_de_usuarios: Optional[Counter[str]] = None
         
     @staticmethod   
-    def of_file(file: str) -> Conversacion:
+    def parse(file: str) -> Conversacion:
         fph: str = absolute_path('/resources/palabras_huecas.txt')
         ph = {p for p in lineas_de_fichero(fph) if len(p) >0}
         ms = (Mensaje.parse(m,ph) for m in lineas_de_fichero(file))
@@ -186,7 +186,7 @@ class Conversacion:
         Graphics.pie_chart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)
     
 if __name__ == '__main__':
-    c = Conversacion.of_file(absolute_path("/resources/bigbangtheory_es.txt"))
+    c = Conversacion.parse(absolute_path("/resources/bigbangtheory_es.txt"))
 #    print(c)    
     print(str_iter(c.numero_de_mensajes_por_usuario.items()))
     print('___________')

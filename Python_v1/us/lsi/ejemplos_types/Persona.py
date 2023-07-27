@@ -45,14 +45,14 @@ class Persona:
         return Persona(apellidos, nombre, dni, fecha_de_nacimiento, telefono, direccion)
     
     @staticmethod
-    def of_file(text:str, ft:str = "%Y-%m-%d %H:%M")->Persona:
+    def parse(text:str, ft:str = "%Y-%m-%d %H:%M")->Persona:
         partes:list[str] = text.split(',')
         apellidos: str =  partes[0].strip()
         nombre: str =  partes[1].strip()
         dni: str = partes[2].strip() 
         fecha_de_nacimiento: datetime = datetime.strptime(partes[3].strip(), ft)
         telefono: str = partes[4].strip()
-        direccion: Direccion = Direccion.of_file(partes[5].strip())
+        direccion: Direccion = Direccion.parse(partes[5].strip())
         return Persona.of(apellidos, nombre, dni, fecha_de_nacimiento, telefono, direccion)
     
     @staticmethod
@@ -62,7 +62,7 @@ class Persona:
         dni: str = ls[2].strip() 
         fecha_de_nacimiento: datetime = datetime.strptime(ls[3].strip(), ft)
         telefono: str = ls[4].strip()
-        direccion: Direccion = Direccion.of_file(ls[5].strip())
+        direccion: Direccion = Direccion.parse(ls[5].strip())
         return Persona.of(apellidos, nombre, dni, fecha_de_nacimiento, telefono, direccion)
     
     
@@ -103,13 +103,13 @@ class Persona:
     
 
 if __name__ == '__main__':
-    p = Persona.of_file('Casares Amador,Ramiro,00895902Y,2003-06-14 10:02,+34721510926,Ronda de Samanta Cobos 392;Málaga;29316')
+    p = Persona.parse('Casares Amador,Ramiro,00895902Y,2003-06-14 10:02,+34721510926,Ronda de Samanta Cobos 392;Málaga;29316')
     print(p)
 #    print(p)
     print(p.edad)
-#    p = Persona.of_file(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
+#    p = Persona.parse(' Ramirez Ayora, Juan, 30415004B,  29-06-2030 08:15')
     print(p)
-#    p = Persona.of_file('      , Juan, 30415004B,  29-06-2018 08:15')
+#    p = Persona.parse('      , Juan, 30415004B,  29-06-2018 08:15')
     print(p)
     print(astuple(p))
     print(asdict(p))

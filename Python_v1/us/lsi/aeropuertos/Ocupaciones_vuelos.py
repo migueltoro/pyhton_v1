@@ -24,7 +24,7 @@ class Ocupaciones_vuelos:
         return Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos
 
     @staticmethod
-    def of_file(fichero:str)->Ocupaciones_vuelos:
+    def parse(fichero:str)->Ocupaciones_vuelos:
         r:list[Ocupacion_vuelo] = [Ocupacion_vuelo.parse(x) for x in lineas_de_fichero(fichero)]
         Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos = Ocupaciones_vuelos(r)
         return Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos
@@ -46,9 +46,9 @@ class Ocupaciones_vuelos:
 
 
 if __name__ == '__main__':
-    Aeropuertos.of_file(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.of_file(absolute_path("/resources/__gestor_de_ocupaciones_vuelos.csv"))
-    Vuelos.of_file(absolute_path("/resources/vuelos.csv"))
-    oc = Ocupaciones_vuelos.of_file(absolute_path("/resources/ocupacionesVuelos.csv"))
+    Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
+    Aerolineas.parse(absolute_path("/resources/__gestor_de_ocupaciones_vuelos.csv"))
+    Vuelos.parse(absolute_path("/resources/vuelos.csv"))
+    oc = Ocupaciones_vuelos.parse(absolute_path("/resources/ocupacionesVuelos.csv"))
     print(oc.ocupacion_index(0))
     print(list(oc for oc in oc.todas if oc.fecha_salida == date(2020,6,8)))

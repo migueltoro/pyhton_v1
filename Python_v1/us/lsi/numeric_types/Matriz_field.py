@@ -30,7 +30,7 @@ class Matriz_field(MatrizC[S]):
     
     @staticmethod
     def of_file_field(file:str,field:Field[S],delimiter=' ',encoding='utf-8')->Matriz_field[S]:
-        m:MatrizC[S]= MatrizC.of_file(file,lambda x:field.parse(x),delimiter,encoding)
+        m:MatrizC[S]= MatrizC.parse(file,lambda x:field.parse(x),delimiter,encoding)
         return Matriz_field(m.datos,field)
     
     @staticmethod

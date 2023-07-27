@@ -22,7 +22,7 @@ class Ejemplares:
         return Ejemplares.__gestor_de_ejemplares
                
     @staticmethod
-    def of_file(fichero:str)->Ejemplares:
+    def parse(fichero:str)->Ejemplares:
         ejemplares:set[Ejemplar] = {Ejemplar.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
         Ejemplares.__gestor_de_ejemplares = Ejemplares(ejemplares)
         return Ejemplares.__gestor_de_ejemplares
