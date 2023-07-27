@@ -60,6 +60,6 @@ class Aeropuertos:
     
 
 if __name__ == '__main__':
-    a = Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
+    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
     print(a)
     print(a.aeropuerto_index(0))

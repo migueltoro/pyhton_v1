@@ -6,7 +6,7 @@ Created on 21 ago 2022
 
 from datetime import date,datetime
 from collections import OrderedDict
-from ordered_set import OrderedSet
+from sortedcollections import OrderedSet
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.tools.Iterable import first, grouping_list,grouping_set,groups_size,grouping_reduce

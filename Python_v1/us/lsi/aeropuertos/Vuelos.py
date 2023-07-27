@@ -52,7 +52,7 @@ class Vuelos:
         return f'Vuelos\n\t{txt}'
 
 if __name__ == '__main__':
-    Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.parse(absolute_path("/resources/ocupaciones_vuelos.csv"))
-    Vuelos.parse(absolute_path("/resources/__vuelos.csv"))
+    Aeropuertos.parse(absolute_path("/aeropuertos/aerolineas.csv"))
+    Aerolineas.parse(absolute_path("/aerolineas/ocupaciones_vuelos.csv"))
+    Vuelos.parse(absolute_path("/aerolineas/__vuelos.csv"))
     print(Vuelos.of().vuelo_codigo('MX0435'))

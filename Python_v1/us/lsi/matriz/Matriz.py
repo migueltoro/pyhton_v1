@@ -18,7 +18,7 @@ class Matriz(Generic[E]):
     def __init__(self,datos: list[list[E]])->None:
         self.datos: list[list[E]] = datos    
     
-    
+   
     @staticmethod
     def of(datos: list[list[E]])->Matriz[E]:
         pass

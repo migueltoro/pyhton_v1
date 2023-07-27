@@ -46,9 +46,9 @@ class Ocupaciones_vuelos:
 
 
 if __name__ == '__main__':
-    Aeropuertos.parse(absolute_path("/resources/aeropuertos.csv"))
-    Aerolineas.parse(absolute_path("/resources/__gestor_de_ocupaciones_vuelos.csv"))
-    Vuelos.parse(absolute_path("/resources/vuelos.csv"))
-    oc = Ocupaciones_vuelos.parse(absolute_path("/resources/ocupacionesVuelos.csv"))
+    Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
+    Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
+    Vuelos.parse(absolute_path("/aeropuertos/vuelos.csv"))
+    oc = Ocupaciones_vuelos.parse(absolute_path("/aeropuertos/ocupacionesVuelos.csv"))
     print(oc.ocupacion_index(0))
     print(list(oc for oc in oc.todas if oc.fecha_salida == date(2020,6,8)))

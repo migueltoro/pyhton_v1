@@ -31,4 +31,5 @@ class Aeropuerto:
         return f'({self.codigo},{self.ciudad},{self.pais},{self.nombre})'
 
 if __name__ == '__main__':
-    pass
+    print(Aeropuerto.parse('Tirana Airport,Albania,TIA,Tirana'))
+    print(Aeropuerto.parse('Berl�n Brandeburgo�Airport,Alemania,BER,Berlin'))

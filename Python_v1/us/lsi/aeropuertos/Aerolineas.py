@@ -45,8 +45,8 @@ class Aerolineas:
 
 
 if __name__ == '__main__':
-    print(encoding(absolute_path("/resources/__ocupaciones_vuelos.csv")))
-    a = Aerolineas.parse(absolute_path("/resources/__ocupaciones_vuelos.csv"))
+    print(encoding(absolute_path("/aeropuertos/aerolineas.csv")))
+    a = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
     print(a)
     print(a.aerolinea_index(0))
     
