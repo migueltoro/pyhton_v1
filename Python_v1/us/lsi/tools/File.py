@@ -5,7 +5,7 @@ Created on 15 jul. 2020
 '''
 
 
-from typing import Iterable
+from typing import Iterable, Optional
 import csv
 import chardet
 from us.lsi.tools.Preconditions import check_argument
@@ -77,7 +77,7 @@ def write_iterable(file:str,iterable:Iterable[str], encoding='utf-8') -> None:
         for ln in iterable:
             f.write(ln+'\n')
 
-def encoding(file:str)->str:
+def encoding(file:str)->Optional[str]:
     check_argument(existe_fichero(file),'El fichero {0} no existe'.format(file))
     with open(file,"rb") as f:
         data = f.read()

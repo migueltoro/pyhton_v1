@@ -42,7 +42,7 @@ def tolist(iterable:Iterable[E])->list[E]:
 def toset(iterable:Iterable[E])->set[E]:
     st= set()
     for e in iterable:
-        st.add(e)
+        st.add_colum(e)
     return st
 
 def tomap(iterable:Iterable[E],t1=identity,t2=ord)->dict[E,E]:

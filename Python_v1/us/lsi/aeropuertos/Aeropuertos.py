@@ -32,7 +32,7 @@ class Aeropuertos:
         self.__aeropuertos.append(a)
     
     def remove_aeropuerto(self, a: Aeropuerto)->None:
-        self.__aeropuertos.remove(a)
+        self.__aeropuertos.remove_colum(a)
 
     def aeropuerto_codigo(self,codigo: str)->Aeropuerto:
         return self.__codigos_aeropuertos[codigo]

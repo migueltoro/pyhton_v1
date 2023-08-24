@@ -30,7 +30,7 @@ class Agregado2D(Objeto2D):
     def __str__(self) -> str:
         return '({0})'.format(','.join(str(p) for p in self.objetos))
     
-    def add(self,objeto:Objeto2D)->None:
+    def add_colum(self,objeto:Objeto2D)->None:
         self.objetos.append(objeto)
         
     def add_list(self,objetos:list[Objeto2D])->None:
@@ -71,7 +71,7 @@ if __name__ == '__main__':
     pol2 = pol.simetrico_con_respecto_a_recta(r)
     s = Segmento2D.of(pr, pr+vr)
     a:Agregado2D = Agregado2D.of([p,p2,p3,s,pol])
-    a.add(pol)
+    a.add_colum(pol)
     b = a.rota(Punto2D.origen(),-pi/3)
     print(p)
     print(p2)
@@ -87,6 +87,6 @@ if __name__ == '__main__':
     shape = shape + b.shape
     Draw.draw_shapes(shape) 
     c = Agregado2D.empty()
-    c.add(p)
+    c.add_colum(p)
     print(c)
     Draw.draw_shapes(c.shape)

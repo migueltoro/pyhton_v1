@@ -56,10 +56,10 @@ class Universo2D:
         p2:Punto2D = self.__dmin[2].coordenadas()
         pm = Punto2D.of((p1.x + p2.x) / 2, (p1.y + p2.y) / 2)
             
-        self.cuerpos_celestes.remove(self.__dmin[1]) 
+        self.cuerpos_celestes.remove_colum(self.__dmin[1]) 
         self.marco.canvas.delete(self.marco.cuerpo_celeste_id(self.__dmin[1]))
             
-        self.cuerpos_celestes.remove(self.__dmin[2])  
+        self.cuerpos_celestes.remove_colum(self.__dmin[2])  
         self.marco.canvas.delete(self.marco.cuerpo_celeste_id(self.__dmin[2]))
     
         x=int(pm.x)

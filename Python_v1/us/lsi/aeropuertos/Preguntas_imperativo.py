@@ -53,7 +53,7 @@ def destinos_diferentes(f:date)->set[str]:
     for ocp in ls:
         if ocp.fecha_salida == f:
             ciudad_destino = ocp.vuelo.ciudad_destino
-            a.add(ciudad_destino);            
+            a.add_colum(ciudad_destino);            
     return a;
 
 #4. Dado un anyo devuelve un OrderedDict que relacione cada destino con el
@@ -158,7 +158,7 @@ def fechas_a_destino()->dict[str,set[date]]:
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
         if key in r.keys():
-            r[key].add(ocp.fecha_salida)
+            r[key].add_colum(ocp.fecha_salida)
         else:
             r[key] = {ocp.fecha_salida}
     return r
@@ -294,7 +294,7 @@ def fechasDistintas()->dict[str,int]:
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
         if key in r.keys():
-            r[key].add(ocp.fecha_salida)
+            r[key].add_colum(ocp.fecha_salida)
         else:
             r[key] = {ocp.fecha_salida}
     s:dict[str,int] = {}

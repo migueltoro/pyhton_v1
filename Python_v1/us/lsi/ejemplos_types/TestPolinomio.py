@@ -3,7 +3,7 @@ Created on 17 ago 2022
 
 @author: migueltoro
 '''
-from us.lsi.types.Polinomio import Polinomio
+from us.lsi.ejemplos_types.Polinomio import Polinomio
 from fractions import Fraction
 from numbers import Number
 

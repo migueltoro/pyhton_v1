@@ -25,7 +25,7 @@ sts: set[int] = set()
 for x in range(3, 70):
     if x % 3 == 0:
         t = x**2
-        sts.add(t)
+        sts.add_colum(t)
         
 st:set[int] = {x**2 for x in range(3, 70) if x % 3 == 0}
 

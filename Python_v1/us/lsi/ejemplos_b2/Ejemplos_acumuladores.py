@@ -28,7 +28,7 @@ def tolist(iterable:Iterable[E])->list[E]:
 def toset(iterable:Iterable[E])->set[E]:
     st= set()
     for e in iterable:
-        st.add(e)
+        st.add_colum(e)
     return st
 
 if __name__ == '__main__':

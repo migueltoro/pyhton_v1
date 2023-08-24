@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
+
 @dataclass(frozen=True)
 class Direccion:
     calle: str
@@ -24,3 +25,4 @@ class Direccion:
 
 if __name__ == '__main__':
     print(Direccion.parse('Pasadizo de Lorenza Dueñas 44 Apt. 02;Huelva;40664'))
+    print(Direccion("A","B",234))
