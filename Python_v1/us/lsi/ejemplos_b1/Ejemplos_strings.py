@@ -30,6 +30,10 @@ if __name__ == '__main__':
     print(f'La suma es {f}, el numerador {f.numerator} y el denominador {f.denominator}')
     f = Fraction(98, 42)
     print(f'La suma es {f}, el numerador {f.numerator} y el denominador {f.denominator}')
+    c: complex = complex(2,3)/complex(3,5)
+    print(f'el cociente es  {c}, la parte real {c.real} y  la parte imaginaria {c.imag}')
+    print(f'el cociente es  {c.real:.2f} + {c.imag:.2f} i')
+    print(f'el cociente es  {c.real:.2f}{"-" if c.imag < 0 else "+"}{abs(c.imag):.2f}i')
 
 
 
