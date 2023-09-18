@@ -6,14 +6,14 @@ Created on 26 oct 2022
 from __future__ import annotations
 
 from fractions import Fraction
-from us.lsi.matriz.Matriz import Matriz
+from us.lsi.matriz.MatrizC import MatrizC
 from typing import Callable, Iterable
 from us.lsi.tools.Iterable import all_pairs
 from us.lsi.tools import Preconditions
 from us.lsi.tools.File import absolute_path
 
 
-class MatrizF(Matriz[Fraction]):
+class MatrizF(MatrizC[Fraction]):
     #===========================================================================
     # MÉTODOS DE FACTORÍA
     #===========================================================================
@@ -24,31 +24,31 @@ class MatrizF(Matriz[Fraction]):
     
     @staticmethod
     def of_file_fraction(file:str)->MatrizF:
-        return MatrizF.of(Matriz.parse(file, lambda x: Fraction(x)).datos)
+        return MatrizF.of(MatrizC.parse(file, lambda x: Fraction(x)).datos)
 
     #===========================================================================
     # PROPIEDADES DERIVADAS
     #===========================================================================
     @property
     def es_antisimetrica(self)->bool:
-        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf,self.nc) if f > c)
+        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf(),self.nc()) if f > c)
         return all(self.get(f,c) == -self.get(c,f) for f,c in indices)
     
     #===========================================================================
     # OTROS MÉTODOS
     #===========================================================================
     def __add__(self,other:MatrizF)->MatrizF:
-        datos:list[list[Fraction]] = [[self.get(f,c) + other.get(f,c) for c in range(self.nc)] for f in range(self.nf)]
+        datos:list[list[Fraction]] = [[self.get(f,c) + other.get(f,c) for c in range(self.nc())] for f in range(self.nf())]
         return MatrizF.of(datos)
     
     def __sub__(self,other:MatrizF)->MatrizF:
-        datos:list[list[Fraction]] = [[self.get(f,c) - other.get(f,c) for c in range(self.nc)] for f in range(self.nf)]
+        datos:list[list[Fraction]] = [[self.get(f,c) - other.get(f,c) for c in range(self.nc())] for f in range(self.nf())]
         return MatrizF.of(datos)
     
     def __mul__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nc == other.nf, f'No se pueden multiplicar')
-        ss:Callable[[int,int],Fraction] = lambda f,c:sum((self.get(f,k)*other.get(k,c) for k in range(self.nc)),Fraction(0))
-        datos:list[list[Fraction]] = [[ss(f,c) for c in range(other.nc)] for f in range(self.nf)]
+        ss:Callable[[int,int],Fraction] = lambda f,c:sum((self.get(f,k)*other.get(k,c) for k in range(self.nc())),Fraction(0))
+        datos:list[list[Fraction]] = [[ss(f,c) for c in range(other.nc())] for f in range(self.nf())]
         return MatrizF.of(datos)
     
 if __name__ == '__main__':

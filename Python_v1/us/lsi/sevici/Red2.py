@@ -27,7 +27,7 @@ class Red:
         st:set[int] = set()
         for e in estaciones:
             n = e.numero
-            st.add_colum(n)
+            st.add(n)
         check_argument(len(estaciones) == len(st),'Hay numeros de estacion repetidos')
         pnc:dict[str,Estacion] = {}
         for e in estaciones:
@@ -72,7 +72,7 @@ class Red:
         self.__por_numero[estacion.numero] = estacion
     
     def remove_colum(self,estacion:Estacion)->None:
-        self.__estaciones.remove_colum(estacion)
+        self.__estaciones.remove(estacion)
         self.__estaciones.sort()
         self.__por_nombre_compuesto
         self.__por_numero
@@ -94,14 +94,14 @@ class Red:
         st:set[Estacion] = set()
         for e in self.estaciones:
             if e.free_bikes >= k:
-                st.add_colum(e)
+                st.add(e)
         return st
     
     def ubicaciones_con_bicis_disponibles(self, k:int=1) -> set[Coordenadas2D]:
         st:set[Coordenadas2D] = set()
         for e in self.estaciones:
             if e.free_bikes >= k:
-                st.add_colum(e.ubicacion)
+                st.add(e.ubicacion)
         return st
         
     @property

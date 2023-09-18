@@ -41,33 +41,29 @@ class MatrizC(Matriz[E]):
     #===========================================================================
     # PROPIEDADES DERIVADAS
     #===========================================================================
-    @property
     def nf(self)->int:  
         return len(self.datos)
     
-    @property
     def nc(self)->int:   
         return len(self.datos[0]) 
     
     def get(self,f:int,c:int)->E: 
         return self.datos[f][c] 
     
-    @property
-    def traspuesta(self)->MatrizC[E]:
-        datos: list[list[E]] = [[self.get(c, f) for c in range(self.nf)] for f in range(self.nc)]
+    def traspuesta(self)->Matriz[E]:
+        datos: list[list[E]] = [[self.get(c, f) for c in range(self.nf())] for f in range(self.nc())]
         return MatrizC.of(datos)
         
-    @property
     def es_simetrica(self)->bool:
 #        return self.nc == self.nf and self == self.traspuesta
-        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf,self.nc) if p[0] > p[1])
+        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf(),self.nc()) if p[0] > p[1])
         return all(self.get(f,c) == self.get(c,f) for f,c in indices)
         
     
-    def submatriz(self,f1:int,c1:int,f2:int,c2:int)->MatrizC[E]:    
+    def submatriz(self,f1:int,c1:int,f2:int,c2:int):    
         pass
     
-    def map(self,t:Callable[[E],R])->MatrizC[R]:
+    def map(self,t:Callable[[E],R]):
         pass   
 
     
@@ -77,7 +73,7 @@ class MatrizC(Matriz[E]):
     
     def __str__(self) -> str:
         fs:Callable[[int],str] = lambda f:' '.join(f'{str(e):>5s}' for e in self.datos[f])
-        return '\n'.join(fs(f) for f in range(self.nf))
+        return '\n'.join(fs(f) for f in range(self.nf()))
     
 
     #===========================================================================
@@ -85,7 +81,7 @@ class MatrizC(Matriz[E]):
     #===========================================================================
     def __eq__(self, other) -> bool:
 #        return self.datos==(other.datos)
-        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf,self.nc))
+        indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf(),self.nc()))
         return all(self.get(f,c) == other.get(f,c) for f,c in indices)
     
         

@@ -33,11 +33,11 @@ class Polinomio(Generic[S]):
     
     @staticmethod
     def zero(field: Field[S]) -> Polinomio[S]:
-        return Polinomio([field.zero],field)
+        return Polinomio([field.zero()],field)
     
     @staticmethod
     def one(field: Field[S]) -> Polinomio[S]:
-        return Polinomio([field.one],field)
+        return Polinomio([field.one()],field)
     
     @property
     def grado(self) -> int:
@@ -52,7 +52,7 @@ class Polinomio(Generic[S]):
         return self.field.zero in self.coeficientes
     
     def value(self,v:S)->S:
-        p: S = self.field.one
+        p: S = self.field.one()
         s: S = self.coeficiente(0)
         for i in range(1,self.grado+1):
             p = p * v
@@ -61,22 +61,22 @@ class Polinomio(Generic[S]):
     
     def __add__(self,other:Polinomio[S])-> Polinomio[S]:
         n = max(self.grado,other.grado)
-        p1 = self.coeficientes + [self.field.zero for _ in range(n-self.grado)]
-        p2 = other.coeficientes + [self.field.zero for _ in range(n-other.grado)]
+        p1:list[S] = self.coeficientes + [self.field.zero() for _ in range(n-self.grado)]
+        p2:list[S] = other.coeficientes + [self.field.zero() for _ in range(n-other.grado)]
         p = list(p1[i]+p2[i] for i in range(n+1))
         return Polinomio.of_list(p,self.field)
         
     def __sub__(self,other:Polinomio[S])-> Polinomio[S]:
         n = max(self.grado,other.grado)
-        p1 = self.coeficientes + [self.field.zero for _ in range(n-self.grado)]
-        p2 = other.coeficientes + [self.field.zero for _ in range(n-other.grado)]
+        p1:list[S] = self.coeficientes + [self.field.zero() for _ in range(n-self.grado)]
+        p2:list[S] = other.coeficientes + [self.field.zero() for _ in range(n-other.grado)]
         p = list(p1[i]-p2[i] for i in range(n+1))
         return Polinomio.of_list(p,self.field)
     
     def __mul__(self,other:Polinomio[S] | S)-> Polinomio[S]:
         if isinstance(other, Polinomio):
-            n = self.grado+other.grado
-            p = [self.field.zero for i in range(n+1)]
+            n:int = self.grado+other.grado
+            p:list[S] = [self.field.zero() for i in range(n+1)]
             for i in range(0,self.grado+1):
                 for j in range(0,other.grado+1):
                     p[i+j] = p[i+j] + self.coeficiente(i)*other.coeficiente(j)

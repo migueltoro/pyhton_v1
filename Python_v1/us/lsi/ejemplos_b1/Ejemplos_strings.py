@@ -4,7 +4,7 @@ Created on 16 sept 2022
 @author: migueltoro
 '''
 import re
-
+from fractions import Fraction
 
 
 if __name__ == '__main__':
@@ -26,6 +26,10 @@ if __name__ == '__main__':
     print('  Juan  '.strip())
     print('juan'.capitalize())
     print('juan'.upper())
+    f:Fraction = Fraction(23,45)+Fraction(23,4)*6
+    print(f'La suma es {f}, el numerador {f.numerator} y el denominador {f.denominator}')
+    f = Fraction(98, 42)
+    print(f'La suma es {f}, el numerador {f.numerator} y el denominador {f.denominator}')
 
 
 

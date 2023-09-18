@@ -7,12 +7,12 @@ Created on 24 nov 2022
 from __future__ import annotations
 
 from fractions import Fraction
-from us.lsi.matriz.Matriz import Matriz
+from us.lsi.matriz.MatrizI import MatrizI
 from us.lsi.tools import Preconditions
 from us.lsi.tools.File import absolute_path
 
 
-class MatrizF(Matriz[Fraction]):
+class MatrizF(MatrizI[Fraction]):
     #===========================================================================
     # MÉTODOS DE FACTORÍA
     #===========================================================================
@@ -23,7 +23,7 @@ class MatrizF(Matriz[Fraction]):
     
     @staticmethod
     def of_file_fraction(file:str)->MatrizF:
-        return MatrizF.of(Matriz.parse(file, lambda x: Fraction(x)).datos)
+        return MatrizF.of(MatrizI.parse(file, lambda x: Fraction(x)).datos)
 
     #===========================================================================
     # PROPIEDADES DERIVADAS
@@ -31,8 +31,8 @@ class MatrizF(Matriz[Fraction]):
     @property
     def es_antisimetrica(self)->bool:
         r:bool = True
-        for f in range(self.nf):
-            for c in range(self.nc):
+        for f in range(self.nf()):
+            for c in range(self.nc()):
                 r = self.get(f, c) == -self.get(f, c)
                 if not r:
                     r1 = False
@@ -45,9 +45,9 @@ class MatrizF(Matriz[Fraction]):
     def __add__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden sumar')
         dt:list[list[Fraction]] = []
-        for f in range(self.nf):
+        for f in range(self.nf()):
             fila: list[Fraction] = []
-            for c in range(self.nc):
+            for c in range(self.nc()):
                 fila.append(self.get(f,c) + other.get(f,c))
             dt.append(fila)
         return MatrizF.of(dt)
@@ -55,9 +55,9 @@ class MatrizF(Matriz[Fraction]):
     def __sub__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden restar')
         dt:list[list[Fraction]] = []
-        for f in range(self.nf):
+        for f in range(self.nf()):
             fila: list[Fraction] = []
-            for c in range(self.nc):
+            for c in range(self.nc()):
                 fila.append(self.get(f,c) - other.get(f,c))
             dt.append(fila)
         return MatrizF.of(dt)
@@ -65,11 +65,11 @@ class MatrizF(Matriz[Fraction]):
     def __mul__(self,other:MatrizF)->MatrizF:
         Preconditions.check_argument(self.nc == other.nf, f'No se pueden multiplicar')
         dt:list[list[Fraction]] = []
-        for f in range(self.nf):
+        for f in range(self.nf()):
             fila: list[Fraction] = []
-            for c in range(self.nc):
+            for c in range(self.nc()):
                 s:Fraction=Fraction(0)
-                for k in range(self.nc):
+                for k in range(self.nc()):
                     s = s + self.get(f,k)*other.get(k,c)
                 fila.append(s)
             dt.append(fila)

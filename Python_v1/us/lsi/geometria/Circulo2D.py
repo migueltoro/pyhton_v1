@@ -29,7 +29,7 @@ class Circulo2D(Objeto2D):
     def __str__(self) -> str:
         return '({0},{1:.2f})'.format(str(self.centro),self.radio)
     
-    @property
+    
     def copy(self)-> Circulo2D:
         return Circulo2D(self.centro, self.radio)
     

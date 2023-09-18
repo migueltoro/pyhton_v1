@@ -63,7 +63,6 @@ class Poligono2D(Objeto2D):
     def n(self) -> int:
         return len(self.vertices)
           
-    @property
     def copy(self) -> Poligono2D:
         return Poligono2D.of(self.vertices)
     

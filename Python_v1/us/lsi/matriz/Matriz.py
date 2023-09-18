@@ -20,19 +20,22 @@ class Matriz(Generic[E]):
     
    
     @staticmethod
+    @abstractmethod
     def of(datos: list[list[E]])->Matriz[E]:
         pass
     
     
     @staticmethod
+    @abstractmethod
     def parse(file:str,t:Callable[[str],E]= identity,delimiter=' ',encoding='utf-8')->Matriz[E]:
         pass
+    
     
     @abstractmethod
     def nf(self)->int:  
         pass
     
-    @abstractmethod    
+    @abstractmethod
     def nc(self)->int:   
         pass 
     

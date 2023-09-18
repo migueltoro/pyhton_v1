@@ -18,9 +18,9 @@ class Usuario(Persona):
         return Usuario(p.apellidos,p.nombre,p.dni,p.fecha_de_nacimiento,p.telefono,p.direccion,fecha_alta) 
     
     @staticmethod
-    def parse(text:str)->Usuario: 
+    def parse(text:str, ft:str = "%Y-%m-%d")->Usuario: 
         ls:list[str] = text.split(',')
-        fecha_alta:date = datetime.strptime(ls[-1].strip(),"%Y-%m-%d").date()
+        fecha_alta:date = datetime.strptime(ls[-1].strip(),ft).date()
         p:Persona = Persona.parse_list(ls[0:-1])
         return Usuario.of_persona(p,fecha_alta)
     

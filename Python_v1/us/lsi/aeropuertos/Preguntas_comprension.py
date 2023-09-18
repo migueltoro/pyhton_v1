@@ -6,7 +6,7 @@ Created on 21 ago 2022
 
 from datetime import date,datetime
 from collections import OrderedDict
-from sortedcollections import OrderedSet
+from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.tools.Iterable import first, grouping_list,grouping_set,groups_size,grouping_reduce
@@ -106,10 +106,10 @@ def destino_con_mas_vuelos()->str:
 # de todos los vuelos cuya duracion es mayor que m minutos.
 
 
-def duraciones(m:int)->OrderedSet[int]:
+def duraciones(m:int)->SortedSet[int]:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
     s:Iterable[int] = (int(ocp.vuelo.duracion.total_seconds()/60) for ocp in ls if ocp.vuelo.duracion.total_seconds()//60 > m)
-    return OrderedSet(sorted(s,reverse=True))
+    return SortedSet(sorted(s,reverse=True))
 
 #12. Dado un numero n devuelve un conjunto con los n destinos de los vuelos con mayor duracion
 
@@ -166,6 +166,7 @@ def fechasDistintas()->OrderedDict[str,int]:
 
 if __name__ == '__main__':
     Espacio_aereo.of()
+    """
     print(numero_de_pasajeros('Lon'))
     print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
     print(destinos_diferentes(date(2020,6,8)))
@@ -183,3 +184,5 @@ if __name__ == '__main__':
     print(str_dict(porcentaje_a_destino()))
     print(str_dict(mas_barato()))
     print(str_iter(fechasDistintas().items()))
+    """
+    print(duraciones(10))

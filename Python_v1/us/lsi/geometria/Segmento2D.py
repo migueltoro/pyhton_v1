@@ -25,7 +25,6 @@ class Segmento2D(Objeto2D):
     def __str__(self):
         return '({0},{1})'.format(str(self.p1),str(self.p2))
     
-    @property
     def copy(self) -> Segmento2D:
         return Segmento2D(self.p1,self.p2)
     

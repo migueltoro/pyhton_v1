@@ -8,7 +8,7 @@ import random
 from us.lsi.biblioteca.Libro import Libro
 from us.lsi.biblioteca.Ejemplar import Ejemplar
 from us.lsi.biblioteca.Prestamo import Tipo_prestamo
-from us.lsi.types.Persona import Persona
+from us.lsi.ejemplos_types.Persona import Persona
 from us.lsi.biblioteca.Usuario import Usuario
 from us.lsi.tools.File import write_iterable, iterable_de_fichero, absolute_path
 from us.lsi.tools.Iterable import flat_map
@@ -16,9 +16,10 @@ from datetime import datetime, timedelta
 from typing import Iterable
 from itertools import cycle
 
-from faker import Faker
+from faker import Faker # type: ignore
 Faker.seed(0)
 fake = Faker('es_ES')
+
 import re
 
 def persona_random(a:int,b:int)->Persona:
@@ -71,7 +72,7 @@ def prestamo_random(ejemplar:Ejemplar,usuario:Usuario)->str:
 def prestamos_random(file_ejemplares:str,file_usuarios:str,file:str):
     ejemplares: Iterable[Ejemplar] = (Ejemplar.parse(x) for x in iterable_de_fichero(file_ejemplares) 
                                       if random.uniform(0.,1.) > 0.6)
-    usuarios: Iterable[Usuario] = (Usuario.parse_usuario(x) for x in iterable_de_fichero(file_usuarios)
+    usuarios: Iterable[Usuario] = (Usuario.parse(x) for x in iterable_de_fichero(file_usuarios)
                                     if random.uniform(0.,1.) > 0.6)
     r:Iterable[str] = (prestamo_random(e,u) for e,u in zip(ejemplares,cycle(usuarios)))
     write_iterable(file,r)

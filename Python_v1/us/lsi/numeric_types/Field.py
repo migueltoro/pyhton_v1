@@ -35,7 +35,7 @@ class FieldElement(Protocol[E]):
 
 R = TypeVar("R",bound=FieldElement)
 
-class Field(Generic[R]):
+class Field(Protocol[R]):
     
     @staticmethod       
     def one()->R:

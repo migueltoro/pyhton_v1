@@ -6,6 +6,7 @@ Created on 17 sept 2022
 
 import math
 
+
 if __name__ == '__main__':
     print(3 + 9 > 9 and 8 > 3)
     resultado = 5 + math.sqrt(10 * 10) < 20 - 2  

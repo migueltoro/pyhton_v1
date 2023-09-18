@@ -48,7 +48,7 @@ if __name__ == '__main__':
     print(str_dict(dict(tp)))
     print('---------------')
     temperaturas.append(29) 
-    temperaturas_conjunto.add_colum(29) 
+    temperaturas_conjunto.add(29) 
     temperaturas_por_provincias["Badajoz"] = 15.8
     print(temperaturas)
     print(temperaturas_conjunto)

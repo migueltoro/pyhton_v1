@@ -62,7 +62,7 @@ class Red:
         self.__por_numero[estacion.numero] = estacion
     
     def remove_colum(self,estacion:Estacion)->None:
-        self.__estaciones.remove_colum(estacion)
+        self.__estaciones.remove(estacion)
         self.__estaciones.sort()
         del self.__por_nombre_compuesto[estacion.nombre_compuesto]
         del self.__por_numero[estacion.numero]

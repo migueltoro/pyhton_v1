@@ -56,35 +56,34 @@ class MatrizI(Matriz[E]):
     #===========================================================================
     # PROPIEDADES DERIVADAS
     #===========================================================================
-    @property
+    
     def nf(self)->int:  
         return len(self.datos)
     
-    @property
+    
     def nc(self)->int:   
         return len(self.datos[0]) 
     
     def get(self,f:int,c:int)->E: 
         return self.datos[f][c] 
     
-    @property
+    
     def traspuesta(self)->Matriz[E]:
         dt:list[list[E]] = []
-        for f in range(self.nc):
+        for f in range(self.nc()):
             fila: list[E] = []
-            for c in range(self.nc):
+            for c in range(self.nc()):
                 fila.append(self.get(c,f))
             dt.append(fila)
         return Matriz.of(dt)
         
-    @property
     def es_simetrica(self)->bool:
         return self == self.traspuesta
     
-    def submatriz(self,f1:int,c1:int,f2:int,c2:int)->MatrizI[E]:    
+    def submatriz(self,f1:int,c1:int,f2:int,c2:int):    
         pass
     
-    def map(self,t:Callable[[E],R])->MatrizI[R]:
+    def map(self,t:Callable[[E],R]):
         pass 
     
     #===========================================================================
@@ -93,16 +92,16 @@ class MatrizI(Matriz[E]):
     
     def __str__(self) -> str:
         fs:Callable[[int],str] = lambda i:' '.join(f'{str(x):>5s}' for x in self.datos[i])
-        return '\n'.join(fs(i) for i in range(self.nf))
+        return '\n'.join(fs(i) for i in range(self.nf()))
     
     #===========================================================================
     # CRITERIO DE IGUALDAD
     #===========================================================================
     def __eq__(self, other) -> bool:
 ##        return self.datos==other.datos
-        r = self.nf == other.nf and self.nc == other.nc
-        for f in range(self.nc):
-            for c in range(self.nc):
+        r = self.nf() == other.nf() and self.nc() == other.nc()
+        for f in range(self.nc()):
+            for c in range(self.nc()):
                 r = self.get(f,c) == other.get(f,c)
                 if not r:
                     break

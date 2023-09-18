@@ -45,7 +45,7 @@ class Vuelos:
         self.__vuelos.append(v)
     
     def remove_vuelo(self,v:Vuelo)->None:
-        self.__vuelos.remove_colum(v)
+        self.__vuelos.remove(v)
         
     def __str__(self):
         txt = "\n\t".join(str(a) for a in self.__vuelos)

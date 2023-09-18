@@ -33,7 +33,6 @@ class Punto2D(Objeto2D):
         x,y = linea.split(',')
         return Punto2D(float(x),float(y))
     
-    @property
     def copy(self: Punto2D) ->  Punto2D:
         return Punto2D(self.x,self.y)
     
@@ -56,6 +55,11 @@ class Punto2D(Objeto2D):
     def distancia(self,p:Punto2D) -> float:
         dx = self.x-p.x;
         dy = self.y-p.y
+        return sqrt(dx*dx+dy*dy)
+    
+    def distancia_al_origen(self) -> float:
+        dx = self.x;
+        dy = self.y
         return sqrt(dx*dx+dy*dy)
     
     def __add__(self,v:Vector2D) -> Punto2D:

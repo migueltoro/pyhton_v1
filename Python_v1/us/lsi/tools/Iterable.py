@@ -35,8 +35,16 @@ def distinct(iterable:Iterable[E])->Iterable[E]:
     seen:set[E] = set()
     for item in iterable:
         if item not in seen:
-            seen.add_colum(item)
+            seen.add(item)
             yield item 
+            
+def all_different(iterable:Iterable[E])->bool:
+    st:set[E] = set()
+    n:int = 0
+    for item in iterable:
+        n = n+1
+        st.add(item)
+    return len(st) == n
             
 def limit(iterable:Iterable[E],limit:int) -> Iterable[E]:
     i = 0

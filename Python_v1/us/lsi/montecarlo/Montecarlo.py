@@ -15,7 +15,7 @@ def montecarlo(n:int):
     pi = 0
     for p in puntos:
         pt = pt +1
-        if p.distancia_al_origen <= 1:
+        if p.distancia_al_origen() <= 1:
             pi = pi +1
     return 4*pi/pt
 
@@ -28,7 +28,7 @@ def montecarlo_list(n:int)->list[tuple[float,float]]:
     for p in puntos:
         pt = pt +1
         i = i+1
-        if p.distancia_al_origen <= 1:
+        if p.distancia_al_origen() <= 1:
             pi = pi +1
         if i%500==0:
             ls.append((i,4*pi/pt))
@@ -38,6 +38,8 @@ if __name__ == '__main__':
     print(math.pi)
     print(montecarlo(1000000))
     r = montecarlo_list(1000000)
-    draw_multiline(r)
+    r0 = [x[0] for x in r]
+    r1 = [x[1] for x in r]
+    draw_multiline(r0,r1)
     print(r[-1][0])
     print(r[-1][1])

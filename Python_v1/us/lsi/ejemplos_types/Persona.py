@@ -11,7 +11,6 @@ from enum import Enum, auto
 from us.lsi.tools.Preconditions import check_argument
 import locale
 from us.lsi.ejemplos_types.Direccion import Direccion
-from datetime import date
 
 class Horoscopo(Enum):
     Aries = auto()
@@ -78,23 +77,26 @@ class Persona:
     def edad(self)->int:
         nw = datetime.now()
         return nw.year-self.fecha_de_nacimiento.year
+
+    
+    @property
+    def siguiente_cumple(self): # type ignore
+        pass
    
     @property
-    def siguiente_cumple(self)->date: 
+    def dia_semana_nacimiento(self): 
         pass
     @property
-    def dia_semana_nacimiento(self)->str: 
+    def dia_semana_siguiente_cumple(self): 
         pass
     @property
-    def dia_semana_siguiente_cumple(self)->str: 
+    def mes_cumple(self): 
         pass
     @property
-    def mes_cumple(self)->str: 
+    def horoscopo(self): 
         pass
-    @property
-    def horoscopo(self)->Horoscopo: 
-        pass
-    
+
+       
     def __str__(self)->str:
         locale.setlocale(locale.LC_ALL, 'es_ES')
         fn = self.fecha_de_nacimiento

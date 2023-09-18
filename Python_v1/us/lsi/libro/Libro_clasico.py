@@ -16,7 +16,7 @@ def palabras_huecas() -> set[str]:
     lns:list[str] = lineas_de_fichero(absolute_path("/resources/palabras_huecas.txt"))
     r:set[str] = set()
     for p in lns:
-        r.add_colum(p) 
+        r.add(p) 
     return r
 
 def numero_de_lineas(file: str) -> int:
@@ -81,7 +81,7 @@ def numero_de_palabras_distintas_no_huecas(file:str) -> int:
             if not p in ph:
                 if not p in pa:
                     r = r + 1
-                    pa.add_colum(p)
+                    pa.add(p)
     return r   
 
 def primera_linea_con_palabra(file:str,palabra:str) -> Optional[str]:
@@ -112,7 +112,7 @@ def palabras_por_frecuencias(file:str) -> OrderedDict[int,set[str]]:
     for p in d.keys():
         key = d[p]
         if key in r:
-            r[key].add_colum(p)
+            r[key].add(p)
         else:
             r[key] = {p}
     return OrderedDict(sorted(r.items(), key=lambda t: t[0]))  
@@ -126,7 +126,7 @@ def palabra_en_lineas(file:str) -> OrderedDict[str,set[int]]:
         for p in re.split(sep,ln):
             if not p in ph:
                 if p in d.keys():
-                    d[p].add_colum(nl)
+                    d[p].add(nl)
                 else:
                     d[p] = {nl}              
         nl = nl + 1            

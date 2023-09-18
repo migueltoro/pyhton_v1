@@ -6,7 +6,7 @@ Created on 21 ago 2022
 
 from datetime import date,datetime
 from collections import OrderedDict
-from sortedcollections import OrderedSet
+from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.tools.Dict import str_dict
@@ -53,7 +53,7 @@ def destinos_diferentes(f:date)->set[str]:
     for ocp in ls:
         if ocp.fecha_salida == f:
             ciudad_destino = ocp.vuelo.ciudad_destino
-            a.add_colum(ciudad_destino);            
+            a.add(ciudad_destino);            
     return a;
 
 #4. Dado un anyo devuelve un OrderedDict que relacione cada destino con el
@@ -158,7 +158,7 @@ def fechas_a_destino()->dict[str,set[date]]:
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
         if key in r.keys():
-            r[key].add_colum(ocp.fecha_salida)
+            r[key].add(ocp.fecha_salida)
         else:
             r[key] = {ocp.fecha_salida}
     return r
@@ -185,13 +185,13 @@ def destino_con_mas_vuelos()->tuple[str,int]:
 # de todos los vuelos cuya duracion es mayor que m minutos.
 
 
-def duraciones(m:int)->OrderedSet[int]:
+def duraciones(m:int)->SortedSet[int]:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
     r = []
     for ocp in ls:
         if ocp.vuelo.duracion.total_seconds()/60 > m:
             r.append(int(ocp.vuelo.duracion.total_seconds()/60))
-    return OrderedSet(sorted(r,reverse=True))
+    return SortedSet(sorted(r,reverse=True))
     
 
 #12. Dado un numero n devuelve un conjunto con los destinos de los vuelos de los vuelos con mayor duracion
@@ -294,7 +294,7 @@ def fechasDistintas()->dict[str,int]:
     for ocp in ls:
         key = ocp.vuelo.ciudad_destino
         if key in r.keys():
-            r[key].add_colum(ocp.fecha_salida)
+            r[key].add(ocp.fecha_salida)
         else:
             r[key] = {ocp.fecha_salida}
     s:dict[str,int] = {}
