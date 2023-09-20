@@ -6,11 +6,11 @@ Created on 3 nov 2022
 
 from __future__ import annotations
 from dataclasses import dataclass, astuple, asdict
-from datetime import datetime
 from enum import Enum, auto
 from us.lsi.tools.Preconditions import check_argument
 import locale
 from us.lsi.ejemplos_types.Direccion import Direccion
+from datetime import date, datetime
 
 class Horoscopo(Enum):
     Aries = auto()
@@ -77,24 +77,23 @@ class Persona:
     def edad(self)->int:
         nw = datetime.now()
         return nw.year-self.fecha_de_nacimiento.year
-
+    
     
     @property
-    def siguiente_cumple(self): # type ignore
-        pass
-   
+    def siguiente_cumple(self)->date: # type: ignore[empty-body]
+        ...   
     @property
-    def dia_semana_nacimiento(self): 
-        pass
+    def dia_semana_nacimiento(self)->str: # type: ignore[empty-body]
+        ... 
     @property
-    def dia_semana_siguiente_cumple(self): 
-        pass
+    def dia_semana_siguiente_cumple(self)->str: # type: ignore[empty-body]
+        ...
     @property
-    def mes_cumple(self): 
-        pass
+    def mes_cumple(self)->int: # type: ignore[empty-body]
+        ...
     @property
-    def horoscopo(self): 
-        pass
+    def horoscopo(self)->Horoscopo: # type: ignore[empty-body]
+        ...     
 
        
     def __str__(self)->str:
