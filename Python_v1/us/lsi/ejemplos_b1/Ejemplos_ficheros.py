@@ -8,6 +8,7 @@ from us.lsi.tools.File import lineas_de_fichero, absolute_path, iterable_de_fich
 import re
 from typing import Callable, Iterable
 
+
 def lista_de_fichero_0(file:str)->list[int]:
     with open(file,encoding='UTF-8') as f:
         r:list[int] = []
