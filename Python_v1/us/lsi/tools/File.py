@@ -37,7 +37,7 @@ def iterable_de_fichero(file:str,encoding:str='utf-8') -> Iterable[str]:
 def lineas_de_fichero(file:str,encoding:str='utf-8') -> list[str]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding=encoding) as f:
-        lineas_de_fichero =  [linea.rstrip('\n') for linea in f]
+        lineas_de_fichero =  [linea.strip() for linea in f]
         return lineas_de_fichero
        
 def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list[str]]:
