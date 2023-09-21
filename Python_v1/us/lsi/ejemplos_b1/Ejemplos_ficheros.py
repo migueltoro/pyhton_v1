@@ -4,6 +4,7 @@ Created on 16 sept 2022
 @author: migueltoro
 '''
 
+
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, iterable_de_fichero
 from typing import Callable, Iterable
 
