@@ -42,7 +42,7 @@ if __name__ == '__main__':
     print(d3) 
     print(d4)
     
-    print(dt.strftime('%d/m/%Y -- %H:%M:%S')) 
+    print(dt.strftime('%d/%m/%Y -- %H:%M:%S')) 
     print(dt.strftime('%A %d de %B del %Y -- %H:%M:%S'))  
     locale.setlocale(locale.LC_TIME, 'es_ES') 
     print(dt.strftime('%A %d de %B del %Y -- %H:%M:%S')) 

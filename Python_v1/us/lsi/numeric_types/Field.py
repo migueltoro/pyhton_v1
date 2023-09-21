@@ -79,7 +79,7 @@ class ComplexField(Field[complex]):
         return complex(text)
     @staticmethod
     def str(v:complex)->str:
-        return f'{v.real:.2f}{"+"if v.imag > 0 else ""}{v.imag:.2f}i'
+        return f'{v.real:.2f}{"+"if v.imag > 0 else "-"}{abs(v.imag):.2f}i'
     
 class FloatField(Field[float]):
     
