@@ -31,36 +31,34 @@ def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
 def iterable_de_fichero(file:str,encoding:str='utf-8') -> Iterable[str]:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
     with open(file, "r", encoding=encoding) as f:
-        for line in f:
-            yield line.strip()
+        for linea in f:
+            yield linea.strip()
     
 def lineas_de_fichero(file:str,encoding:str='utf-8') -> list[str]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding=encoding) as f:
-        lineas_de_fichero =  [linea.strip() for linea in f]
-        return lineas_de_fichero
+        return  [linea.strip() for linea in f]
        
 def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list[str]]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
-        lineas_de_fichero =  [linea for linea in lector]
-        return lineas_de_fichero
+        return  [linea for linea in lector]
 
 def iterable_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
-        for line in lector:
-            yield line
+        for linea in lector:
+            yield linea
 
 def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iterable[str]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
     with open(file,encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
-        for line in lector:
-                for p in line:
-                    yield p           
+        for linea in lector:
+            for p in linea:
+                yield p      
 
 def read(file:str,encoding:str='utf-8') -> str:
     check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))

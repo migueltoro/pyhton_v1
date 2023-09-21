@@ -11,7 +11,7 @@ from us.lsi.biblioteca.Ejemplares import Ejemplares
 from us.lsi.biblioteca.Usuarios import Usuarios
 from us.lsi.biblioteca.Prestamos import Prestamos
 from us.lsi.tools.Preconditions import check_argument
-from us.lsi.tools.File import iterable_de_fichero, absolute_path
+from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Iterable import str_iter
 
 class Biblioteca:
