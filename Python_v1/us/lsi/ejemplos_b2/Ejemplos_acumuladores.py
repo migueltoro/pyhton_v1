@@ -45,6 +45,3 @@ if __name__ == '__main__':
     print("Apariciones de la letra a:", count_if(texto,lambda e:e=="a"))
     print("Primera aparicion de la letra a:",first_index_if(texto,lambda e:e=="a"))
     print(count_if(distinct(texto)))
-    
-
-

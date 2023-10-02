@@ -63,17 +63,28 @@ def acumula(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encodi
     return r
 
 
+def acumula_2(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encoding:str='utf-8')->R:
+    lineas:list[list[str]] = lineas_de_csv(fichero,delimiter=delimiter,encoding=encoding)
+    r:R = inicial
+    for ln in lineas:
+            for e in ln:
+                r = f(r,e)
+    return r
+
+
 if __name__ == '__main__':
     print(encoding(absolute_path('/resources/quijote.txt')))
     print(encoding(absolute_path('/resources/lin_quijote.txt')))
-    print(lista_de_fichero(absolute_path('/resources/datos_2.txt'),encoding='utf-8',delim=","))
+    print(lista_de_fichero(absolute_path('/datos/datos_2.txt'),encoding='utf-8',delim=","))
     print(num_caracteres_no_delimitadores(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
     print(numero_de_palabras_distintas(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
-    r1:int = acumula(absolute_path("/resources/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
+    r1:int = acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
     print(r1)
-    r2:list[int] = acumula(absolute_path("/resources/datos_3.txt"),encoding='ISO-8859-1', inicial=[], f=lambda r,e:r+[int(e)])
+    r2:list[int] = acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=[], f=lambda r,e:r+[int(e)])
     print(r2)
-    r3:set[int]= acumula(absolute_path("/resources/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
+    r3:set[int]= acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
+    print(r3)
+    r3= acumula_2(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
     print(r3)
     
 
