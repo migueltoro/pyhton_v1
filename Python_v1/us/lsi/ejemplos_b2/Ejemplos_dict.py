@@ -15,6 +15,9 @@ iterable = (random.randint(0,100) for _ in range(100))
 frecuencias:Counter[int] = Counter(iterable)
 mc:list[tuple[int,int]] = frecuencias.most_common(5)
 fc:tuple[int,int] = frecuencias.most_common(1)[0]
+f2: dict[int,int] = frecuencias
+# mc = f2.most_common(5)
+# fc= f2.most_common(1)[0]
 
 if __name__ == '__main__':
     print(set(diccionario.keys()))
