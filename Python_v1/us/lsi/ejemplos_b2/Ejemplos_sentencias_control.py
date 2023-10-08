@@ -12,13 +12,15 @@ def media(ls:list[int]) -> float:
     for e in ls:
         a = (a[0]+e,a[1]+1)
     check_argument(a[1]>0,'La lista esta vacia')
+#    assert a[1]>0, 'La lista esta vacia'
     return a[0]/a[1]
 
 def desviacion_tipica(ls:list[int]) -> float:
     a = (0.,0.,0)  #(sum x^2, sum x, num elem)
     for e in ls:
         a = (a[0]+e*e,a[1]+e,a[2]+1)
-    check_argument(a[2]>0,'La lista esta vacia')
+#    check_argument(a[2]>0,'La lista esta vacia')
+    assert a[2]>0,'La lista esta vacia'
     return sqrt(a[0]/a[2]-(a[1]/a[2])**2) 
 
 def suma_aritmetica(a:int,b:int,c:int)->int:
@@ -39,7 +41,8 @@ def suma_primeros(m:int,n:int)->int:
     return a
 
 def mcd(a:int, b:int)->int:
-    check_argument(a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}')
+#    check_argument(a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}')
+    assert a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}'
     while b > 0:
         a, b = b, a%b
     return a
@@ -61,7 +64,7 @@ def saludo()->None:
 
 
 if __name__ == '__main__':
-#    saludo()
+    saludo()
     a,b,c = 2,500,7
     print(f"La suma de la progresion aritmetica de {a} a {b} con razon {c} es {suma_aritmetica(a,b,c)}")
     m,n=10000000, 10
@@ -79,7 +82,7 @@ if __name__ == '__main__':
         print("ejecutando clausula final")
         
     try:
-        ap:str=absolute_path('/resources/quij.txt')
+        ap:str=absolute_path('/resources/quijote.txt')
         lns:list[str] = lineas_de_fichero(ap,encoding='utf-16')
     except AssertionError:
         print(f'No se encuentra el fichero {ap}')
