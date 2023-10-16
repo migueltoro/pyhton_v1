@@ -5,6 +5,7 @@ Created on 16 sept 2022
 '''
 
 from datetime import datetime, date, time, timedelta 
+from dateutil.relativedelta import relativedelta
 import locale
 
 actual:datetime = datetime.now() 
@@ -16,6 +17,7 @@ mes:int = actual.month
 d1:datetime = datetime.now() 
 t:timedelta = timedelta(days=43,hours=23,seconds=5) 
 d2:datetime = d1+t 
+d2r:datetime = d1+relativedelta(months=5)
  
 d3: date = actual.date() 
 d4: time = actual.time() 
@@ -39,9 +41,10 @@ if __name__ == '__main__':
     print(d1.hour) 
     print(d1.second) 
     print((d2-d1).seconds)
+    print(d2r.year)
     print(d3) 
     print(d4)
-    
+    print("_____________")
     print(dt.strftime('%d/%m/%Y -- %H:%M:%S')) 
     print(dt.strftime('%A %d de %B del %Y -- %H:%M:%S'))  
     locale.setlocale(locale.LC_TIME, 'es_ES') 

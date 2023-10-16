@@ -15,8 +15,8 @@ import sys
 def root_project():
     return sys.path[1]
 
-def absolute_path(file:str)->str:
-    return root_project()+file
+def absolute_path(file:str,project:str='C:/Users/migueltoro/git/python_v1/Python_v1')->str:
+    return project+file
 
 def dir_path()->str:
     return os.getcwd()

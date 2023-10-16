@@ -1,0 +1,22 @@
+class Centro:
+    
+    @staticmethod
+    def of()->Centro: ...
+    
+    @staticmethod
+    def of_files(fichero_alumnos:str,fichero_profesores:str,fichero_asignaturas:str,fichero_matriculas:str,
+    	fichero_asignaciones:str)->Centro: ...
+    
+    @property
+    def grupos_size(self): ...
+    
+    
+class Alumnos:  
+
+	@staticmethod
+	def of()->Alumnos: ...
+	
+	@staticmethod
+    def parse(fichero:str)->Alumnos: ...
+    
+    def alumno_dni(self,dni:str)->Alumno: ...

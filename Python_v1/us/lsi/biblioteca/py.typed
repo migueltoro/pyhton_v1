@@ -1,0 +1,9 @@
+class Prestamos:  
+	@staticmethod
+    def of()->Prestamos: ...
+    
+    @staticmethod
+    def parse(fichero:str)->Prestamos: ...
+    
+    @property
+    def todos(self)->set[Prestamo]: ...

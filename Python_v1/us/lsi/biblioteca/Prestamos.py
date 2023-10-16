@@ -6,10 +6,11 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Prestamo import Prestamo
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from typing import Optional
 
 class Prestamos:  
-    __gestor_de_prestamos: Prestamos
+    __gestor_de_prestamos: Optional[Prestamos] = None
     
     def __init__(self,prestamos:set[Prestamo])->None:
         self.__prestamos:set[Prestamo] = prestamos
@@ -17,7 +18,7 @@ class Prestamos:
     @staticmethod
     def of()->Prestamos:
         if Prestamos.__gestor_de_prestamos is None:
-            prestamos:set[Prestamo] = [Prestamo.parse(ln) for ln in lineas_de_fichero('/centro/prestamoes.txt',encoding='utf-8')]
+            prestamos:set[Prestamo] = {Prestamo.parse(ln) for ln in lineas_de_fichero(absolute_path('/biblioteca/prestamos.txt'),encoding='utf-8')}
             Prestamos.__gestor_de_prestamos = Prestamos(prestamos)    
         return Prestamos.__gestor_de_prestamos
                
@@ -49,4 +50,5 @@ class Prestamos:
         return f'Prestamos\n\t{txt}'
 
 if __name__ == '__main__':
-    pass
+    p:Prestamos = Prestamos.of()
+    print(p.prestamo_index(3))
