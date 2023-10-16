@@ -1,0 +1,27 @@
+class Espacio_aereo:
+
+	@staticmethod
+    def of(): ...
+    
+    @property
+    def aerolineas(self)->Aerolineas: ...
+    
+    @property
+    def vuelos(self)->Vuelos: ...
+    
+    @property
+    def ocupaciones_vuelos(self)->Ocupaciones_vuelos: ...
+    
+    @property
+    def aeropuertos(self)-> Aeropuertos: ...
+    
+    
+class Ocupaciones_vuelos:
+	@staticmethod
+    def of()->Ocupaciones_vuelos: ...
+    
+    @property
+    def todas(self): ...
+    
+    @property
+    def size(self)->int: ...
