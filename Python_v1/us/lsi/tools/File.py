@@ -15,7 +15,7 @@ import sys
 def root_project():
     return sys.path[1]
 
-def absolute_path(file:str,project:str='C:/Users/migueltoro/git/python_v1/Python_v1')->str:
+def absolute_path(file:str,project:str=root_project())->str:
     return project+file
 
 def dir_path()->str:
@@ -88,6 +88,7 @@ if __name__ == '__main__':
 #        print(x)
     
     print(os.getcwd())
-    print(existe_fichero("../../../resources/datos_2.txt"))
-   
+    print(existe_fichero(absolute_path("/datos/datos_2.txt")))
+    print(root_project())
+    print(sys.path)
         

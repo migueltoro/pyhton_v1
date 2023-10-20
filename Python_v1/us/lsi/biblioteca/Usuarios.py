@@ -6,7 +6,7 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Usuario import Usuario
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Usuarios:  
     __gestor_de_usuarios: Usuarios
@@ -18,8 +18,7 @@ class Usuarios:
     @staticmethod
     def of()->Usuarios:
         if Usuarios.__gestor_de_usuarios is None:
-            usuarios:set[Usuario] = {Usuario.parse(ln) for ln in lineas_de_fichero('/centro/usuarios.txt',encoding='utf-8')}
-            Usuarios.__gestor_de_usuarios = Usuarios(usuarios)    
+            Usuarios.__gestor_de_usuarios = Usuarios.parse(absolute_path('/centro/usuarios.txt',root_project()))   
         return Usuarios.__gestor_de_usuarios
                
     @staticmethod

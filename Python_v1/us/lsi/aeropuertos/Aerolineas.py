@@ -6,7 +6,8 @@ Created on 20 ago 2022
 
 from __future__ import annotations
 from us.lsi.aeropuertos.Aerolinea import Aerolinea
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, encoding
+from us.lsi.tools.File import lineas_de_fichero, encoding, absolute_path,\
+    root_project
 
 class Aerolineas:  
     __gestor_de_aerolineas: Aerolineas
@@ -45,8 +46,9 @@ class Aerolineas:
 
 
 if __name__ == '__main__':
-    print(encoding(absolute_path("/aeropuertos/aerolineas.csv")))
-    a = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
+    espacio_aereo_root = root_project()
+    print(encoding(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root)))
+    a = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root))
     print(a)
     print(a.aerolinea_index(0))
     

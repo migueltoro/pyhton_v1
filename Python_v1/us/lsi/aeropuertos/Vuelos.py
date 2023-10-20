@@ -8,7 +8,7 @@ from __future__ import annotations
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
-from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from us.lsi.tools.File import lineas_de_fichero, root_project, absolute_path
 
 class Vuelos:
     __gestor_de_vuelos: Vuelos
@@ -52,7 +52,7 @@ class Vuelos:
         return f'Vuelos\n\t{txt}'
 
 if __name__ == '__main__':
-    Aeropuertos.parse(absolute_path("/aeropuertos/aerolineas.csv"))
-    Aerolineas.parse(absolute_path("/aerolineas/ocupaciones_vuelos.csv"))
-    Vuelos.parse(absolute_path("/aerolineas/__vuelos.csv"))
+    espacio_aereo_root = root_project()
+    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv",espacio_aereo_root))
+    Vuelos.parse(absolute_path("/aeropuertos/vuelos.csv",espacio_aereo_root))
     print(Vuelos.of().vuelo_codigo('MX0435'))

@@ -165,8 +165,6 @@ def fechasDistintas()->OrderedDict[str,int]:
 
 
 if __name__ == '__main__':
-    Espacio_aereo.of()
-    """
     print(numero_de_pasajeros('Lon'))
     print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
     print(destinos_diferentes(date(2020,6,8)))
@@ -184,5 +182,4 @@ if __name__ == '__main__':
     print(str_dict(porcentaje_a_destino()))
     print(str_dict(mas_barato()))
     print(str_iter(fechasDistintas().items()))
-    """
     print(duraciones(10))

@@ -9,7 +9,7 @@ from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
-from us.lsi.tools.File import lineas_de_fichero,absolute_path
+from us.lsi.tools.File import lineas_de_fichero, root_project, absolute_path
 from datetime import date
 
 class Ocupaciones_vuelos:
@@ -46,9 +46,10 @@ class Ocupaciones_vuelos:
 
 
 if __name__ == '__main__':
-    Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
-    Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
-    Vuelos.parse(absolute_path("/aeropuertos/vuelos.csv"))
-    oc = Ocupaciones_vuelos.parse(absolute_path("/aeropuertos/ocupacionesVuelos.csv"))
+    espacio_aereo_root = root_project()
+    Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv",espacio_aereo_root))
+    Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root))
+    Vuelos.parse(absolute_path("/aeropuertos/vuelos.csv",espacio_aereo_root))
+    oc = Ocupaciones_vuelos.parse(absolute_path("/aeropuertos/ocupacionesVuelos.csv",espacio_aereo_root))
     print(oc.ocupacion_index(0))
     print(list(oc for oc in oc.todas if oc.fecha_salida == date(2020,6,8)))

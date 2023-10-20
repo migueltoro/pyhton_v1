@@ -6,7 +6,7 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Prestamo import Prestamo
-from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from typing import Optional
 
 class Prestamos:  
@@ -18,8 +18,7 @@ class Prestamos:
     @staticmethod
     def of()->Prestamos:
         if Prestamos.__gestor_de_prestamos is None:
-            prestamos:set[Prestamo] = {Prestamo.parse(ln) for ln in lineas_de_fichero(absolute_path('/biblioteca/prestamos.txt'),encoding='utf-8')}
-            Prestamos.__gestor_de_prestamos = Prestamos(prestamos)    
+            Prestamos.__gestor_de_prestamos = Prestamos.parse(absolute_path('/biblioteca/prestamos.txt',root_project()))    
         return Prestamos.__gestor_de_prestamos
                
     @staticmethod

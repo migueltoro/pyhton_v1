@@ -6,7 +6,7 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.centro.Profesor import Profesor
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Profesores:  
     __gestor_de_profesores: Profesores
@@ -18,8 +18,7 @@ class Profesores:
     @staticmethod
     def of()->Profesores:
         if Profesores.__gestor_de_profesores is None:
-            profesores:set[Profesor] = {Profesor.parse_profesor(ln) for ln in lineas_de_fichero('/centro/Profesors.txt',encoding='utf-8')}
-            Profesores.__gestor_de_profesores = Profesores(profesores)    
+            Profesores.__gestor_de_profesores = Profesores.parse(absolute_path('/centro/Profesors.txt',root_project()))   
         return Profesores.__gestor_de_profesores
                
     @staticmethod

@@ -9,7 +9,7 @@ from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Ocupaciones_vuelos import Ocupaciones_vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
-from us.lsi.tools.File import absolute_path
+from us.lsi.tools.File import absolute_path, root_project
 
 class Espacio_aereo:
     
@@ -23,21 +23,25 @@ class Espacio_aereo:
         self.__aeropuertos: Aeropuertos = aeropuertos
     
     @staticmethod
-    def of(): 
+    def of(root:str=root_project()): 
         if Espacio_aereo.__espacio_aereo_class is None:
-            Espacio_aereo.__espacio_aereo_class = Espacio_aereo.of_files()
+            faeropuertos:str=absolute_path("/aeropuertos/aeropuertos.csv",root)
+            faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv",root)         
+            fvuelos:str = absolute_path("/aeropuertos/vuelos.csv",root)
+            focupaciones_vuelos:str = absolute_path("/aeropuertos/ocupacionesVuelos.csv",root)
+            aeropuertos = Aeropuertos.parse(faeropuertos)
+            aerolineas = Aerolineas.parse(faerolineas)
+            vuelos =  Vuelos.parse(fvuelos)
+            ocupaciones_vuelos = Ocupaciones_vuelos.parse(focupaciones_vuelos)       
+            Espacio_aereo.__espacio_aereo_class = Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
         return Espacio_aereo.__espacio_aereo_class
     
     @staticmethod
-    def of_files(faeropuertos:str=absolute_path("/aeropuertos/aeropuertos.csv"),
-        faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv"),         
-        fvuelos:str = absolute_path("/aeropuertos/vuelos.csv"),
-        focupaciones_vuelos:str =absolute_path("/aeropuertos/ocupacionesVuelos.csv"))->Espacio_aereo:
+    def of_files(faeropuertos:str,faerolineas:str,fvuelos:str,focupaciones_vuelos:str)->Espacio_aereo:
         aeropuertos = Aeropuertos.parse(faeropuertos)
         aerolineas = Aerolineas.parse(faerolineas)
         vuelos =  Vuelos.parse(fvuelos)
-        ocupaciones_vuelos = Ocupaciones_vuelos.parse(focupaciones_vuelos)
-        
+        ocupaciones_vuelos = Ocupaciones_vuelos.parse(focupaciones_vuelos)       
         return Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
  
     @property

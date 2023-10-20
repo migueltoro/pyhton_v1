@@ -5,7 +5,7 @@ Created on 20 ago 2022
 '''
 from __future__ import annotations
 from us.lsi.aeropuertos.Aeropuerto import Aeropuerto
-from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from us.lsi.tools.Iterable import grouping_set
 
 
@@ -61,6 +61,7 @@ class Aeropuertos:
     
 
 if __name__ == '__main__':
-    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
+    espacio_aereo_root = root_project()
+    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv",espacio_aereo_root))
     print(a)
     print(a.aeropuerto_index(0))

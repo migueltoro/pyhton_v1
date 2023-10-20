@@ -6,7 +6,7 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.centro.Asignacion import Asignacion
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Asignaciones:  
     __gestor_de_asignaciones: Asignaciones
@@ -17,8 +17,7 @@ class Asignaciones:
     @staticmethod
     def of()->Asignaciones:
         if Asignaciones.__gestor_de_asignaciones is None:
-            asignaciones:set[Asignacion] = [Asignacion.parse(ln) for ln in lineas_de_fichero('/centro/asignaciones.txt',encoding='utf-8')]
-            Asignaciones.__gestor_de_asignaciones = Asignaciones(asignaciones)    
+            Asignaciones.__gestor_de_asignaciones = Asignaciones.parse(absolute_path('/centro/asignaciones.txt',root_project()))    
         return Asignaciones.__gestor_de_asignaciones
                
     @staticmethod

@@ -6,7 +6,7 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Libro import Libro
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Libros:  
     __gestor_de_libros: Libros
@@ -18,8 +18,7 @@ class Libros:
     @staticmethod
     def of()->Libros:
         if Libros.__gestor_de_libros is None:
-            libros:set[Libro] = {Libro.parse(ln) for ln in lineas_de_fichero('/centro/libros.txt',encoding='utf-8')}
-            Libros.__gestor_de_Libros = Libros(libros)    
+            Libros.__gestor_de_Libros = Libros.parse(absolute_path('/centro/libros.txt',root_project()))    
         return Libros.__gestor_de_libros
                
     @staticmethod

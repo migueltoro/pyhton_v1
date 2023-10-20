@@ -6,7 +6,7 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Ejemplar import Ejemplar
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Ejemplares:  
     __gestor_de_ejemplares: Ejemplares
@@ -17,8 +17,7 @@ class Ejemplares:
     @staticmethod
     def of()->Ejemplares:
         if Ejemplares.__gestor_de_ejemplares is None:
-            ejemplares:set[Ejemplar] = [Ejemplar.parse(ln) for ln in lineas_de_fichero('/centro/ejemplares.txt',encoding='utf-8')]
-            Ejemplares.__gestor_de_ejemplares = Ejemplares(ejemplares)    
+            Ejemplares.__gestor_de_ejemplares = Ejemplares.parse(absolute_path('/biblioteca/ejemplares.txt',root_project()))    
         return Ejemplares.__gestor_de_ejemplares
                
     @staticmethod

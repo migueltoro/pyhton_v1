@@ -6,7 +6,7 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.centro.Matricula import Matricula
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Matriculas:  
     __gestor_de_matriculas: Matriculas
@@ -17,8 +17,7 @@ class Matriculas:
     @staticmethod
     def of()->Matriculas:
         if Matriculas.__gestor_de_matriculas is None:
-            matriculas:set[Matricula] = [Matricula.parse(ln) for ln in lineas_de_fichero('/centro/matriculas.txt',encoding='utf-8')]
-            Matriculas.__gestor_de_matriculas = Matriculas(matriculas)    
+            Matriculas.__gestor_de_matriculas = Matriculas.parse(absolute_path('/centro/matriculas.txt',root_project()))    
         return Matriculas.__gestor_de_matriculas
                
     @staticmethod

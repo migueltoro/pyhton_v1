@@ -7,7 +7,7 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.centro.Asignatura import Asignatura
-from us.lsi.tools.File import lineas_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 
 class Asignaturas:  
     __gestor_de_asignaturas: Asignaturas
@@ -19,8 +19,7 @@ class Asignaturas:
     @staticmethod
     def of()->Asignaturas:
         if Asignaturas.__gestor_de_asignaturas is None:
-            asignaturas:set[Asignatura] = {Asignatura.parse(ln) for ln in lineas_de_fichero('/centro/asignaturas.txt',encoding='utf-8')}
-            Asignaturas.__gestor_de_asignaturas = Asignaturas(asignaturas)    
+            Asignaturas.__gestor_de_asignaturas = Asignaturas.parse(absolute_path('/centro/asignaturas.txt',root_project()))    
         return Asignaturas.__gestor_de_asignaturas
                
     @staticmethod

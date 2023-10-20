@@ -12,7 +12,7 @@ from us.lsi.centro.Asignaturas import Asignaturas
 from us.lsi.centro.Matriculas import Matriculas
 from us.lsi.centro.Asignaciones import Asignaciones
 from us.lsi.centro.Grupo import Grupo
-from us.lsi.tools.File import absolute_path
+from us.lsi.tools.File import root_project, absolute_path
 
 class Centro:
     
@@ -33,18 +33,28 @@ class Centro:
         
 
     @staticmethod
-    def of()->Centro:
+    def of(root:str=root_project())->Centro:
         if Centro.centro is None:
-            Centro.centro = Centro.of_files()
+            fichero_alumnos:str=absolute_path('/centro/alumnos.txt',root)
+            fichero_profesores:str=absolute_path('/centro/profesores.txt',root)
+            fichero_asignaturas:str=absolute_path('/centro/asignaturas.txt',root)
+            fichero_matriculas:str=absolute_path('/centro/matriculas.txt',root)
+            fichero_asignaciones:str=absolute_path('/centro/asignaciones.txt',root)
+            alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
+            profesores:Profesores = Profesores.parse(fichero_profesores)
+            asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)
+            matriculas:Matriculas = Matriculas.parse(fichero_matriculas)
+            asignaciones: Asignaciones = Asignaciones.parse(fichero_asignaciones)
+            Centro.centro = Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
         return Centro.centro
 
         
     @staticmethod
-    def of_files(fichero_alumnos:str=absolute_path('/centro/alumnos.txt'),
-           fichero_profesores:str=absolute_path('/centro/profesores.txt'),
-           fichero_asignaturas:str=absolute_path('/centro/asignaturas.txt'),
-           fichero_matriculas:str=absolute_path('/centro/matriculas.txt'),
-           fichero_asignaciones:str=absolute_path('/centro/asignaciones.txt'))->Centro:
+    def of_files(fichero_alumnos:str='../../../centro/alumnos.txt',
+           fichero_profesores:str='../../../centro/profesores.txt',
+           fichero_asignaturas:str='../../../centro/asignaturas.txt',
+           fichero_matriculas:str='../../../centro/matriculas.txt',
+           fichero_asignaciones:str='../../../centro/asignaciones.txt')->Centro:
         alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
         profesores:Profesores = Profesores.parse(fichero_profesores)
         asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)

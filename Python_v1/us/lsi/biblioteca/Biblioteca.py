@@ -11,19 +11,14 @@ from us.lsi.biblioteca.Ejemplares import Ejemplares
 from us.lsi.biblioteca.Usuarios import Usuarios
 from us.lsi.biblioteca.Prestamos import Prestamos
 from us.lsi.tools.Preconditions import check_argument
-from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Iterable import str_iter
+from us.lsi.tools.File import root_project, absolute_path
 
 class Biblioteca:
     
     biblioteca = None
-    
-        
-    def __init__(self, nombre:str, codigo_postal:int, email:str, 
-                 fu:str=absolute_path('/biblioteca/usuarios.txt'),
-                 fl:str=absolute_path('/biblioteca/libros.txt'),
-                 fe:str=absolute_path('/biblioteca/ejemplares.txt'),
-                 fp:str=absolute_path('/biblioteca/prestamos.txt'))->None:
+   
+    def __init__(self, nombre:str, codigo_postal:int, email:str,fu:str,fl:str,fe:str,fp:str)->None:
         check_argument(nombre!=None, "El nombre no puede ser None")
         check_argument(len(str(codigo_postal))==5, "Código postal incorrecto")
         check_argument('@' in email, "Email incorrecto")
@@ -39,19 +34,24 @@ class Biblioteca:
         self.__prestamos: Prestamos = Prestamos.parse(fp)  
         
     @staticmethod
-    def of_files(nombre:str='Reina Mercedes',
+    def of_files(fu:str,fl:str,fe:str,fp:str,
+                 nombre:str='Reina Mercedes',
                  codigo_postal:int=41012,
-                 email:str='bib@us.es',
-                 fu:str=absolute_path('/biblioteca/usuarios.txt'),
-                 fl:str=absolute_path('/biblioteca/libros.txt'),
-                 fe:str=absolute_path('/biblioteca/ejemplares.txt'),
-                 fp:str=absolute_path('/biblioteca/prestamos.txt'))->Biblioteca: 
+                 email:str='bib@us.es')->Biblioteca: 
         return Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)   
-    
+
+   
     @staticmethod
-    def of()->Biblioteca:
+    def of(root:str=root_project())->Biblioteca:
         if Biblioteca.biblioteca is None:
-            Biblioteca.biblioteca = Biblioteca.of_files()
+            nombre:str='Reina Mercedes'
+            codigo_postal:int=41012
+            email:str='bib@us.es'
+            fu:str=absolute_path('/biblioteca/usuarios.txt',root)
+            fl:str=absolute_path('/biblioteca/libros.txt',root)
+            fe:str=absolute_path('/biblioteca/ejemplares.txt',root)
+            fp:str=absolute_path('/biblioteca/prestamos.txt',root)
+            Biblioteca.biblioteca = Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)
         return Biblioteca.biblioteca
         
     @property
