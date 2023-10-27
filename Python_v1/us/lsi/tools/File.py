@@ -44,6 +44,16 @@ def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list
     with open(file,"r",encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         return  [linea for linea in lector]
+    
+def dict_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')->dict[str,list[str]]:
+    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    with open(file,"r",encoding=encoding) as f:
+        lector = csv.DictReader(f, delimiter = delimiter)
+        r:dict[str,list[str]] = {}
+        for row in lector:
+            for k,v in row.items():
+                r[k] = r.get(k, [])+[v]
+        return r
 
 def iterable_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterable[list[str]]:
     check_argument(existe_fichero(file),f'El fichero {file} no existe')
@@ -90,5 +100,7 @@ if __name__ == '__main__':
     print(os.getcwd())
     print(existe_fichero(absolute_path("/datos/datos_2.txt")))
     print(root_project())
-    print(sys.path)
-        
+#    print(sys.path)
+    print(dict_de_csv(absolute_path("/datos/pp2.csv")))   
+    print(lineas_de_csv(absolute_path("/datos/pp2.csv")))   
+    
