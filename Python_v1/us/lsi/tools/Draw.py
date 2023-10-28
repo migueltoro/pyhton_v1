@@ -54,7 +54,6 @@ def draw_multiline(dx:list[float], dy:list[float],y_label:str='eje y',x_label:st
     plt.plot(dx,dy)
     plt.show()
    
-
 if __name__ == '__main__':
     draw_piechar(['Python', 'C++', 'Ruby', 'Java'],[215, 130, 245, 210])
     draw_barchart(['Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp'],[10,8,6,4,2,1],'Titulo','Prueba')
