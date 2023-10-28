@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print(max(dias,key=lambda x:len(x)))
     print(any((e%13==0 for e in range(2,341,5))))
     print(all((e%2==0 for e in range(2,341,5))))
-    print(first((e for e in range(2,341,5) if e%13==0)))
+    print(first(e for e in range(2,341,5) if e%13==0))
     print("Apariciones de la letra a:", count_if(texto,lambda e:e=="a"))
     print("Primera aparicion de la letra a:",first_index_if(texto,lambda e:e=="a"))
     print(count_if(distinct(texto)))

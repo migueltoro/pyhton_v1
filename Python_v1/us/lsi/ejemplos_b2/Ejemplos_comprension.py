@@ -64,6 +64,8 @@ it3:Iterable[list[str]] = lineas_de_csv(fichero)
 it4:Iterable[str] = flat_map(it3,key=lambda x:x)
 it5:Iterable[int] = map(lambda e:int(e),it4)
 it6:Iterable[int] = distinct(it5)
+r0:list[int] = sorted(it6,key=lambda x:x)
+
 
 cadena:str = "lunes,martes,miercoles,jueves,viernes,sabado,domingo"
 it7:Iterable[tuple[int,str]] = enumerate(cadena)
@@ -93,5 +95,6 @@ if __name__ == '__main__':
     print(s)
     print(ranking)
     print(palabras_por_iniciales)
+    print(r0)
     print(list(r9))
     print(list(r5))
