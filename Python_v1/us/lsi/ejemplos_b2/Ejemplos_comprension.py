@@ -6,7 +6,7 @@ Created on 18 sept 2022
 
 from typing import Iterable
 from us.lsi.tools.Iterable import distinct, flat_map, iterate
-from us.lsi.tools.File import lineas_de_csv,absolute_path, iterable_de_fichero
+from us.lsi.tools.File import lineas_de_csv,absolute_path, iterable_de_fichero, encoding
 from itertools import accumulate
 from operator import mul
 import re
@@ -72,10 +72,8 @@ it7:Iterable[tuple[int,str]] = enumerate(cadena)
 it8:Iterable[tuple[int,str]] = filter(lambda e:e[0]%2==0,it7)
 it9:Iterable[str] = map(lambda e: e[1],it8)
 
-r7:Iterable[str] = flat_map(iterable_de_fichero(absolute_path("/datos/datos_3.txt"),
-                        encoding='ISO-8859-1'),key=lambda ln: re.split(',',ln))
-r8:Iterable[str] = flat_map(
-                lineas_de_csv(absolute_path('/resources/lin_quijote.txt'),encoding='ISO-8859-1',delimiter=' '))
+r7:Iterable[str] = flat_map(iterable_de_fichero(absolute_path("/datos/datos_3.txt")),key=lambda ln: re.split(',',ln))
+r8:Iterable[str] = flat_map(lineas_de_csv(absolute_path('/resources/lin_quijote.txt'), encoding='ISO-8859-1',delimiter=' '))
 r9:Iterable[str] = filter(lambda x: len(x)>0,r8)
 
 texto2:str = "En un lugar de la Mancha de cuyo nombre no quiero acordarme"
@@ -85,16 +83,22 @@ versions:list[int] = [14, 3, 6]
 dias:list[str] = ["lunes", "martes", "miercoles", "jueves","viernes", "sabado", "domingo"]
           
 r1:Iterable[tuple[str,int]] = zip(languages, versions)
-r2:enumerate[str] = enumerate(dias)
+r2:Iterable[tuple[int,str]] = enumerate(dias)
 r3:list[tuple[int,str]] = list(r2)
 r4:dict[int,str]  = dict(r3)
 r5:Iterable[int] = accumulate(versions,mul)
-r6:Iterable[int] = iterate(3,lambda x:x+7,lambda x: x<100)
+r6:Iterable[int] = iterate(3,lambda x:x*7,lambda x: x<1000)
+r2 = enumerate(dias)
+r10:list[tuple[int,str]] = sorted(r2,key=lambda x:x[1][1])
 
 if __name__ == '__main__':
+    print(encoding(absolute_path('/resources/lin_quijote.txt')))
     print(s)
-    print(ranking)
-    print(palabras_por_iniciales)
-    print(r0)
+    print(f'ranking = {ranking}')
+    print(f'palabras_por_iniciales = {palabras_por_iniciales}')
+    print(f'sorted = {r0}')
     print(list(r9))
     print(list(r5))
+    print(f'Iterate = {list(r6)}')
+    print(f'r10 = {r10}')
+    
