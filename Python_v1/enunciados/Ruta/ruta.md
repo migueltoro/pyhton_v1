@@ -21,11 +21,11 @@ Distancia a lo largo de la superficie de la tierra según la fórmula de _Harves
  # a = sin^2(inclat/2) + cos(lat1) * cos(lat2) * sin^2(inclong/2)
  # d = R * 2 * atan2(sqrt(a),sqrt(1-a))
 
-$$a=\sin^2 (\Delta \phi /2)+\cos({\varphi}_1)*\cos({\varphi}_2)*\sin^2 (\Delta \lambda /2)$$
+$$a=\sin^2 (\Delta \phi /2)+\cos(\alpha_1)*\cos(\alpha_2)*\sin^2 (\Delta \lambda /2)$$
 
-$$ d= 2 \ R \ atan2(a,\sqrt{1-a}) $$
+$$ d= 2 \ R \ \arctan 2(a,\sqrt{1-a}) $$
 
-Donde  ${\varphi}_1,{\varphi}_2$  son las las latitudes de los puntos, $\Delta  \varphi$ la diferencia de latitudes y $\Delta \lambda$ la diferencia de longitudes
+Donde  $\alpha_1,\alpha_2$  son las las latitudes de los puntos, $\Delta  \alpha$ la diferencia de latitudes y $\Delta \lambda$ la diferencia de longitudes
 
 ## Coordenadas2D
 
