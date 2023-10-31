@@ -17,8 +17,11 @@ He aquí un fragmento de dicho fichero con las cinco primeras líneas:
 00:02:19,36.750430315732956,-5.148255117237568,715.0
 ```
 Distancia a lo largo de la superficie de la tierra según la fórmula de _Harvesine_:
+
 $$a= sin^2 (\Delta \phi/2)+cos \varphi_1*cos \varphi_2*sin^2 (\Delta \lambda/2)$$
+
 $$ d= 2 \ R \ atan2(a,\sqrt{1-a}) $$
+
 Donde  $\varphi_1,\varphi_2$  son las las latitudes de los puntos, $\Delta  \varphi$ la diferencia de latitudes y $\Delta \lambda$ la diferencia de longitudes
 
 ## Coordenadas2D

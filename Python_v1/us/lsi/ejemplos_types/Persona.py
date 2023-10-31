@@ -78,7 +78,6 @@ class Persona:
         nw = datetime.now()
         return nw.year-self.fecha_de_nacimiento.year
     
-    
     @property
     def siguiente_cumple(self)->date: # type: ignore[empty-body]
         ...          

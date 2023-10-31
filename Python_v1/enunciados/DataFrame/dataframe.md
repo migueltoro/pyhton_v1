@@ -44,7 +44,6 @@ Propiedades
 - row_number->int: Número de filas
 - row(n:int)->list[str]: La fila n
 - row_name(colum:str,row:str)->list[str]: La fila n cuyo valor row aparece en la columna colum siempre que en esa 	columna todos los valores sean diferentes
-- row_value(self,n:int,f:Callable[[list[str]],R])->R: El valor de tipo R calculado a partir de los valores de la fila 	n
 - rows->list[list[str]]: La filas
 - head(n:int)->DataFrame: El Dataframe con las n primeras filas
 - tail(n:int)->DataFrame: El Dataframe con las n últimas filas
