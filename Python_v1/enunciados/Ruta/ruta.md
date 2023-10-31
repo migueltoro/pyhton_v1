@@ -18,14 +18,12 @@ He aquí un fragmento de dicho fichero con las cinco primeras líneas:
 ```
 Distancia a lo largo de la superficie de la tierra según la fórmula de _Harvesine_:
 
- # a = sin^2(inclat/2) + cos(lat1) * cos(lat2) * sin^2(inclong/2)
- # d = R * 2 * atan2(sqrt(a),sqrt(1-a))
 
-$$a=\sin^2 (\Delta \phi /2)+\cos(\alpha_1)*\cos(\alpha_2)*\sin^2 (\Delta \lambda /2)$$
+- a = sin^2(inclat/2) + cos(lat1) \* cos(lat2) \* sin^2(inclong/2)
+- d = R * 2 * atan2(sqrt(a),sqrt(1-a))
 
-$$ d= 2 \ R \ \arctan 2(a,\sqrt{1-a}) $$
 
-Donde  $\alpha_1,\alpha_2$  son las las latitudes de los puntos, $\Delta  \alpha$ la diferencia de latitudes y $\Delta \lambda$ la diferencia de longitudes
+Donde  *lat1, lat2*  son las latitudes de los puntos, *inclat* la diferencia de latitudes y *inclong* la diferencia de longitudes
 
 ## Coordenadas2D
 
