@@ -36,18 +36,18 @@ Algunas de las entidades más comunes que pueden aparecer en un proyecto inform�
 	 - el dni de la persona debe ser correcto
 	 - resto de restricciones sobre fecha de nacimiento, etc.
 	
-- Cliente: hereda de persona, inmutable
+- Usuario: hereda de persona, inmutable
 	- fecha_de_alta
         Invariante
-	 - Añadir restricciones
+	- Añadir restricciones
 
 - Empleado: hereda de persona, inmutable
 	- fecha_de_contrado
 	- salario_mensual
        Invariante
-	 - Añadir restricciones
+	- Añadir restricciones
 
-- Clientes: población de cliente
+- Usuarios: población de usuarios
 	- operaciones y factorías de población
 - Empleados: población de empleado
 	- operaciones y factorías de población
