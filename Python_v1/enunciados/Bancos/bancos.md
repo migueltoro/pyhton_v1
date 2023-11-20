@@ -3,10 +3,9 @@
 Algunas de las entidades más comunes que pueden aparecer en un proyecto informático bancario incluyen:
 
 - Banco: propiedades
-	- clientes: Clientes
+	- personas: Personas
 	- empleados: Empleados
 	- cuentas: Cuentas
-	- operaciones: Operaciones
 	- prestamos: Prestamos
 
 - Cuenta: propiedades, mutable
@@ -22,32 +21,25 @@ Algunas de las entidades más comunes que pueden aparecer en un proyecto inform�
 	 - otras restricciones
 		
 - Prestamo:
-	- dni: str
+	- nid: int
+	- dni_cliente: str
 	- cantidad: double
 	- fecha_comienzo: Fecha
 	- fecha_fin: Fecha
 	- interes: double
+	- dni_empleado: str
 	 Invariante
 	 - Añadir restricciones
 
 - Persona: ya explicado
-	- horóscopo
-       Invariante
-	 - el dni de la persona debe ser correcto
-	 - resto de restricciones sobre fecha de nacimiento, etc.
-	
-- Usuario: hereda de persona, inmutable
-	- fecha_de_alta
-        Invariante
-	- Añadir restricciones
 
 - Empleado: hereda de persona, inmutable
+	- dni: str
 	- fecha_de_contrado
 	- salario_mensual
-       Invariante
-	- Añadir restricciones
+       
 
-- Usuarios: población de usuarios
+- Personas: población de personas
 	- operaciones y factorías de población
 - Empleados: población de empleado
 	- operaciones y factorías de población
@@ -55,8 +47,19 @@ Algunas de las entidades más comunes que pueden aparecer en un proyecto inform�
 	- operaciones y factorías de población
 - Prestamos: población de préstamo
 	- operaciones y factorías de población
+	
+- Banco: 
+	- Propiedades
+		- persoas: Personas: población de personas
+		- emplenados: Empleados: población de empleado
+		- cuentas: Cuentas: población de cuentas
+		- prestamos: Prestamos: población de préstamo
+	- Métodos de factoría
+		- of(): Banco
+		
+- Questions: conjunto de funciones
 
+- TestBanco: conjunto de tests
 
-
-Calcular el horóscopo de una persona
+	  
 
