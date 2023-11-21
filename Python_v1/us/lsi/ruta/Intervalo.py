@@ -9,6 +9,15 @@ from dataclasses import dataclass
 from us.lsi.ruta.Marca import Marca
 from us.lsi.tools.Preconditions import check_argument
 from datetime import datetime,date
+from enum import Enum, auto
+
+class Type(Enum):
+    Descendiente = auto()
+    LLano = auto()
+    Ascendiente = auto()
+    
+    def __str__(self):
+        return str(self.name)
 
 @dataclass(frozen=True,order=True)
 class Intervalo:
@@ -41,6 +50,14 @@ class Intervalo:
         check_argument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo))
         return self.longitud/self.tiempo
 
+    @property
+    def type(self) -> Type:
+        if self.desnivel == 0:
+            return Type.LLano
+        elif self.desnivel > 0:
+            return Type.Ascendiente
+        else:
+            return Type.Descendiente
 
 if __name__ == '__main__':
     linea1 = '00:00:00,36.74991256557405,-5.147951105609536,712.2000122070312'.split(',')
