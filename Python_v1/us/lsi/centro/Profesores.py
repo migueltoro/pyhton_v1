@@ -7,6 +7,7 @@ Created on 25 jun 2023
 from __future__ import annotations
 from us.lsi.centro.Profesor import Profesor
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from typing import Optional
 
 class Profesores:  
     __gestor_de_profesores: Profesores
@@ -31,8 +32,8 @@ class Profesores:
     def todos(self)->set[Profesor]:
         return self.__profesores
 
-    def profesor_dni(self,dni:str)->Profesor:
-        return self.__profesores_dni[dni]
+    def profesor_dni(self,dni:str)->Optional[Profesor]:
+        return self.__profesores_dni.get(dni,None)
     
     @property
     def size(self):

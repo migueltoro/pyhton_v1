@@ -8,6 +8,7 @@ Created on 25 jun 2023
 from __future__ import annotations
 from us.lsi.centro.Asignatura import Asignatura
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from typing import Optional
 
 class Asignaturas:  
     __gestor_de_asignaturas: Asignaturas
@@ -32,8 +33,8 @@ class Asignaturas:
     def todas(self)->set[Asignatura]:
         return self.__asignaturas
 
-    def asignatura_ida(self,ida:int)->Asignatura:
-        return self.__asignaturas_ida[ida]
+    def asignatura_ida(self,ida:int)->Optional[Asignatura]:
+        return self.__asignaturas_ida.get(ida,None)
     
     @property
     def size(self):

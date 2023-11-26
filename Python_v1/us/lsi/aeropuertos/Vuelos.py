@@ -6,9 +6,9 @@ Created on 20 ago 2022
 
 from __future__ import annotations
 from us.lsi.aeropuertos.Vuelo import Vuelo
-from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import lineas_de_fichero, root_project, absolute_path
+from typing import Optional
 
 class Vuelos:
     __gestor_de_vuelos: Vuelos
@@ -31,8 +31,8 @@ class Vuelos:
     def todos(self)->list[Vuelo]:
         return self.__vuelos
     
-    def vuelo_codigo(self,codigo:str)->Vuelo:
-        return self.__codigos_vuelos[codigo]
+    def vuelo_codigo(self,codigo:str)->Optional[Vuelo]:
+        return self.__codigos_vuelos.get(codigo,None)
     
     def vuelo_index(self,index:int)->Vuelo:
         return self.__vuelos[index]

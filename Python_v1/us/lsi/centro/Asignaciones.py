@@ -34,7 +34,7 @@ class Asignaciones:
     def size(self):
         return len(self.__asignaciones)
     
-    def Asignacion_index(self,index:int)->Asignacion:
+    def asignacion_index(self,index:int)->Asignacion:
         return [a for a in self.__asignaciones][index]
     
     def __str__(self):

@@ -7,6 +7,7 @@ Created on 26 jun 2023
 from __future__ import annotations
 from us.lsi.biblioteca.Usuario import Usuario
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from typing import Optional
 
 class Usuarios:  
     __gestor_de_usuarios: Usuarios
@@ -31,8 +32,8 @@ class Usuarios:
     def todos(self)->set[Usuario]:
         return self.__usuarios
 
-    def Usuario_dni(self,dni:str)->Usuario:
-        return self.__usuarios_dni[dni]
+    def usuario_dni(self,dni:str)->Optional[Usuario]:
+        return self.__usuarios_dni.get(dni,None)
     
     @property
     def size(self):

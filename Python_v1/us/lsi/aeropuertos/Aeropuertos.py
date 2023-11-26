@@ -7,6 +7,7 @@ from __future__ import annotations
 from us.lsi.aeropuertos.Aeropuerto import Aeropuerto
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from us.lsi.tools.Iterable import grouping_set
+from typing import Optional
 
 
 class Aeropuertos:
@@ -34,8 +35,8 @@ class Aeropuertos:
     def remove_aeropuerto(self, a: Aeropuerto)->None:
         self.__aeropuertos.remove(a)
 
-    def aeropuerto_codigo(self,codigo: str)->Aeropuerto:
-        return self.__codigos_aeropuertos[codigo]
+    def aeropuerto_codigo(self,codigo: str)->Optional[Aeropuerto]:
+        return self.__codigos_aeropuertos.get(codigo,None)
     
     def ciudad_de_aeropuerto(self, codigo:str)->str:
         return self.__ciudad_de_aeropuerto[codigo]

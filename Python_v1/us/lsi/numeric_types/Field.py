@@ -5,7 +5,7 @@ Created on 19 oct 2022
 '''
 
 from __future__ import annotations
-from typing import TypeVar, Generic
+from typing import TypeVar
 from fractions import Fraction
 from typing_extensions import Protocol
 
