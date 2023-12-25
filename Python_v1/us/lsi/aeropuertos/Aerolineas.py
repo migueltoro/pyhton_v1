@@ -6,11 +6,11 @@ Created on 20 ago 2022
 
 from __future__ import annotations
 from us.lsi.aeropuertos.Aerolinea import Aerolinea
-from us.lsi.tools.File import lineas_de_fichero, encoding, absolute_path,\
-    root_project
+from typing import Optional
+from us.lsi.tools.File import lineas_de_fichero,  absolute_path
 
 class Aerolineas:  
-    __gestor_de_aerolineas: Aerolineas
+    __gestor_de_aerolineas: Optional[Aerolineas] = None
     
     def __init__(self,ocupaciones_vuelos:list[Aerolinea])->None:
         self.__aerolineas = ocupaciones_vuelos
@@ -18,6 +18,8 @@ class Aerolineas:
         
     @staticmethod
     def of()->Aerolineas:
+        if Aerolineas.__gestor_de_aerolineas is None:
+            Aerolineas.__gestor_de_aerolineas = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
         return Aerolineas.__gestor_de_aerolineas
                
     @staticmethod
@@ -46,9 +48,11 @@ class Aerolineas:
 
 
 if __name__ == '__main__':
+    '''
     espacio_aereo_root = root_project()
     print(encoding(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root)))
     a = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root))
     print(a)
-    print(a.aerolinea_index(0))
+    '''
+    print(Aerolineas.of().aerolinea_index(0))
     

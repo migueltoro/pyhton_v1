@@ -11,9 +11,10 @@ from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.tools.File import lineas_de_fichero, root_project, absolute_path
 from datetime import date
+from typing import Optional
 
 class Ocupaciones_vuelos:
-    __gestor_de_ocupaciones_vuelos: Ocupaciones_vuelos
+    __gestor_de_ocupaciones_vuelos: Optional[Ocupaciones_vuelos] = None
     
     
     def __init__(self,ocupaciones:list[Ocupacion_vuelo])->None:
@@ -21,6 +22,8 @@ class Ocupaciones_vuelos:
 
     @staticmethod
     def of()->Ocupaciones_vuelos:
+        if Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos is None:
+            Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos = Ocupaciones_vuelos.parse(absolute_path("/aeropuertos/ocupacionesVuelos.csv",espacio_aereo_root))
         return Ocupaciones_vuelos.__gestor_de_ocupaciones_vuelos
 
     @staticmethod

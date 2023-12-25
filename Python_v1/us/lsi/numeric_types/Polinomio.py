@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from us.lsi.tools.Preconditions import check_position_index, check_argument
 from fractions import Fraction
 from typing import TypeVar, Generic
-from us.lsi.numeric_types.Field import FieldElement,Field,FractionField,ComplexField,FloatField
+from us.lsi.tools.Types import FieldElement,Field,FractionField,ComplexField,FloatField
 
 S = TypeVar('S',bound=FieldElement)
 

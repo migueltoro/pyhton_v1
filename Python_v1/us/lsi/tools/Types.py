@@ -1,55 +1,80 @@
 '''
-Created on 19 oct 2022
+Created on 27 oct 2022
 
 @author: migueltoro
 '''
 
 from __future__ import annotations
-from typing import TypeVar
+from typing import TypeVar, Protocol, Any
 from fractions import Fraction
-from typing_extensions import Protocol
-
-E = TypeVar("E")
-
-class RingElement(Protocol[E]):
-
-    def __add__(self,other:E)->E:  
-        pass 
-    def __sub__(self,other:E)->E:  
-        pass 
-    def __mul__(self,other:E)->E:  
-        pass 
 
 
-class FieldElement(Protocol[E]):
+E = TypeVar('E', contravariant=True)
+R = TypeVar('R')
 
-    def __add__(self,other:E)->E:  
-        pass 
-    def __sub__(self,other:E)->E:  
-        pass 
-    def __mul__(self,other:E)->E:  
-        pass 
-    def __truediv__(self,other:E)->E:
-        pass
+class Comparable(Protocol[E]):
+
+    def __eq__(self:E, other:Any) -> bool: ...
+       
+    def __lt__(self:E, other: E) -> bool: ...
+
+    def __gt__ (self:E, other:E)->bool: ...
+    
+    def __ne__ (self:E, other:Any)->bool: ...
+        
+    def __le__(self:E, other:E) -> bool: ...
+    
+    def __ge__ (self:E, other:E)->bool: ...
+    
+
+class Sum(Protocol[R]):
+
+    def __add__(self:R, other:R) -> R: ...
+
+class SumDiv(Protocol[R]):
+
+    def __add__(self:R, other:R) -> R: ...
+
+    def __truediv__(self:R, other:R) -> R: ...
+
+class RingElement(Protocol[R]):
+
+    def __add__(self,other:R)->R:  ...
+        
+    def __sub__(self,other:R)->R:  ...
+         
+    def __mul__(self,other:R)->R:  ...
+        
 
 
-R = TypeVar("R",bound=FieldElement)
+class FieldElement(Protocol[R]):
 
-class Field(Protocol[R]):
+    def __add__(self,other:R)->R:  ...
+        
+    def __sub__(self,other:R)->R:  ...
+         
+    def __mul__(self,other:R)->R:  ...
+         
+    def __truediv__(self,other:R)->R: ...
+        
+
+
+F = TypeVar("F",bound=FieldElement)
+
+class Field(Protocol[F]):
     
     @staticmethod       
-    def one()->R:
-        pass
+    def one()->F: ...
+        
     @staticmethod 
-    def zero()->R:
-        pass
+    def zero()->F: ...
+        
     @staticmethod
-    def parse(text:str)->R:
-        pass
+    def parse(text:str)->F: ...
+        
     @staticmethod
-    def str(v:R)->str:
-        pass
-    
+    def str(v:F)->str: ...
+           
     
 class FractionField(Field[Fraction]):
     
@@ -98,10 +123,4 @@ class FloatField(Field[float]):
        
 
 if __name__ == '__main__':
-    f:Fraction = FractionField().one()
-    print(f)
-    cf:complex = ComplexField().one()
-    print(cf)
-    ff:float = FloatField().one()
-    print(ff)
-    
+    pass

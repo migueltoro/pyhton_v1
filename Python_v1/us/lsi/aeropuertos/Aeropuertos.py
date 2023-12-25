@@ -11,7 +11,8 @@ from typing import Optional
 
 
 class Aeropuertos:
-    __gestor_de_aeropuertos: Aeropuertos
+    
+    __gestor_de_aeropuertos:Optional[Aeropuertos] = None
     
     def __init__(self,aeropuertos:list[Aeropuerto])->None:
         self.__aeropuertos= aeropuertos
@@ -21,12 +22,14 @@ class Aeropuertos:
     
     @staticmethod
     def of()->Aeropuertos:
+        if Aeropuertos.__gestor_de_aeropuertos is None:
+            Aeropuertos.__gestor_de_aeropuertos = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
         return Aeropuertos.__gestor_de_aeropuertos
     
     @staticmethod  
     def parse(fichero:str)-> Aeropuertos:
         aeropuertos:list[Aeropuerto] = [Aeropuerto.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
-        Aeropuertos.__gestor_de_aeropuertos = Aeropuertos(aeropuertos)
+        Aeropuertos.__gestor_de_aeropuertos =  Aeropuertos(aeropuertos)
         return Aeropuertos.__gestor_de_aeropuertos
     
     def add_aeropuerto(self, a: Aeropuerto)->None:
@@ -63,6 +66,7 @@ class Aeropuertos:
 
 if __name__ == '__main__':
     espacio_aereo_root = root_project()
-    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv",espacio_aereo_root))
-    print(a)
-    print(a.aeropuerto_index(0))
+#    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
+#    print(a)
+#    print(a.aeropuerto_index(0))
+    print(Aeropuertos.of().aeropuerto_index(0))

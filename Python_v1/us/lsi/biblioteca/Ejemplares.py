@@ -46,4 +46,5 @@ class Ejemplares:
 
 
 if __name__ == '__main__':
-    pass
+    e = Ejemplares.of()
+    print(e)

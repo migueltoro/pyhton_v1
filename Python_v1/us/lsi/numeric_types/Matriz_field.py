@@ -11,7 +11,7 @@ from us.lsi.tools.Iterable import all_pairs, first_index_if
 from fractions import Fraction
 from functools import reduce
 from operator import mul
-from us.lsi.numeric_types.Field import FieldElement,Field,FractionField
+from us.lsi.tools.Types import FieldElement,Field,FractionField
 from us.lsi.matriz.MatrizC import MatrizC
 
 S = TypeVar('S',bound=FieldElement)

@@ -4,24 +4,25 @@ Created on 10 nov 2022
 @author: migueltoro
 '''
 
-from typing import Iterable, Iterator,TypeVar, Callable, Optional, cast
+from typing import Iterable, Iterator,TypeVar, Callable, Optional, Union, overload, Any
 from functools import reduce
-from us.lsi.generic_types.Comparable import Comparable
+from us.lsi.tools.Types import Comparable
 import random
 from statistics import mean
 from us.lsi.tools.File import lineas_de_csv
 from us.lsi.tools.Iterable import flat_map
-from us.lsi.tools.Functions import optional_get
+from fractions import Fraction
 
 E = TypeVar('E')
 R = TypeVar('R', bound=Comparable)
 U = TypeVar('U',int,float)
 S = TypeVar('S')
+N = Union[int,float,Fraction,complex]
 
 identity = lambda x:x
 
-def sum2(iterable:Iterable[U],start:U=0)->U:
-    s:U = start
+def sum2(iterable:Iterable[N],start:N=0)->N:
+    s:N = start
     for x in iterable:
         s = s + x 
     return s
@@ -47,31 +48,30 @@ def sum_file(file:str)->int:
     it2:Iterable[int] = (int(e) for e in it1)
     return sum(it2)
 
+@overload
+def reduce2(op:Callable[[E,E],E],it:Iterable[E])->E: ...
+ 
+@overload
+def reduce2(op:Callable[[R,E],R],it:Iterable[E], ini:R)->R: ...
 
-def reduce2(op:Callable[[R,E],R],iterable:Iterable[E],initial:Optional[R]=None)->Optional[R]:
-    r:Optional[R]
-    if initial is None:
-        it:Iterator[E] = iter(iterable)
-        r = cast(R,next(it,None))
+def reduce2(op:Callable[[Any,Any],Any], it:Iterable[Any], ini:Optional[Any]=None)->Any:
+    r = ini
+    for e in it:
         if r is None:
-            return r
-    else:
-        r = optional_get(initial)
-    for e in iterable:
-        r = op(r,e)
+            r = e
+        else:
+            r = op(r,e)
     return r
-
 
 def min2(iterable:Iterable[E],key:Callable[[E],R] = identity)->Optional[E]:
     it:Iterator[E] = iter(iterable)
-    r:Optional[E] = next(it,None)
-    if r is None:
-        return r
-    s: E = optional_get(r)
+    r:Optional[E] = None
     for e in it:
-        if key(e) < key(s):
-            s = e  
-    return s
+        if r is None:
+            r = e
+        elif key(e) < key(r):
+            r = e  
+    return r
 
 def all2(iterable:Iterable[bool])->bool:
     r:bool = True

@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from datetime import time,timedelta,datetime
 from calendar import day_name
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
+from us.lsi.tools.Iterable import str_iter
 
 days = list(day_name)
 
@@ -72,3 +73,5 @@ class Vuelo:
 if __name__ == '__main__':
     v1: Vuelo = Vuelo.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")
     print(v1)
+    print(str_iter(day_name))
+    print(datetime.strptime("FRIDAY",'%A').strftime('%A'))

@@ -6,7 +6,7 @@ Created on 11 oct 2022
 
 from us.lsi.tools.File import absolute_path
 from us.lsi.numeric_types.Matriz_field import Matriz_field
-from us.lsi.numeric_types.Field import FractionField,Field,FloatField,ComplexField
+from us.lsi.tools.Types import FractionField,Field,FloatField,ComplexField
 from fractions import Fraction
 
 if __name__ == '__main__':

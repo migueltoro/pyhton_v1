@@ -10,10 +10,11 @@ from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Ocupaciones_vuelos import Ocupaciones_vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import absolute_path, root_project
+from typing import Optional
 
 class Espacio_aereo:
     
-    __espacio_aereo_class = None
+    __gestor_de_espacio_aereo: Optional[Espacio_aereo] = None
     
     def __init__(self,aerolineas: Aerolineas,vuelos: Vuelos,ocupaciones_vuelos: Ocupaciones_vuelos,
                  aeropuertos: Aeropuertos)->None:
@@ -24,7 +25,7 @@ class Espacio_aereo:
     
     @staticmethod
     def of(root:str=root_project()): 
-        if Espacio_aereo.__espacio_aereo_class is None:
+        if Espacio_aereo.__gestor_de_espacio_aereo is None:
             faeropuertos:str=absolute_path("/aeropuertos/aeropuertos.csv",root)
             faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv",root)         
             fvuelos:str = absolute_path("/aeropuertos/vuelos.csv",root)
@@ -33,8 +34,8 @@ class Espacio_aereo:
             aerolineas = Aerolineas.parse(faerolineas)
             vuelos =  Vuelos.parse(fvuelos)
             ocupaciones_vuelos = Ocupaciones_vuelos.parse(focupaciones_vuelos)       
-            Espacio_aereo.__espacio_aereo_class = Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
-        return Espacio_aereo.__espacio_aereo_class
+            Espacio_aereo.__gestor_de_espacio_aereo = Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
+        return Espacio_aereo.__gestor_de_espacio_aereo
     
     @staticmethod
     def of_files(faeropuertos:str,faerolineas:str,fvuelos:str,focupaciones_vuelos:str)->Espacio_aereo:

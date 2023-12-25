@@ -3,7 +3,7 @@ Created on 15 jul. 2020
 
 @author: migueltoro
 '''
-from typing import Iterable, Iterator, TypeVar, Callable, Optional
+from typing import Iterable, Iterator, TypeVar, Callable, Optional, overload
 import random
 from us.lsi.tools.File import lineas_de_fichero
 from collections import Counter
@@ -106,6 +106,12 @@ def first_index_with_elem(iterable:Iterable[E],elem:E,default:int=-1)->int:
         if e == elem:
             return i
     return default
+
+@overload
+def flat_map(iterable:Iterable[Iterable[E]]) -> Iterable[E]: ...
+
+@overload   
+def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]: ...
     
 def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
     for e in iterable:

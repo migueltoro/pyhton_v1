@@ -6,9 +6,11 @@ Created on 13 nov 2022
 
 from __future__ import annotations
 from typing import TypeVar
+
 from functools import total_ordering
-from us.lsi.generic_types.Comparable import Comparable
+from us.lsi.tools.Types import Comparable
 from us.lsi.generic_types.Par import Par
+
 
 E = TypeVar('E', bound=Comparable)
 R = TypeVar('R', bound=Comparable)
