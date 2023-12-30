@@ -13,6 +13,7 @@ from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import absolute_path
+from us.lsi.tools.Optional import optional_get
 
 days = list(day_name)
 
@@ -30,7 +31,7 @@ class Ocupacion_vuelo:
     def parse(text:str)->Ocupacion_vuelo:
         campos:list[str] = text.split(",")
         codigo_vuelo:str = campos[0]
-        t:time = Vuelos.of().vuelo_codigo(codigo_vuelo).hora
+        t:time = optional_get(Vuelos.of().vuelo_codigo(codigo_vuelo)).hora
         d:date = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
         fecha:datetime = datetime.combine(d, t)
         num_pasajeros:int = int(campos[2])       
@@ -38,11 +39,11 @@ class Ocupacion_vuelo:
     
     @property
     def vuelo(self)->Vuelo:
-        return Vuelos.of().vuelo_codigo(self.codigo_vuelo)
+        return optional_get(Vuelos.of().vuelo_codigo(self.codigo_vuelo))
     
     @property
     def llegada(self)->datetime: 
-        vuelo:Vuelo = Vuelos.of().vuelo_codigo(self.codigo_vuelo)
+        vuelo:Vuelo = optional_get(Vuelos.of().vuelo_codigo(self.codigo_vuelo))
         return datetime.combine(self.fecha.date(),vuelo.hora)+vuelo.duracion
     
     @property

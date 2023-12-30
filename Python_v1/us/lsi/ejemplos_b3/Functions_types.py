@@ -6,7 +6,7 @@ Created on 23 dic 2023
 
 from typing import Iterable, TypeVar, Callable, Optional, Any, overload, Union
 from functools import reduce
-from us.lsi.tools.Types import Comparable, FieldElement
+from us.lsi.tools.Types import Comparable, FieldElement, Sum
 from statistics import mean, StatisticsError
 from fractions import Fraction
 
@@ -18,9 +18,16 @@ S = TypeVar('S')
 T = TypeVar('T')
 C = TypeVar('C', bound=Comparable)
 F = TypeVar('F', bound=FieldElement)
+A = TypeVar('A',bound=Sum)
 N = Union[int,float,Fraction,complex]
 
-def sum2(it:Iterable[N],start:N)->N:
+@overload
+def sum2(it:Iterable[N])->N:...
+
+@overload
+def sum2(it:Iterable[A],start:A)->A: ...
+
+def sum2(it:Iterable[A],start=0)->A:
     return sum(it,start)
 
 def any2(it:Iterable[bool])->bool:
@@ -134,19 +141,25 @@ def mean3(it:Iterable[F])->Optional[F]:
         return s/n
     
 @overload
-def reduce2(f:Callable[[E,E],E], it:Iterable[E])->E: ...
+def reduce2(f:Callable[[E,E],E],it:Iterable[E])->Optional[E]: ...
  
 @overload
-def reduce2(f:Callable[[R,E],R], it:Iterable[E], ini:R)->R: ...
+def reduce2(f:Callable[[R,E],R],it:Iterable[E],ini:R)->R: ...
      
-def reduce2(f:Callable[[Any,Any],Any], it:Iterable[Any], ini:Optional[Any]=None)->Any:
+def reduce2(f:Callable[[Any,Any],Any], it:Iterable[Any],ini:Optional[Any]=None)->Any:
     if ini is None:
-        return  reduce(f,it)
+        try:
+            return reduce(f,it)
+        except Exception:
+            return None  
     else:
         return reduce(f,it,ini)
 
 if __name__ == '__main__':
     from fractions import Fraction as FF
+    print(sum2((FF(3, 7), FF(1, 21), FF(5, 3), FF(1, 3))))
+    ls:list[Fraction] = []
+    print(sum2(([FF(3, 7), FF(1, 21)], [FF(5, 3), FF(1, 3)], [FF(5, 3), FF(1, 3)]),ls))
     print(mean2((FF(3, 7), FF(1, 21), FF(5, 3), FF(1, 3))))
     print(mean2((1,2,3,4)))
     print(mean2((1.,2.,3.,4.)))
@@ -155,6 +168,8 @@ if __name__ == '__main__':
     print(reduce2(f=lambda x,y:x+[y],it=(1,2,3,4),ini=emt))
     print(min2((FF(3, 7), FF(1, 21), FF(5, 3), FF(1, 3))))
     print(min2(()))
+    print(reduce2(lambda x,y:x+y,(FF(3, 7), FF(1, 21), FF(5, 3), FF(1, 3))))
+    print(reduce2(lambda x,y:x+y,emt))
     pairs = [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
     numbers, letters = zip(*pairs)
     print(numbers)
@@ -219,3 +234,5 @@ if __name__ == '__main__':
     print(unzip(full_name_list_2))
     print(unzip(full_name_list_3))
     print(type(unzip(full_name_list)[0][0]))
+    print(FF(3, 7)+0)
+    print(complex(3, 7)*1)

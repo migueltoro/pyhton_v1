@@ -7,7 +7,7 @@ from typing import Iterable, Iterator, TypeVar, Callable, Optional, overload
 import random
 from us.lsi.tools.File import lineas_de_fichero
 from collections import Counter
-from us.lsi.tools.Functions import optional_get
+from us.lsi.tools.Optional import optional_get
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -113,15 +113,25 @@ def flat_map(iterable:Iterable[Iterable[E]]) -> Iterable[E]: ...
 @overload   
 def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]: ...
     
-def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]=identity) -> Iterable[R]:
+def flat_map(iterable:Iterable[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[R]:
     for e in iterable:
-        for pe in key(e):
-            yield pe
+        if key is None:
+            key = identity
+            for pe in key(e):
+                yield pe
             
-def enumerate_flat_map(iterable:enumerate[E],fm:Callable[[E],Iterable[R]]=identity) -> Iterable[tuple[int,R]]:
+@overload
+def enumerate_flat_map(iterable:enumerate[Iterable[E]]) -> Iterable[tuple[int,E]]: ...
+
+@overload   
+def enumerate_flat_map(iterable:enumerate[E],key:Callable[[E],Iterable[R]]) -> Iterable[tuple[int,R]]: ...
+            
+def enumerate_flat_map(iterable:enumerate[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[tuple[int,R]]:
     for ln,lv in iterable:
-        for r in fm(lv):
-            yield (ln,r)
+        if key is None:
+            key = identity
+            for r in key(lv):
+                yield (ln,r)
     
 def flat(e: E | Iterable[E]) -> Iterable[E]:
     if isinstance(e,Iterable):
@@ -165,8 +175,8 @@ if __name__ == '__main__':
     print(str_iter(r))
     print(str_iter(range(2,100,5)))
 #    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
-    print(str_iter(lineas_de_fichero('../../../resources/datos.txt')))
-    print(first_index_if((int(e) for e in lineas_de_fichero('../../../resources/datos.txt')),lambda x: x==7))
+    print(str_iter(lineas_de_fichero('../../../datos/datos.txt')))
+    print(first_index_if((int(e) for e in lineas_de_fichero('../../../datos/datos.txt')),lambda x: x==7))
     print(first_and_last(range(3,500,29)))
     print(list(zip([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
     sm:Callable[[int,int],int] = lambda x,y:x+y

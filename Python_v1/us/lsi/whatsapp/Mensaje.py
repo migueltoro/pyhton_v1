@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from datetime import time,date,datetime
 import re
 from us.lsi.tools.Dict import str_dict
-from us.lsi.tools.Functions import optional_get
+from us.lsi.tools.Optional import optional_get
 from collections import Counter
 from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from re import Match

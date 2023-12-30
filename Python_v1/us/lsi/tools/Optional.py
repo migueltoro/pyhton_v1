@@ -12,17 +12,18 @@ def optional_get(e:Optional[E])->E:
     assert e is not None, f'El elemento {e} es None'
     return e
 
+def optional_is_empty(e:Optional[E])->bool:
+    if e is None:
+        return True
+    else:
+        return False
+
 def optional_get_or_else(e:Optional[E], other:E)->E:
     if e is None:
         return other
     else:
         return e
 
-def is_empty(e:Optional[E])->bool:
-    if e is None:
-        return True
-    else:
-        return False
     
     
     

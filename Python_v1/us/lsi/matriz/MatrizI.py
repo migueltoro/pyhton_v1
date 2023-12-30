@@ -9,10 +9,10 @@ from typing import TypeVar, Callable
 from us.lsi.tools import Preconditions
 from us.lsi.tools.File import lineas_de_csv, absolute_path
 from us.lsi.matriz.Matriz import Matriz
-from us.lsi.tools.Functions import identity
 
 E = TypeVar("E")
 R = TypeVar("R")
+identity = lambda x:x
 
 class MatrizI(Matriz[E]):
     #===========================================================================
