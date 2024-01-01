@@ -8,6 +8,7 @@ import random
 from us.lsi.tools.File import lineas_de_fichero
 from collections import Counter
 from us.lsi.tools.Optional import optional_get
+from itertools import product
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -114,19 +115,19 @@ def flat_map(iterable:Iterable[Iterable[E]]) -> Iterable[E]: ...
 def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]: ...
     
 def flat_map(iterable:Iterable[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[R]:
-    for e in iterable:
-        if key is None:
+    if key is None:
             key = identity
-            for pe in key(e):
-                yield pe
+    for e in iterable:
+        for pe in key(e):
+            yield pe
             
 @overload
-def enumerate_flat_map(iterable:enumerate[Iterable[E]]) -> Iterable[tuple[int,E]]: ...
+def flat_map_enumerate(iterable:enumerate[Iterable[E]]) -> Iterable[tuple[int,E]]: ...
 
 @overload   
-def enumerate_flat_map(iterable:enumerate[E],key:Callable[[E],Iterable[R]]) -> Iterable[tuple[int,R]]: ...
+def flat_map_enumerate(iterable:enumerate[E],key:Callable[[E],Iterable[R]]) -> Iterable[tuple[int,R]]: ...
             
-def enumerate_flat_map(iterable:enumerate[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[tuple[int,R]]:
+def flat_map_enumerate(iterable:enumerate[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[tuple[int,R]]:
     for ln,lv in iterable:
         if key is None:
             key = identity
@@ -169,6 +170,12 @@ def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=
 def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable[[E],int]=lambda _:1) -> dict[K,int]:
     return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=value)
 
+def join(s1:Iterable[E],s2:Iterable[R],key1:Callable[[E],K],key2:Callable[[R],K])->Iterable[tuple[E,R]]:
+        m1:dict[K,list[E]] = grouping_list(s1,key1)
+        m2:dict[K,list[R]] = grouping_list(s2,key2)
+        sk:set[K] = m1.keys() & m2.keys()
+        return flat_map(sk,lambda k:product(m1[k],m2[k]))
+
 if __name__ == '__main__':
     print(str_iter(range(0,100)))
     r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
@@ -199,6 +206,8 @@ if __name__ == '__main__':
     print(f"first = {e2[0]}, rest = {list(e2[1])}")
     print(first_and_last((x for x in range(10,3000,7))))
     it = range(10,3000,7)
-    
+    print('_____________________')
+    it5:list[int] = [x for x in range(10,30,7)]
+    print(list(join(it5,it5,lambda x:x%2,lambda x:x%3)))
     
     

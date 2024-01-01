@@ -102,5 +102,6 @@ if __name__ == '__main__':
     print(root_project())
 #    print(sys.path)
     print(dict_de_csv(absolute_path("/datos/pp2.csv")))   
-    print(lineas_de_csv(absolute_path("/datos/pp2.csv")))   
+    print(lineas_de_csv(absolute_path("/datos/pp2.csv"))) 
+    print(sys.path)  
     
