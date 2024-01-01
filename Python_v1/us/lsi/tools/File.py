@@ -93,10 +93,6 @@ def encoding(file:str)->Optional[str]:
         return enc['encoding']
 
 if __name__ == '__main__':
-#    f = lineas_iterator('../../../resources/palabras_huecas.txt')
-#    for x in f:
-#        print(x)
-    
     print(os.getcwd())
     print(existe_fichero(absolute_path("/datos/datos_2.txt")))
     print(root_project())
