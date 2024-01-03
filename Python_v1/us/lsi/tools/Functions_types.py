@@ -4,7 +4,7 @@ Created on 23 dic 2023
 @author: migueltoro
 '''
 
-from typing import Iterable, TypeVar, Callable, Optional, Any, overload, Union
+from typing import Iterable, TypeVar, Callable, Optional, Any, overload, Union, TypeVarTuple
 from functools import reduce
 from us.lsi.tools.Types import Comparable, FieldElement, Sum
 from statistics import mean, StatisticsError
@@ -16,6 +16,11 @@ E = TypeVar('E')
 R = TypeVar('R')
 S = TypeVar('S')
 T = TypeVar('T')
+T1 = TypeVar('T1')
+T2 = TypeVar('T2')
+T3 = TypeVar('T3')
+T4 = TypeVar('T4')
+Ts = TypeVarTuple('Ts')
 C = TypeVar('C', bound=Comparable)
 F = TypeVar('F', bound=FieldElement)
 A = TypeVar('A',bound=Sum)
@@ -84,16 +89,16 @@ def enumerate2(it:Iterable[E],start:int=0)->Iterable[tuple[int,E]]:
 
 #Versión simplificada de zip
 @overload
-def zip2(it1:Iterable[E],it2:Iterable[R])->Iterable[tuple[E,R]]: ...
+def zip2(it1:Iterable[T1],it2:Iterable[T2])->Iterable[tuple[T1,T2]]: ...
 
 @overload
-def zip2(it1:Iterable[E],it2:Iterable[R],it3:Iterable[S])->Iterable[tuple[E,R,S]]: ...
+def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3])->Iterable[tuple[T1,T2,T3]]: ...
 
 @overload
-def zip2(it1:Iterable[E],it2:Iterable[R],it3:Iterable[S],it4:Iterable[T])->Iterable[tuple[E,R,S,T]]: ...
+def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3],it4:Iterable[T4])->Iterable[tuple[T1,T2,T3,T4]]: ...
 
-def zip2(it1:Iterable[E],it2:Iterable[R],it3=None,it4=None)->Iterable[tuple]:
-    return zip(it1,it2,it3,it4)
+def zip2(*it):
+    return zip(it)
 
 #Versión simplificada de unzip
 
@@ -106,7 +111,7 @@ def unzip(it:Iterable[tuple[E,R,S]])->tuple[list[E],list[R],list[S]]: ...
 @overload
 def unzip(it:Iterable[tuple[E,R,S,T]])->tuple[list[E],list[R],list[S],list[T]]: ...
 
-def unzip(it:Iterable[tuple])->tuple[Any,...]:
+def unzip(it:Iterable[tuple])->tuple[list,...]:
     return tuple(list(x) for x in zip(*it))
 
 @overload
