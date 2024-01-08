@@ -27,6 +27,7 @@ F = TypeVar('F', bound=FieldElement)
 A = TypeVar('A',bound=Sum)
 N = Union[int,float,Fraction,complex]
 
+
 @overload
 def sum2(it:Iterable[N])->N:...
 
