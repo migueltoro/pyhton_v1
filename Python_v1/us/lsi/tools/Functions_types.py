@@ -4,7 +4,7 @@ Created on 23 dic 2023
 @author: migueltoro
 '''
 
-from typing import Iterable, TypeVar, Callable, Optional, Any, overload, Union, TypeVarTuple
+from typing import Iterable, TypeVar, Callable, Optional, Any, overload, Union, TypeVarTuple, Unpack
 from functools import reduce
 from us.lsi.tools.Types import Comparable, FieldElement, Sum
 from statistics import mean, StatisticsError
@@ -20,7 +20,8 @@ T1 = TypeVar('T1')
 T2 = TypeVar('T2')
 T3 = TypeVar('T3')
 T4 = TypeVar('T4')
-Ts = TypeVarTuple('Ts')
+Ts1 = TypeVarTuple('Ts1')
+Ts2 = TypeVarTuple('Ts2')
 C = TypeVar('C', bound=Comparable)
 F = TypeVar('F', bound=FieldElement)
 A = TypeVar('A',bound=Sum)
@@ -87,7 +88,6 @@ def filter2(p:Callable[[E],bool],it:Iterable[E])->Iterable[E]:
 def enumerate2(it:Iterable[E],start:int=0)->Iterable[tuple[int,E]]:
     return enumerate(it,start=start)
 
-#Versión simplificada de zip
 @overload
 def zip2(it1:Iterable[T1],it2:Iterable[T2])->Iterable[tuple[T1,T2]]: ...
 
@@ -97,22 +97,23 @@ def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3])->Iterable[tuple[T1,
 @overload
 def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3],it4:Iterable[T4])->Iterable[tuple[T1,T2,T3,T4]]: ...
 
+@overload
+def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3],it4:Iterable[T4],*it5:tuple[Unpack[Ts1]])->Iterable[tuple[T1,T2,T3,T4,Unpack[Ts2]]]: ...
+
 def zip2(*it):
     return zip(it)
 
-#Versión simplificada de unzip
+@overload
+def unzip(it:Iterable[tuple[E,R]])->tuple[Iterable[E],Iterable[R]]: ...
 
 @overload
-def unzip(it:Iterable[tuple[E,R]])->tuple[list[E],list[R]]: ...
+def unzip(it:Iterable[tuple[E,R,S]])->tuple[Iterable[E],Iterable[R],Iterable[S]]: ...
 
 @overload
-def unzip(it:Iterable[tuple[E,R,S]])->tuple[list[E],list[R],list[S]]: ...
+def unzip(it:Iterable[tuple[E,R,S,T,Unpack[Ts1]]])->tuple[Iterable[E],Iterable[R],Iterable[S],Iterable[T],Unpack[Ts2]]: ...
 
-@overload
-def unzip(it:Iterable[tuple[E,R,S,T]])->tuple[list[E],list[R],list[S],list[T]]: ...
-
-def unzip(it:Iterable[tuple])->tuple[list,...]:
-    return tuple(list(x) for x in zip(*it))
+def unzip(it:Iterable[tuple[Unpack[Ts1]]])->tuple:
+    return tuple(x for x in zip(*it))
 
 @overload
 def mean2(it:Iterable[int])->Optional[float]: ...
@@ -159,6 +160,7 @@ def reduce2(f:Callable[[Any,Any],Any], it:Iterable[Any],ini:Optional[Any]=None)-
             return None  
     else:
         return reduce(f,it,ini)
+    
 
 if __name__ == '__main__':
     from fractions import Fraction as FF

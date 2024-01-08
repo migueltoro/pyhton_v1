@@ -54,6 +54,6 @@ if __name__ == '__main__':
     num = 29
     print(num % 3 == 0 or 20 <= num <= 30)
     print(4+1.)
-    print(pp(absolute_path('/resources/pp.txt')))
-    print(pp2(absolute_path('/resources/pp.txt')))
+    print(pp(absolute_path('/datos/pp.txt')))
+    print(pp2(absolute_path('/datos/pp.txt')))
     print(numeros[8-2])

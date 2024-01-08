@@ -5,7 +5,7 @@ Created on 16 sept 2022
 '''
 
 from datetime import datetime, date, time, timedelta 
-from dateutil.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta 
 import locale
 
 actual:datetime = datetime.now() 

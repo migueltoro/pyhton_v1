@@ -59,7 +59,7 @@ class Circulo2D(Objeto2D):
         return Circulo2D.of(r.simetrico_con_respecto_a_recta(self.centro), self.radio)
     
     @property
-    def shape(self)->list[Patch]:
+    def shape(self)->Patch:
         return Draw.shape_circle((self.centro.x,self.centro.y),self.radio,fill=False)
 
 if __name__ == '__main__':

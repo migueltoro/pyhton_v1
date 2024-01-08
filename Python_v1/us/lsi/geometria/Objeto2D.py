@@ -6,7 +6,7 @@ Created on 2 jul 2023
 
 from __future__ import annotations
 from us.lsi.geometria.Vector2D import Vector2D
-from matplotlib.patches import Patch # type: ignore
+from matplotlib.patches import Patch 
 from abc import ABC, abstractmethod
 
 class Objeto2D(ABC):
