@@ -10,9 +10,7 @@ from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.File import root_project, absolute_path
 from us.lsi.tools.Iterable import str_iter, grouping_reduce
 from us.lsi.tools.Dict import str_dict
-from datetime import date, datetime
 from us.lsi.ejemplos_types.Persona import Persona
-from us.lsi.biblioteca.Usuarios import Usuarios
 from typing import Optional
 
 from us.lsi.bancos.Cuenta import Cuenta
