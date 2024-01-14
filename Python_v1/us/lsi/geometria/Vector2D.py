@@ -8,7 +8,7 @@ from __future__ import annotations
 from math import sin, cos, radians, atan2, degrees, sqrt, acos
 from dataclasses import dataclass
 from us.lsi.tools import Preconditions
-import matplotlib.pyplot as plt # type: ignore
+import matplotlib.pyplot as plt
 
 
 @dataclass(frozen=True,order=True)

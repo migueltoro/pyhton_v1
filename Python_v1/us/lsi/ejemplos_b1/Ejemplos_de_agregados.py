@@ -18,41 +18,50 @@ kt:Iterable[str]= temperaturas_por_provincias.keys()
 kv:Iterable[float]= temperaturas_por_provincias.values()
 tp:Iterable[tuple[str,float]] = temperaturas_por_provincias.items()
 
-
-if __name__ == '__main__':
+def test1():
     print("Nombre:", jugador[0]) 
     print("Apellidos:", jugador[1]) 
     print("Edad:", jugador[2])
 #    jugador[2] = 16
-    print('---------------')
+
+def test2():
     print(rango)
     print(rango[2])
     print(list(rango[2:6:2]))
     print(list(rango))
-    print('---------------')
+    
+def test3():
     print(temperaturas)
     print("Temperatura lunes:", temperaturas[0])
     temperaturas[1] = 35 
     print(temperaturas)
     print(temperaturas_conjunto)
     print(str_iter(temperaturas,sep=';'))
-    print('---------------')
+    
+def test4():
     print(temperaturas_por_provincias)
     print("Temperatura en Sevilla:", temperaturas_por_provincias["Sevilla"]) 
     temperaturas_por_provincias["Sevilla"] = 21.0 
     print(temperaturas_por_provincias)
     print(str_dict(temperaturas_por_provincias,sep='\n'))
-    print('---------------')
+    
+def test5():
     print(kt)
     print(kv)
     print(str_dict(dict(tp)))
-    print('---------------')
+    
+    
+def test6():
     temperaturas.append(29) 
     temperaturas_conjunto.add(29) 
     temperaturas_por_provincias["Badajoz"] = 15.8
     print(temperaturas)
     print(temperaturas_conjunto)
     print(temperaturas_por_provincias)
+
+if __name__ == '__main__':
+    test6()
+    
     
     
     

@@ -31,17 +31,26 @@ def toset(iterable:Iterable[E])->set[E]:
         st.add(e)
     return st
 
-if __name__ == '__main__':
+def test1():
     print(sum((Fraction(51, 5), Fraction(25, 2), Fraction(59, 5))))
     print(mean((2, 3, 4, 2, 3, 6, 4, 2)))
     print(sorted(dias, key=len))
     print(reduce(lambda x,y: x*y,range(2,30,5)))
+    
+def test2():
     es:set[str] = set()
     print(reduce(lambda s,e: s | {e}, texto, es))
     print(max(dias,key=lambda x:len(x)))
     print(any((e%13==0 for e in range(2,341,5))))
     print(all((e%2==0 for e in range(2,341,5))))
     print(first(e for e in range(2,341,5) if e%13==0))
+    
+def test3():
     print("Apariciones de la letra a:", count_if(texto,lambda e:e=="a"))
     print("Primera aparicion de la letra a:",first_index_if(texto,lambda e:e=="a"))
     print(count_if(distinct(texto)))
+    
+
+if __name__ == '__main__':
+    test3()
+    

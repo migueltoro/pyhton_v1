@@ -29,7 +29,7 @@ d3 = datetime.strptime('2/2/2002','%d/%m/%Y').date()
 t1:time = datetime.strptime('00:00:30','%H:%M:%S').time()
 t2:time = datetime.strptime('00:00:40','%H:%M:%S').time()
 
-if __name__ == '__main__':
+def test1():
     print(actual)
     print(mes)  
     print(anyo)  
@@ -44,10 +44,15 @@ if __name__ == '__main__':
     print(d2r.year)
     print(d3) 
     print(d4)
-    print("_____________")
+    
+def test2():
     print(dt.strftime('%d/%m/%Y -- %H:%M:%S')) 
     print(dt.strftime('%A %d de %B del %Y -- %H:%M:%S'))  
     locale.setlocale(locale.LC_TIME, 'es_ES') 
     print(dt.strftime('%A %d de %B del %Y -- %H:%M:%S')) 
     print(datetime.strftime(d1,'%A %d de %B del %Y -- %H:%M:%S')) 
     print(t1.strftime('%H:%M:%S'))
+
+if __name__ == '__main__':
+    test2()
+    

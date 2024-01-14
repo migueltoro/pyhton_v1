@@ -128,11 +128,11 @@ def flat_map_enumerate(iterable:enumerate[Iterable[E]]) -> Iterable[tuple[int,E]
 def flat_map_enumerate(iterable:enumerate[E],key:Callable[[E],Iterable[R]]) -> Iterable[tuple[int,R]]: ...
             
 def flat_map_enumerate(iterable:enumerate[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[tuple[int,R]]:
-    for ln,lv in iterable:
-        if key is None:
-            key = identity
-            for r in key(lv):
-                yield (ln,r)
+    if key is None:
+        key = identity
+    for ln,lv in iterable:    
+        for r in key(lv):
+            yield (ln,r)
     
 def flat(e: E | Iterable[E]) -> Iterable[E]:
     if isinstance(e,Iterable):
@@ -176,38 +176,63 @@ def join(s1:Iterable[E],s2:Iterable[R],key1:Callable[[E],K],key2:Callable[[R],K]
         sk:set[K] = m1.keys() & m2.keys()
         return flat_map(sk,lambda k:product(m1[k],m2[k]))
 
-if __name__ == '__main__':
+def test1():
     print(str_iter(range(0,100)))
     r: Iterable[int] = flat_map([[0,1],[2,3,4],[5,6],[9]],lambda x:x)
     print(str_iter(r))
     print(str_iter(range(2,100,5)))
-#    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
+    
+def test2():
     print(str_iter(lineas_de_fichero('../../../datos/datos.txt')))
     print(first_index_if((int(e) for e in lineas_de_fichero('../../../datos/datos.txt')),lambda x: x==7))
     print(first_and_last(range(3,500,29)))
     print(list(zip([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
+    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
+    
+def test3():
     sm:Callable[[int,int],int] = lambda x,y:x+y
     g = grouping_reduce(range(0,10,2),key = lambda x: x%3,op=sm, value= lambda x:x)
-    print(g[0])   
+    print(g[0])
+    
+def test4(): 
     cp = Counter(['a', 'b', 'c', 'a', 'b', 'b'])
     print(cp.most_common(1)[0][1])
     r = ((1, 2, 3, 4)*2)[-2:-1]
     print(r)   
+    
+def test5():
     print(','.join(str(p) for p in all_pairs(3,4)))
     print(len(range(10,3000,7)))
+    
+def test6():
     e,it = optional_get(first_and_rest(range(10,3000,7)))
     print(e)
     print(list(it))
+    
+def test7():
     it2:Iterable[int] = (x for x in range(10,3000,7))
     e = optional_get(first(it2))
     print(f"first = {e}, iterable = {list(it2)}")
+    
+def test8():
     it4:Iterable[int] = (x for x in range(10,3000,7))
     e2:tuple[int,Iterable[int]] = optional_get(first_and_rest(it4))
     print(f"first = {e2[0]}, rest = {list(e2[1])}")
     print(first_and_last((x for x in range(10,3000,7))))
-    it = range(10,3000,7)
-    print('_____________________')
+    
+def test9():
     it5:list[int] = [x for x in range(10,30,7)]
     print(list(join(it5,it5,lambda x:x%2,lambda x:x%3)))
+
+if __name__ == '__main__':
+    test9()
+    
+      
+    
+    
+    
+    
+    
+    
     
     

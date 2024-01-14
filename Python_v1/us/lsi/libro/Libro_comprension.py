@@ -6,8 +6,9 @@ Created on 25 jul. 2020
 
 from typing import OrderedDict,Iterable,Optional
 from us.lsi.tools.File import lineas_de_fichero, encoding, absolute_path, iterable_de_fichero
-from us.lsi.tools.Dict import str_dict, invert_dict_set
-from us.lsi.tools.Iterable import flat_map,first,distinct,str_iter,grouping_set,groups_size,count_if
+from us.lsi.tools.Dict import str_dict, dict_invert_set
+from us.lsi.tools.Iterable import flat_map,first,distinct,str_iter,grouping_set,groups_size,count_if,\
+    flat_map_enumerate
 from collections import Counter
 import re
 from statistics import mean
@@ -32,8 +33,9 @@ def palabras_no_huecas_distintas(file: str) -> Iterable[str]:
     return distinct(palabras_no_huecas(file))
 
 def palabras_lineas(file:str) -> Iterable[tuple[int,str]]:
-    lns:Iterable[str] = lineas_de_libro(file)
-    pl:Iterable[tuple[int,str]] = ((i,p) for i,linea in enumerate(lns) for p in re.split(sep,linea) if len(p) > 0) 
+    lns:Iterable[str] = (ln for ln in lineas_de_libro(file) if len(ln) > 0)
+    pl:Iterable[tuple[int,str]]  = flat_map_enumerate(enumerate(lns), key=lambda linea:re.split(sep,linea))
+#    pl:Iterable[tuple[int,str]] = ((i,p) for i,linea in enumerate(lns) for p in re.split(sep,linea) if len(p) > 0) 
     return pl
 
 def numero_de_lineas(file: str) -> int:
@@ -66,7 +68,7 @@ def frecuencias_de_palabras(file:str) -> OrderedDict[str,int]:
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
 
 def palabras_por_frecuencias(file:str) -> OrderedDict[int,set[str]]:
-    d:dict[int,set[str]] = invert_dict_set(dict(frecuencias_de_palabras(file)))
+    d:dict[int,set[str]] = dict_invert_set(dict(frecuencias_de_palabras(file)))
     return OrderedDict(sorted(d.items(), key=lambda t: t[0]))
  
 def palabra_en_lineas(file:str) -> OrderedDict[str,set[int]]:
@@ -77,13 +79,27 @@ def palabra_en_lineas(file:str) -> OrderedDict[str,set[int]]:
 def palabras_frecuentes(file:str, k:int)->list[str]:
     return [p for p,_ in Counter(palabras_no_huecas(file)).most_common(k)]
 
-    
-if __name__ == '__main__':
+def test1():
     print(encoding(absolute_path("/resources/quijote.txt")))
     print(str_iter(palabras_no_huecas(absolute_path("/resources/quijote.txt")),sep='\n'))
     print(str_dict(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")),sep='\n'))
+    
+def test2():
     print(numero_de_palabras_distintas_no_huecas(absolute_path("/resources/quijote.txt")))
+    
+def test3():
     print(str_iter(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+ 
+def test4():  
     print(str_iter(palabra_en_lineas(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+
+def test5():
     print(palabras_frecuentes(absolute_path("/resources/quijote.txt"), 10))
+     
+if __name__ == '__main__':
+    test4()
+    
+    
+    
+    
     
