@@ -225,11 +225,7 @@ def test9():
     print(list(join(it5,it5,lambda x:x%2,lambda x:x%3)))
 
 if __name__ == '__main__':
-    test9()
-    
-      
-    
-    
+    test9() 
     
     
     

@@ -45,7 +45,7 @@ class Personas:
     
     @property
     def size(self):
-        return len(self.__usuarios)
+        return len(self.__personas)
     
     def persona_index(self,index:int)->Persona:
         return [a for a in self.__personas][index]
