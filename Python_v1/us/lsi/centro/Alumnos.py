@@ -7,9 +7,11 @@ Created on 25 jun 2023
 from __future__ import annotations
 from us.lsi.ejemplos_types.Alumno import Alumno
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from typing import Optional
 
 class Alumnos:  
-    __gestor_de_alumnos: Alumnos
+    
+    __gestor_de_alumnos:Optional[Alumnos] = None
     
     def __init__(self,alumnos:set[Alumno])->None:
         self.__alumnos:set[Alumno] = alumnos
@@ -46,4 +48,6 @@ class Alumnos:
         return f'Alumnos\n\t{txt}'
 
 if __name__ == '__main__':
-    pass
+    al=Alumnos.of()
+    a = al.alumno_index(0)
+    print(a)

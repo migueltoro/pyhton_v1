@@ -10,7 +10,7 @@ from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from typing import Optional
 
 class Profesores:  
-    __gestor_de_profesores: Profesores
+    __gestor_de_profesores: Optional[Profesores] = None
     
     def __init__(self,profesores:set[Profesor])->None:
         self.__profesores:set[Profesor] = profesores

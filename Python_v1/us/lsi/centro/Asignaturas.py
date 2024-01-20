@@ -11,7 +11,8 @@ from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from typing import Optional
 
 class Asignaturas:  
-    __gestor_de_asignaturas: Asignaturas
+    
+    __gestor_de_asignaturas: Optional[Asignaturas] = None
     
     def __init__(self,asignaturas:set[Asignatura])->None:
         self.__asignaturas:set[Asignatura] = asignaturas

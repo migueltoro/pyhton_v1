@@ -77,7 +77,6 @@ if __name__ == '__main__':
     p = Centro.of().profesores.profesor_dni('53045701L')
     print(f'- El profesor con dni 53045701L es {p}')
     print('___________')
+    print(c.alumnos.alumno_index(0))
 
-    
-    
     

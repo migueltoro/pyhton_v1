@@ -7,9 +7,11 @@ Created on 9 ago 2022
 
 from __future__ import annotations
 from us.lsi.biblioteca.Libros import Libros
+from us.lsi.biblioteca.Libro import Libro
 from us.lsi.biblioteca.Ejemplares import Ejemplares
 from us.lsi.biblioteca.Usuarios import Usuarios
 from us.lsi.biblioteca.Prestamos import Prestamos
+from us.lsi.biblioteca.Prestamo import Prestamo
 from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import root_project, absolute_path
@@ -77,6 +79,10 @@ class Biblioteca:
     @property
     def prestamos(self) -> Prestamos:
         return self.__prestamos
+    
+    @property
+    def usuarios(self) -> Usuarios:
+        return self.__usuarios
 
 
 if __name__ == '__main__':

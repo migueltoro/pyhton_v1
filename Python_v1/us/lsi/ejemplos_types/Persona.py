@@ -11,6 +11,7 @@ from us.lsi.tools.Preconditions import check_argument
 import locale
 from us.lsi.ejemplos_types.Direccion import Direccion
 from datetime import date, datetime
+from dateutil.relativedelta import relativedelta
 
 class Horoscopo(Enum):
     Aries = auto()
@@ -45,7 +46,7 @@ class Persona:
     
     @staticmethod
     def parse(text:str, ft:str = "%Y-%m-%d %H:%M")->Persona:
-        partes:list[str] = text.split(',')
+        partes:list[str] = text.split(',')       
         apellidos: str =  partes[0].strip()
         nombre: str =  partes[1].strip()
         dni: str = partes[2].strip() 
@@ -76,7 +77,8 @@ class Persona:
     @property
     def edad(self)->int:
         nw = datetime.now()
-        return nw.year-self.fecha_de_nacimiento.year
+        r=relativedelta(nw,self.fecha_de_nacimiento)
+        return r.years
     
     @property
     def siguiente_cumple(self)->date: # type: ignore[empty-body]
@@ -98,12 +100,11 @@ class Persona:
     def __str__(self)->str:
         locale.setlocale(locale.LC_ALL, 'es_ES')
         fn = self.fecha_de_nacimiento
-        return f'{self.nombre} {self.apellidos} de {self.edad} anyos, nacido el {fn.strftime("%A")} \
-{fn.strftime("%d")} de {fn.strftime("%B")} de {fn.date().year}'
+        return f'{self.nombre} {self.apellidos} de {self.edad} anyos, nacido el {fn.strftime("%A")} {fn.strftime("%d")} de {fn.strftime("%B")} de {fn.date().year}'
     
 
 if __name__ == '__main__':
-    p = Persona.parse('Casares Amador,Ramiro,00895902Y,2003-06-14 10:02,+34721510926,Ronda de Samanta Cobos 392;Málaga;29316')
+    p = Persona.parse('Casares Amador,Ramiro,00895902Y,1954-04-28 10:02,+34721510926,Ronda de Samanta Cobos 392;Málaga;29316')
     print(p)
 #    print(p)
     print(p.edad)

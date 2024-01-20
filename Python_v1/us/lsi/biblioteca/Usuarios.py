@@ -9,7 +9,8 @@ from us.lsi.biblioteca.Usuario import Usuario
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
 from typing import Optional
 
-class Usuarios:  
+class Usuarios: 
+     
     __gestor_de_usuarios: Usuarios
     
     def __init__(self,usuarios:set[Usuario])->None:
@@ -39,7 +40,7 @@ class Usuarios:
     def size(self):
         return len(self.__usuarios)
     
-    def Usuario_index(self,index:int)->Usuario:
+    def usuario_index(self,index:int)->Usuario:
         return [a for a in self.__usuarios][index]
     
     def __str__(self):

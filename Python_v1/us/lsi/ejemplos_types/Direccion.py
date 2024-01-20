@@ -16,6 +16,10 @@ class Direccion:
     zip_code: int
     
     @staticmethod
+    def of(calle: str,ciudad:str,zip_code: int)->Direccion:
+        return Direccion(calle,ciudad,zip_code)
+    
+    @staticmethod
     def parse(text:str)->Direccion:
         partes = text.split(';')
         return Direccion(partes[0],partes[1],int(partes[2]))

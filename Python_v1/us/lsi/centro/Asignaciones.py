@@ -7,9 +7,11 @@ Created on 25 jun 2023
 from __future__ import annotations
 from us.lsi.centro.Asignacion import Asignacion
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from typing import Optional
 
 class Asignaciones:  
-    __gestor_de_asignaciones: Asignaciones
+    
+    __gestor_de_asignaciones:Optional[Asignaciones] = None
     
     def __init__(self,asignaciones:set[Asignacion])->None:
         self.__asignaciones:set[Asignacion] = asignaciones

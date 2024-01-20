@@ -33,7 +33,7 @@ class Prestamos:
     
     @property
     def size(self):
-        return len(self.__restamos)
+        return len(self.__prestamos)
     
     def prestamo_index(self,index:int)->Prestamo:
         return [a for a in self.__prestamos][index]
