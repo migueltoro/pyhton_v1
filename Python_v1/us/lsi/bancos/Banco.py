@@ -35,6 +35,7 @@ class Banco:
         self.__cuentas: Cuentas = cuentas
         self.__prestamos: Prestamos = prestamos  
    
+   
     @staticmethod
     def of(root:str=root_project(),nombre:str='Reina Mercedes',codigo_postal:int=41012,email:str='bib@us.es',
            fp:str='/bancos/personas.txt',
