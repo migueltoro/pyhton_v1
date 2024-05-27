@@ -15,9 +15,7 @@ from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import root_project, absolute_path
 
 class Biblioteca:
- 
-  
-    
+   
     biblioteca = None
    
     def __init__(self, nombre:str, codigo_postal:int, email:str,fu:str,fl:str,fe:str,fp:str)->None:
