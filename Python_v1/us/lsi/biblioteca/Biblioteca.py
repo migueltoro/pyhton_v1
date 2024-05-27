@@ -15,6 +15,7 @@ from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import root_project, absolute_path
 
 class Biblioteca:
+   
     
     biblioteca = None
    
