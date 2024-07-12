@@ -17,6 +17,7 @@ from us.lsi.tools.Optional import optional_get
 
 days = list(day_name)
 
+
 @dataclass(frozen=True)
 class Ocupacion_vuelo:
     codigo_vuelo:str
