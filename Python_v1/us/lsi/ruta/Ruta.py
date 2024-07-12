@@ -205,8 +205,9 @@ class Ruta:
         Draw.draw_multiline(distancias,alturas,y_label='Altura',x_label='kms',title='Recorrido de Ronda')
         
     def mostrar_altitud_google(self,fileOut):
-        distancias = list(accumulate((self.intervalo(i).longitud for i in range(0, self.n-1)),initial=0))
-        alturas = [str(self.marcas[i].coordenadas.altitud) for i in range(len(self.marcas))]
+        dd:list[float] = list(accumulate((self.intervalo(i).longitud for i in range(0, self.n-1)),initial=0))
+        distancias:list[int] = [int(d) for d in dd]
+        alturas:list[float] = [self.marcas[i].coordenadas.altitud for i in range(len(self.marcas))]
         campos = ["Posicion","Altura"]
         Graphics.line_chart(fileOut,"Ruta Ronda",campos,(distancias,alturas))
        
@@ -221,7 +222,7 @@ class Ruta:
         polyline(fileOut,coordenadas)
 
 if __name__ == '__main__':
-    r = Ruta.parse(absolute_path("/resources/ruta.csv"));
+    r = Ruta.parse(absolute_path("resources/ruta.csv"));
 #    print(r.marcas[:30])
 #    print(r)
     print("__________")

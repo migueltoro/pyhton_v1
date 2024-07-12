@@ -69,6 +69,8 @@ class Vuelo:
             int(self.duracion/timedelta(minutes=1)),
             time.strftime(self.hora,"%H:%M"),
             days[self.dia_semana])  
+        
+        
 
 if __name__ == '__main__':
     v1: Vuelo = Vuelo.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")

@@ -26,10 +26,11 @@ class Espacio_aereo:
     @staticmethod
     def of(root:str=root_project()): 
         if Espacio_aereo.__gestor_de_espacio_aereo is None:
-            faeropuertos:str=absolute_path("/aeropuertos/aeropuertos.csv",root)
-            faerolineas:str=absolute_path("/aeropuertos/aerolineas.csv",root)         
-            fvuelos:str = absolute_path("/aeropuertos/vuelos.csv",root)
-            focupaciones_vuelos:str = absolute_path("/aeropuertos/ocupacionesVuelos.csv",root)
+            faeropuertos:str=absolute_path("aeropuertos/aeropuertos.csv",root)
+            faerolineas:str=absolute_path("aeropuertos/aerolineas.csv",root)         
+            fvuelos:str = absolute_path("aeropuertos/vuelos.csv",root)
+            focupaciones_vuelos:str = absolute_path("aeropuertos/ocupacionesVuelos.csv",root)
+            print(faeropuertos,root)
             aeropuertos = Aeropuertos.parse(faeropuertos)
             aerolineas = Aerolineas.parse(faerolineas)
             vuelos =  Vuelos.parse(fvuelos)

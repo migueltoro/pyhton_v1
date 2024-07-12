@@ -35,11 +35,11 @@ class Centro:
     @staticmethod
     def of(root:str=root_project())->Centro:
         if Centro.centro is None:
-            fichero_alumnos:str=absolute_path('/centro/alumnos.txt',root)
-            fichero_profesores:str=absolute_path('/centro/profesores.txt',root)
-            fichero_asignaturas:str=absolute_path('/centro/asignaturas.txt',root)
-            fichero_matriculas:str=absolute_path('/centro/matriculas.txt',root)
-            fichero_asignaciones:str=absolute_path('/centro/asignaciones.txt',root)
+            fichero_alumnos:str=absolute_path('centro/alumnos.txt',root)
+            fichero_profesores:str=absolute_path('centro/profesores.txt',root)
+            fichero_asignaturas:str=absolute_path('centro/asignaturas.txt',root)
+            fichero_matriculas:str=absolute_path('centro/matriculas.txt',root)
+            fichero_asignaciones:str=absolute_path('centro/asignaciones.txt',root)
             alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
             profesores:Profesores = Profesores.parse(fichero_profesores)
             asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)

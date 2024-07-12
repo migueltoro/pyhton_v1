@@ -102,6 +102,15 @@ def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3],it4:Iterable[T4])->I
 def zip2(it1:Iterable[T1],it2:Iterable[T2],it3:Iterable[T3],it4:Iterable[T4],*it5:tuple[Unpack[Ts1]])->Iterable[tuple[T1,T2,T3,T4,Unpack[Ts2]]]: ...
 
 def zip2(*it):
+    '''
+    This function takes an arbitrary number of iterables and returns an iterable of tuples, where the i-th tuple contains the i-th element from each of the argument sequences.
+
+    Parameters:
+    *it: The input iterables.
+
+    Returns:
+    An iterable of tuples.
+    '''
     return zip(it)
 
 @overload
@@ -142,10 +151,7 @@ def mean3(it:Iterable[F])->Optional[F]:
         else:
             s = s+e
         n=n+1
-    if s is None:
-        return None
-    else:
-        return s/n
+    return None if s is None else s / n
     
 @overload
 def reduce2(f:Callable[[E,E],E],it:Iterable[E])->Optional[E]: ...
@@ -154,16 +160,29 @@ def reduce2(f:Callable[[E,E],E],it:Iterable[E])->Optional[E]: ...
 def reduce2(f:Callable[[R,E],R],it:Iterable[E],ini:R)->R: ...
      
 def reduce2(f:Callable[[Any,Any],Any], it:Iterable[Any],ini:Optional[Any]=None)->Any:
-    if ini is None:
-        try:
-            return reduce(f,it)
-        except Exception:
-            return None  
-    else:
-        return reduce(f,it,ini)
+    '''
+    The reduce2 function is a wrapper around Python's built-in reduce function.
+    It applies a function of two arguments cumulatively to the items of iterable,
+    from left to right, so as to reduce the iterable to a single output.
+    In case of an exception, it returns None.
+    
+    Parameters:
+    f: A function of two arguments that is used to reduce the iterable.
+    it: An iterable that will be reduced.
+    ini: (Optional) A value that is used as the initial value of the reduction.
+    If ini is None, the first item of the iterable is used as the initial value.    
+    
+    Returns:
+    The reduced result if the reduction is successful, None otherwise.
+    '''
+    try:
+        return reduce(f, it, ini) if ini is not None else reduce(f, it)
+    except Exception:
+        return None
     
 
 if __name__ == '__main__':
+    help(reduce2)
     from fractions import Fraction as FF
     print(sum2((FF(3, 7), FF(1, 21), FF(5, 3), FF(1, 3))))
     ls:list[Fraction] = []

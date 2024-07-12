@@ -13,7 +13,7 @@ from typing import OrderedDict,Optional
 sep = r'[ ,;.\n():?!\"]'
 
 def palabras_huecas() -> set[str]:
-    lns:list[str] = lineas_de_fichero(absolute_path("/resources/palabras_huecas.txt"))
+    lns:list[str] = lineas_de_fichero(absolute_path("resources/palabras_huecas.txt"))
     r:set[str] = set()
     for p in lns:
         r.add(p) 

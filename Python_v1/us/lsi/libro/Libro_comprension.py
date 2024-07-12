@@ -16,7 +16,7 @@ from statistics import mean
 sep = r'[ ,;.\n():?!\"]'
 
 def palabras_huecas() -> set[str]:
-    lns:list[str] = lineas_de_fichero(absolute_path("/resources/palabras_huecas.txt"))
+    lns:list[str] = lineas_de_fichero(absolute_path("resources/palabras_huecas.txt"))
     return {p for p in lns}
 
 def lineas_de_libro(file: str) -> Iterable[str]:
@@ -80,24 +80,24 @@ def palabras_frecuentes(file:str, k:int)->list[str]:
     return [p for p,_ in Counter(palabras_no_huecas(file)).most_common(k)]
 
 def test1():
-    print(encoding(absolute_path("/resources/quijote.txt")))
-    print(str_iter(palabras_no_huecas(absolute_path("/resources/quijote.txt")),sep='\n'))
-    print(str_dict(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")),sep='\n'))
+    print(encoding(absolute_path("resources/quijote.txt")))
+    print(str_iter(palabras_no_huecas(absolute_path("resources/quijote.txt")),sep='\n'))
+    print(str_dict(palabras_por_frecuencias(absolute_path("resources/quijote.txt")),sep='\n'))
     
 def test2():
-    print(numero_de_palabras_distintas_no_huecas(absolute_path("/resources/quijote.txt")))
+    print(numero_de_palabras_distintas_no_huecas(absolute_path("resources/quijote.txt")))
     
 def test3():
-    print(str_iter(palabras_por_frecuencias(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(str_iter(palabras_por_frecuencias(absolute_path("resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
  
 def test4():  
-    print(str_iter(palabra_en_lineas(absolute_path("/resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
+    print(str_iter(palabra_en_lineas(absolute_path("resources/quijote.txt")).items(),sep='\n',prefix='',suffix=''))
 
 def test5():
-    print(palabras_frecuentes(absolute_path("/resources/quijote.txt"), 10))
+    print(palabras_frecuentes(absolute_path("resources/quijote.txt"), 10))
      
 if __name__ == '__main__':
-    test4()
+    test3()
     
     
     

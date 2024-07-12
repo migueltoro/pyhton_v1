@@ -90,29 +90,29 @@ def cuadrado(x:int)->int:
 
 def test1():
     print(",antonio,pepe".split(','))
-    print(absolute_path('/resources/datos_2.txt'))
+    print(absolute_path('resources/datos_2.txt'))
     f:Callable[[int],int] = lambda x: x*x
-    print(f(3))
+    print(f(4))
     
 def test2():
-    print(lista_de_fichero_0(absolute_path('/datos/datos.txt')))
-    print(lista_de_fichero_1(absolute_path('/datos/datos.txt')))
-    print(lista_de_fichero_2(absolute_path('/datos/datos.txt')))
-    ls1: list[str] = lineas_de_fichero('../../../datos/datos.txt',encoding='utf-8')
+    print(lista_de_fichero_0(absolute_path('datos/datos.txt')))
+    print(lista_de_fichero_1(absolute_path('datos/datos.txt')))
+    print(lista_de_fichero_2(absolute_path('datos/datos.txt')))
+    ls1: list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
     print(ls1) 
-    ls2: list[str] = lineas_de_fichero(absolute_path('/datos/datos.txt'),encoding='utf-8')
+    ls2: list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
     print(ls2) 
     
 def test3():
     print('_____________')
-    print(lista_de_fichero_5(absolute_path('/datos/datos_2.txt'),encoding='utf-8'))
+    print(lista_de_fichero_5(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
     print('_____________')
-    print(lista_de_fichero_6(absolute_path('/datos/datos_2.txt'),encoding='utf-8',f=lambda x:int(x)**3))
+    print(lista_de_fichero_6(absolute_path('datos/datos_2.txt'),encoding='utf-8',f=lambda x:int(x)**3))
     
 def test4():
-    print(suma_elementos_fichero(absolute_path('/datos/datos_2.txt'),encoding='utf-8'))
-    print(suma_elementos_fichero(absolute_path('/datos/datos_2.txt'),encoding='utf-8'))
-    print(suma_elementos_fichero_if(absolute_path('/datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0))  
+    print(suma_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
+    print(suma_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
+    print(suma_elementos_fichero_if(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0))  
     
 if __name__ == '__main__':
     test2()  

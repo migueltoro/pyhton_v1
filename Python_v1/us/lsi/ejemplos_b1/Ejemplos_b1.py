@@ -5,7 +5,6 @@ Created on 17 ago 2022
 '''
 from us.lsi.tools.Preconditions import check_argument
 from math import sqrt, pi
-import re
 
 def parte_entera(a:float) -> int:
     return int(a)
@@ -28,22 +27,14 @@ def sol_ecuacion_primer_grado(a:float,b:float) -> float:
     return -b/a
     
 def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> tuple[float,float] | tuple[complex,complex]:
-    check_argument(a>0,f'El coeficiente a debe ser distinto de cero y es {a:.2f}')
-    disc = b*b-4*a*c
-    if disc >= 0 :
-        r1 = -b/(2*a)
-        r2 = sqrt(disc)/(2*a)
-        s1:float
-        s2:float
-        s1,s2 = r1+r2,r1-r2
-        return (s1,s2)
-    else :
-        re = -b/(2*a)
-        im = sqrt(-disc)/(2*a)
-        d1:complex
-        d2:complex
-        d1,d2 = complex(re,im),complex(re,-im)
-        return (d1,d2) 
+    check_argument(a != 0, f'El coeficiente a debe ser distinto de cero y es {a:.2f}')
+    disc = b * b - 4 * a * c
+    real_part = -b / (2 * a)
+    imaginary_part = sqrt(abs(disc)) / (2 * a)
+    if disc >= 0:
+        return (real_part + imaginary_part, real_part - imaginary_part)
+    else:
+        return (complex(real_part, imaginary_part), complex(real_part, -imaginary_part)) 
     
 def area_circulo(radio:float) -> float:
     check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
@@ -53,6 +44,17 @@ def longitud_circunferencia(radio:float) -> float:
     check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
     return 2*pi*radio
 
+def area_cilindro(radio:float,altura:float) -> float:
+    check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
+    check_argument(altura>=0,f'La altura debe ser mayor o igual a cero y es {altura:.2f}')
+    return 2*pi*radio*(radio+altura)
+
+def area_triangulo(a:float,b:float,c:float) -> float:
+    check_argument(a>0,f'El lado a debe ser mayor que cero y es {a:.2f}')
+    check_argument(b>0,f'El lado b debe ser mayor que cero y es {b:.2f}')
+    check_argument(c>0,f'El lado c debe ser mayor que cero y es {c:.2f}')
+    s = (a+b+c)/2
+    return sqrt(s*(s-a)*(s-b)*(s-c))
 
 if __name__ == '__main__':
     print(parte_entera(82.345))

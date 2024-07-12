@@ -38,10 +38,10 @@ class Banco:
    
     @staticmethod
     def of(root:str=root_project(),nombre:str='Reina Mercedes',codigo_postal:int=41012,email:str='bib@us.es',
-           fp:str='/bancos/personas.txt',
-           fe:str='/bancos/empleados.txt',
-           fc:str='/bancos/cuentas.txt',
-           fpt:str='/bancos/prestamos.txt')->Banco:
+           fp:str='bancos/personas.txt',
+           fe:str='bancos/empleados.txt',
+           fc:str='bancos/cuentas.txt',
+           fpt:str='bancos/prestamos.txt')->Banco:
         if Banco.__gestor_de_banco is None:
             personas:Personas=Personas.parse(absolute_path(fp,root))
             empleados:Empleados=Empleados.parse(absolute_path(fe,root))

@@ -163,7 +163,6 @@ def fechasDistintas()->OrderedDict[str,int]:
     d =  {k:len(g[k]) for k in g.keys()}
     return OrderedDict(sorted(d.items(),key=lambda x:x[1],reverse=True))
 
-
 if __name__ == '__main__':
     print(numero_de_pasajeros('Lon'))
     print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))

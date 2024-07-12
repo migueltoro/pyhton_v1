@@ -6,6 +6,7 @@ Created on 9 ago 2022
 '''
 
 from __future__ import annotations
+from us.lsi.biblioteca.Libro import Libro
 from us.lsi.biblioteca.Libros import Libros
 from us.lsi.biblioteca.Ejemplares import Ejemplares
 from us.lsi.biblioteca.Usuarios import Usuarios
@@ -13,6 +14,7 @@ from us.lsi.biblioteca.Prestamos import Prestamos
 from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import root_project, absolute_path
+from collections import Counter
 
 class Biblioteca:
    
@@ -47,10 +49,10 @@ class Biblioteca:
             nombre:str='Reina Mercedes'
             codigo_postal:int=41012
             email:str='bib@us.es'
-            fu:str=absolute_path('/biblioteca/usuarios.txt',root)
-            fl:str=absolute_path('/biblioteca/libros.txt',root)
-            fe:str=absolute_path('/biblioteca/ejemplares.txt',root)
-            fp:str=absolute_path('/biblioteca/prestamos.txt',root)
+            fu:str=absolute_path('biblioteca/usuarios.txt',root)
+            fl:str=absolute_path('biblioteca/libros.txt',root)
+            fe:str=absolute_path('biblioteca/ejemplares.txt',root)
+            fp:str=absolute_path('biblioteca/prestamos.txt',root)
             Biblioteca.biblioteca = Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)
         return Biblioteca.biblioteca
         
@@ -87,6 +89,5 @@ if __name__ == '__main__':
     b:Biblioteca = Biblioteca.of()
     print(b.libros.size)
     print(str_iter(b.libros.libros_range(0,10),sep='\n',prefix='',suffix=''))
-   
           
                 

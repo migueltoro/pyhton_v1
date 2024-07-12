@@ -18,6 +18,7 @@ R = TypeVar('R')
 identity = lambda x:x
 
 def aleatorios(n:int,a:int,b:int) -> Iterable[int]:
+    assert a < b, f"en aleatorios: {a} debe ser menor que {b}"
     for _ in range(n):
         yield random.randint(a,b)
 
@@ -146,35 +147,56 @@ def str_iter(iterable:Iterable[E],sep:str=',',prefix:str='{',suffix:str='}',
     r:str = sep.join(key(x) for x in iterable)
     return f"{prefix}{r}{suffix}"
 
+@overload
+def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K],op:Callable[[V,V],V],value:Callable[[E],V]=identity) -> dict[K,V]: ...
+@overload
+def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K],op:Callable[[V,V],V],value:Callable[[E],V]=identity,andThen:Optional[Callable[[V],R]]=None) -> dict[K,R]: ...
 
 def grouping_reduce(iterable:Iterable[E],key:Callable[[E],K], 
                     op:Callable[[V,V],V],
-                    value:Callable[[E],V]=identity)->dict[K, V]:
-    a:dict[K,V] = {}
+                    value:Callable[[E],V]=identity,
+                    andThen:Optional[Callable[[V],R]]=None):
+    r0:dict[K,V] = {}
     for e in iterable:
         k = key(e)
-        if k in a:
-            a[k] = op(a[k],value(e))
+        if k in r0:
+            r0[k] = op(r0[k],value(e))
         else:
-            a[k] = value(e)
-    return a
+            r0[k] = value(e)
+    if andThen is None:
+        return r0
+    else:
+        r1:dict[K,R] = {k:andThen(r0[k]) for k in r0.keys()}
+        return r1
+    
+@overload
+def grouping_list(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,list[V]]: ...
 
+@overload
+def grouping_list(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity,andThen:Optional[Callable[[list[V]],R]]=None) -> dict[K,R]: ...
+    
+def grouping_list(iterable:Iterable[E], key:Callable[[E],K], value:Callable[[E],V]=identity, andThen:Optional[Callable[[list[V]],R]]=None)  :
+    return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=lambda x:[value(x)],andThen=andThen)
 
-def grouping_list(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,list[V]]:
-    return grouping_reduce(iterable,key,lambda x,y:x+y,lambda x: [value(x)])
+@overload
+def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,set[V]]: ...
 
-def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity) -> dict[K,set[V]]:
-    return grouping_reduce(iterable,key,lambda x,y:x|y,lambda x: {value(x)}) 
+@overload
+def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity,andThen:Optional[Callable[[set[V]],R]]=None) -> dict[K,R]: ...
+
+def grouping_set(iterable:Iterable[E],key:Callable[[E],K],value:Callable[[E],V]=identity,andThen:Optional[Callable[[set[V]],R]]=None) :
+    r0:dict[K,set[V]]= grouping_reduce(iterable,key,lambda x,y:x|y,lambda x:{value(x)})
+    return {k:andThen(r0[k]) for k in r0.keys()} if andThen else r0
 
 # similar a Counter
 def groups_size(iterable:Iterable[E],key:Callable[[E],K]=identity,value:Callable[[E],int]=lambda _:1) -> dict[K,int]:
     return grouping_reduce(iterable,key,op=lambda x,y:x+y,value=value)
 
 def join(s1:Iterable[E],s2:Iterable[R],key1:Callable[[E],K],key2:Callable[[R],K])->Iterable[tuple[E,R]]:
-        m1:dict[K,list[E]] = grouping_list(s1,key1)
-        m2:dict[K,list[R]] = grouping_list(s2,key2)
-        sk:set[K] = m1.keys() & m2.keys()
-        return flat_map(sk,lambda k:product(m1[k],m2[k]))
+    m1:dict[K,list[E]] = grouping_list(s1,key1)
+    m2:dict[K,list[R]] = grouping_list(s2,key2)
+    common_keys:set[K] = m1.keys() & m2.keys()
+    return flat_map(common_keys,lambda k:product(m1[k],m2[k])) 
 
 def test1():
     print(str_iter(range(0,100)))
@@ -187,7 +209,8 @@ def test2():
     print(first_index_if((int(e) for e in lineas_de_fichero('../../../datos/datos.txt')),lambda x: x==7))
     print(first_and_last(range(3,500,29)))
     print(list(zip([1,2,3,5],[6,7,8,9,10],[11,12,13,14,15]))) 
-    print(first_index_true((x%29==0 for x in aleatorios(10,1000,50))))
+    print(list(aleatorios(10,50,1000)))
+    print(first_index_true((x%29==0 for x in aleatorios(10,50,1000))))
     
 def test3():
     sm:Callable[[int,int],int] = lambda x,y:x+y
@@ -221,11 +244,16 @@ def test8():
     print(first_and_last((x for x in range(10,3000,7))))
     
 def test9():
-    it5:list[int] = [x for x in range(10,30,7)]
+    it5:list[int] = [x for x in range(10,50,7)]
+    print(it5)
     print(list(join(it5,it5,lambda x:x%2,lambda x:x%3)))
+    
+def test10():
+    it5:list[int] = [x for x in range(10,30,7)]
+    print(grouping_list(it5,lambda x:x%2))
 
 if __name__ == '__main__':
-    test9() 
+    test2() 
     
     
     

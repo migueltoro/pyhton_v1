@@ -39,7 +39,7 @@ class Conversacion:
         
     @staticmethod   
     def parse(file: str) -> Conversacion:
-        fph: str = absolute_path('/resources/palabras_huecas.txt')
+        fph: str = absolute_path('resources/palabras_huecas.txt')
         ph = {p for p in lineas_de_fichero(fph) if len(p) >0}
         ms = (Mensaje.parse(m,ph) for m in lineas_de_fichero(file))
         mensajes = [m for m in ms if m is not None]
@@ -186,7 +186,7 @@ class Conversacion:
         Graphics.pie_chart(file_out, "MensajesPorDiaDeSemana",nombres_datos,nombres_columna, datos)
     
 if __name__ == '__main__':
-    c = Conversacion.parse(absolute_path("/resources/bigbangtheory_es.txt"))
+    c = Conversacion.parse(absolute_path("resources/bigbangtheory_es.txt"))
 #    print(c)    
     print(str_iter(c.numero_de_mensajes_por_usuario.items()))
     print('___________')
@@ -196,8 +196,8 @@ if __name__ == '__main__':
     print(str_iter(c.numero_de_palabras_por_resto_de_usuarios.items(),key=tsf,sep='\n',prefix='',suffix=''))
     print('___________')
     print(c.numero_de_palabras_por_resto_de_usuarios['Leonard'])
-    c.diagrama_de_barras_mensajes_por_dia_de_semana(absolute_path("/ficheros/por_dia_de_semana_barras.html"))
-    c.diagrama_de_tarta_mensajes_por_dia_de_semana(absolute_path("/ficheros/por_dia_de_semana_tarta.html"))
+    c.diagrama_de_barras_mensajes_por_dia_de_semana(absolute_path("ficheros/por_dia_de_semana_barras.html"))
+    c.diagrama_de_tarta_mensajes_por_dia_de_semana(absolute_path("ficheros/por_dia_de_semana_tarta.html"))
     print('___________')
     ls = [e for e in c.palabras_caracteristicas_de_usuario('Sheldon').items()]
     ls.sort(key= lambda e: e[1], reverse = True)

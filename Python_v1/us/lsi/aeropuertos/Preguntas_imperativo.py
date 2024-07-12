@@ -302,7 +302,35 @@ def fechasDistintas()->dict[str,int]:
             s[k]= len(v)
     return s
 
+
+# 18 Diseñar un método que obtenga el nombre de la ciudad donde está ubicado el aeropuerto con 
+# la mayor facturación entre dos fechas dadas a y b. Se entiende por facturación la suma 
+# de los precios de los billetes de un conjunto de vuelos. Las fechas a y b, de tipo fecha y hora, 
+# deben estar una antes que la otra y tener más de un día de diferencia, 
+# en otro caso se disparará una excepción
+
+def ciudad_con_mayor_facturacion(a:datetime,b:datetime)->str:
+    if b <= a or (b - a).days <= 1:
+        raise ValueError("Dates are not valid. 'b' should be later than 'a' and they should be more than one day apart.")
+
+    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    facturacion: dict[str, float] = {}
+
+    for ocp in ls:
+        if a <= ocp.fecha <= b:
+            ciudad = ocp.vuelo.ciudad_destino
+            precio = ocp.vuelo.precio
+            if ciudad in facturacion:
+                facturacion[ciudad] += precio
+            else:
+                facturacion[ciudad] = precio
+
+    ciudad_mayor_facturacion:str = max(facturacion.keys(),key=lambda k:facturacion[k])
+    return ciudad_mayor_facturacion
+
 if __name__ == '__main__':
+    print(ciudad_con_mayor_facturacion(datetime(2020, 1, 1), datetime(2020, 12, 31)))
+    '''                                                         
     print(numero_de_pasajeros('Lon'))
     print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
     print(destinos_diferentes(date(2020,6,8)))
@@ -320,3 +348,4 @@ if __name__ == '__main__':
     print(str_dict(porcentaje_a_destino()))
     print(str_dict(mas_barato()))
     print(str_dict(fechasDistintas()))
+    ''' 

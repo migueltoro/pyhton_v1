@@ -81,30 +81,30 @@ def acumula_3(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',enco
     return r
 
 def test1():
-    print(encoding(absolute_path('/resources/quijote.txt')))
-    print(encoding(absolute_path('/resources/lin_quijote.txt')))
-    print(lista_de_fichero(absolute_path('/datos/datos_2.txt'),encoding='utf-8',delim=","))
+    print(encoding(absolute_path('resources/quijote.txt')))
+    print(encoding(absolute_path('resources/lin_quijote.txt')))
+    print(lista_de_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8',delim=","))
     
 def test2():
-    print(num_caracteres_no_delimitadores(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
-    print(numero_de_palabras_distintas(absolute_path('/resources/quijote.txt'),encoding='utf-16'))
-    r1:int = acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
+    print(num_caracteres_no_delimitadores(absolute_path('resources/quijote.txt'),encoding='utf-16'))
+    print(numero_de_palabras_distintas(absolute_path('resources/quijote.txt'),encoding='utf-16'))
+    r1:int = acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
     print(r1)
     
 def test3():
-    r2:list[int] = acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=[], f=lambda r,e:r+[int(e)])
+    r2:list[int] = acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=[], f=lambda r,e:r+[int(e)])
     print(r2)
     
 def test4():
-    r3:set[int]= acumula(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
+    r3:set[int]= acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
     print(r3)
     
 def test5():
-    r3= acumula_2(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
+    r3:set[int] = acumula_2(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
     print(r3)
     
 def test6():
-    r3= acumula_3(absolute_path("/datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
+    r3 :set[int] = acumula_3(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
     print(r3)
 
 if __name__ == '__main__':

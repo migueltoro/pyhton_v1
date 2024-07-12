@@ -144,10 +144,10 @@ if __name__ == '__main__':
     print(d.sort_by(lambda ls: ls[1].strip()))
     print(d.add_calculated_colum('Nombre',lambda s: s[0],'Nueva'))
     '''
-    d2: DataFrame = DataFrame.parse('/dataframe/mascotas.csv')
+    d2: DataFrame = DataFrame.parse(absolute_path('dataframe/mascotas.csv'))
     opm:Callable[[int,int],int] = lambda x,y:x+y
     print(d2.group_by(['Especie','Sexo'],'Cantidad',operator.add,lambda _:1))
-    d3: DataFrame = DataFrame.parse('/dataframe/personas.csv')
+    d3: DataFrame = DataFrame.parse(absolute_path('dataframe/personas.csv'))
     opm2:Callable[[float,float],float] = lambda x,y:round(min(x,y),2)
     print(d3.group_by(['Edad'],'Altura',opm2,lambda ls:float(ls[3])))
     opm3:Callable[[date,date],date] = lambda x,y:min(x,y)
