@@ -66,6 +66,8 @@ class Centro:
     @property
     def grupos_size(self):
         return len(self.grupos)
+    
+
 
 if __name__ == '__main__':
     c:Centro = Centro.of()

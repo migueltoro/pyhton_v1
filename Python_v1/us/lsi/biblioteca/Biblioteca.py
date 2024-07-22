@@ -83,8 +83,8 @@ class Biblioteca:
     @property
     def usuarios(self) -> Usuarios:
         return self.__usuarios
-
-
+    
+    
 if __name__ == '__main__':
     b:Biblioteca = Biblioteca.of()
     print(b.libros.size)
