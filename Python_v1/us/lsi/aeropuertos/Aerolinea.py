@@ -4,6 +4,7 @@ Created on 19 ago 2022
 @author: migueltoro
 '''
 
+
 from __future__ import annotations
 from dataclasses import dataclass
 
