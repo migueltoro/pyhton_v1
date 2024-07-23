@@ -12,19 +12,13 @@ from typing import Optional
 class Prestamos:  
     __gestor_de_prestamos: Optional[Prestamos] = None
     
-    def __init__(self,prestamos:set[Prestamo])->None:
-        self.__prestamos:set[Prestamo] = prestamos
+    def __init__(self,file:str)->None:
+        self.__prestamos:set[Prestamo] = {Prestamo.parse(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         
     @staticmethod
-    def of()->Prestamos:
+    def of(file:str=absolute_path('biblioteca/prestamos.txt'))->Prestamos:
         if Prestamos.__gestor_de_prestamos is None:
-            Prestamos.__gestor_de_prestamos = Prestamos.parse(absolute_path('/biblioteca/prestamos.txt',root_project()))    
-        return Prestamos.__gestor_de_prestamos
-               
-    @staticmethod
-    def parse(fichero:str)->Prestamos:
-        prestamos:set[Prestamo] = {Prestamo.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Prestamos.__gestor_de_prestamos = Prestamos(prestamos)
+            Prestamos.__gestor_de_prestamos = Prestamos(file)
         return Prestamos.__gestor_de_prestamos
 
     @property

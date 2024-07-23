@@ -37,16 +37,16 @@ class Banco:
    
    
     @staticmethod
-    def of(root:str=root_project(),nombre:str='Reina Mercedes',codigo_postal:int=41012,email:str='bib@us.es',
+    def of(nombre:str='Reina Mercedes',codigo_postal:int=41012,email:str='bib@us.es',
            fp:str='bancos/personas.txt',
            fe:str='bancos/empleados.txt',
            fc:str='bancos/cuentas.txt',
            fpt:str='bancos/prestamos.txt')->Banco:
         if Banco.__gestor_de_banco is None:
-            personas:Personas=Personas.parse(absolute_path(fp,root))
-            empleados:Empleados=Empleados.parse(absolute_path(fe,root))
-            cuentas:Cuentas=Cuentas.parse(absolute_path(fc,root))
-            prestamos:Prestamos=Prestamos.parse(absolute_path(fpt,root))
+            personas:Personas=Personas.of(absolute_path(fp))
+            empleados:Empleados=Empleados.of(absolute_path(fe))
+            cuentas:Cuentas=Cuentas.of(absolute_path(fc))
+            prestamos:Prestamos=Prestamos.of(absolute_path(fpt))
             Banco.__gestor_de_banco = Banco(nombre, codigo_postal,email,personas,empleados, cuentas, prestamos)
         return Banco.__gestor_de_banco
     

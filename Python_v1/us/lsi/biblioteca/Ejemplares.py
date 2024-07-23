@@ -6,24 +6,19 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Ejemplar import Ejemplar
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from typing import Optional
 
 class Ejemplares:  
-    __gestor_de_ejemplares: Ejemplares
+    __gestor_de_ejemplares: Optional[Ejemplares] = None
     
-    def __init__(self,ejemplares:set[Ejemplar])->None:
-        self.__ejemplares:set[Ejemplar] = ejemplares
+    def __init__(self,file:str)->None:
+        self.__ejemplares:set[Ejemplar] = {Ejemplar.parse(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         
     @staticmethod
-    def of()->Ejemplares:
+    def of(file:str=absolute_path('biblioteca/ejemplares.txt'))->Ejemplares:
         if Ejemplares.__gestor_de_ejemplares is None:
-            Ejemplares.__gestor_de_ejemplares = Ejemplares.parse(absolute_path('/biblioteca/ejemplares.txt',root_project()))    
-        return Ejemplares.__gestor_de_ejemplares
-               
-    @staticmethod
-    def parse(fichero:str)->Ejemplares:
-        ejemplares:set[Ejemplar] = {Ejemplar.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Ejemplares.__gestor_de_ejemplares = Ejemplares(ejemplares)
+            Ejemplares.__gestor_de_ejemplares = Ejemplares(file)  
         return Ejemplares.__gestor_de_ejemplares
 
     @property

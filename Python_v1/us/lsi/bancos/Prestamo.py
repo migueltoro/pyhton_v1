@@ -5,8 +5,7 @@ Created on 13 nov 2023
 '''
 
 from __future__ import annotations
-from dataclasses import dataclass, astuple, asdict
-from us.lsi.tools.Preconditions import check_argument
+from dataclasses import dataclass, astuple
 from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 

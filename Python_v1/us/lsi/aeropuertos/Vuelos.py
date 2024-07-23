@@ -11,20 +11,16 @@ from us.lsi.tools.File import lineas_de_fichero, root_project, absolute_path
 from typing import Optional
 
 class Vuelos:
-    __gestor_de_vuelos: Vuelos
+    __gestor_de_vuelos: Optional[Vuelos] = None
     
-    def __init__(self,vuelos: list[Vuelo])->None:
-        self.__vuelos=vuelos
+    def __init__(self,file:str)->None:
+        self.__vuelos= [Vuelo.parse(x) for x in lineas_de_fichero(file,encoding='Windows-1252')]
         self.__codigos_vuelos = {v.codigo:v for v in self.__vuelos}
-    
-    @staticmethod  
-    def of()->Vuelos:
-        return Vuelos.__gestor_de_vuelos
 
     @staticmethod  
-    def parse(fichero: str)->Vuelos:
-        vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(fichero)]
-        Vuelos.__gestor_de_vuelos = Vuelos(vuelos)
+    def of(file:str=absolute_path("aeropuertos/vuelos.csv"))->Vuelos:
+        if Vuelos.__gestor_de_vuelos is None:
+            Vuelos.__gestor_de_vuelos = Vuelos(file)
         return Vuelos.__gestor_de_vuelos
     
     @property
@@ -55,7 +51,7 @@ class Vuelos:
 
 if __name__ == '__main__':
     espacio_aereo_root = root_project()
-    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv",espacio_aereo_root))
-    Vuelos.parse(absolute_path("/aeropuertos/vuelos.csv",espacio_aereo_root))
-    print(Vuelos.of().vuelo_codigo('MX0435'))
+    a = Aeropuertos.of()
+    v = Vuelos.of()
+    print(v.vuelo_codigo('MX0435'))
     

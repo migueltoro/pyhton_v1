@@ -7,25 +7,20 @@ Created on 20 ago 2022
 from __future__ import annotations
 from us.lsi.aeropuertos.Aerolinea import Aerolinea
 from typing import Optional
-from us.lsi.tools.File import lineas_de_fichero,  absolute_path
+from us.lsi.tools.File import lineas_de_fichero,  absolute_path, encoding
 
 class Aerolineas:  
     __gestor_de_aerolineas: Optional[Aerolineas] = None
     
-    def __init__(self,ocupaciones_vuelos:list[Aerolinea])->None:
-        self.__aerolineas = ocupaciones_vuelos
-        self.__codigos_aerolineas = {a.codigo:a for a in ocupaciones_vuelos}
+    def __init__(self,file:str)->None:
+        aerolineas:list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(file, encoding='Windows-1252')]
+        self.__aerolineas = aerolineas
+        self.__codigos_aerolineas = {a.codigo:a for a in aerolineas}
         
     @staticmethod
-    def of()->Aerolineas:
+    def of(file:str= absolute_path("aeropuertos/aerolineas.csv"))->Aerolineas:
         if Aerolineas.__gestor_de_aerolineas is None:
-            Aerolineas.__gestor_de_aerolineas = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv"))
-        return Aerolineas.__gestor_de_aerolineas
-               
-    @staticmethod
-    def parse(fichero:str)->Aerolineas:
-        datos: list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]
-        Aerolineas.__gestor_de_aerolineas = Aerolineas(datos)
+            Aerolineas.__gestor_de_aerolineas = Aerolineas(file)
         return Aerolineas.__gestor_de_aerolineas
 
     @property
@@ -48,6 +43,7 @@ class Aerolineas:
 
 
 if __name__ == '__main__':
+    print(encoding(absolute_path("aeropuertos/aerolineas.csv")))
     '''
     espacio_aereo_root = root_project()
     print(encoding(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root)))

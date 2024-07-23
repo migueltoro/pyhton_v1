@@ -13,20 +13,14 @@ class Alumnos:
     
     __gestor_de_alumnos:Optional[Alumnos] = None
     
-    def __init__(self,alumnos:set[Alumno])->None:
-        self.__alumnos:set[Alumno] = alumnos
+    def __init__(self,file:str)->None:
+        self.__alumnos:set[Alumno] = {Alumno.parse_alumno(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         self.__alumnos_dni:dict[str,Alumno] = {a.dni : a for a in self.__alumnos}
         
     @staticmethod
-    def of()->Alumnos:
+    def of(file:str=absolute_path('centro/alumnos.txt'))->Alumnos:
         if Alumnos.__gestor_de_alumnos is None:
-            Alumnos.__gestor_de_alumnos = Alumnos.parse(absolute_path('/centro/alumnos.txt',root_project()))    
-        return Alumnos.__gestor_de_alumnos
-               
-    @staticmethod
-    def parse(fichero:str)->Alumnos:
-        alumnos:set[Alumno] = {Alumno.parse_alumno(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Alumnos.__gestor_de_alumnos = Alumnos(alumnos)
+            Alumnos.__gestor_de_alumnos = Alumnos(file)    
         return Alumnos.__gestor_de_alumnos
 
     @property

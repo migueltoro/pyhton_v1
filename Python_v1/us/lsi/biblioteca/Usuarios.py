@@ -6,27 +6,21 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Usuario import Usuario
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from typing import Optional
 
 class Usuarios: 
      
-    __gestor_de_usuarios: Usuarios
+    __gestor_de_usuarios: Optional[Usuarios] = None
     
-    def __init__(self,usuarios:set[Usuario])->None:
-        self.__usuarios:set[Usuario] = usuarios
+    def __init__(self,file:str)->None:
+        self.__usuarios:set[Usuario] = {Usuario.parse(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         self.__usuarios_dni:dict[str,Usuario] = {a.dni : a for a in self.__usuarios}
         
     @staticmethod
-    def of()->Usuarios:
+    def of(file:str=absolute_path('/centro/usuarios.txt'))->Usuarios:
         if Usuarios.__gestor_de_usuarios is None:
-            Usuarios.__gestor_de_usuarios = Usuarios.parse(absolute_path('/centro/usuarios.txt',root_project()))   
-        return Usuarios.__gestor_de_usuarios
-               
-    @staticmethod
-    def parse(fichero:str)->Usuarios:
-        usuarios:set[Usuario] = {Usuario.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Usuarios.__gestor_de_usuarios = Usuarios(usuarios)
+            Usuarios.__gestor_de_usuarios = Usuarios(file)   
         return Usuarios.__gestor_de_usuarios
 
     @property

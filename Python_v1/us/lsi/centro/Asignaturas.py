@@ -7,27 +7,21 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.centro.Asignatura import Asignatura
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from typing import Optional
 
 class Asignaturas:  
     
     __gestor_de_asignaturas: Optional[Asignaturas] = None
     
-    def __init__(self,asignaturas:set[Asignatura])->None:
-        self.__asignaturas:set[Asignatura] = asignaturas
+    def __init__(self,file:str)->None:
+        self.__asignaturas:set[Asignatura] = {Asignatura.parse(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         self.__asignaturas_ida:dict[int,Asignatura] = {a.ida : a for a in self.__asignaturas}
         
     @staticmethod
-    def of()->Asignaturas:
+    def of(file:str=absolute_path('/centro/asignaturas.txt'))->Asignaturas:
         if Asignaturas.__gestor_de_asignaturas is None:
-            Asignaturas.__gestor_de_asignaturas = Asignaturas.parse(absolute_path('/centro/asignaturas.txt',root_project()))    
-        return Asignaturas.__gestor_de_asignaturas
-               
-    @staticmethod
-    def parse(fichero:str)->Asignaturas:
-        asignaturas:set[Asignatura] = {Asignatura.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Asignaturas.__gestor_de_asignaturas = Asignaturas(asignaturas)
+            Asignaturas.__gestor_de_asignaturas = Asignaturas(file)   
         return Asignaturas.__gestor_de_asignaturas
 
     @property

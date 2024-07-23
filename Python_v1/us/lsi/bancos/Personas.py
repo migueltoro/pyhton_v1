@@ -5,31 +5,25 @@ Created on 13 nov 2023
 '''
 
 from __future__ import annotations
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project, encoding
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, encoding
 from us.lsi.ejemplos_types.Persona import Persona
-from us.lsi.tools.Iterable import str_iter
 from typing import Optional
 
 class Personas:
     
     __gestor_de_personas:Optional[Personas] = None
+    ft:str = "%Y-%m-%d %H:%M:%S"
     
-    def __init__(self,personas:set[Persona])->None:
-        self.__personas:set[Persona] = personas
+    def __init__(self,file:str)->None:       
+        self.__personas:set[Persona] = {Persona.parse(ln,Personas.ft) for ln in lineas_de_fichero(file,encoding='utf-8')}
         self.__persona_dni:dict[str,Persona] = {a.dni : a for a in self.__personas}
         self.__dnis:set[str] = set(self.__persona_dni.keys()) 
 #        print(self.__persona_dni)
         
     @staticmethod
-    def of()->Personas:
+    def of(file:str=absolute_path('bancos/personas.txt'))->Personas:
         if Personas.__gestor_de_personas is None:
-            Personas.__gestor_de_personas = Personas.parse(absolute_path('/bancos/personas.txt',root_project()))   
-        return Personas.__gestor_de_personas
-               
-    @staticmethod
-    def parse(fichero:str,ft:str = "%Y-%m-%d %H:%M:%S")->Personas:
-        personas:set[Persona] = {Persona.parse(ln,ft) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Personas.__gestor_de_personas = Personas(personas)
+            Personas.__gestor_de_personas = Personas(file)
         return Personas.__gestor_de_personas
 
     @property
@@ -59,7 +53,7 @@ if __name__ == '__main__':
     p:Persona = Persona.parse('González Cortés,Ricardo,97986110S,1975-05-27 02:01:29,+34693730797,Calle Alcalá;Murcia;08001', \
                               ft = "%Y-%m-%d %H:%M:%S")   
     print(p)
-    print(encoding(absolute_path('/bancos/personas.txt')))
+    print(encoding(absolute_path('bancos/personas.txt')))
     print('_________')
     print(Personas.of())
     print(Personas.of().persona_dni('34759012D'))

@@ -6,25 +6,20 @@ Created on 26 jun 2023
 
 from __future__ import annotations
 from us.lsi.biblioteca.Libro import Libro
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
+from typing import Optional
 
 class Libros:  
-    __gestor_de_libros: Libros
+    __gestor_de_libros: Optional[Libros] = None
     
-    def __init__(self,libros:set[Libro])->None:
-        self.__libros:set[Libro] = libros
+    def __init__(self,file:str)->None:
+        self.__libros:set[Libro] = {Libro.parse(ln) for ln in lineas_de_fichero(file,encoding='utf-8')}
         self.__libros_isbn:dict[str,Libro] = {a.isbn : a for a in self.__libros}
         
     @staticmethod
-    def of()->Libros:
+    def of(file:str=absolute_path('/centro/libros.txt'))->Libros:
         if Libros.__gestor_de_libros is None:
-            Libros.__gestor_de_Libros = Libros.parse(absolute_path('/centro/libros.txt',root_project()))    
-        return Libros.__gestor_de_libros
-               
-    @staticmethod
-    def parse(fichero:str)->Libros:
-        libros:set[Libro] = {Libro.parse(ln) for ln in lineas_de_fichero(fichero,encoding='utf-8')}
-        Libros.__gestor_de_libros = Libros(libros)
+            Libros.__gestor_de_libros = Libros(file)    
         return Libros.__gestor_de_libros
 
     @property

@@ -14,24 +14,18 @@ class Aeropuertos:
     
     __gestor_de_aeropuertos:Optional[Aeropuertos] = None
     
-    def __init__(self,aeropuertos:list[Aeropuerto])->None:
-        self.__aeropuertos= aeropuertos
+    def __init__(self,file:str)->None:
+        self.__aeropuertos= [Aeropuerto.parse(x) for x in lineas_de_fichero(file,encoding='Windows-1252')]  
         self.__codigos_aeropuertos: dict[str,Aeropuerto] = {a.codigo:a for a in self.__aeropuertos}
-        self.__ciudad_de_aeropuerto: dict[str,str] = {a.codigo:a.ciudad for a in aeropuertos}
+        self.__ciudad_de_aeropuerto: dict[str,str] = {a.codigo:a.ciudad for a in self.__aeropuertos}
         self.__aeropuertos_en_ciudad:dict[str,set[Aeropuerto]] = grouping_set(self.__aeropuertos,lambda a: a.ciudad)
     
     @staticmethod
-    def of()->Aeropuertos:
+    def of(file:str=absolute_path("aeropuertos/aeropuertos.csv"))->Aeropuertos:
         if Aeropuertos.__gestor_de_aeropuertos is None:
-            Aeropuertos.__gestor_de_aeropuertos = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
+            Aeropuertos.__gestor_de_aeropuertos = Aeropuertos(file)
         return Aeropuertos.__gestor_de_aeropuertos
-    
-    @staticmethod  
-    def parse(fichero:str)-> Aeropuertos:
-        aeropuertos:list[Aeropuerto] = [Aeropuerto.parse(x) for x in lineas_de_fichero(fichero,encoding='Windows-1252')]  
-        Aeropuertos.__gestor_de_aeropuertos =  Aeropuertos(aeropuertos)
-        return Aeropuertos.__gestor_de_aeropuertos
-    
+       
     def add_aeropuerto(self, a: Aeropuerto)->None:
         self.__aeropuertos.append(a)
     

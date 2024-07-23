@@ -98,6 +98,7 @@ def test5():
      
 if __name__ == '__main__':
     test3()
+    print(palabras_huecas())
     
     
     

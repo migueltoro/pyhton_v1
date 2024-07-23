@@ -15,10 +15,11 @@ from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.File import root_project, absolute_path
 from collections import Counter
+from typing import Optional
 
 class Biblioteca:
    
-    biblioteca = None
+    __gestor_de_biblioteca:Optional[Biblioteca] = None
    
     def __init__(self, nombre:str, codigo_postal:int, email:str,fu:str,fl:str,fe:str,fp:str)->None:
         check_argument(nombre!=None, "El nombre no puede ser None")
@@ -30,31 +31,21 @@ class Biblioteca:
         self._email: str = email
         
         
-        self.__usuarios:Usuarios = Usuarios.parse(fu)
-        self.__libros: Libros = Libros.parse(fl)
-        self.__ejemplares:Ejemplares = Ejemplares.parse(fe)       
-        self.__prestamos: Prestamos = Prestamos.parse(fp)  
+        self.__usuarios:Usuarios = Usuarios.of(fu)
+        self.__libros: Libros = Libros.of(fl)
+        self.__ejemplares:Ejemplares = Ejemplares.of(fe)       
+        self.__prestamos: Prestamos = Prestamos.of(fp)  
         
     @staticmethod
-    def of_files(fu:str,fl:str,fe:str,fp:str,
-                 nombre:str='Reina Mercedes',
-                 codigo_postal:int=41012,
-                 email:str='bib@us.es')->Biblioteca: 
-        return Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)   
-
-   
-    @staticmethod
-    def of(root:str=root_project())->Biblioteca:
-        if Biblioteca.biblioteca is None:
-            nombre:str='Reina Mercedes'
-            codigo_postal:int=41012
-            email:str='bib@us.es'
-            fu:str=absolute_path('biblioteca/usuarios.txt',root)
-            fl:str=absolute_path('biblioteca/libros.txt',root)
-            fe:str=absolute_path('biblioteca/ejemplares.txt',root)
-            fp:str=absolute_path('biblioteca/prestamos.txt',root)
-            Biblioteca.biblioteca = Biblioteca(nombre, codigo_postal, email,fu,fl,fe,fp)
-        return Biblioteca.biblioteca
+    def of(nombre:str='Reina Mercedes',
+            codigo_postal:int=41012,
+            email:str='bib@us.es',fu:str=absolute_path('biblioteca/usuarios.txt'),
+            fl:str=absolute_path('biblioteca/libros.txt'),
+            fe:str=absolute_path('biblioteca/ejemplares.txt'),
+            fp:str=absolute_path('biblioteca/prestamos.txt'))->Biblioteca: 
+        if Biblioteca.__gestor_de_biblioteca is None:
+            Biblioteca.__gestor_de_biblioteca = Biblioteca(nombre, codigo_postal,email,fu,fl,fe,fp)
+        return Biblioteca.__gestor_de_biblioteca
         
     @property
     def nombre(self:Biblioteca) -> str:
