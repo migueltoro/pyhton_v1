@@ -5,7 +5,7 @@ Created on 16 sept 2022
 '''
 
 
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, iterable_de_fichero
+from us.lsi.tools.File import lineas_de_fichero, absolute_path, iterable_de_fichero, iterable_de_csv
 from typing import Callable, Iterable
 
 def lista_de_fichero_0(file:str)->list[str]:
@@ -85,6 +85,17 @@ def suma_elementos_fichero_if(file:str,encoding:str,pd:Callable[[int],bool])->in
                     r = r + e 
     return r
 
+
+def suma_elementos_fichero_if_2(file:str,encoding:str,pd:Callable[[int],bool])->int:
+    lns:Iterable[list[str]] = iterable_de_csv(file,delimiter=',',encoding=encoding)
+    r:int = 0
+    for linea in lns:
+        for p in linea:
+            if len(p) > 0:
+                e = int(p)
+                if pd(e):
+                    r = r + e 
+    return r
 def cuadrado(x:int)->int:
     return x*x
 
@@ -93,6 +104,7 @@ def test1():
     print(absolute_path('resources/datos_2.txt'))
     f:Callable[[int],int] = lambda x: x*x
     print(f(4))
+    print(cuadrado(4))
     
 def test2():
     print(lista_de_fichero_0(absolute_path('datos/datos.txt')))
@@ -111,11 +123,28 @@ def test3():
     
 def test4():
     print(suma_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
-    print(suma_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
-    print(suma_elementos_fichero_if(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0))  
-    
+    print(suma_elementos_fichero_if(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0)) 
+    print(suma_elementos_fichero_if_2(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0)) 
+
+
+def test5():
+    ''' Equivalencia entre for y while '''
+   
+    print('________________________')  
+    s1:int=0
+    for e in range(10,30,5):
+        s1 = s1 + e
+        print(s1)
+    print('________________________')    
+    s2:int=0
+    i:int = 10
+    while i < 30:
+            s2 = s2 + i
+            i = i + 5
+            print(s2) 
+               
 if __name__ == '__main__':
-    test2()  
+    test4()  
     
       
     

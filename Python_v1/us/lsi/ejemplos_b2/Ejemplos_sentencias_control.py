@@ -105,6 +105,22 @@ def test5():
         print(s1)
     print('________________________')    
     s2:int=0
+    i:int = 10
+    while i < 30:
+            s2 = s2 + i
+            i = i + 5
+            print(s2)
+    
+def test6():
+    ''' Equivalencia entre for y while '''
+   
+    print('________________________')  
+    s1:int=0
+    for e in range(10,30,5):
+        s1 = s1 + e
+        print(s1)
+    print('________________________')    
+    s2:int=0
     it:Iterator[int] = iter(range(10,30,5))
     r2:bool = True
     while r2:
@@ -114,6 +130,7 @@ def test5():
             print(s2)
         except StopIteration:
             r2 = False
+                 
     
 if __name__ == '__main__':
     test5()

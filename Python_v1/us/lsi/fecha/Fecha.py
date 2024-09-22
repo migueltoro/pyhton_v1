@@ -49,7 +49,7 @@ class Fecha:
     
     @staticmethod
     def meses():
-        return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", \
+        return ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", 
                 "Noviembre","Diciembre"]
     
     @property
