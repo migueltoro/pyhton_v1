@@ -96,8 +96,24 @@ def suma_elementos_fichero_if_2(file:str,encoding:str,pd:Callable[[int],bool])->
                 if pd(e):
                     r = r + e 
     return r
+
 def cuadrado(x:int)->int:
     return x*x
+
+def lee_de_fichero(file:str,encoding:str)->str:
+    with open(file,'r',encoding=encoding) as f:
+        return f.read()
+
+def escribe_en_fichero(file:str,encoding:str,ls:Iterable[str])->None:
+    with open(file,'w',encoding=encoding) as f:
+        r:str = '\n'.join(ls)
+        f.write(r)
+            
+def escribe_en_fichero_csv(file:str,sep:str,encoding:str,ls:Iterable[list[str]])->None:
+    with open(file,'w',encoding=encoding) as f:
+        for linea in ls:
+            r:str = sep.join(linea)
+            f.write(r+'\n')
 
 def test1():
     print(",antonio,pepe".split(','))
@@ -142,9 +158,15 @@ def test5():
             s2 = s2 + i
             i = i + 5
             print(s2) 
-               
+
+def test6():
+    print(lee_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8'))
+    lns:Iterable[list[str]] = iterable_de_csv(absolute_path('datos/datos_2.txt'),delimiter=',',encoding='utf-8')
+    escribe_en_fichero(absolute_path('datos/datos_4.txt'), 'utf-8', [str(x) for x in range(10,30,5)])
+    escribe_en_fichero_csv(absolute_path('datos/datos_5.txt'), ';', 'utf-8', lns)
+             
 if __name__ == '__main__':
-    test4()  
+    test6()  
     
       
     
