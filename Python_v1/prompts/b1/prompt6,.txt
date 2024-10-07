@@ -1,0 +1,1 @@
+Me puedes explicar más detalladamente las operaciones sobre variables de tipo conjunto de algún tipo E en Python?

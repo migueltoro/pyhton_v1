@@ -4,8 +4,8 @@ Created on 6 nov 2022
 @author: migueltoro
 '''
 
-a = {1, 2, 3, 4, 5, 6}
-b = {4, 5, 6, 7, 8}
+a:set[int] = {1, 2, 3, 4, 5, 6}
+b:set[int] = {4, 5, 6, 7, 8}
 
 if __name__ == '__main__':
     print("Unión:", a | b)

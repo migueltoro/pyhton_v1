@@ -1,0 +1,1 @@
+¿Me puedes explicar como leer las líneas de un fichero f y devolver una lista con ellas? 

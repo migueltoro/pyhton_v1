@@ -9,7 +9,8 @@ from typing import Iterable, Optional
 import csv
 import chardet
 from us.lsi.tools.Preconditions import check_argument
-import os
+from os.path import abspath, join, isfile
+from os import getcwd
 import sys
 
 def root_project():
@@ -30,10 +31,10 @@ def absolute_path(relative_path:str,root:str=root_project())->str:
         >>> absolute_path('data/file.txt')
         '/path/to/project/data/file.txt'
     """
-    return os.path.abspath(os.path.join(root, relative_path))
+    return abspath(join(root, relative_path))
 
 def dir_path()->str:
-    return os.getcwd()
+    return getcwd()
 
 def existe_fichero(filePath:str)->bool:
     """
@@ -49,7 +50,7 @@ def existe_fichero(filePath:str)->bool:
         >>> existe_fichero('path/to/file.txt')
         True
     """
-    return os.path.isfile(filePath)
+    return isfile(filePath)
     
 def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     """
@@ -310,7 +311,7 @@ def encoding(file:str)->Optional[str]:
 
 if __name__ == '__main__':
     print(sys.path)
-    print(os.getcwd())
+    print(getcwd())
     print(root_project())
     print(absolute_path("datos/datos_2.txt"))
     print(existe_fichero(absolute_path("datos/datos_2.txt")))

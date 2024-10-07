@@ -1,0 +1,4 @@
+Me puedes explicar el concepto de f string en Python? 
+Incluyendo la manera de contruir cadenas de caracteres a partir de variables de tipo
+entero, real, fecha, lista, conjunto o diccionario. 
+Incluye tipos para cada variable e 

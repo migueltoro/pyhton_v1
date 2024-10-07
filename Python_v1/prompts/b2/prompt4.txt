@@ -1,0 +1,3 @@
+Me puedes explicar las operaciones posibles con diccionarios en Python 3.9? 
+Y las propiedades y operaciones del tipo Counter[E].
+Usa siempre tipos en los parámetros y las variables y explicita las variables de tipo en los tipos genéricos. 

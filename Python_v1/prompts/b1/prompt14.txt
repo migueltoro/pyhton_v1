@@ -1,0 +1,5 @@
+Partimos de un fichero de texto cuyas líneas son números enteros separados por un separador. 
+Me puedes diseñar una función que toma como parámetro el nombre de un fichero de texto y el separador 
+y calcula el máximo de los números del fichero? 
+Usa tipos para cada variable y parámetro. 
+¿Puedes usar la función lineas_de_csv que es está en el paquete us.lsi.tools.File de este proyecto?

@@ -53,33 +53,6 @@ def suma_elementos_fichero_if(file:str,encoding:str,pd:Callable[[int],bool])->in
                     r = r + e 
     return r
 
-def acumula(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encoding:str='utf-8')->R:
-    lineas:list[str] = lineas_de_fichero(fichero,encoding=encoding)
-    r:R = inicial
-    for ln in lineas:
-        if len(ln) > 0:
-            for e in ln.split(delimiter):
-                r = f(r,e)
-    return r
-
-
-def acumula_2(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encoding:str='utf-8')->R:
-    lineas:list[list[str]] = lineas_de_csv(fichero,delimiter=delimiter,encoding=encoding)
-    r:R = inicial
-    for ln in lineas:
-            for e in ln:
-                r = f(r,e)
-    return r
-
-
-def acumula_3(fichero:str,inicial:R,f:Callable[[R,str],R],delimiter:str=',',encoding:str='utf-8')->R:
-    lineas:Iterable[list[str]] = iterable_de_csv(fichero,delimiter=delimiter,encoding=encoding)
-    r:R = inicial
-    for ln in lineas:
-            for e in ln:
-                r = f(r,e)
-    return r
-
 def test1():
     print(encoding(absolute_path('resources/quijote.txt')))
     print(encoding(absolute_path('resources/lin_quijote.txt')))
@@ -88,27 +61,9 @@ def test1():
 def test2():
     print(num_caracteres_no_delimitadores(absolute_path('resources/quijote.txt'),encoding='utf-16'))
     print(numero_de_palabras_distintas(absolute_path('resources/quijote.txt'),encoding='utf-16'))
-    r1:int = acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=0, f=lambda r,e:r+int(e))
-    print(r1)
-    
-def test3():
-    r2:list[int] = acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=[], f=lambda r,e:r+[int(e)])
-    print(r2)
-    
-def test4():
-    r3:set[int]= acumula(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
-    print(r3)
-    
-def test5():
-    r3:set[int] = acumula_2(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
-    print(r3)
-    
-def test6():
-    r3 :set[int] = acumula_3(absolute_path("datos/datos_3.txt"),encoding='ISO-8859-1', inicial=set(), f=lambda r,e:r|{int(e)})
-    print(r3)
 
 if __name__ == '__main__':
-    test6()
+    test2()
     
     
    

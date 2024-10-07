@@ -1,0 +1,1 @@
+Me puedes explicar más detalladamente las operaciones sobre variables de tipo cadena de caracteres en Python?

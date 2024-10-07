@@ -1,0 +1,2 @@
+Me puedes explicar más detalladamente las operaciones sobre variables de date, time, datetime en Python? 
+Incluyendo diferencia entre ellas y suma o resta de meses días u horas.

@@ -1,0 +1,2 @@
+Me puedes explicar más detalladamente las operaciones sobre variables de tipo diccionario con claves de algún tipo K 
+y valores de algún tipo V,  en Python?

@@ -1,0 +1,2 @@
+Me puedes explicar las operaciones posibles con conjuntos en Python? 
+Usa siempre tipos en los parámetros y las variables.

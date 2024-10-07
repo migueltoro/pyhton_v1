@@ -1,0 +1,2 @@
+Me puedes explicar cómo se definen las listas, los conjutos, los diccionarios y 
+los generadores por comprensión en Python 3.9?

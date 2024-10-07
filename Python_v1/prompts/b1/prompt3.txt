@@ -1,0 +1,1 @@
+Cuales son las operaciones comunes que se pueden realizar con las variables en Python?

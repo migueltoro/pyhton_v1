@@ -1,0 +1,3 @@
+Me puedes explicar el concepto de expresión lambda  y darme ejemplos con funciones cuyos 
+parámetros pueden ser expresiones lambda?. 
+Usa tipos para cada variable y parámetro.

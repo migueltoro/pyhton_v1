@@ -1,0 +1,2 @@
+Me puedes explicar con ejemplos la diferencia entre parámetros formales y parámetros reales en Python?. 
+Usa siempre tipos en los parámetros y las variable.

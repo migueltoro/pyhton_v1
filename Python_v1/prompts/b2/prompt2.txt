@@ -1,0 +1,4 @@
+Me puedes explicar con ejemplos la diferencia entre parámetros formales y reales en Python? 
+Fijándose solo en la cabecera de la función, es decir en la definición de la función, que tipos de parámetros formales  hay?.  
+Y por otra parte fijándose solo en la llamada de la función, que tipos de parámetros reales hay? 
+Usa siempre tipos en los parámetros y las variables.

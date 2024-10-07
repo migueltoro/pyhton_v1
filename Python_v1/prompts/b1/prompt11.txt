@@ -1,0 +1,1 @@
+¿Cómo puedo iterar sobre los elementos de una lista en Python usando while?
