@@ -4,6 +4,7 @@ Created on 10 nov 2022
 @author: migueltoro
 '''
 
+
 from typing import Iterable
 from us.lsi.tools.Iterable import str_iter,flat_map
 from us.lsi.tools.Dict import str_dict
