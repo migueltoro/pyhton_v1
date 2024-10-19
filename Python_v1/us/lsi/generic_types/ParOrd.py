@@ -17,6 +17,7 @@ R = TypeVar('R', bound=Comparable)
     
 @total_ordering
 class ParOrd(Par[E,R]):
+  
       
     @staticmethod
     def of(first:E,second:R) -> ParOrd[E,R]:
