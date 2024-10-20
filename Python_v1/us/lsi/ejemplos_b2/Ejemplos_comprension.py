@@ -24,17 +24,23 @@ def test1():
     for x in range(3, 70):
         if x % 3 == 0:
             t = x**2
-            pass
+            print(t)
     # Forma por comprensión   
     r:Iterable[int] = (x**2 for x in range(3, 70) if x % 3 == 0)
-    
+    print('________________________________________')
+    print(r)
     for e in r:
         print(e)
     
     # Forma por explícita
-    r2: Iterable[int] = (3,56,78,67,45)
+   
+    r2: Iterable[int] = (3,56,78,67,45) # En realidad es una tupla que como sabemos es iterable
+    print('________________________________________')
+    print(r2)
     for e in r2:
         print(e)
+        
+    
     
 def test2():
     # Forma clásica
@@ -51,6 +57,7 @@ def test2():
     
     # Forma por explícita
     s2: list[int] = [3,56,78,67,45]
+    print(s2)
         
 def test3():
     # Forma clásica
@@ -162,5 +169,5 @@ def test13():
     
 
 if __name__ == '__main__':
-    test13()
+    test1()
     

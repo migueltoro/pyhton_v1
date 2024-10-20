@@ -1,0 +1,1 @@
+Necesitan los elementos de un iterable estar todos en memoria?

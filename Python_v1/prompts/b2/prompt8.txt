@@ -1,0 +1,1 @@
+Me puedes explicar la diferencia entre un iterable en general y una colección de tipos lista, conjunto o diccionario en Python 3.9?
