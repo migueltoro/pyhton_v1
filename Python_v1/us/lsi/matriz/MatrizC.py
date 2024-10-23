@@ -83,6 +83,8 @@ class MatrizC(Matriz[E]):
 #        return self.datos==(other.datos)
         indices:Iterable[tuple[int,int]] = (p for p in all_pairs(self.nf(),self.nc()))
         return all(self.get(f,c) == other.get(f,c) for f,c in indices)
+ 
+ 
     
         
 if __name__ == '__main__':
