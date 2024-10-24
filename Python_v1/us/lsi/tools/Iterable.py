@@ -17,6 +17,46 @@ R = TypeVar('R')
 
 identity = lambda x:x
 
+def take_while(iterable:Iterable[E],predicate:Callable[[E],bool]) -> Iterable[E]:
+    """
+    Yield elements from the iterable as long as the predicate is true.
+
+    Args:
+        iterable (Iterable[E]): The input iterable to process.
+        predicate (Callable[[E], bool]): A function that takes an element from the iterable and returns a boolean.
+
+    Yields:
+        E: Elements from the iterable for which the predicate returns True, stopping at the first False.
+    """
+    b:bool = True      
+    for e in iterable:
+        b = predicate(e)
+        if b:
+            yield e
+        else:
+            break
+        
+def drop_while(iterable:Iterable[E],predicate:Callable[[E],bool]) -> Iterable[E]:
+    """
+    Drop elements from the iterable as long as the predicate is true, then yield the rest.
+
+    Args:
+        iterable (Iterable[E]): The input iterable to process.
+        predicate (Callable[[E], bool]): A function that takes an element from the iterable and returns a boolean.
+
+    Yields:
+        E: Elements from the iterable after the predicate returns False for the first time.
+    """
+    b:bool = True      
+    for e in iterable:
+        if b:
+            b = predicate(e)
+            if not b:
+                yield e
+        else:
+            yield e
+        
+
 def aleatorios(n:int,a:int,b:int) -> Iterable[int]:
     assert a < b, f"en aleatorios: {a} debe ser menor que {b}"
     for _ in range(n):
@@ -251,9 +291,18 @@ def test9():
 def test10():
     it5:list[int] = [x for x in range(10,30,7)]
     print(grouping_list(it5,lambda x:x%2))
+    
+def test11():
+    it5:list[int] = list(aleatorios(100, -100, 100))
+    print(it5)
+    print(list(take_while(it5,lambda x :x>-79)))
+    print(list(drop_while(it5,lambda x :x>-79)))
+    
+    
+    
 
 if __name__ == '__main__':
-    test2() 
+    test11() 
     
     
     

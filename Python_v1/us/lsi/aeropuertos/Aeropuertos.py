@@ -60,7 +60,7 @@ class Aeropuertos:
 
 if __name__ == '__main__':
     espacio_aereo_root = root_project()
-#    a = Aeropuertos.parse(absolute_path("/aeropuertos/aeropuertos.csv"))
+#    a = Aeropuertos.parse(absolute_path("aeropuertos/aeropuertos.csv"))
 #    print(a)
 #    print(a.aeropuerto_index(0))
     print(Aeropuertos.of().aeropuerto_index(0))

@@ -46,8 +46,8 @@ if __name__ == '__main__':
     print(encoding(absolute_path("aeropuertos/aerolineas.csv")))
     '''
     espacio_aereo_root = root_project()
-    print(encoding(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root)))
-    a = Aerolineas.parse(absolute_path("/aeropuertos/aerolineas.csv",espacio_aereo_root))
+    print(encoding(absolute_path("aeropuertos/aerolineas.csv",espacio_aereo_root)))
+    a = Aerolineas.parse(absolute_path("aeropuertos/aerolineas.csv",espacio_aereo_root))
     print(a)
     '''
     print(Aerolineas.of().aerolinea_index(0))

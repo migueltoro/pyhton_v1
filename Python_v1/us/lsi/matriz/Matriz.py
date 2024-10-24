@@ -6,14 +6,14 @@ Created on 10 oct 2022
 
 from __future__ import annotations
 from typing import TypeVar, Generic, Callable
-from abc import abstractmethod
+from abc import ABC,abstractmethod
 
 E = TypeVar("E")
 R = TypeVar("R")
 
 identity = lambda x:x
 
-class Matriz(Generic[E]):
+class Matriz(ABC,Generic[E]):
     
     def __init__(self,datos: list[list[E]])->None:
         self.datos: list[list[E]] = datos    

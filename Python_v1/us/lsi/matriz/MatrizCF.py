@@ -9,7 +9,6 @@ from fractions import Fraction
 from us.lsi.matriz.MatrizC import MatrizC
 from typing import Callable, Iterable
 from us.lsi.tools.Iterable import all_pairs
-from us.lsi.tools import Preconditions
 from us.lsi.tools.File import absolute_path
 
 
@@ -46,20 +45,20 @@ class MatrizF(MatrizC[Fraction]):
         return MatrizF.of(datos)
     
     def __mul__(self,other:MatrizF)->MatrizF:
-        Preconditions.check_argument(self.nc == other.nf, f'No se pueden multiplicar')
+        assert self.nc() == other.nf(), f'No se pueden multiplicar {self.nc()},{other.nf()}'
         ss:Callable[[int,int],Fraction] = lambda f,c:sum((self.get(f,k)*other.get(k,c) for k in range(self.nc())),Fraction(0))
         datos:list[list[Fraction]] = [[ss(f,c) for c in range(other.nc())] for f in range(self.nf())]
         return MatrizF.of(datos)
     
 if __name__ == '__main__':
-    m2:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz2.txt'))
+    m2:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz2.txt'))
     print(m2)
     print(m2.es_antisimetrica)
-    m3:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz4.txt'))
+    m3:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz4.txt'))
     print(m3)
     print(m3.es_antisimetrica)
     print('----------------')
-    m5:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz7.txt'))
+    m5:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz7.txt'))
     print(m5)
     print('----------------')
     print(m3+m5)

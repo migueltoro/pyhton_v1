@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from fractions import Fraction
 from us.lsi.matriz.MatrizI import MatrizI
-from us.lsi.tools import Preconditions
 from us.lsi.tools.File import absolute_path
 
 
@@ -43,7 +42,7 @@ class MatrizF(MatrizI[Fraction]):
     # OTROS MÉTODOS
     #===========================================================================
     def __add__(self,other:MatrizF)->MatrizF:
-        Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden sumar')
+        assert self.nf() == other.nf() and self.nc() == other.nc(), f'No se pueden sumar'
         dt:list[list[Fraction]] = []
         for f in range(self.nf()):
             fila: list[Fraction] = []
@@ -53,7 +52,7 @@ class MatrizF(MatrizI[Fraction]):
         return MatrizF.of(dt)
     
     def __sub__(self,other:MatrizF)->MatrizF:
-        Preconditions.check_argument(self.nf == other.nf and self.nc == other.nc, f'No se pueden restar')
+        assert self.nf() == other.nf() and self.nc() == other.nc(), f'No se pueden restar'
         dt:list[list[Fraction]] = []
         for f in range(self.nf()):
             fila: list[Fraction] = []
@@ -63,7 +62,7 @@ class MatrizF(MatrizI[Fraction]):
         return MatrizF.of(dt)
     
     def __mul__(self,other:MatrizF)->MatrizF:
-        Preconditions.check_argument(self.nc == other.nf, f'No se pueden multiplicar')
+        assert self.nc() == other.nf(), f'No se pueden multiplicar'
         dt:list[list[Fraction]] = []
         for f in range(self.nf()):
             fila: list[Fraction] = []
@@ -77,13 +76,13 @@ class MatrizF(MatrizI[Fraction]):
     
 
 if __name__ == '__main__':
-    m2:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz2.txt'))
+    m2:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz2.txt'))
     print(m2)
     print(m2.es_antisimetrica)
-    m3:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz4.txt'))
+    m3:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz4.txt'))
     print(m3)
     print('----------------')
-    m5:MatrizF = MatrizF.of_file_fraction(absolute_path('/datos/matriz7.txt'))
+    m5:MatrizF = MatrizF.of_file_fraction(absolute_path('datos/matriz7.txt'))
     print(m5)
     print('----------------')
     print(m3+m5)

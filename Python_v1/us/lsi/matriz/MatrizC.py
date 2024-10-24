@@ -88,21 +88,21 @@ class MatrizC(Matriz[E]):
     
         
 if __name__ == '__main__':
-    m3:MatrizC[int] = MatrizC.parse(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
+    m3:MatrizC[int] = MatrizC.parse(absolute_path('datos/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
-    print(m3.traspuesta)
-    print(encoding(absolute_path('/datos/matriz1.txt')))
-    m:MatrizC[str]= MatrizC.parse(absolute_path('/datos/matriz1.txt'))
+    print(m3.traspuesta())
+    print(encoding(absolute_path('datos/matriz1.txt')))
+    m:MatrizC[str]= MatrizC.parse(absolute_path('datos/matriz1.txt'))
     print(m)
     print('_________________')
-    print(m.traspuesta)
+    print(m.traspuesta())
     print('_________________')
     print(m.get(2,3))
-    print(m.nf)
-    print(m.nc)
+    print(m.nf())
+    print(m.nc())
     print(m.submatriz(1, 1, 5, 4))
-    print(m.es_simetrica)
+    print(m.es_simetrica())
     print('_________________')
     
         

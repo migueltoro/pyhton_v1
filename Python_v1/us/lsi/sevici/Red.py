@@ -11,14 +11,14 @@ from us.lsi.tools.File import encoding, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 #from sortedcontainers import SortedSet # type: ignore
 #from us.lsi.tools.GraphicsMaps import markers
-from abc import abstractmethod
+from abc import ABC,abstractmethod
 from enum import Enum, auto
 
 class RedType(Enum):   
     Clasica = auto()
     Comprension = auto()   
 
-class Red:
+class Red(ABC):
     
     redType:RedType = RedType.Comprension
     

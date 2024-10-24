@@ -86,19 +86,19 @@ class Matriz_field(MatrizC[S]):
     
     @property
     def es_antisimetrica(self):
-        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf,self.nc) if f >= c)
+        indices:Iterable[tuple[int,int]] = ((f,c) for f,c in all_pairs(self.nf(),self.nc()) if f >= c)
         return all(self.get(i,j) == self.field.zero() - self.get(j,i) for i,j in indices)
     
     @property
     def traza(self):
-        return sum((self.get(i,i) for i in range(self.nf) if i<self.nf and i<self.nc),self.field.zero())
+        return sum((self.get(i,i) for i in range(self.nf()) if i<self.nf() and i<self.nc()),self.field.zero())
    
     @property
     def aumentada(self):
         one:S = self.field.one()
         zero:S = self.field.zero()
         ff:Callable[[int],list[S]] = lambda c: [one if i == c else zero for i in range(self.nc())]
-        datos:list[list[S]] = [self.datos[f]+ff(f) for f in range(self.nf)]
+        datos:list[list[S]] = [self.datos[f]+ff(f) for f in range(self.nf())]
         return Matriz_field.of_datos(datos,self.field)
    
     def __invert__(self)->Matriz_field:

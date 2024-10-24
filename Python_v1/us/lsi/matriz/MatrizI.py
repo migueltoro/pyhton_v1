@@ -108,7 +108,7 @@ class MatrizI(Matriz[E]):
         return r
            
 if __name__ == '__main__':
-    m3:MatrizI[int] = MatrizI.parse(absolute_path('/datos/matriz4.txt'),lambda x:int(x))
+    m3:MatrizI[int] = MatrizI.parse(absolute_path('datos/matriz4.txt'),lambda x:int(x))
     print(m3)
     print('___________')
-    print(m3.traspuesta)     
+    print(m3.traspuesta())     

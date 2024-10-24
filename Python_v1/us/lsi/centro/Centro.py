@@ -40,11 +40,11 @@ class Centro:
             fichero_asignaturas:str=absolute_path('centro/asignaturas.txt',root)
             fichero_matriculas:str=absolute_path('centro/matriculas.txt',root)
             fichero_asignaciones:str=absolute_path('centro/asignaciones.txt',root)
-            alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
-            profesores:Profesores = Profesores.parse(fichero_profesores)
-            asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)
-            matriculas:Matriculas = Matriculas.parse(fichero_matriculas)
-            asignaciones: Asignaciones = Asignaciones.parse(fichero_asignaciones)
+            alumnos:Alumnos = Alumnos.of(fichero_alumnos)
+            profesores:Profesores = Profesores.of(fichero_profesores)
+            asignaturas:Asignaturas = Asignaturas.of(fichero_asignaturas)
+            matriculas:Matriculas = Matriculas.of(fichero_matriculas)
+            asignaciones: Asignaciones = Asignaciones.of(fichero_asignaciones)
             Centro.centro = Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
         return Centro.centro
 
@@ -55,11 +55,11 @@ class Centro:
            fichero_asignaturas:str='../../../centro/asignaturas.txt',
            fichero_matriculas:str='../../../centro/matriculas.txt',
            fichero_asignaciones:str='../../../centro/asignaciones.txt')->Centro:
-        alumnos:Alumnos = Alumnos.parse(fichero_alumnos)
-        profesores:Profesores = Profesores.parse(fichero_profesores)
-        asignaturas:Asignaturas = Asignaturas.parse(fichero_asignaturas)
-        matriculas:Matriculas = Matriculas.parse(fichero_matriculas)
-        asignaciones: Asignaciones = Asignaciones.parse(fichero_asignaciones)
+        alumnos:Alumnos = Alumnos.of(fichero_alumnos)
+        profesores:Profesores = Profesores.of(fichero_profesores)
+        asignaturas:Asignaturas = Asignaturas.of(fichero_asignaturas)
+        matriculas:Matriculas = Matriculas.of(fichero_matriculas)
+        asignaciones: Asignaciones = Asignaciones.of(fichero_asignaciones)
         return Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
 
    
