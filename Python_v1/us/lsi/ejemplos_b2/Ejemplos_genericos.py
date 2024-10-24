@@ -225,6 +225,7 @@ def test_par():
     p3 = Par.of(Fraction(4,56),45)
     print(p1 == p3)
 
+
 def test_polinomio():
     p0: PolinomioF = PolinomioF.of(Fraction(1,1),Fraction(1,1))
     p1: PolinomioF = PolinomioF.of(Fraction(3,1),Fraction(-4,1),Fraction(0,1),Fraction(7))
