@@ -1,0 +1,2 @@
+Me puedes explicar como implementar la sentencia de control for mediante un while en python? 
+Que diferencia existe en la implementación si el for itera sobre una lista o sobre un iterable?

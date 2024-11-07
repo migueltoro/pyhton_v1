@@ -1,0 +1,1 @@
+Me puedes explicar con ejemplos la diferencia de definir una clase con la anotación @dataclass y sin ella en Python?

@@ -1,0 +1,1 @@
+Cual es la diferencia entre una propiedad y un atributo en Python? Como puedo implementar una propiedad mutable a partir de un atributo en Python? Y una inmutable?

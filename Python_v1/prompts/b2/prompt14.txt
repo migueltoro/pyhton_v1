@@ -1,0 +1,1 @@
+Me puedes explicar el concepto de herencia en general y entre tipos genéricos en particular en Python?

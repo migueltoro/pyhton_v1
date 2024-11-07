@@ -1,0 +1,1 @@
+Me puedes explicar en Python que es una excepción, como dispararla y como capturarla y gestionarla?

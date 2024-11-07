@@ -43,8 +43,7 @@ class Coordenadas2D:
         inc_lat  = latitud_b - latitud_a
         inc_long = longitud_b - longitud_a
 
-        a = sin(inc_lat / 2)**2 + cos(latitud_a) * \
-            cos(latitud_b) * sin(inc_long / 2)**2
+        a = sin(inc_lat / 2)**2 + cos(latitud_a) * cos(latitud_b) * sin(inc_long / 2)**2
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
         return radio_tierra * c
 

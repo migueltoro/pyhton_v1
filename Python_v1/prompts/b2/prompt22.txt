@@ -1,0 +1,1 @@
+Me puedes explicar con ejemplos las funciones de python para leer  de la consola?

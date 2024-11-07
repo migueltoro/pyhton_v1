@@ -1,0 +1,2 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón mean, que toma un iterable como parámetro, en Python con tipos? Cual es el tipo de sus argumentos? 

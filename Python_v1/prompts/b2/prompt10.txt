@@ -1,0 +1,1 @@
+Me puedes explicar con ejemplos que es un tipo genérico y una variable de tipo genérico en Python? 

@@ -1,0 +1,5 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica flat_map, que toma como parámetro un iterable cuyos elementos son iterables y 
+devuelve un iterable de los elementos que formar el iterable original, en Python con tipos? 
+El tipo retornado por la función debe ser iterable y no una lista.
+Cual es el tipo de sus argumentos?

@@ -1,0 +1,4 @@
+Que necesita un tipo pra que se pueda usar como una clave de un diccionario en python? 
+Cumplen estas restricciones los tipos definidos por una clase anotada con @dataclass? 
+Que debo añadir a un tipo definidos por una clase sin la anotación @dataclass 
+para poder ser usado como una clave de un diccionario?

@@ -1,0 +1,3 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica max, que toma un iterable como parámetro, en Python con tipos? Cual es el tipo de sus argumentos?
+Pero puede que el operador > no esté disponible para el tipo T. Como exigir que esté disponible para este tipos genérico T? 

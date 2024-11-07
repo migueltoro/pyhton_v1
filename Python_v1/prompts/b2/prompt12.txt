@@ -1,0 +1,1 @@
+Que es un atributo en Python y cómo puedo definir atributos públicos, privados y protegidos en Python?

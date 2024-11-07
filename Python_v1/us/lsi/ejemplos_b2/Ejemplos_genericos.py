@@ -14,7 +14,7 @@ from us.lsi.tools.Preconditions import check_position_index
 A = TypeVar('A')
 B = TypeVar('B')
 E = TypeVar('E')
-
+ 
 
 class Par(Generic[A,B]):
     
@@ -43,9 +43,8 @@ class Par(Generic[A,B]):
     def __str__(self) -> str:
         return f'({self.__first},{self.__second})'
     
-    
 
-class Polinomio(ABC,Generic[E]):
+class Polinomio(ABC,Generic[E]): 
     
     def __init__(self,coeficientes: list[E])->None:
         self.__coeficientes: list[E] = coeficientes 
@@ -224,6 +223,7 @@ def test_par():
     p2 = Par.of(Fraction(4,56),46)
     p3 = Par.of(Fraction(4,56),45)
     print(p1 == p3)
+    print(p1 == p2)
 
 
 def test_polinomio():

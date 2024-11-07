@@ -1,0 +1,1 @@
+Me puedes explicar la diferencia entre un iterable y una lista en Python y la forma de usar ambos?
