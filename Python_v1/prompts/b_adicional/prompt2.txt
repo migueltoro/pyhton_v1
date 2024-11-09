@@ -1,0 +1,1 @@
+Me puedes explicar con ejemplos que es un protocolo, Protocol, en Python, su diferencia con una clase abstracta y sus usos?

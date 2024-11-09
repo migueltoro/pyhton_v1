@@ -1,0 +1,5 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica sorted, que toma como parámetro un iterable de elementos de tipo E y 
+una función key que para cada elemento del iterable devuelve un valor de tipo K  
+y devuelve una lista ordenada de los objetos del iterable, en Python con tipos?
+K que debe ser comparable.

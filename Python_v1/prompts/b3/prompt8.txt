@@ -1,0 +1,4 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica enumerate, que toma como parámetro un iterable y
+devuelve otro de iterable de tuplas formadas por un objeto y su posición en el iterable, en Python con tipos?
+Sin usar listas locales ni la función enumerate de Python.

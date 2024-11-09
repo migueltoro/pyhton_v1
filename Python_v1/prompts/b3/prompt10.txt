@@ -1,0 +1,5 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica accumulate_2, que toma como parámetro un iterable de elementos de tipo E y 
+una bifunción add que acumula valores de tipo E con otro de tipo R.
+y un valor incial de tipo R, y devuelve un iterable de los valores acumulados de tipo R, en Python con tipos?
+Puedes usar la función accumulate de Python para comprobar que tu implementación es correcta.

@@ -1,0 +1,7 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica grouping_reduce, que toma como parámetro un iterable, una función key, otra función value y 
+una bifunción op, y
+devuelve un diccionario cuyas claves son los valores devueltos por key y el valor asociado 
+el valor acumulado mediante op de los objetos del grupo definido por esa clave transformados por value, en Python con tipos? 
+Cual es el tipo de sus argumentos? 
+La función value debe tener un valor por defecto que sea la identidad.

@@ -1,0 +1,1 @@
+Me puedes explicar que hace la función yield en Python?

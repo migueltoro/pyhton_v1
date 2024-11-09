@@ -1,0 +1,4 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica all_match, que toma como parámetro un iterable y un predicado y
+devuelve un valor lógico verdadero si todos los objetos del iterable cumplen el predicado, en Python con tipos?
+Cual es el tipo de sus argumentos? 

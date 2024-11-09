@@ -1,0 +1,5 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+el tipo genérico Counter[E], en Python con tipos? 
+El tipo debe incluir el método count que recibe un valor de tipo E y devuelve la cantidad de veces que ese valor ha sido contado.
+También debe incluir el método most_common que devuelve una lista de tuplas con los n valores 
+más frecuentes y su cantidad de ocurrencias.

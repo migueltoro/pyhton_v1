@@ -1,0 +1,20 @@
+Me puedes explicar con ejemplos en que consiste el patrón de diseño singletón en Python con tipos?
+Me puedes explicar como se usa este patrón en el módulo us.lsi.aeropuertos.Aerolineas.py que te incluyo:
+
+
+
+class Aerolineas:  
+    __gestor_de_aerolineas: Optional[Aerolineas] = None
+    
+    def __init__(self,file:str)->None:
+        aerolineas:list[Aerolinea] = [Aerolinea.parse(x) for x in lineas_de_fichero(file, encoding='Windows-1252')]
+        self.__aerolineas = aerolineas
+        self.__codigos_aerolineas = {a.codigo:a for a in aerolineas}
+        
+    @staticmethod
+    def of(file:str= absolute_path("aeropuertos/aerolineas.csv"))->Aerolineas:
+        if Aerolineas.__gestor_de_aerolineas is None:
+            Aerolineas.__gestor_de_aerolineas = Aerolineas(file)
+        return Aerolineas.__gestor_de_aerolineas
+
+   

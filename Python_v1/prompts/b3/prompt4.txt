@@ -1,0 +1,6 @@
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica grouping_set, que toma como parámetro un iterable, una función key y otra función value, y
+devuelve un diccionario cuyas claves son los valores devueltos por key y el valor asociado 
+un conjunto con los objetos del grupo definido por esa clave transformados por value, en Python con tipos? 
+Cual es el tipo de sus argumentos? 
+La función value debe tener un valor por defecto que sea la identidad.

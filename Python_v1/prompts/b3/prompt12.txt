@@ -1,0 +1,3 @@
+Me puedes explicar con  ejemplos la diferencia entre un atributo de instancia y uno de clase en Python con tipos?
+Existen atributos static y cual es su diferencia de losa tributos de instancia y de los de clase de clase en Python con tipos?
+Me puedes explicar con  ejemplos la diferencia entre un método de instancia, y un static y otro de clase en Python con tipos?

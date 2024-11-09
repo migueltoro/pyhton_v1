@@ -1,1 +1,4 @@
-Me puedes explicar que hace la función yield en Python?
+Me puedes explicar como implementar de forma clásica, es decir usando sólo las estructuras de control for e if, 
+la funcíón genérica reduce, que toma como parámetros un iterable, una función, opcionalmente un valor inicial 
+y devuelve un valor opcional sin disparar ninguna excepción, en Python con tipos? 
+Cual es el tipo de sus argumentos? Incluye tipos para cada variable local que definas.

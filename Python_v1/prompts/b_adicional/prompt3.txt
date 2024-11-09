@@ -1,0 +1,1 @@
+Me puedes explicar con ejemplos la diferencia en Python entre un iterable y un iterador?
