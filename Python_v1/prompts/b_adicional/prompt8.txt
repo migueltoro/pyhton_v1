@@ -1,0 +1,2 @@
+Me puedes explicar que es la varianza de tipos genéricos, la restricción de tipos genéricos y 
+las cotas de tipos genéricos en Python?

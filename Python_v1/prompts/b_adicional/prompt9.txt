@@ -1,0 +1,1 @@
+Me puedes explicar que son los tipos genéricos variádícos en Pyhton?
