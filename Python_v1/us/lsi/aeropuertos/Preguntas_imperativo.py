@@ -333,6 +333,7 @@ def ciudad_con_mayor_facturacion(a:datetime,b:datetime)->str:
     ciudad_mayor_facturacion:str = max(facturacion.keys(),key=lambda k:facturacion[k])
     return ciudad_mayor_facturacion
 
+
 if __name__ == '__main__':
     print(ciudad_con_mayor_facturacion(datetime(2020, 1, 1), datetime(2020, 12, 31)))                                                         
     print(numero_de_pasajeros('Lon'))
