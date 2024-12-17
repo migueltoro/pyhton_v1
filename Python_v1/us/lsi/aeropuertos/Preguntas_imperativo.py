@@ -11,6 +11,7 @@ from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
 from typing import Optional
+from us.lsi.tools.Dict import str_dict
 
 
 
@@ -176,10 +177,13 @@ def destino_con_mas_vuelos()->tuple[str,int]:
             r[key].append(ocp.vuelo)
         else:
             r[key] = [ocp.vuelo]
-    d = next(iter(r.keys()))
-    n = len(r[d])
+    d = None
+    n = None
     for k,lv in r.items():
-        d,n=k,len(lv) 
+        if d is None or len(lv) > n:
+            d,n=k,len(lv) 
+    if d is None or n is None:
+        raise ValueError("No hay vuelos")
     return (d,n)
 
 #11. Dado un entero m devuelve un conjunto ordenado con las duraciones 
@@ -264,7 +268,7 @@ def porcentaje_a_destino()->dict[str,float]:
 # 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo de mas barato
 
 def min_precio(lv:list[Vuelo])->Vuelo:   
-    vm = next(iter(lv))
+    vm:Vuelo = lv[0]
     p = vm.precio
     for v in lv:
         if vm.precio < p:
@@ -330,8 +334,7 @@ def ciudad_con_mayor_facturacion(a:datetime,b:datetime)->str:
     return ciudad_mayor_facturacion
 
 if __name__ == '__main__':
-    print(ciudad_con_mayor_facturacion(datetime(2020, 1, 1), datetime(2020, 12, 31)))
-    '''                                                         
+    print(ciudad_con_mayor_facturacion(datetime(2020, 1, 1), datetime(2020, 12, 31)))                                                         
     print(numero_de_pasajeros('Lon'))
     print(hay_destino({'Berlin','Colonia'},date(2000,1,1)))
     print(destinos_diferentes(date(2020,6,8)))
@@ -348,5 +351,4 @@ if __name__ == '__main__':
     print(mas_de_n_vuelos(4))
     print(str_dict(porcentaje_a_destino()))
     print(str_dict(mas_barato()))
-    print(str_dict(fechasDistintas()))
-    ''' 
+    print(str_dict(fechasDistintas())) 
