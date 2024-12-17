@@ -14,8 +14,8 @@ from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.Dict import str_dict
 from collections import Counter
 from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
-from typing import Optional, Iterable
-from statistics import mean
+from typing import Optional, Iterable, Callable
+from statistics import mean, StatisticsError
 
 #1. Dada una cadena de caracteres s devuelve el numero total de pasajeros a
 # ciudades destino que tienen
@@ -74,19 +74,28 @@ def precios_medios(n:int)->dict[str,float]:
 #7. Devuelve un Map tal que dado un entero n haga corresponder
 # a cada mes la __ocupaciones_vuelos de los n destinos con los vuelos de mayor duracion.
 
+def ldf(ls:list[Vuelo],n:int)->list[str]:
+    return [v.ciudad_destino for v in sorted(ls,key=lambda v:v.duracion.total_seconds(),reverse=True)][0:n]
 
+ld:Callable[[list[Vuelo],int],list[str]] = \
+    lambda ls,n:[v.ciudad_destino for v in sorted(ls,key=lambda v:v.duracion.total_seconds(),reverse=True)][0:n]
+    
+# ldf y ld son equivalentes
+    
 def destinos_con_mayor_duracion(n:int)->dict[int,list[str]]:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
-    r: dict[int,list[Vuelo]] = grouping_list(ls,key=lambda x:x.fecha_salida.month,value=lambda ocp:ocp.vuelo)
-    ld = lambda k:(v.ciudad_destino for v in sorted(r[k],key=lambda v:v.duracion.total_seconds(),reverse=True)[0:n])
-    return {k:list(ld(k)) for k in r.keys()}
+    r: dict[int,list[Vuelo]] = grouping_list(ls,key=lambda x:x.fecha_salida.month,value=lambda ocp:ocp.vuelo)    
+    return {k:ldf(r[k],n) for k in r.keys()}
 
 #8. Dada una fecha f devuelve el precio medio de los vuelos con salida posterior
 # a f. Si no hubiera vuelos devuelve 0.0
 
 def precio_medio_posterior(f:datetime)->float:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
-    return mean(ocp.vuelo.precio for ocp in ls if ocp.fecha > f)
+    try:
+        return mean(ocp.vuelo.precio for ocp in ls if ocp.fecha > f)
+    except StatisticsError:
+        return 0.0
 
 #9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.

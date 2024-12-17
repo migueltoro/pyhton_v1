@@ -9,7 +9,6 @@ from collections import OrderedDict
 from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
-from us.lsi.tools.Dict import str_dict
 from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
 from typing import Optional
 
@@ -145,6 +144,8 @@ def precio_medio_posterior(f:datetime)->float:
         if ocp.fecha > f:
             s += ocp.vuelo.precio
             n += 1
+    if n == 0:
+        return 0.0
     return s/n
             
 
