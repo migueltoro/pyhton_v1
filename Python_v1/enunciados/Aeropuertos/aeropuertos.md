@@ -283,6 +283,7 @@ Métodos de Factoría:
 
 Invariante
 
+
 - los códigos de los aeropuertos deben ser diferentes
 
 
