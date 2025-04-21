@@ -6,8 +6,8 @@ Created on 5 nov 2022
 '''
 
 import random
-from us.lsi.aeropuertos.Vuelo import Vuelo
-from us.lsi.aeropuertos.Vuelos import Vuelos
+from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
+from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
@@ -16,7 +16,7 @@ from datetime import date, time, datetime, timedelta
 from us.lsi.tools.Iterable import first, iterate
 from typing import Optional
 
-def vuelo_random()-> Vuelo: 
+def vuelo_random()-> VueloProgramado: 
     e: int = random.randint(0,Aerolineas.of().size())
     codigo: str = Aerolineas.of().aerolinea_index(e).codigo
     numero: str = f'{random.randint(0,1000):04d}'
@@ -32,14 +32,14 @@ def vuelo_random()-> Vuelo:
     duracion: timedelta= timedelta(minutes=random.randint(0,360))
     hora: time = time(random.randint(0,23),random.randint(0,59));
     dia_semana: int = random.randint(0,6)
-    return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
+    return VueloProgramado.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
 
 
-def vuelos_random(num_vuelos:int)->Vuelos:
-    vuelos:list[Vuelo] = [vuelo_random() for _ in range(0,num_vuelos)]
-    return Vuelos(vuelos)
+def vuelos_random(num_vuelos:int)->VuelosProgramados:
+    vuelos:list[VueloProgramado] = [vuelo_random() for _ in range(0,num_vuelos)]
+    return VuelosProgramados(vuelos)
 
-def ocupacion_vuelo_random(v:Vuelo, anyo:int)->Ocupacion_vuelo:
+def ocupacion_vuelo_random(v:VueloProgramado, anyo:int)->Ocupacion_vuelo:
     codigo_vuelo:str = v.codigo
     np:int = v.num_plazas
     t:time = v.hora
@@ -54,8 +54,8 @@ def ocupacion_vuelo_random(v:Vuelo, anyo:int)->Ocupacion_vuelo:
     return Ocupacion_vuelo.of(codigo_vuelo,fecha,num_pasajeros)
 
 def ocupaciones_vuelos_random(num_ocupaciones:int, anyo:int)->Ocupaciones_vuelos:
-    n = Vuelos.of().size
-    r = [ocupacion_vuelo_random(Vuelos.of().vuelo_index(random.randint(0,n)), anyo) for _ in range(num_ocupaciones)]
+    n = VuelosProgramados.of().size
+    r = [ocupacion_vuelo_random(VuelosProgramados.of().vuelo_index(random.randint(0,n)), anyo) for _ in range(num_ocupaciones)]
     return Ocupaciones_vuelos(r);
 
 

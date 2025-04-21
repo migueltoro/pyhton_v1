@@ -7,7 +7,7 @@ Created on 21 ago 2022
 from datetime import date,datetime
 from collections import OrderedDict
 from sortedcontainers import SortedSet # type: ignore
-from us.lsi.aeropuertos.Vuelo import Vuelo
+from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
 from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
 from us.lsi.tools.Iterable import first, grouping_list,grouping_set,groups_size,grouping_reduce
 from us.lsi.tools.Iterable import str_iter
@@ -74,17 +74,17 @@ def precios_medios(n:int)->dict[str,float]:
 #7. Devuelve un Map tal que dado un entero n haga corresponder
 # a cada mes la __ocupaciones_vuelos de los n destinos con los vuelos de mayor duracion.
 
-def ldf(ls:list[Vuelo],n:int)->list[str]:
+def ldf(ls:list[VueloProgramado],n:int)->list[str]:
     return [v.ciudad_destino for v in sorted(ls,key=lambda v:v.duracion.total_seconds(),reverse=True)][0:n]
 
-ld:Callable[[list[Vuelo],int],list[str]] = \
+ld:Callable[[list[VueloProgramado],int],list[str]] = \
     lambda ls,n:[v.ciudad_destino for v in sorted(ls,key=lambda v:v.duracion.total_seconds(),reverse=True)][0:n]
     
 # ldf y ld son equivalentes
     
 def destinos_con_mayor_duracion(n:int)->dict[int,list[str]]:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
-    r: dict[int,list[Vuelo]] = grouping_list(ls,key=lambda x:x.fecha_salida.month,value=lambda ocp:ocp.vuelo)    
+    r: dict[int,list[VueloProgramado]] = grouping_list(ls,key=lambda x:x.fecha_salida.month,value=lambda ocp:ocp.vuelo)    
     return {k:ldf(r[k],n) for k in r.keys()}
 
 #8. Dada una fecha f devuelve el precio medio de los vuelos con salida posterior
@@ -157,7 +157,7 @@ def porcentaje_a_destino()->dict[str,float]:
 # 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo mas barato
 
 
-def mas_barato()->dict[str,Vuelo]:
+def mas_barato()->dict[str,VueloProgramado]:
     ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
     return grouping_reduce(ls,key=lambda ocp:ocp.vuelo.ciudad_destino,
                            op=lambda v1,v2:min((v1,v2),key=lambda v:v.precio),

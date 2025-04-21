@@ -29,8 +29,7 @@ class Biblioteca:
         self.__nombre: str = nombre
         self._codigo_postal: int = codigo_postal
         self._email: str = email
-        
-        
+         
         self.__usuarios:Usuarios = Usuarios.of(fu)
         self.__libros: Libros = Libros.of(fl)
         self.__ejemplares:Ejemplares = Ejemplares.of(fe)       

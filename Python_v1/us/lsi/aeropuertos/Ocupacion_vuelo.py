@@ -8,8 +8,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import time,datetime,date
 from calendar import day_name
-from us.lsi.aeropuertos.Vuelo import Vuelo
-from us.lsi.aeropuertos.Vuelos import Vuelos
+from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
+from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.File import absolute_path
@@ -32,19 +32,19 @@ class Ocupacion_vuelo:
     def parse(text:str)->Ocupacion_vuelo:
         campos:list[str] = text.split(",")
         codigo_vuelo:str = campos[0]
-        t:time = optional_get(Vuelos.of().vuelo_codigo(codigo_vuelo)).hora
+        t:time = optional_get(VuelosProgramados.of().vuelo_codigo(codigo_vuelo)).hora
         d:date = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
         fecha:datetime = datetime.combine(d, t)
         num_pasajeros:int = int(campos[2])       
         return Ocupacion_vuelo.of(codigo_vuelo,fecha,num_pasajeros)
     
     @property
-    def vuelo(self)->Vuelo:
-        return optional_get(Vuelos.of().vuelo_codigo(self.codigo_vuelo))
+    def vuelo(self)->VueloProgramado:
+        return optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
     
     @property
     def llegada(self)->datetime: 
-        vuelo:Vuelo = optional_get(Vuelos.of().vuelo_codigo(self.codigo_vuelo))
+        vuelo:VueloProgramado = optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
         return datetime.combine(self.fecha.date(),vuelo.hora)+vuelo.duracion
     
     @property
@@ -61,5 +61,5 @@ class Ocupacion_vuelo:
 if __name__ == '__main__':
     Aeropuertos.of(absolute_path("aeropuertos/aeropuertos.csv"))
     Aerolineas.of(absolute_path("aeropuertos//aerolineas.csv"))
-    Vuelos.of(absolute_path("aeropuertos//vuelos.csv"))
+    VuelosProgramados.of(absolute_path("aeropuertos//vuelos.csv"))
     oc = Ocupacion_vuelo.parse('MX0435,2020-11-24 01:04:00,57')

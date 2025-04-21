@@ -5,7 +5,7 @@ Created on 5 nov 2022
 '''
 
 from __future__ import annotations
-from us.lsi.aeropuertos.Vuelos import Vuelos
+from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Ocupaciones_vuelos import Ocupaciones_vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
@@ -16,10 +16,10 @@ class Espacio_aereo:
     
     __gestor_de_espacio_aereo: Optional[Espacio_aereo] = None
     
-    def __init__(self,aerolineas: Aerolineas,vuelos: Vuelos,ocupaciones_vuelos: Ocupaciones_vuelos,
+    def __init__(self,aerolineas: Aerolineas,vuelos: VuelosProgramados,ocupaciones_vuelos: Ocupaciones_vuelos,
                  aeropuertos: Aeropuertos)->None:
         self.__aerolineas: Aerolineas = aerolineas
-        self.__vuelos: Vuelos = vuelos
+        self.__vuelos: VuelosProgramados = vuelos
         self.__ocupaciones_vuelos: Ocupaciones_vuelos = ocupaciones_vuelos
         self.__aeropuertos: Aeropuertos = aeropuertos
     
@@ -30,7 +30,7 @@ class Espacio_aereo:
             focupaciones_vuelos:str=absolute_path("aeropuertos/ocupacionesVuelos.csv"))->Espacio_aereo:
         aeropuertos = Aeropuertos.of(faeropuertos)
         aerolineas = Aerolineas.of(faerolineas)
-        vuelos =  Vuelos.of(fvuelos)
+        vuelos =  VuelosProgramados.of(fvuelos)
         ocupaciones_vuelos = Ocupaciones_vuelos.of(focupaciones_vuelos)       
         return Espacio_aereo(aerolineas,vuelos,ocupaciones_vuelos,aeropuertos)
  
@@ -39,7 +39,7 @@ class Espacio_aereo:
         return self.__aerolineas
     
     @property
-    def vuelos(self)->Vuelos:
+    def vuelos(self)->VuelosProgramados:
         return self.__vuelos
     
     @property

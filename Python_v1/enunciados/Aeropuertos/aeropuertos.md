@@ -174,7 +174,7 @@ Invariante
 
 - los códigos de los aeropuertos deben ser diferentes
 
-## Vuelo
+## VueloProgramado
 
 Propiedades: Inmutable
 
@@ -203,7 +203,7 @@ Métodos de Factoría:
 - of(Codigo: String,Nombre: String): Aerolínea
 - random(): Vuelo, un vuelo construido aleatoriamente con los aeropuertos y las aerolíneas disponibles. 
 
-## Vuelos
+## VuelosProgramados
 
 Es un tipo que representa una población de vuelos. Una población de objetos es un conjunto de objetos de un tipo donde cada uno tiene un identificador distinto de los demás. En este caso el identificador es la propiedad código del vuelo que es una propiedad derivada. Tiene otros métodos específicos para cada población.
 
@@ -232,7 +232,7 @@ Invariante
 
 - los códigos de los aeropuertos deben ser diferentes
 
-## OcupacionVuelo
+## Vuelo
 
 Propiedades: Inmutable
 
@@ -256,7 +256,7 @@ Métodos de Factoría:
 - of(Codigo: String,Nombre: String): Aerolínea
 - random(): Vuelo, un vuelo construido aleatoriamente con los aeropuertos y las aerolíneas disponibles. 
 
-## OcupacionesVuelos
+## Vuelos
 
 Es un tipo que representa una población de ocupacionVuelo. Una población de objetos es un conjunto de objetos de un tipo donde cada uno tiene un identificador distinto de los demás. En este caso el identificador es el par código del vuelo, fecha que es una propiedad derivada. Tiene otros métodos específicos para cada población.
 

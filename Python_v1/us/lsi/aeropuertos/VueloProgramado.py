@@ -14,7 +14,7 @@ from us.lsi.tools.Iterable import str_iter
 days = list(day_name)
 
 @dataclass(frozen=True)
-class Vuelo:
+class VueloProgramado:
     codigo_aerolinea: str
     numero: str
     codigo_destino: str
@@ -26,7 +26,7 @@ class Vuelo:
     dia_semana: int
    
     @staticmethod 
-    def parse(text: str) -> Vuelo:
+    def parse(text: str) -> VueloProgramado:
         campos: list[str] = text.split(",")
         codigo: str = campos[0]
         numero: str = campos[1]
@@ -37,14 +37,14 @@ class Vuelo:
         duracion: timedelta = timedelta(minutes = int(campos[6]))
         hora: time = datetime.strptime(campos[7], "%H:%M").time()
         dia_semana: int = days.index(campos[8].capitalize());
-        return Vuelo.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
+        return VueloProgramado.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
     
     
 
     @staticmethod 
     def of(codigo_aerolinea: str, numero: str, codigo_destino: str, codigo_origen: str, 
-           precio: float, numPlazas: int, duracion: timedelta, hora: time, diaSemana: int) -> Vuelo:
-        return Vuelo(codigo_aerolinea,numero,codigo_destino,codigo_origen,precio,numPlazas,duracion,hora,diaSemana) 
+           precio: float, numPlazas: int, duracion: timedelta, hora: time, diaSemana: int) -> VueloProgramado:
+        return VueloProgramado(codigo_aerolinea,numero,codigo_destino,codigo_origen,precio,numPlazas,duracion,hora,diaSemana) 
     
     @property
     def ciudad_destino(self)-> str:
@@ -73,7 +73,7 @@ class Vuelo:
         
 
 if __name__ == '__main__':
-    v1: Vuelo = Vuelo.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")
+    v1: VueloProgramado = VueloProgramado.parse("TP,0705,BER,KTW,294,170,287,14:50,FRIDAY")
     print(v1)
     print(str_iter(day_name))
     print(datetime.strptime("FRIDAY",'%A').strftime('%A'))
