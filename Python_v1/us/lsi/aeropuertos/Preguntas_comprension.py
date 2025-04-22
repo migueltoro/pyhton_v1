@@ -100,6 +100,7 @@ def precio_medio_posterior(f:datetime)->float:
 #9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.
 
+
  
 def fechas_a_destino()->dict[str,set[date]]:
     ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
