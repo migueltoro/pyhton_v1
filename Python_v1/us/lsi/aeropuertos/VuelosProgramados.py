@@ -19,7 +19,7 @@ class VuelosProgramados:
         self.__codigos_vuelos = {v.codigo:v for v in self.__vuelos}
 
     @staticmethod  
-    def of(file:str=absolute_path("aeropuertos/vuelos.csv"))->VuelosProgramados:
+    def of(file:str=absolute_path("aeropuertos/vuelosProgramados.csv"))->VuelosProgramados:
         if VuelosProgramados.__gestor_de_vuelos is None:
             VuelosProgramados.__gestor_de_vuelos = VuelosProgramados(file)
         return VuelosProgramados.__gestor_de_vuelos

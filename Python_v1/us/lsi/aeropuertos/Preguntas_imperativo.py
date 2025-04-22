@@ -8,7 +8,7 @@ from datetime import date,datetime
 from collections import OrderedDict
 from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
-from us.lsi.aeropuertos.Ocupacion_vuelo import Ocupacion_vuelo
+from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
 from typing import Optional
 from us.lsi.tools.Dict import str_dict
@@ -20,11 +20,11 @@ from us.lsi.tools.Dict import str_dict
 # como prefijo s (esto es, comienzan por s).  
  
 def numero_de_pasajeros(prefix:str)->int:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     s = 0
-    for ocp in ls:
-        if ocp.vuelo.ciudad_destino.startswith(prefix):
-            num_pasajeros = ocp.num_pasajeros
+    for v in ls:
+        if v.vuelo_programado.ciudad_destino.startswith(prefix):
+            num_pasajeros = v.num_pasajeros
             s = s + num_pasajeros
     return s
 
@@ -33,11 +33,11 @@ def numero_de_pasajeros(prefix:str)->int:
 
  
 def hay_destino(destinos:set[str], f:date)-> bool:
-    ls:list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls:list[Vuelo] = Espacio_aereo.of().vuelos.todos
     a:bool = False
-    for ocp in ls:
-        if ocp.fecha.date() == f:
-            if ocp.vuelo.ciudad_destino in destinos:
+    for v in ls:
+        if v.fecha.date() == f:
+            if v.vuelo_programado.ciudad_destino in destinos:
                 a = True;
                 break;
     return a
@@ -48,11 +48,11 @@ def hay_destino(destinos:set[str], f:date)-> bool:
 
  
 def destinos_diferentes(f:date)->set[str]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     a:set[str] = set()
-    for ocp in ls:
-        if ocp.fecha_salida == f:
-            ciudad_destino = ocp.vuelo.ciudad_destino
+    for v in ls:
+        if v.fecha_salida == f:
+            ciudad_destino = v.vuelo_programado.ciudad_destino
             a.add(ciudad_destino);            
     return a;
 
@@ -61,16 +61,16 @@ def destinos_diferentes(f:date)->set[str]:
 
 
 def total_pasajeros_a_destino(a:int)->OrderedDict[str,int]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r:dict[str,int] = {}
-    for ocp in ls:
-        if ocp.fecha.year == a:
-            key:str = ocp.vuelo.ciudad_destino
+    for v in ls:
+        if v.fecha.year == a:
+            key:str = v.vuelo_programado.ciudad_destino
             if key in r.keys():
-                num_pasajeros = r[key]+ocp.num_pasajeros
+                num_pasajeros = r[key]+v.num_pasajeros
                 r[key] = num_pasajeros
             else:
-                r[key] = ocp.num_pasajeros
+                r[key] = v.num_pasajeros
     return OrderedDict(r.items())
 
 #5. Dado un destino devuelve el codigo de la aerolinea del primer vuelo con plazas libres a ese
@@ -78,16 +78,16 @@ def total_pasajeros_a_destino(a:int)->OrderedDict[str,int]:
 
 
 def primer_vuelo(destino:str,f:datetime)->Optional[str]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
-    a: Optional[Ocupacion_vuelo] = None
-    for ocp in ls:
-        if  ocp.vuelo.ciudad_destino == destino and \
-            ocp.vuelo.num_plazas > ocp.num_pasajeros and \
-            ocp.fecha > f:
-            a = ocp
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
+    a: Optional[Vuelo] = None
+    for v in ls:
+        if  v.vuelo_programado.ciudad_destino == destino and \
+            v.vuelo_programado.num_plazas > v.num_pasajeros and \
+            v.fecha > f:
+            a = v
             break
     if a:
-        return a.vuelo.codigo_aerolinea
+        return a.vuelo_programado.codigo_aerolinea
     else:
         return None
 
@@ -102,15 +102,15 @@ def precio_medio(ls:list[float])->float:
     return s/n
 
 def precios_medios(n_libres:int)->dict[str,float]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,list[float]] = {}
-    for ocp in ls:
-        if ocp.vuelo.num_plazas-ocp.num_pasajeros < n_libres:
-            key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        if v.vuelo_programado.num_plazas-v.num_pasajeros < n_libres:
+            key = v.vuelo_programado.ciudad_destino
             if key in r.keys():
-                r[key].append(ocp.vuelo.precio)
+                r[key].append(v.vuelo_programado.precio)
             else:
-                r[key] = [ocp.vuelo.precio]            
+                r[key] = [v.vuelo_programado.precio]            
     d: dict[str,float] = {}
     for k in r.keys():
         d[k] = precio_medio(r[k])    
@@ -121,14 +121,14 @@ def precios_medios(n_libres:int)->dict[str,float]:
 
 
 def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[date,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.fecha_salida
+    for v in ls:
+        key = v.fecha_salida
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     d: dict[date,list[str]] = {}
     for k in r.keys():
         d[k] = list(v.ciudad_destino for v in sorted(r[k],key=lambda v:v.duracion.total_seconds(),reverse=True)[0:n]) 
@@ -138,12 +138,12 @@ def destinos_con_mayor_duracion(n:int)->dict[date,list[str]]:
 # a f. Si no hubiera vuelos devuelve 0.0
 
 def precio_medio_posterior(f:datetime)->float:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     s = 0.
     n = 0
-    for ocp in ls:
-        if ocp.fecha > f:
-            s += ocp.vuelo.precio
+    for v in ls:
+        if v.fecha > f:
+            s += v.vuelo_programado.precio
             n += 1
     if n == 0:
         return 0.0
@@ -155,28 +155,28 @@ def precio_medio_posterior(f:datetime)->float:
 
  
 def fechas_a_destino()->dict[str,set[date]]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,set[date]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].add(ocp.fecha_salida)
+            r[key].add(v.fecha_salida)
         else:
-            r[key] = {ocp.fecha_salida}
+            r[key] = {v.fecha_salida}
     return r
     
 
 #10. Devuelve el destino con mayor numero de vuelos
 
 def destino_con_mas_vuelos()->tuple[str,int]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     d = None
     n = None
     for k,lv in r.items():
@@ -191,11 +191,11 @@ def destino_con_mas_vuelos()->tuple[str,int]:
 
 
 def duraciones(m:int)->SortedSet[int]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r = []
-    for ocp in ls:
-        if ocp.vuelo.duracion.total_seconds()/60 > m:
-            r.append(int(ocp.vuelo.duracion.total_seconds()/60))
+    for v in ls:
+        if v.vuelo_programado.duracion.total_seconds()/60 > m:
+            r.append(int(v.vuelo_programado.duracion.total_seconds()/60))
     return SortedSet(sorted(r,reverse=True))
     
 
@@ -203,28 +203,28 @@ def duraciones(m:int)->SortedSet[int]:
 
 
 def destinos_mayor_duracion(n:int)->set[str]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
-    r = sorted(ls,key=lambda ocp:ocp.vuelo.duracion.total_seconds(), reverse=True)[0:n]
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
+    r = sorted(ls,key=lambda v:v.vuelo_programado.duracion.total_seconds(), reverse=True)[0:n]
     s = []
-    for ocp in r:
-        s.append(ocp.vuelo.ciudad_destino)
+    for v in r:
+        s.append(v.vuelo_programado.ciudad_destino)
     return set(s)
 
 #13. Dado un numero n devuelve un conjunto con los n destinos con mas vuelos
 
  
 def con_mas_vuelos(n:int)->list[tuple[str,int]]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     s:list[tuple[str,int]] = []
-    for k,v in r.items():
-        s.append((k,len(v)))
+    for k,lv in r.items():
+        s.append((k,len(lv)))
     return sorted(s,key=lambda x:x[1], reverse=True)[0:n]
         
 
@@ -232,14 +232,14 @@ def con_mas_vuelos(n:int)->list[tuple[str,int]]:
     
 
 def mas_de_n_vuelos(n:int)->list[str]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     t:list[tuple[str,list[VueloProgramado]]] = sorted(r.items(),key=lambda x:len(x[1]), reverse=True)
     s:list[str] = []
     for i in range(0,n):
@@ -250,18 +250,18 @@ def mas_de_n_vuelos(n:int)->list[str]:
 
 
 def porcentaje_a_destino()->dict[str,float]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     n = len(ls)
     r: dict[str,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     s:dict[str,float] = {}
-    for k,v in r.items():
-            s[k]= len(v)/n
+    for k,lv in r.items():
+            s[k]= len(lv)/n
     return s
 
 
@@ -276,17 +276,17 @@ def min_precio(lv:list[VueloProgramado])->VueloProgramado:
     return vm
     
 def mas_barato()->dict[str,VueloProgramado]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,list[VueloProgramado]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].append(ocp.vuelo)
+            r[key].append(v.vuelo_programado)
         else:
-            r[key] = [ocp.vuelo]
+            r[key] = [v.vuelo_programado]
     s:dict[str,VueloProgramado] = {}
-    for k,v in r.items():
-            s[k]= min_precio(v)
+    for k,lv in r.items():
+            s[k]= min_precio(lv)
     return s
 
 # 17. Devuelve un Map que haga corresponder a cada destino el numero de fechas
@@ -294,17 +294,17 @@ def mas_barato()->dict[str,VueloProgramado]:
 
 
 def fechasDistintas()->dict[str,int]:
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     r: dict[str,set[date]] = {}
-    for ocp in ls:
-        key = ocp.vuelo.ciudad_destino
+    for v in ls:
+        key = v.vuelo_programado.ciudad_destino
         if key in r.keys():
-            r[key].add(ocp.fecha_salida)
+            r[key].add(v.fecha_salida)
         else:
-            r[key] = {ocp.fecha_salida}
+            r[key] = {v.fecha_salida}
     s:dict[str,int] = {}
-    for k,v in r.items():
-            s[k]= len(v)
+    for k,lv in r.items():
+            s[k]= len(lv)
     return s
 
 
@@ -318,13 +318,13 @@ def ciudad_con_mayor_facturacion(a:datetime,b:datetime)->str:
     if b <= a or (b - a).days <= 1:
         raise ValueError("Dates are not valid. 'b' should be later than 'a' and they should be more than one day apart.")
 
-    ls: list[Ocupacion_vuelo] = Espacio_aereo.of().ocupaciones_vuelos.todas
+    ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     facturacion: dict[str, float] = {}
 
-    for ocp in ls:
-        if a <= ocp.fecha <= b:
-            ciudad = ocp.vuelo.ciudad_destino
-            precio = ocp.vuelo.precio
+    for v in ls:
+        if a <= v.fecha <= b:
+            ciudad = v.vuelo_programado.ciudad_destino
+            precio = v.vuelo_programado.precio
             if ciudad in facturacion:
                 facturacion[ciudad] += precio
             else:

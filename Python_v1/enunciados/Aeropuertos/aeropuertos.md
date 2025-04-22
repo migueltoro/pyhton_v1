@@ -18,14 +18,14 @@ DL,Delta Airlines Inc.
 N7,National Airlines Inc.
 ```
 
-El  fichero _vuelos.csv_ contiene en cada línea el _codigoAerolinea, numero, codigoDestino, codigoOrigen, precio, numPlazas, duracion, hora, diaSemana_. Las líneas son de la forma
+El  fichero _vuelosProgramados.csv_ contiene en cada línea el _codigoAerolinea, numero, codigoDestino, codigoOrigen, precio, numPlazas, duracion, hora, diaSemana_. Las líneas son de la forma
 ```
 TP,0705,BER,KTW,294,21,170,287,14:50,FRIDAY
 FS,0596,TZX,AAR,761,64,49,45,07:54,THURSDAY
 FJ,0612,BHD,TPS,113,98,128,180,16:41,MONDAY
 CX,0930,LJU,NCL,741,17,11,159,02:40,WEDNESDAY
 ```
-El fichero _ocupacionesVuelos.csv_ contiene en cada línea _codigoVuelo, fecha, numPasajeros_ de la forma
+El fichero _vuelos.csv_ contiene en cada línea _codigoVuelo, fecha, numPasajeros_ de la forma
 
 ```
 NH0818,2020-04-13 16:43:00,7

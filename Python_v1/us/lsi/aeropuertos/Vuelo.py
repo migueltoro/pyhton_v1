@@ -8,10 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import time,datetime,date
 from calendar import day_name
-from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
-from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
+from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
+from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Optional import optional_get
 
@@ -19,34 +19,32 @@ days = list(day_name)
 
 
 @dataclass(frozen=True)
-class Ocupacion_vuelo:
+class Vuelo:
     codigo_vuelo:str
     fecha:datetime
     num_pasajeros: int
     
     @staticmethod 
-    def of(codigoVuelo:str,fecha:datetime,numPasajeros: int)->Ocupacion_vuelo:
-        return Ocupacion_vuelo(codigoVuelo,fecha,numPasajeros)
+    def of(codigoVuelo:str,fecha:datetime,numPasajeros: int)->Vuelo:
+        return Vuelo(codigoVuelo,fecha,numPasajeros)
     
     @staticmethod 
-    def parse(text:str)->Ocupacion_vuelo:
+    def parse(text:str)->Vuelo:
         campos:list[str] = text.split(",")
         codigo_vuelo:str = campos[0]
-        t:time = optional_get(VuelosProgramados.of().vuelo_codigo(codigo_vuelo)).hora
-        d:date = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
-        fecha:datetime = datetime.combine(d, t)
+        fecha:datetime = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
         num_pasajeros:int = int(campos[2])       
-        return Ocupacion_vuelo.of(codigo_vuelo,fecha,num_pasajeros)
-    
+        return Vuelo.of(codigo_vuelo,fecha,num_pasajeros)
+   
     @property
-    def vuelo(self)->VueloProgramado:
+    def vuelo_programado(self)->VueloProgramado:
         return optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
     
     @property
     def llegada(self)->datetime: 
         vuelo:VueloProgramado = optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
         return datetime.combine(self.fecha.date(),vuelo.hora)+vuelo.duracion
-    
+       
     @property
     def fecha_salida(self)->date:
         return self.fecha.date()
@@ -60,6 +58,6 @@ class Ocupacion_vuelo:
 
 if __name__ == '__main__':
     Aeropuertos.of(absolute_path("aeropuertos/aeropuertos.csv"))
-    Aerolineas.of(absolute_path("aeropuertos//aerolineas.csv"))
-    VuelosProgramados.of(absolute_path("aeropuertos//vuelos.csv"))
-    oc = Ocupacion_vuelo.parse('MX0435,2020-11-24 01:04:00,57')
+    Aerolineas.of(absolute_path("aeropuertos/aerolineas.csv"))
+#    Vuelos.of(absolute_path("aeropuertos/vuelos.csv"))
+    oc = Vuelo.parse('MX0435,2020-11-24 01:04:00,57')
