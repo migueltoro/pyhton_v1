@@ -9,7 +9,7 @@ from us.lsi.aeropuertos.VuelosProgramados import VuelosProgramados
 from us.lsi.aeropuertos.Aerolineas import Aerolineas
 from us.lsi.aeropuertos.Vuelos import Vuelos
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
-from us.lsi.tools.File import absolute_path
+from us.lsi.tools.File import absolute_path,root_project
 from typing import Optional
 
 class Espacio_aereo:
@@ -24,7 +24,14 @@ class Espacio_aereo:
         self.__aeropuertos: Aeropuertos = aeropuertos
     
     @staticmethod
-    def of(faeropuertos:str=absolute_path("aeropuertos/aeropuertos.csv"),
+    def of(root:str=root_project())->Espacio_aereo:
+        return Espacio_aereo.of_files(absolute_path("aeropuertos/aeropuertos.csv",root),
+            absolute_path("aeropuertos/aerolineas.csv",root),
+            absolute_path("aeropuertos/vuelosProgramados.csv",root),
+            absolute_path("aeropuertos/vuelos.csv",root))
+    
+    @staticmethod
+    def of_files(faeropuertos:str=absolute_path("aeropuertos/aeropuertos.csv"),
             faerolineas:str=absolute_path("aeropuertos/aerolineas.csv"),
             fvuelos:str=absolute_path("aeropuertos/vuelosProgramados.csv"),
             focupaciones_vuelos:str=absolute_path("aeropuertos/vuelos.csv"))->Espacio_aereo:

@@ -36,9 +36,16 @@ class Biblioteca:
         self.__prestamos: Prestamos = Prestamos.of(fp)  
         
     @staticmethod
-    def of(nombre:str='Reina Mercedes',
-            codigo_postal:int=41012,
-            email:str='bib@us.es',fu:str=absolute_path('biblioteca/usuarios.txt'),
+    def of(root:str=root_project())->Biblioteca:
+        return Biblioteca.of_files('Reina Mercedes',41012,'bib@us.es',
+            absolute_path('biblioteca/usuarios.txt',root),
+            absolute_path('biblioteca/libros.txt',root),
+            absolute_path('biblioteca/ejemplares.txt',root),
+            absolute_path('biblioteca/prestamos.txt',root))
+        
+    @staticmethod
+    def of_files(nombre:str='Reina Mercedes',codigo_postal:int=41012,email:str='bib@us.es',
+            fu:str=absolute_path('biblioteca/usuarios.txt'),
             fl:str=absolute_path('biblioteca/libros.txt'),
             fe:str=absolute_path('biblioteca/ejemplares.txt'),
             fp:str=absolute_path('biblioteca/prestamos.txt'))->Biblioteca: 

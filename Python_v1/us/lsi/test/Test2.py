@@ -57,3 +57,4 @@ if __name__ == '__main__':
     print(pp(absolute_path('datos/pp.txt')))
     print(pp2(absolute_path('datos/pp.txt')))
     print(numeros[8-2])
+    print()
