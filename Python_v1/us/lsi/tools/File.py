@@ -12,6 +12,7 @@ from us.lsi.tools.Preconditions import check_argument
 from os.path import abspath, join, isfile
 from os import getcwd
 import sys
+import requests
 
 def root_project():
     return sys.path[1]
@@ -51,6 +52,35 @@ def existe_fichero(filePath:str)->bool:
         True
     """
     return isfile(filePath)
+
+def descargar_fichero(url: str, ruta_destino: str) -> None:
+    """
+    Descarga un fichero desde una URL y lo guarda en una ruta local.
+
+    Args:
+        url (str): La URL desde donde se descargará el fichero.
+        ruta_destino (str): La ruta local donde se guardará el fichero descargado.
+
+    Raises:
+        Exception: Si la descarga falla, se lanza una excepción con el código de estado HTTP.
+
+    Example:
+        >>> descargar_fichero("https://example.com/file.txt", "C:/path/to/destination.txt")
+    """
+    try:
+        print(f"Descargando el fichero desde {url}...")
+        respuesta: requests.Response = requests.get(url)  # Realiza una solicitud HTTP GET a la URL proporcionada.
+        if respuesta.status_code == 200:  # Verifica si la solicitud fue exitosa (código de estado 200).
+            with open(ruta_destino, 'wb') as fichero:  # Abre el fichero en modo escritura binaria.
+                fichero.write(respuesta.content)  # Escribe el contenido descargado en el fichero.
+            print(f"Fichero descargado correctamente en {ruta_destino}")
+        else:
+            # Lanza una excepción si la solicitud no fue exitosa, incluyendo el código de estado HTTP.
+            raise Exception(f"No se pudo descargar el fichero desde {url}. Código de estado: {respuesta.status_code}")
+    except Exception as e:
+            print(e) 
+            exit(1)          
+    
     
 def partes_de_linea(linea:str, delimiter:str=",")-> list[str]:
     """
