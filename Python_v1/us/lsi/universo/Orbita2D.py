@@ -48,8 +48,7 @@ class Orbita2D:
             b=random.uniform(100., 200.)  
         alfa=random.uniform(0, pi/2)
         T=random.uniform(62.,125.)
-        return Orbita2D.of(a, b, alfa, T)
-        
+        return Orbita2D.of(a, b, alfa, T)       
         
     @property 
     def c(self:Orbita2D) -> float:   
