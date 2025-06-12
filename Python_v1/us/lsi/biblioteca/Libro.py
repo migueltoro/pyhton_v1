@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations #porque si no, no se reconoce la clase Libro (su nombre)
 from dataclasses import dataclass 
-from us.lsi.tools.Preconditions import check_argument
 from datetime import datetime, date
 
 @dataclass(frozen=True,order=True) #frozen hace que la clase sea inmutable, y order, dota de orden al tipo
@@ -22,7 +21,7 @@ class Libro:
 
     @staticmethod 
     def of(isbn:str, titulo:str, autor:str, numeroPaginas:int, precio:float, fechaPublicacion:date, estimacionVentas:int) -> Libro:
-        check_argument(Libro.check_isbn(isbn), "ISBN incorrecto")
+        assert Libro.check_isbn(isbn), "ISBN incorrecto"
         return Libro(isbn,titulo,autor,numeroPaginas,precio,fechaPublicacion,estimacionVentas)
     
     '''

@@ -3,7 +3,7 @@ Created on 17 ago 2022
 
 @author: migueltoro
 '''
-from us.lsi.tools.Preconditions import check_argument
+
 from math import sqrt, pi
 
 def parte_entera(a:float) -> int:
@@ -16,18 +16,18 @@ def digito_parte_entera(a:float,n:int)->int:
     return (int(a) // int(10**n)) % 10
 
 def fact(n:int)->int:
-    check_argument(n>=0,f'n debe ser mayor que cero y es {n}')
+    assert n>=0,f'n debe ser mayor que cero y es {n}'
     r = 1
     for i in range(2,n+1):
         r = r*i
     return r
 
 def sol_ecuacion_primer_grado(a:float,b:float) -> float: 
-    check_argument(a>0,f'El coeficiente a debe ser distinto de cero y es {a:.2f}')
+    assert a>0,f'El coeficiente a debe ser distinto de cero y es {a:.2f}'
     return -b/a
     
 def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> tuple[float,float] | tuple[complex,complex]:
-    check_argument(a != 0, f'El coeficiente a debe ser distinto de cero y es {a:.2f}')
+    assert a != 0, f'El coeficiente a debe ser distinto de cero y es {a:.2f}'
     disc = b * b - 4 * a * c
     real_part = -b / (2 * a)
     imaginary_part = sqrt(abs(disc)) / (2 * a)
@@ -37,22 +37,22 @@ def sol_ecuacion_segundo_grado(a:float,b:float,c:float) -> tuple[float,float] | 
         return (complex(real_part, imaginary_part), complex(real_part, -imaginary_part)) 
     
 def area_circulo(radio:float) -> float:
-    check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
+    assert radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}'
     return pi*radio**2
 
 def longitud_circunferencia(radio:float) -> float:
-    check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
+    assert radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}'
     return 2*pi*radio
 
 def area_cilindro(radio:float,altura:float) -> float:
-    check_argument(radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}')
-    check_argument(altura>=0,f'La altura debe ser mayor o igual a cero y es {altura:.2f}')
+    assert radio>=0,f'El radio debe ser mayor o igual a cero y es {radio:.2f}'
+    assert altura>=0,f'La altura debe ser mayor o igual a cero y es {altura:.2f}'
     return 2*pi*radio*(radio+altura)
 
 def area_triangulo(a:float,b:float,c:float) -> float:
-    check_argument(a>0,f'El lado a debe ser mayor que cero y es {a:.2f}')
-    check_argument(b>0,f'El lado b debe ser mayor que cero y es {b:.2f}')
-    check_argument(c>0,f'El lado c debe ser mayor que cero y es {c:.2f}')
+    assert a>0,f'El lado a debe ser mayor que cero y es {a:.2f}'
+    assert b>0,f'El lado b debe ser mayor que cero y es {b:.2f}'
+    assert c>0,f'El lado c debe ser mayor que cero y es {c:.2f}'
     s = (a+b+c)/2
     return sqrt(s*(s-a)*(s-b)*(s-c))
 

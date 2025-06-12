@@ -6,7 +6,7 @@ Created on 25 jun 2023
 
 from __future__ import annotations
 from us.lsi.ejemplos_types.Alumno import Alumno
-from us.lsi.tools.File import lineas_de_fichero, absolute_path, root_project
+from us.lsi.tools.File import lineas_de_fichero, absolute_path
 from typing import Optional
 
 class Alumnos:  
@@ -27,14 +27,15 @@ class Alumnos:
     def todos(self)->set[Alumno]:
         return self.__alumnos
 
-    def alumno_dni(self,dni:str)->Alumno:
-        return self.__alumnos_dni[dni]
+    def alumno_dni(self,dni:str)->Optional[Alumno]:
+        return self.__alumnos_dni.get(dni,None)
     
     @property
     def size(self):
         return len(self.__alumnos)
     
     def alumno_index(self,index:int)->Alumno:
+        assert 0 <= index < len(self.__alumnos), f'Índice {index} fuera de rango [0,{len(self.__alumnos)-1}]'
         return [a for a in self.__alumnos][index]
     
     def __str__(self):

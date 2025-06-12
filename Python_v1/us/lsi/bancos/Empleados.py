@@ -36,6 +36,7 @@ class Empleados:
         return len(self.__empleados)
     
     def empleado_index(self,index:int)->Empleado:
+        assert 0 <= index < len(self.__empleados), f'Índice {index} fuera de rango [0,{len(self.__empleados)-1}]'
         return [a for a in self.__empleados][index]
     
     def __str__(self):

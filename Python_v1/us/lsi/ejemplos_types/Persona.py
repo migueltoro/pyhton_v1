@@ -7,7 +7,6 @@ Created on 3 nov 2022
 from __future__ import annotations
 from dataclasses import dataclass, astuple, asdict
 from enum import Enum, auto
-from us.lsi.tools.Preconditions import check_argument
 import locale
 from us.lsi.ejemplos_types.Direccion import Direccion
 from datetime import date, datetime
@@ -38,10 +37,10 @@ class Persona:
     
     @staticmethod
     def of(apellidos: str, nombre: str, dni: str, fecha_de_nacimiento: datetime, telefono:str,direccion:Direccion) -> Persona:
-        check_argument(len(apellidos.strip()) > 0, f'Los apellidos no pueden estar en blanco' )
-        check_argument(len(nombre.strip()) > 0, f'El nombre no puede estar en blanco' )
-        check_argument(fecha_de_nacimiento < datetime.now(), f'La fecha debe estar en el pasado')
-        check_argument(Persona._check_dni(dni), f'El dni no es correcto')
+        assert len(apellidos.strip()) > 0, f'Los apellidos no pueden estar en blanco'
+        assert len(nombre.strip()) > 0, f'El nombre no puede estar en blanco'
+        assert fecha_de_nacimiento < datetime.now(), f'La fecha debe estar en el pasado'
+        assert Persona._check_dni(dni), f'El dni no es correcto'
         return Persona(apellidos, nombre, dni, fecha_de_nacimiento, telefono, direccion)
     
     @staticmethod

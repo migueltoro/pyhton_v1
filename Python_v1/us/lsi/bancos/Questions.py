@@ -6,7 +6,6 @@ Created on 19 nov 2023
 
 from __future__ import annotations
 from dataclasses import dataclass, astuple, asdict
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Iterable import str_iter, grouping_reduce
 from us.lsi.tools.Dict import str_dict

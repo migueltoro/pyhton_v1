@@ -8,11 +8,10 @@ Created on 15 jul. 2020
 from typing import Iterable, Optional
 import csv
 import chardet
-from us.lsi.tools.Preconditions import check_argument
 from os.path import abspath, join, isfile
 from os import getcwd
 import sys
-import requests
+import requests # type: ignore 
 
 def root_project():
     return sys.path[1]
@@ -120,7 +119,7 @@ def iterable_de_fichero(file:str,encoding:str='utf-8') -> Iterable[str]:
         >>> for line in iterable_de_fichero('path/to/file.txt'):
         ...     print(line)
     """
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    assert existe_fichero(file),'El fichero {} no existe'.format(file)
     with open(file, "r", encoding=encoding) as f:
         for linea in f:
             yield linea.strip()
@@ -145,7 +144,7 @@ def lineas_de_fichero(file:str,encoding:str='utf-8') -> list[str]:
         >>> print(lines)
         ['line1', 'line2', 'line3']
     """
-    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    assert existe_fichero(file),f'El fichero {file} no existe'
     with open(file,"r",encoding=encoding) as f:
         return  [linea.strip() for linea in f]
        
@@ -169,7 +168,7 @@ def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list
         >>> print(rows)
         [['header1', 'header2'], ['row1value1', 'row1value2'], ['row2value1', 'row2value2']]
     """
-    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    assert existe_fichero(file),f'El fichero {file} no existe'
     with open(file,"r",encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         return  [linea for linea in lector]
@@ -194,7 +193,7 @@ def dict_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')->dict[str,lis
         >>> print(data)
         {'header1': ['row1value1', 'row2value1'], 'header2': ['row1value2', 'row2value2']}
     """
-    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    assert existe_fichero(file),f'El fichero {file} no existe'
     with open(file,"r",encoding=encoding) as f:
         lector = csv.DictReader(f, delimiter = delimiter)
         r:dict[str,list[str]] = {}
@@ -225,7 +224,7 @@ def iterable_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> Iterabl
         ['row1value1', 'row1value2']
         ['row2value1', 'row2value2']
     """
-    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    assert existe_fichero(file),f'El fichero {file} no existe'
     with open(file,"r",encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for linea in lector:
@@ -256,7 +255,7 @@ def iterable_de_csv_partes(file:str, delimiter:str=",", encoding='utf-8')-> Iter
         'row2value1'
         'row2value2'
     """
-    check_argument(existe_fichero(file),f'El fichero {file} no existe')
+    assert existe_fichero(file),f'El fichero {file} no existe'
     with open(file,"r",encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         for linea in lector:
@@ -281,7 +280,7 @@ def read(file:str,encoding:str='utf-8') -> str:
         >>> read('path/to/file.txt')
         'file content'
     """
-    check_argument(existe_fichero(file),'El fichero {} no existe'.format(file))
+    assert existe_fichero(file),'El fichero {} no existe'.format(file)
     with open(file,"r", encoding=encoding) as f:
         return f.read()
     
@@ -333,7 +332,7 @@ def encoding(file:str)->Optional[str]:
         >>> encoding('path/to/file.txt')
         'utf-8'
     """
-    check_argument(existe_fichero(file),'El fichero {0} no existe'.format(file))
+    assert existe_fichero(file),'El fichero {0} no existe'.format(file)
     with open(file,"rb") as f:
         data = f.read()
         enc = chardet.detect(data)

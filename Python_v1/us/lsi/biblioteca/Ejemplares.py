@@ -30,6 +30,7 @@ class Ejemplares:
         return len(self.__ejemplares)
     
     def ejemplar_index(self,index:int)->Ejemplar:
+        assert 0 <= index < len(self.__ejemplares), f'Índice {index} fuera de rango [0,{len(self.__ejemplares)-1}]'
         return [a for a in self.__ejemplares][index]
     
     def ejemplares_de_libro(self, isbn:str) -> list[Ejemplar]:

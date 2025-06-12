@@ -27,14 +27,15 @@ class Aerolineas:
     def todas(self)->list[Aerolinea]:
         return self.__aerolineas
 
-    def aerolinea_codigo(self,codigo:str)->Aerolinea:
-        return self.__codigos_aerolineas[codigo]
+    def aerolinea_codigo(self,codigo:str)->Optional[Aerolinea]:
+        return self.__codigos_aerolineas.get(codigo,None)
     
     @property
     def size(self):
         return len(self.__aerolineas)
     
     def aerolinea_index(self,i:int)->Aerolinea:
+        assert 0 <= i < len(self.__aerolineas), f'Índice {i} fuera de rango [0,{len(self.__aerolineas)-1}]'
         return self.__aerolineas[i]
     
     def __str__(self):

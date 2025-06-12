@@ -22,7 +22,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.geometria.Vector2D import Vector2D
 from math import cos, pi, sqrt
-from us.lsi.tools import Preconditions
 import random 
 
 @dataclass(frozen=True,order=True)
@@ -34,9 +33,9 @@ class Orbita2D:
 
     @staticmethod
     def of(a:float, b:float, alfa:float, T:float) -> Orbita2D:
-        Preconditions.check_argument(a>0 and b>0, 'No es una elipse válida')
-        Preconditions.check_argument(0<=alfa<=pi/2, 'El ángulo de inclinación no es correcto')
-        Preconditions.check_argument(T>0, 'Periodo incorrecto')
+        assert a>0 and b>0, 'No es una elipse válida'
+        assert 0<=alfa<=pi/2, 'El ángulo de inclinación no es correcto'
+        assert T>0, 'Periodo incorrecto'
         return Orbita2D(a,b,alfa,T)
     
     @staticmethod
@@ -58,7 +57,7 @@ class Orbita2D:
     @property    
     def e(self:Orbita2D) -> float:    
         e=self.c/self.a
-        Preconditions.check_argument(0<=e<=1, 'Excentricidad incorrecta: {}'.format(e))
+        assert 0<=e<=1, 'Excentricidad incorrecta: {}'.format(e)
         return e
     @property
     def d(self:Orbita2D) -> float:

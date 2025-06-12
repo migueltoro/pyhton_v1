@@ -26,8 +26,8 @@ class Libros:
     def todos(self)->set[Libro]:
         return self.__libros
 
-    def libro_isbn(self,isbn:str)->Libro:
-        return self.__libros_isbn[isbn]
+    def libro_isbn(self,isbn:str)->Optional[Libro]:
+        return self.__libros_isbn.get(isbn,None)
     
     @property
     def size(self):

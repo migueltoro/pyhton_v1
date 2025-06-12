@@ -6,11 +6,10 @@ Created on 22 nov 2021
 from __future__ import annotations
 from functools import total_ordering
 from random import randint
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Iterable import str_iter
 
 def mcd(a:int, b:int)->int:
-    check_argument(a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}')
+    assert a>=0 and b>0,f'El coeficiente a debe ser mayor o igual que cero y b mayor que cero y son: a = {a}, b = {b}'
     while b > 0:
         a, b = b, a%b
     return a
@@ -34,7 +33,7 @@ class Fraccion:
         
     @staticmethod
     def of(n:int,d:int=1)->Fraccion: 
-        check_argument(d != 0,f'El denominador no puede ser cero y es {d}') 
+        assert d != 0,f'El denominador no puede ser cero y es {d}' 
         return Fraccion(n,d)
     
     @staticmethod
@@ -69,7 +68,7 @@ class Fraccion:
         return Fraccion(n,d)
     
     def __invert__(self)->Fraccion:
-        check_argument(self.__numerador != 0,f'El denominador no puede ser cero y es {self.__numerador}')
+        assert self.__numerador != 0,f'El denominador no puede ser cero y es {self.__numerador}'
         return Fraccion.of(self.denominador,self.numerador)
     
     @property

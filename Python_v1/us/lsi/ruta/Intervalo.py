@@ -7,7 +7,6 @@ Created on 23 jul. 2020
 from __future__ import annotations
 from dataclasses import dataclass
 from us.lsi.ruta.Marca import Marca
-from us.lsi.tools.Preconditions import check_argument
 from datetime import datetime,date
 from enum import Enum, auto
 
@@ -26,8 +25,7 @@ class Intervalo:
     
     @staticmethod
     def of(principio: Marca, fin:Marca) -> Intervalo:
-        check_argument(principio <= fin,\
-                      'Principio={0}, fin={1}'.format(principio,fin))
+        assert principio <= fin,'Principio={0}, fin={1}'.format(principio,fin)
         return Intervalo(principio,fin)
     
     def __str__(self):
@@ -47,7 +45,7 @@ class Intervalo:
     
     @property
     def velocidad(self) -> float:
-        check_argument(self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo))
+        assert self.tiempo > 0, 'El tiempo debe ser mayor que cero y es {0}'.format(self.tiempo)
         return self.longitud/self.tiempo
 
     @property

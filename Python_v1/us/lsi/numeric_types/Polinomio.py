@@ -6,7 +6,6 @@ Created on 16 ago 2022
 
 from __future__ import annotations
 from dataclasses import dataclass
-from us.lsi.tools.Preconditions import check_position_index, check_argument
 from fractions import Fraction
 from typing import TypeVar, Generic
 from us.lsi.tools.Types import FieldElement,Field,FractionField,ComplexField,FloatField
@@ -44,7 +43,7 @@ class Polinomio(Generic[S]):
         return len(self.coeficientes) - 1
     
     def coeficiente(self,i:int)->S:
-        check_position_index(i,self.grado)
+        assert 0 <= i <= self.grado, f'Índice {i} fuera de rango [0,{self.grado}]'
         return self.coeficientes[i]
     
     @property
@@ -86,7 +85,7 @@ class Polinomio(Generic[S]):
             return Polinomio.of_list(coef,self.field)
         
     def __pow__(self,n:int)-> Polinomio:
-        check_argument(n >=0,f'elexponente no puede ser negativo y es {n}')
+        assert n >=0,f'elexponente no puede ser negativo y es {n}'
         r: Polinomio[S] = Polinomio.one(self.field)
         for _ in range(n):
             r = r*self

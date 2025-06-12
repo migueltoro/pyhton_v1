@@ -33,7 +33,8 @@ class Profesores:
     def size(self):
         return len(self.__profesores)
     
-    def Profesor_index(self,index:int)->Profesor:
+    def profesor_index(self,index:int)->Profesor:
+        assert 0 <= index < len(self.__profesores), f'Índice {index} fuera de rango [0,{len(self.__profesores)-1}]'
         return [a for a in self.__profesores][index]
     
     def __str__(self):

@@ -6,7 +6,6 @@ Created on 30 nov 2022
 
 from us.lsi.universo.CuerpoCeleste import CuerpoCeleste
 from us.lsi.universo.Location import Location
-from us.lsi.tools.Preconditions import check_argument, check_state
 from tkinter import Canvas, Tk
 from us.lsi.geometria.Punto2D import Punto2D
 import random
@@ -18,8 +17,8 @@ colorDeFondoDefault:str = 'white'
 class Marco:
     
     def __init__(self, nombre:str,xMax:int,yMax:int,color_fondo:str):
-        check_argument(xMax > 300, "La anchura de un universo debe ser al menos 300");
-        check_argument(yMax > 300, "La altura de un universo debe ser al menos 300");
+        assert xMax > 300, "La anchura de un universo debe ser al menos 300"
+        assert yMax > 300, "La altura de un universo debe ser al menos 300"
         self.__xMax:int=xMax
         self.__yMax:int=yMax
         t=Tk()
@@ -71,7 +70,7 @@ class Marco:
     
     def comprobar_posicion(self, cuerpo:CuerpoCeleste) -> None:
         p = self.location(cuerpo)   
-        check_state(p==Location.INSIDE, "El cuerpo celeste está fuera de la ventana")
+        assert p==Location.INSIDE, "El cuerpo celeste está fuera de la ventana"
         
     def es_visible(self, cuerpo:CuerpoCeleste) -> bool:
         return self.location(cuerpo)==Location.INSIDE

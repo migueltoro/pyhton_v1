@@ -6,7 +6,6 @@ Created on 25 oct 2022
 
 from __future__ import annotations
 from typing import TypeVar, Callable
-from us.lsi.tools import Preconditions
 from us.lsi.tools.File import lineas_de_csv, encoding, absolute_path
 from us.lsi.tools.Iterable import all_pairs, Iterable
 from us.lsi.matriz.Matriz import Matriz
@@ -27,9 +26,9 @@ class MatrizC(Matriz[E]):
     #===========================================================================
     @staticmethod
     def of(datos:list[list[E]]) -> MatrizC[E]:
-        Preconditions.check_argument(len(datos) > 0, 'El número de filas tiene que ser mayor que cero')
-        Preconditions.check_argument(all(len(x)>0 for x in datos), 'El número de columnas tiene que ser mayor que cero')
-        Preconditions.check_argument(all(len(x)==len(datos[0]) for x in datos), 'Todas las filas tienen que tener el mismo tamaño')
+        assert len(datos) > 0, 'El número de filas tiene que ser mayor que cero'
+        assert all(len(x)>0 for x in datos), 'El número de columnas tiene que ser mayor que cero'
+        assert all(len(x)==len(datos[0]) for x in datos), 'Todas las filas tienen que tener el mismo tamaño'
         return MatrizC(datos)
     
     @staticmethod

@@ -12,7 +12,6 @@ from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Punto2D import Punto2D
 from us.lsi.geometria.Recta2D import Recta2D
 from us.lsi.geometria.Objeto2D import Objeto2D
-from us.lsi.tools import Preconditions
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
 
@@ -76,16 +75,16 @@ class Poligono2D(Objeto2D):
         return sum(self.lado(i).modulo for i in range(self.n))
     
     def vertice(self,i)-> Punto2D:
-        Preconditions.check_element_index(i, self.n)
+        assert 0 <= i < self.n, f'Índice {i} fuera de rango [0,{self.n-1}]'
         return self.vertices[i]
     
     def lado(self,i:int) -> Vector2D:
-        Preconditions.check_element_index(i, self.n);
+        assert 0 <= i < self.n, f'Índice {i} fuera de rango [0,{self.n-1}]'
         return self.vertice(i).vector_to(self.vertice((i+1)%self.n))
     
     def diagonal(self,i:int,j:int) -> Vector2D:
-        Preconditions.check_element_index(i, self.n);
-        Preconditions.check_element_index(j, self.n);
+        assert 0 <= i < self.n, f'Índice {i} fuera de rango [0,{self.n-1}]'
+        assert 0 <= j < self.n, f'Índice {j} fuera de rango [0,{self.n-1}]'
         return self.vertice(i).vector_to(self.vertice(j))
     
     def rota(self, p:Punto2D, angulo:float) -> Poligono2D:

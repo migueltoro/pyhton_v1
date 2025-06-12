@@ -10,7 +10,6 @@ from us.lsi.tools.File import encoding, lineas_de_csv, absolute_path
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 #from sortedcontainers import SortedSet # type: ignore
 from us.lsi.tools.Iterable import grouping_list, str_iter,groups_size
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.Dict import str_dict
 #from us.lsi.tools.GraphicsMaps import markers
 from us.lsi.sevici.Red import Red
@@ -23,7 +22,7 @@ class RedComprension(Red):
         
     @staticmethod
     def of(estaciones:list[Estacion]) -> Red:
-        check_argument(len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos')
+        assert len(estaciones) == len({e.numero for e in estaciones}),'Hay numeros de estacion repetidos'
         pnc:dict[str,Estacion] = {e.nombre_compuesto:e for e in estaciones}
         pn:dict[int,Estacion] = {e.numero:e for e in estaciones}
         estaciones.sort()

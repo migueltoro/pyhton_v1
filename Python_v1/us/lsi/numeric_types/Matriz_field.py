@@ -5,7 +5,6 @@ Created on 27 oct 2022
 '''
 from __future__ import annotations
 from typing import TypeVar, Callable, Iterable
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.tools.File import absolute_path
 from us.lsi.tools.Iterable import all_pairs, first_index_if
 from fractions import Fraction
@@ -74,7 +73,7 @@ class Matriz_field(MatrizC[S]):
         return Matriz_field.of_datos(datos,self.field)  
 
     def __mul__(self,other:Matriz_field[S])->Matriz_field[S]:
-        check_argument(self.nc == other.nf, f'No se pueden multiplicar')
+        assert self.nc == other.nf, f'No se pueden multiplicar'
         zero:S = self.field.zero()
         ss:Callable[[int,int],S] = \
             lambda f,c:sum((self.get(f,k)*other.get(k,c) for k in range(self.nc())),zero)
@@ -102,7 +101,7 @@ class Matriz_field(MatrizC[S]):
         return Matriz_field.of_datos(datos,self.field)
    
     def __invert__(self)->Matriz_field:
-        check_argument(self.nc == self.nf, f'Debe ser cuadrada')
+        assert self.nc == self.nf, f'Debe ser cuadrada'
         one:S = self.field.one()
         ma:Matriz_field = self.aumentada
         for fp in range(ma.nf()):
@@ -124,7 +123,7 @@ class Matriz_field(MatrizC[S]):
     
     @property
     def determinante(self)->S:
-        check_argument(self.nc == self.nf, f'Debe ser cuadrada')
+        assert self.nc == self.nf, f'Debe ser cuadrada'
         one:S = self.field.one()
         zero:S = self.field.zero()
         det: S = one
@@ -152,7 +151,7 @@ class Matriz_field(MatrizC[S]):
     
     @property
     def solve(self)->Matriz_field:
-        check_argument(self.nc == self.nf()+1, f'Debe cumplirse que nc = nf +1 y tenemos nc={self.nc}, nf={self.nf}')
+        assert self.nc == self.nf()+1, f'Debe cumplirse que nc = nf +1 y tenemos nc={self.nc}, nf={self.nf}'
         m = Matriz_field.of_datos(self.submatriz(0, 0, self.nf(), self.nc()-1).datos,self.field)
         v = Matriz_field.of_datos(self.submatriz(0, self.nc()-1, self.nf(), self.nc()).datos,self.field)
         mi = ~m

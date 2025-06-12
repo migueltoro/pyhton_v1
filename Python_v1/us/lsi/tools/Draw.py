@@ -8,7 +8,6 @@ from typing import Callable
 import matplotlib.pyplot as plt # type: ignore
 from  matplotlib.patches import Patch # type: ignore
 from math import sin
-from us.lsi.tools.Preconditions import check_argument
 
 color:str='r'
 
@@ -47,7 +46,7 @@ def draw_barchart(labels:list[str],sizes:list[int],title:str,y_label:str):
     plt.show()
    
 def draw_multiline(dx:list[float], dy:list[float],y_label:str='eje y',x_label:str='eje_x',title:str='Grafico'):
-    check_argument(len(dx)==len(dy),'Las listas deben ser iguales')
+    assert len(dx)==len(dy),'Las listas deben ser iguales'
     plt.ylabel(y_label)
     plt.xlabel(x_label) 
     plt.title(title) 

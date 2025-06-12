@@ -6,7 +6,6 @@ Created on 24 jul. 2020
 
 from __future__ import annotations
 from dataclasses import dataclass
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.coordenadas.Coordenadas2D import Coordenadas2D
 
 
@@ -22,7 +21,7 @@ class Estacion:
     @staticmethod   
     def parse(linea: list[str]) -> Estacion:
         name,slots,empty_slots,free_bikes,longitude,latitude = linea
-        check_argument('_' in name,f'{name} no contiene _')
+        assert '_' in name,f'{name} no contiene _'
         numero, name = name.split("_")
         numero0 = int(numero)
         slots0 = int(slots)
@@ -33,9 +32,9 @@ class Estacion:
     
     @staticmethod   
     def of(numero:int,name:str,slots:int,empty_slots:int,free_bikes:int,ubicacion:Coordenadas2D) -> Estacion:
-        check_argument(slots>=0,"Slots deben ser mayor o igual que cero y es {0:d}".format(slots))
-        check_argument(empty_slots>=0,"Empty_Slots deben ser mayor o igual que cero y es {0:d}".format(empty_slots));
-        check_argument(free_bikes>=0,"Free_Bikes deben ser mayor o igual que cero y es {0:d}".format(free_bikes));
+        assert slots>=0,"Slots deben ser mayor o igual que cero y es {0:d}".format(slots)
+        assert empty_slots>=0,"Empty_Slots deben ser mayor o igual que cero y es {0:d}".format(empty_slots)
+        assert free_bikes>=0,"Free_Bikes deben ser mayor o igual que cero y es {0:d}".format(free_bikes)
         return Estacion(numero,name, slots, empty_slots,free_bikes,ubicacion)
     
     @property

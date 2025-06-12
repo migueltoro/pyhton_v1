@@ -7,7 +7,6 @@ Created on 16 jul. 2020
 from __future__ import annotations
 from math import sin, cos, radians, atan2, degrees, sqrt, acos
 from dataclasses import dataclass
-from us.lsi.tools import Preconditions
 import matplotlib.pyplot as plt
 
 
@@ -28,12 +27,12 @@ class Vector2D:
     
     @staticmethod
     def of_grados(modulo:float,angulo:float) -> Vector2D:
-        Preconditions.check_argument(modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
+        assert modulo > 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo)
         return Vector2D.of_radianes(modulo,radians(angulo))
     
     @staticmethod
     def of_radianes(modulo:float, angulo:float)-> Vector2D:
-        Preconditions.check_argument(modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo))
+        assert modulo >= 0, 'El modulo debe ser mayor o igual a cero y es {0:.2f}'.format(modulo)
         return Vector2D.of(modulo*cos(angulo),modulo*sin(angulo))  
     
     @staticmethod

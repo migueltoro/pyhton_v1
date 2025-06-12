@@ -36,6 +36,7 @@ class Cuentas:
         return len(self.__cuentas)
     
     def Cuenta_index(self,index:int)->Cuenta:
+        assert 0 <= index < len(self.__cuentas), f'Índice {index} fuera de rango [0,{len(self.__cuentas)-1}]'
         return [a for a in self.__cuentas][index]
     
     def __str__(self):

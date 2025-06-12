@@ -35,8 +35,8 @@ class Aeropuertos:
     def aeropuerto_codigo(self,codigo: str)->Optional[Aeropuerto]:
         return self.__codigos_aeropuertos.get(codigo,None)
     
-    def ciudad_de_aeropuerto(self, codigo:str)->str:
-        return self.__ciudad_de_aeropuerto[codigo]
+    def ciudad_de_aeropuerto(self, codigo:str)->Optional[str]:
+        return self.__ciudad_de_aeropuerto.get(codigo,None)
     
     def aeropuertos_en_ciudad(self,ciudad:str)->set[Aeropuerto]: 
         return self.__aeropuertos_en_ciudad[ciudad]
@@ -50,6 +50,7 @@ class Aeropuertos:
         return self.__aeropuertos
     
     def aeropuerto_index(self,i:int)->Aeropuerto:
+        assert 0 <= i < len(self.__aeropuertos), f'Índice {i} fuera de rango [0,{len(self.__aeropuertos)-1}]'
         return self.__aeropuertos[i]
     
     def __str__(self):

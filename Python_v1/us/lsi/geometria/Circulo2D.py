@@ -11,7 +11,6 @@ from us.lsi.geometria.Segmento2D import Segmento2D
 from us.lsi.geometria.Vector2D import Vector2D
 from us.lsi.geometria.Recta2D import Recta2D 
 from us.lsi.geometria.Objeto2D import Objeto2D 
-from us.lsi.tools import Preconditions
 from dataclasses import dataclass
 from us.lsi.tools import Draw
 from matplotlib.patches import Patch # type: ignore
@@ -23,7 +22,7 @@ class Circulo2D(Objeto2D):
     
     @staticmethod
     def of(centro: Punto2D, radio:float) -> Circulo2D:
-        Preconditions.check_argument(radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio))
+        assert radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio)
         return Circulo2D(centro, radio)
     
     def __str__(self) -> str:

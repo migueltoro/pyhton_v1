@@ -8,7 +8,6 @@ from __future__ import annotations
 from typing import Generic, TypeVar
 from fractions import Fraction
 from abc import ABC,abstractmethod
-from us.lsi.tools.Preconditions import check_position_index
 
 
 A = TypeVar('A')
@@ -75,7 +74,7 @@ class Polinomio(ABC,Generic[E]):
         ...
     
     def coeficiente(self,i:int)->E:
-        check_position_index(i,self.grado)
+        assert 0 <= i <= self.grado, f'Índice {i} fuera de rango [0,{self.grado}]'
         return self.__coeficientes[i]
         
     def coeficientes(self)->list[E]:

@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 from us.lsi.bancos.gen_data.gen_data_persona import generate_personas
 from us.lsi.bancos.gen_data.gen_data_empleados import generate_empleados
 from us.lsi.bancos.gen_data.gen_data_prestamos import generate_prestamos
-from us.lsi.tools.Preconditions import check_argument
 
 # Función para generar IBAN aleatorio
 def generate_iban(used_ibans:set[str])->str:
@@ -57,6 +56,6 @@ if __name__ == '__main__':
     dnis:list[str]= [d for d in generate_personas('/bancos/personas.txt',200)]
     generate_cuentas('/bancos/cuentas.txt',200,1000000,dnis)
     dnis_empleados:list[str]=generate_empleados('/bancos/empleados.txt',30,6000, dnis)
-    check_argument(set(dnis_empleados) <= set(dnis),f'El dni de los empleados debe estar incuido en el de las personas')
+    assert set(dnis_empleados) <= set(dnis),f'El dni de los empleados debe estar incuido en el de las personas'
     generate_prestamos('/bancos/prestamos.txt',100,100000,dnis,dnis_empleados)
     

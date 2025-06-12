@@ -30,6 +30,7 @@ class Prestamos:
         return len(self.__prestamos)
     
     def prestamo_index(self,index:int)->Prestamo:
+        assert 0 <= index < len(self.__prestamos), f'Índice {index} fuera de rango [0,{len(self.__prestamos)-1}]'
         return [a for a in self.__prestamos][index]
     
     def prestamos_de_libro(self, isbn:str) -> list[Prestamo]:

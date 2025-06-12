@@ -11,7 +11,6 @@ from us.lsi.tools.Iterable import grouping_reduce
 from us.lsi.tools.Types import Comparable
 import operator
 from datetime import date, datetime
-from us.lsi.tools.Preconditions import check_argument
 from us.lsi.dataframe.Persona import Persona
 from dataclasses import asdict
 
@@ -60,7 +59,7 @@ class DataFrame():
     def cell_index(self,row:int,colum:int)->str:
         return self.__data[self.colum_names[colum]][row]
     def cell_name(self,row:str,colum:str)->str:
-        check_argument(self.colum_all_different(colum),f'La columna {colum} no tiene los valores todos diferentes')
+        assert self.colum_all_different(colum),f'La columna {colum} no tiene los valores todos diferentes'
         index: int = self.colum(colum).index(row)
         return self.__data[colum][index]
     @property
@@ -69,7 +68,7 @@ class DataFrame():
     def row(self,n:int)->list[str]:
         return list(self.__data[k][n] for k in self.__data.keys())
     def row_name(self,colum:str,row:str)->list[str]:
-        check_argument(self.colum_all_different(colum),f'{len(set(self.colum(colum)))} ,  {len(list(self.colum(colum)))})')
+        assert self.colum_all_different(colum),f'{len(set(self.colum(colum)))} ,  {len(list(self.colum(colum)))})'
         index: int = self.colum(colum).index(row)
         return self.row(index)
     @property

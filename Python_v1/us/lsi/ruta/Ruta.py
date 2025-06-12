@@ -9,7 +9,6 @@ from us.lsi.ruta.Marca import Marca
 from us.lsi.ruta.Intervalo import Intervalo, Type
 from us.lsi.tools.File import iterable_de_csv, absolute_path
 from us.lsi.tools.Dict import str_dict
-from us.lsi.tools.Preconditions import check_element_index
 from us.lsi.tools import Graphics
 from us.lsi.tools import Draw
 from itertools import accumulate 
@@ -53,7 +52,7 @@ class Ruta:
         return self.longitud/self.tiempo
     
     def intervalo(self, i:int) -> Intervalo:
-        check_element_index(i, self.__n-1)
+        assert 0 <= i < self.__n-1, f'Índice {i} fuera de rango [0,{self.__n-1}]'
         return Intervalo.of(self.marcas[i],self.marcas[i+1])
         
     @property

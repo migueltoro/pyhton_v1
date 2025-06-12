@@ -31,6 +31,7 @@ class Vuelos:
         return self.__lista_de_vuelos
     
     def vuelo_index(self,i:int)->Vuelo:
+        assert 0 <= i < len(self.__lista_de_vuelos), f'Índice {i} fuera de rango [0,{len(self.__lista_de_vuelos)-1}]'
         return self.__lista_de_vuelos[i]
     
     @property

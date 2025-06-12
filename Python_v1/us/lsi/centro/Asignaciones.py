@@ -31,6 +31,7 @@ class Asignaciones:
         return len(self.__asignaciones)
     
     def asignacion_index(self,index:int)->Asignacion:
+        assert 0 <= index < len(self.__asignaciones), f'Índice {index} fuera de rango [0,{len(self.__asignaciones)-1}]'
         return [a for a in self.__asignaciones][index]
     
     def __str__(self):

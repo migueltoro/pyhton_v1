@@ -30,6 +30,7 @@ class Matriculas:
         return len(self.__matriculas)
     
     def matricula_index(self,index:int)->Matricula:
+        assert 0 <= index < len(self.__matriculas), f'Índice {index} fuera de rango [0,{len(self.__matriculas)-1}]'
         return [a for a in self.__matriculas][index]
     
     def __str__(self):

@@ -7,7 +7,6 @@ Created on 13 nov 2023
 from us.lsi.tools.File import absolute_path
 import random
 from datetime import datetime, timedelta
-from us.lsi.tools import Preconditions
 
 # Generar archivo con n empleados
 def generate_empleados(file_name:str,n:int,limit:float,used_dnis:list[str])->list[str]:
@@ -17,7 +16,7 @@ def generate_empleados(file_name:str,n:int,limit:float,used_dnis:list[str])->lis
         for _ in range(n):
             dni = random.choice(used_dnis)
             dnis_empleados.add(dni)
-            Preconditions.check_argument(dnis_empleados <= set(used_dnis),f'El dni de los empleados debe estar incuido en el de las personas')
+            assert dnis_empleados <= set(used_dnis),f'El dni de los empleados debe estar incuido en el de las personas'
             fecha_de_contratato = datetime.now() - timedelta(days=random.randint(1, 3650))
             
             salario_mensual = round(random.uniform(0, limit), 2)  # Saldo positivo o cero

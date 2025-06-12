@@ -36,6 +36,7 @@ class Asignaturas:
         return len(self.__asignaturas)
     
     def asignatura_index(self,index:int)->Asignatura:
+        assert 0 <= index < len(self.__asignaturas), f'Índice {index} fuera de rango [0,{len(self.__asignaturas)-1}]'
         return [a for a in self.__asignaturas][index]
     
     def __str__(self):

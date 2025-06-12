@@ -12,40 +12,41 @@ from typing import Optional
 
 class VuelosProgramados:
     
-    __gestor_de_vuelos: Optional[VuelosProgramados] = None
+    __gestor_de_vuelos_programados: Optional[VuelosProgramados] = None
     
     def __init__(self,file:str)->None:
-        self.__vuelos= [VueloProgramado.parse(x) for x in lineas_de_fichero(file,encoding='Windows-1252')]
-        self.__codigos_vuelos = {v.codigo:v for v in self.__vuelos}
+        self.__vuelos_programados= [VueloProgramado.parse(x) for x in lineas_de_fichero(file,encoding='Windows-1252')]
+        self.__codigos_vuelos_programados = {v.codigo:v for v in self.__vuelos_programados}
 
     @staticmethod  
     def of(file:str=absolute_path("aeropuertos/vuelosProgramados.csv"))->VuelosProgramados:
-        if VuelosProgramados.__gestor_de_vuelos is None:
-            VuelosProgramados.__gestor_de_vuelos = VuelosProgramados(file)
-        return VuelosProgramados.__gestor_de_vuelos
+        if VuelosProgramados.__gestor_de_vuelos_programados is None:
+            VuelosProgramados.__gestor_de_vuelos_programados = VuelosProgramados(file)
+        return VuelosProgramados.__gestor_de_vuelos_programados
     
     @property
     def todos(self)->list[VueloProgramado]:
-        return self.__vuelos
+        return self.__vuelos_programados
     
     def vuelo_codigo(self,codigo:str)->Optional[VueloProgramado]:
-        return self.__codigos_vuelos.get(codigo,None)
+        return self.__codigos_vuelos_programados.get(codigo,None)
     
     def vuelo_index(self,index:int)->VueloProgramado:
-        return self.__vuelos[index]
+        assert 0 <= index < len(self.__vuelos_programados), f'Índice {index} fuera de rango [0,{len(self.__vuelos_programados)-1}]'
+        return self.__vuelos_programados[index]
 
     @property
     def size(self)->int:
-        return len(self.__vuelos)
+        return len(self.__vuelos_programados)
 
     def add_vuelo(self,v:VueloProgramado)->None:
-        self.__vuelos.append(v)
+        self.__vuelos_programados.append(v)
     
     def remove_vuelo(self,v:VueloProgramado)->None:
-        self.__vuelos.remove(v)
+        self.__vuelos_programados.remove(v)
         
     def __str__(self):
-        txt = "\n\t".join(str(a) for a in self.__vuelos)
+        txt = "\n\t".join(str(a) for a in self.__vuelos_programados)
         return f'VuelosProgramados\n\t{txt}'
 
     
