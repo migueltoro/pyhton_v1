@@ -33,8 +33,10 @@ Explicación
 - Sea $\phi_1, \phi_2$ la latitud en radianes de los puntos 1 y dos y $\lambda_1, \lambda_2$ longitud en radianes.
 - Sea $\Delta \phi = \phi_2 - \phi_1, \Delta \lambda = \lambda_2 - \lambda_1$
 - Sea *R* el radio de la tierra en kilómetros
-- Sea $a = \sin^2(\frac{\Delta \phi}{2}) +\cos(\phi_1)*\cos(\phi_2)*\sin^2(\frac{\Delta \lambda}{2})$
-- Sea $d = R*2*\mathrm{atan2}(\sqrt{a}\sqrt(1-a))$
+- Sea 
+	$a = \sin^2(\frac{\Delta \phi}{2}) +\cos(\phi_1) \cos(\phi_2) \sin^2(\frac{\Delta \lambda}{2})$
+- Sea 
+	$d = 2 R atan2(\sqrt{a},\sqrt(1-a))$
 
 # Coordenadas3D
 
