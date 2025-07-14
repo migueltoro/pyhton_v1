@@ -23,9 +23,11 @@ class Intervalo:
     principio: Marca
     fin: Marca
     
+    def __post_init__(self) -> None:
+        assert self.principio <= self.fin,'Principio={0}, fin={1}'.format(self.principio,self.fin)
+    
     @staticmethod
-    def of(principio: Marca, fin:Marca) -> Intervalo:
-        assert principio <= fin,'Principio={0}, fin={1}'.format(principio,fin)
+    def of(principio: Marca, fin:Marca) -> Intervalo:      
         return Intervalo(principio,fin)
     
     def __str__(self):

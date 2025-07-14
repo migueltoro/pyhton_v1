@@ -20,7 +20,10 @@ class Fraccion:
     
     def __init__(self,n:int,d:int)->None:
         self.__numerador = n
-        self.__denominador = d
+        self.__denominador = d       
+        
+    def __post_init__(self)->None:
+        assert self.__denominador != 0,f'El denominador no puede ser cero y es {self.__denominador}'
         self.__normaliza()
         
     def __normaliza(self)->None:

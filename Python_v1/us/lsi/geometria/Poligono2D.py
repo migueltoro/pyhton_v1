@@ -19,6 +19,9 @@ from matplotlib.patches import Patch # type: ignore
 @dataclass(frozen=True,order=True)
 class Poligono2D(Objeto2D):
     vertices: list[Punto2D]
+    
+    def __post_init__(self) -> None:
+        assert len(self.vertices) >= 3, 'Un polígono debe tener al menos 3 vértices'
       
     @staticmethod
     def of(vertices: list[Punto2D]) -> Poligono2D:

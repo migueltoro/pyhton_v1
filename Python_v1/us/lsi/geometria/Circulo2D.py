@@ -20,9 +20,11 @@ class Circulo2D(Objeto2D):
     centro: Punto2D
     radio:float
     
+    def __post_init__(self) -> None:
+        assert self.radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(self.radio)
+    
     @staticmethod
-    def of(centro: Punto2D, radio:float) -> Circulo2D:
-        assert radio>=0, 'El radio debe ser mayor o igual a cero y es {0:.2f}'.format(radio)
+    def of(centro: Punto2D, radio:float) -> Circulo2D:      
         return Circulo2D(centro, radio)
     
     def __str__(self) -> str:

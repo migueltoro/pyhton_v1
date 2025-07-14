@@ -15,10 +15,13 @@ class Coordenadas3D:
     longitud: float
     altitud: float
     
+    def __post_init__(self) -> None:
+        assert -90<=self.latitud and self.latitud<=90, f'latitud {self.latitud} no es correcta'
+        assert -180<=self.longitud and self.longitud<=180, f'logitud {self.longitud} no es correcta'
+        assert self.altitud >= 0, f'altitud {self.altitud} no es correcta'
+    
     @staticmethod
     def of(latitud:float,longitud:float,altitud:float) -> Coordenadas3D:
-        assert -90<=latitud and latitud<=90,f'latitud {latitud} no es correcta'
-        assert -180<=longitud and longitud<=180, f'logitud {longitud} no es correcta'
         return Coordenadas3D(latitud,longitud,altitud)
     
     @staticmethod

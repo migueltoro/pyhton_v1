@@ -7,8 +7,6 @@ Created on 3 nov 2022
 from __future__ import annotations
 from dataclasses import dataclass
 
-
-
 @dataclass(frozen=True)
 class Direccion:
     calle: str

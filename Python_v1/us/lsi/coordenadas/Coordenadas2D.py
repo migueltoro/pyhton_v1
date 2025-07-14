@@ -9,11 +9,13 @@ from typing import Iterable
 class Coordenadas2D:
     latitud: float
     longitud: float
+    
+    def __post_init__(self) -> None:
+        assert -90<=self.latitud and self.latitud<=90, f'latitud {self.latitud} no es correcta'
+        assert -180<=self.longitud and self.longitud<=180, f'logitud {self.longitud} no es correcta'
       
     @staticmethod
-    def of(latitud:float,longitud:float) -> Coordenadas2D:
-        assert -90<=latitud and latitud<=90, f'latitud {latitud} no es correcta'
-        assert -180<=longitud and longitud<=180, f'logitud {longitud} no es correcta'
+    def of(latitud:float,longitud:float) -> Coordenadas2D:        
         return Coordenadas2D(latitud,longitud)
        
     @staticmethod

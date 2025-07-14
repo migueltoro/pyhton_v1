@@ -19,6 +19,9 @@ class MatrizI(Matriz[E]):
     #===========================================================================
     def __init__(self, datos: list[list[E]]) -> None:
         super().__init__(datos)
+        
+    def __post_init__(self) -> None:
+        assert len(self.datos) > 0, 'El número de filas tiene que ser mayor que cero'
     
     #===========================================================================
     # MÉTODOS DE FACTORÍA

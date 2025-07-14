@@ -17,6 +17,13 @@ class Estacion:
     empty_slots: int
     free_bikes: int
     ubicacion: Coordenadas2D
+    
+    def __post_init__(self) -> None:
+        assert self.numero >= 0, f'El numero de la estacion debe ser mayor o igual que cero y es {self.numero}'
+        assert self.slots >= 0, f'Slots deben ser mayor o igual que cero y es {self.slots}'
+        assert self.empty_slots >= 0, f'Empty_Slots deben ser mayor o igual que cero y es {self.empty_slots}'
+        assert self.free_bikes >= 0, f'Free_Bikes deben ser mayor o igual que cero y es {self.free_bikes}'
+        assert isinstance(self.ubicacion, Coordenadas2D), f'Ubicacion debe ser Coordenadas2D y es {type(self.ubicacion)}'
 
     @staticmethod   
     def parse(linea: list[str]) -> Estacion:
@@ -32,9 +39,6 @@ class Estacion:
     
     @staticmethod   
     def of(numero:int,name:str,slots:int,empty_slots:int,free_bikes:int,ubicacion:Coordenadas2D) -> Estacion:
-        assert slots>=0,"Slots deben ser mayor o igual que cero y es {0:d}".format(slots)
-        assert empty_slots>=0,"Empty_Slots deben ser mayor o igual que cero y es {0:d}".format(empty_slots)
-        assert free_bikes>=0,"Free_Bikes deben ser mayor o igual que cero y es {0:d}".format(free_bikes)
         return Estacion(numero,name, slots, empty_slots,free_bikes,ubicacion)
     
     @property

@@ -79,6 +79,17 @@ def __str__(self)->str:
 	...
 ```
 
+El método *__post_init__* que se al final del constructor puede usarse para acumular comprobación de restricciones.
+
+```
+def __post_init__(self):
+	assert len(self.apellidos.strip()) > 0, f'Los apellidos no pueden estar en blanco'
+	assert len(self.nombre.strip()) > 0, f'El nombre no puede estar en blanco'
+	assert self.fecha_de_nacimiento < datetime.now(), f'La fecha debe estar en el pasado'
+	assert Persona._check_dni(self.dni), f'El dni no es correcto'
+```
+
+
 ### class
 
 La implementación de tipos mediante *class* es más flexible que con dataclass, pero tenemos que implementar más detalles.
@@ -98,10 +109,17 @@ class Fraccion:
 	def __init__(self,n:int,d:int)->None:
 		self.__numerador = n
 		self.__denominador = d
-		self.__normaliza()
 ```
 
 Este método define el constructor, los atributos y los métodos que se usan para construir un objeto. El constructor asociado es *Fraccion(n,d)*.
+
+Junto con el anterior está disponible el método *__post_init__* que se ejecuta detrás del anterior y donde se pueden acumular comprobaciópn d restricciones y normalizaciones de datos:
+
+```
+def __post_init__(self)->None:
+	assert self.__denominador != 0,f'El denominador no puede ser cero y es {self.__denominador}'
+	self.__normaliza()
+```
 
 Las propiedades son métodos públicos sin parámetros con la anotación *@property* como en:
 
@@ -157,92 +175,9 @@ Las factorías de las poblaciones las diseñaremos generalmente son el patrón d
 
 ## Ejemplos
 
-### Persona (inmutable)
+[Direccion](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/us/lsi/ejemplos_types/Direccion.py)
+[Persona](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/enunciados/Persona/persona.md)
+[Alumno](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/enunciados/Persona/persona.md)
+[Coordenadas](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/enunciados/Coordenadas/coordenadas.md)
+[Fracción](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/us/lsi/ejemplos_types/Fraccion.py)
 
-Propiedades:
-
-- apellidos, de tipo String, básica. 
-- nombre, de tipo String, básica. 
-- dni, de tipo String, básica. 
-- fechaDeNacimiento, de tipo LocalDateTime, básica. 
-- edad, de tipo Integer, derivada. 
-
-Invariante:
-
-- Los apellidos no pueden estar en blanco.
-- El nombre no puede estar en blanco.
-- El dni debe estar compuesto de 8 números y una letra mayúscula al final, además, esa última letra debe corresponder al número. En la siguiente url puede observar cuál es la metodología que se usa en España para calcular la correspondencia entre número y letra del DNI.
-- La fecha/hora de nacimiento debe estar en el pasado.
-- La edad es el número de años transcurridos desde la fecha de nacimiento hasta la actualidad
-
-Métodos de factoría: 
-
-- of(String apellidos, String nombre, String dni, LocalDateTime fechaDeNacimiento) Construye un objeto a partir de un valor para cada una de las propiedades básicas del tipo. 
-- parse(String text, String patron) Construye un objeto a partir de una cadena de caracteres con la información de las propiedades básicas. La cadena de caracteres tendrá el formato “apellidos,nombre,dni,fecha_de_nacimiento”. El parámetro patrón indica la forma textual de la  fecha de nacimiento.
-
-Rerepresentación como cadena: 
-
-nombre apellidos, de años, nacido el fecha nacimiento a las hora nacimiento.
-
-Por ejemplo Ramiro Casares Amador, de 19, nacido el 14-06-2003 a las 10:02
-
-## Alumno 
-
-Propiedades: extiende a Persona  y es inmutable
-
-- Nota, Double, básica. Indica la nota media de acceso al grado.
-
-Invariante
-
- La nota debe ser positiva y estar comprendida entre 0 y 14.
-
-Métodos de factoría: 
-
-- of(Persona p, Double Nota): Construye un objeto a partir de una objeto de tipo Persona y una nota.
-- parse(String text, String patron): Construye un objeto a partir de una cadena de texto con la información de las propiedades básicas del tipo. El parámetro patrón indica la forma textual de la  fecha de nacimiento.
-
-Representación como cadena: 
-
-La misma representación que el tipo del que hereda añadiéndole además la nota de entrada al grado.
-Por ejemplo
-
-## Alumnos
-
-Es un tipo que representa una población de alumnos. Una población de objetos es un conjunto de objetos de un tipo donde cada uno tiene un identificador distinto de los demás. En este caso el identificador es el dni del alumno. Tiene otros métodos específicos para cada población.
-
-Propiedades:
-
-- Alumno alumno(String dni)
-- Alumno get(Integer index)
-- Integer size()
-- Set\<Alumnos\> todos()
-
-Invariante
-
-- $size() == |todos()|$
-- $alumno(dni) == a, dni \neq null, \exists \ a \in todos() | a.dni = dni$
-- $get(index) == a, 0 \le index \lt size(), a \in todos()$
-
-El invariante se puede escribir en lenguaje formal, como el anterior, o simplemente en lenguaje natural como en el caso del tipo Persona.
-
-Operaciones:
-
-- void addAlumno(Alumno a), Añade un alumno,  @pre $a \neq null$, @post $a \in todos()'$
-- void removeAlumno(Alumno a), Elimina un alumno  @pre $a \neq null$, @post $a \notin todos()'$
-
-Las pre y postcondiciones se puede escribir en lenguaje formal, como el anterior, o simplemente en lenguaje natural.
-
-Representación:
-
-- Lista de alumnos uno por línea
-
-Métodos de Factoría:
-
-- Alumnos of(String file)
-- Alumnos of()
-
-El método de factoría of se diseñarán con el patrón *singleton*.
-
-Invariante
-
-- los *dnis* de los alumnos deben ser diferentes
