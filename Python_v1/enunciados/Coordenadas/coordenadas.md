@@ -36,7 +36,7 @@ Explicación
 - Sea 
 	$a = \sin^2(\frac{\Delta \phi}{2}) +\cos(\phi_1) \cos(\phi_2) \sin^2(\frac{\Delta \lambda}{2})$
 - Sea 
-	$d = 2 R atan2(\sqrt{a},\sqrt(1-a))$
+	$d = 2\ R\ atan2(\sqrt{a},\sqrt{1-a})$
 
 # Coordenadas3D
 
@@ -77,4 +77,4 @@ Sea
 - c22 = c2.to2D
 - d2 = c1.distancia(c2)
 - $\Delta a = c1.altitud-c2.altitud$
-- $ d = \sqrt{{\Delta a}2 + d2^2} $
+- $ d = \sqrt{{\Delta a}^2 + d2^2} $
