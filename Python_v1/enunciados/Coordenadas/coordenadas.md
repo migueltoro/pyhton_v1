@@ -75,6 +75,7 @@ Sea
 
 - c21 = c1.to2D
 - c22 = c2.to2D
-- d2 = c1.distancia(c2)
+- d2 = c21.distancia(c22)
 - $\Delta a = c1.altitud-c2.altitud$
-- $ d = \sqrt{{\Delta a}^2 + d2^2} $
+- $dc = {(\Delta a)}^2 + d2^2
+- $d = \sqrt{dc}$
