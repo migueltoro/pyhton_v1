@@ -173,6 +173,16 @@ Las poblaciones de un tipo solemos diseñarlas mediante *class* porque usualment
 
 Las factorías de las poblaciones las diseñaremos generalmente son el patrón de diseño *singleton*. Este es un mecanismo de factoría que nos permite obtener siempre el mismo valor en las sucesivas llamadas a la factoría. 
 
+## Herencia 
+
+En Python un tipo puede heredar de otro u otros. Esto implica que dispone de sus atributos y métodos públicos y protegidos a los que puede refererise con el prefijo *super...*. Tambien dispone del contructor si es público o pretegido al que se refiere con *super(...)*.
+
+```
+@dataclass(frozen=True)
+class Alumno(Persona):
+    nota:float
+```
+
 ## Ejemplos
 
 [Direccion](https://github.com/migueltoro/pyhton_v1/blob/master/Python_v1/us/lsi/ejemplos_types/Direccion.py)
