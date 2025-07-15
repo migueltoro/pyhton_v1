@@ -36,7 +36,7 @@ class Aerolineas:
     
     def aerolinea_index(self,i:int)->Aerolinea:
         assert 0 <= i < len(self.__aerolineas), f'Índice {i} fuera de rango [0,{len(self.__aerolineas)-1}]'
-        return self.__aerolineas[i]
+        return list(self.__aerolineas)[i]
     
     def __str__(self):
         txt = "\n\t".join(str(a) for a in self.__aerolineas)

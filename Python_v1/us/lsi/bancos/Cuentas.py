@@ -25,7 +25,7 @@ class Cuentas:
         return Cuentas.__gestor_de_cuentas
 
     @property
-    def todos(self)->set[Cuenta]:
+    def todas(self)->set[Cuenta]:
         return self.__cuentas
 
     def cuenta_iban(self,iban:str)->Optional[Cuenta]:
@@ -45,7 +45,7 @@ class Cuentas:
     
 if __name__ == '__main__':    
     cuentas:Cuentas = Cuentas.of() 
-    print(str_iter(cuentas.todos,sep='\n',prefix='',suffix=''))
+    print(str_iter(cuentas.todas,sep='\n',prefix='',suffix=''))
     print('______________')
     print(cuentas.cuenta_iban('ES5267093500351659831393'))
         
