@@ -20,29 +20,39 @@ days = list(day_name)
 
 @dataclass(frozen=True)
 class Vuelo:
-    codigo_vuelo:str
+    """
+    Represents a flight that is an instance of the scheduled flight with the given code
+
+    Attributes:
+        codigo (str): The unique code identifying the scheduled flight.
+        fecha (datetime): The date and time of the flight.
+        num_pasajeros (int): The number of passengers on the flight.
+        
+    The flight's scheduled data will be provided by the associated scheduled flight.
+    """
+    codigo:str
     fecha:datetime
     num_pasajeros: int
     
     @staticmethod 
-    def of(codigoVuelo:str,fecha:datetime,numPasajeros: int)->Vuelo:
-        return Vuelo(codigoVuelo,fecha,numPasajeros)
+    def of(codigo:str,fecha:datetime,numPasajeros: int)->Vuelo:
+        return Vuelo(codigo,fecha,numPasajeros)
     
     @staticmethod 
     def parse(text:str)->Vuelo:
         campos:list[str] = text.split(",")
-        codigo_vuelo:str = campos[0]
+        codigo:str = campos[0]
         fecha:datetime = datetime.strptime(campos[1],"%Y-%m-%d %H:%M:%S")
         num_pasajeros:int = int(campos[2])       
-        return Vuelo.of(codigo_vuelo,fecha,num_pasajeros)
+        return Vuelo.of(codigo,fecha,num_pasajeros)
    
     @property
     def vuelo_programado(self)->VueloProgramado:
-        return optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
+        return optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo))
     
     @property
     def llegada(self)->datetime: 
-        vuelo:VueloProgramado = optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo_vuelo))
+        vuelo:VueloProgramado = optional_get(VuelosProgramados.of().vuelo_codigo(self.codigo))
         return datetime.combine(self.fecha.date(),vuelo.hora)+vuelo.duracion
        
     @property
@@ -54,7 +64,7 @@ class Vuelo:
         return self.fecha.time();
 
     def __str__(self):
-        return f'{self.codigo_vuelo},{self.fecha.strftime("%Y-%m-%d %H:%M:%S")},{self.num_pasajeros}'
+        return f'{self.codigo},{self.fecha.strftime("%Y-%m-%d %H:%M:%S")},{self.num_pasajeros}'
 
 if __name__ == '__main__':
     Aeropuertos.of(absolute_path("aeropuertos/aeropuertos.csv"))

@@ -10,11 +10,26 @@ from datetime import time,timedelta,datetime
 from calendar import day_name
 from us.lsi.aeropuertos.Aeropuertos import Aeropuertos
 from us.lsi.tools.Iterable import str_iter
+from us.lsi.tools.Optional import optional_get
 
 days = list(day_name)
 
 @dataclass(frozen=True)
 class VueloProgramado:
+    """
+    Represents a scheduled flight with various attributes.
+
+    Attributes:
+        codigo_aerolinea (str): The airline code.
+        numero (str): The flight number.
+        codigo_destino (str): The destination airport code.
+        codigo_origen (str): The origin airport code.
+        precio (float): The price of the flight.
+        num_plazas (int): The number of available seats.
+        duracion (timedelta): The duration of the flight.
+        hora (time): The scheduled departure time.
+        dia_semana (int): The day of the week the flight is scheduled (0=Monday, 6=Sunday).
+    """
     codigo_aerolinea: str
     numero: str
     codigo_destino: str
@@ -39,8 +54,6 @@ class VueloProgramado:
         dia_semana: int = days.index(campos[8].capitalize());
         return VueloProgramado.of(codigo,numero,codigo_destino,codigo_origen,precio,num_plazas,duracion,hora,dia_semana)
     
-    
-
     @staticmethod 
     def of(codigo_aerolinea: str, numero: str, codigo_destino: str, codigo_origen: str, 
            precio: float, numPlazas: int, duracion: timedelta, hora: time, diaSemana: int) -> VueloProgramado:
@@ -48,11 +61,11 @@ class VueloProgramado:
     
     @property
     def ciudad_destino(self)-> str:
-        return Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_destino)
+        return optional_get(Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_destino))
     
     @property
     def ciudad_origen(self)-> str:
-        return Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_origen) 
+        return optional_get(Aeropuertos.of().ciudad_de_aeropuerto(self.codigo_origen))
     
     @property
     def codigo(self)-> str:

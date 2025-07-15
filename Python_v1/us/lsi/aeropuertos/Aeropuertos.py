@@ -49,6 +49,9 @@ class Aeropuertos:
     def todos(self)->list[Aeropuerto]:
         return self.__aeropuertos
     
+    def aeropuerto(self,codigo:str)->Optional[Aeropuerto]:
+        return self.__codigos_aeropuertos.get(codigo,None)
+    
     def aeropuerto_index(self,i:int)->Aeropuerto:
         assert 0 <= i < len(self.__aeropuertos), f'Índice {i} fuera de rango [0,{len(self.__aeropuertos)-1}]'
         return self.__aeropuertos[i]

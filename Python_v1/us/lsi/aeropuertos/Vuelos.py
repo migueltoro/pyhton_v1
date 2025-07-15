@@ -18,6 +18,7 @@ class Vuelos:
     def __init__(self,file:str)->None:
         vuelos:list[Vuelo] = [Vuelo.parse(x) for x in lineas_de_fichero(file)]
         self.__lista_de_vuelos = vuelos
+        self.__codigos_de_vuelos = {v.codigo: v for v in vuelos}
 
     @staticmethod
     def of(file:str=absolute_path("aeropuertos/vuelos.csv"))->Vuelos:
@@ -29,6 +30,9 @@ class Vuelos:
     @property
     def todos(self):
         return self.__lista_de_vuelos
+    
+    def vuelo_codigo(self,codigo:str)->Optional[Vuelo]:
+        return self.__codigos_de_vuelos.get(codigo, None)
     
     def vuelo_index(self,i:int)->Vuelo:
         assert 0 <= i < len(self.__lista_de_vuelos), f'Índice {i} fuera de rango [0,{len(self.__lista_de_vuelos)-1}]'
