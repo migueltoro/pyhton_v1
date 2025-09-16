@@ -107,7 +107,7 @@ class Banco:
     Número de cuentas de cada cliente
     '''
     def numero_de_cuentas_de_cliente(self)->dict[str,int]:
-        return grouping_reduce(self.cuentas.todos,lambda c: c.dni,lambda x,y:x+y,lambda _:1)
+        return grouping_reduce(self.cuentas.todas,lambda c: c.dni,lambda x,y:x+y,lambda _:1)
     
 if __name__ == '__main__':  
     banco:Banco = Banco.of()

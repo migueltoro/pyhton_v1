@@ -12,7 +12,7 @@ from us.lsi.ejemplos_types.Persona import Persona
 from us.lsi.biblioteca.Usuario import Usuario
 from us.lsi.tools.File import write_iterable, iterable_de_fichero, absolute_path
 from us.lsi.tools.Iterable import flat_map
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,date
 from typing import Iterable
 from itertools import cycle
 
@@ -26,7 +26,7 @@ def persona_random(a:int,b:int)->Persona:
     apellidos:str = fake.last_name()+" "+fake.last_name()
     nombre:str = fake.first_name()
     dni: str = fake.nif()
-    fdate:str = fake.date_of_birth(minimum_age=a,maximum_age=b)
+    fdate:date = fake.date_of_birth(minimum_age=a,maximum_age=b)
     fhora:str = fake.time(pattern = '%H:%M')
     fecha_nacimiento = f'{fdate} {fhora}'
     telefono: str = fake.phone_number().replace(' ','')
@@ -38,7 +38,7 @@ def persona_random(a:int,b:int)->Persona:
 
 def usuario_random(a:int,b:int)->str:
     p:Persona = persona_random(a,b)
-    f:datetime = fake.date_between(start_date=p.fecha_de_nacimiento+timedelta(days=6570),
+    f:date = fake.date_between(start_date=p.fecha_de_nacimiento+timedelta(days=6570),
                                    end_date=datetime.now())
     return f"{p.apellidos},{p.nombre},{p.dni},{p.fecha_de_nacimiento.strftime('%Y-%m-%d %H:%M')},{p.telefono},{p.direccion},{f}"
 

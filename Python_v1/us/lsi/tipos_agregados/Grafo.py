@@ -4,6 +4,7 @@ Created on 25 ago 2024
 @author: migueltoro
 '''
 
+
 from __future__ import annotations
 from typing import TypeVar, Callable
 from enum import Enum

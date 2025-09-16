@@ -260,6 +260,5 @@ if __name__ == '__main__':
     print(unzip(full_name_list))
     print(unzip(full_name_list_2))
     print(unzip(full_name_list_3))
-    print(type(unzip(full_name_list)[0][0]))
     print(FF(3, 7)+0)
     print(complex(3, 7)*1)

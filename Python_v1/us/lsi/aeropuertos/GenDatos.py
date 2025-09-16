@@ -39,7 +39,7 @@ def vuelos_programados_random(num_vuelos:int)->list[VueloProgramado]:
     return vuelos_programados
 
 def vuelo_random(v:VueloProgramado, anyo:int)->Vuelo:
-    codigo_vuelo:str = v.codigo_vuelo_programado
+    codigo_vuelo:str = v.codigo
     np:int = v.num_plazas
     t:time = v.hora
     dw:int = v.dia_semana

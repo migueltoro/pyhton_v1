@@ -180,7 +180,7 @@ def destino_con_mas_vuelos()->tuple[str,int]:
     d = None
     n = None
     for k,lv in r.items():
-        if d is None or len(lv) > n:
+        if d is None or n is None or len(lv) > n:
             d,n=k,len(lv) 
     if d is None or n is None:
         raise ValueError("No hay vuelos")
