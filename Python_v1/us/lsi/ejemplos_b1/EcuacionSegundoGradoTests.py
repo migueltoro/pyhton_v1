@@ -6,7 +6,7 @@ Created on 6 jul 2024
 
 import unittest
 import pytest
-from us.lsi.ejemplos_b1.Ejemplos_b1 import sol_ecuacion_segundo_grado
+from us.lsi.ejemplos_b1.Ejemplos_funciones import sol_ecuacion_segundo_grado
 
 class SolEcuacionSegundoGradoTests(unittest.TestCase):
     def test_real_roots(self):
