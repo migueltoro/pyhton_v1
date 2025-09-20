@@ -5,9 +5,9 @@ Created on 25 oct 2022
 '''
 
 from __future__ import annotations
-from typing import TypeVar, Callable
+from typing import TypeVar, Callable, Iterable
 from us.lsi.tools.File import lineas_de_csv, encoding, absolute_path
-from us.lsi.tools.Iterable import all_pairs, Iterable
+from us.lsi.tools.Iterable import all_pairs
 from us.lsi.matriz.Matriz import Matriz
 
 E = TypeVar("E")

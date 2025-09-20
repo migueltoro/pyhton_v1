@@ -167,7 +167,6 @@ def test3():
 def test4():
     print(suma_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8'))
     print(suma_elementos_fichero_if(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0)) 
-    print(suma_elementos_fichero_if_2(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0)) 
 
 
 def test5():

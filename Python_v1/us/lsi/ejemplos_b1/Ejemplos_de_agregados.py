@@ -43,20 +43,20 @@ def test4():
     
 def test5():
     print('\nLista\n')
-    for e in temperaturas:
-        print(e, end=' ')
+    for e1 in temperaturas:
+        print(e1, end=' ')
     print('\n\nConjunto\n')
-    for e in temperaturas_conjunto:
-        print(e, end=' ')
+    for e2 in temperaturas_conjunto:
+        print(e2, end=' ')
     print('\n\nKeys\n')
-    for e in temperaturas_por_provincias.keys():
-        print(e, end=' ')
+    for e3 in temperaturas_por_provincias.keys():
+        print(e3, end=' ')
     print('\n\nValues\n')
-    for e in temperaturas_por_provincias.values():
-        print(e, end=' ') 
+    for e4 in temperaturas_por_provincias.values():
+        print(e4, end=' ') 
     print('\n\nItems\n')
-    for e in temperaturas_por_provincias.items():
-        print(e, end=' ')   
+    for e5 in temperaturas_por_provincias.items():
+        print(e5, end=' ')   
     
     
 def test6():

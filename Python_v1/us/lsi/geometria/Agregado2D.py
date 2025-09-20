@@ -37,8 +37,8 @@ class Agregado2D(Objeto2D):
         for e in objetos:
             self.objetos.append(e)
            
-    def copy(self):
-        return Agregado2D.of([e.copy for e in self.objetos])
+    def copy(self)->Agregado2D:
+        return Agregado2D.of([e.copy() for e in self.objetos])
     
     def rota(self, p:Punto2D, angulo:float) -> Agregado2D:
         return Agregado2D.of([x.rota(p,angulo) for x in self.objetos])

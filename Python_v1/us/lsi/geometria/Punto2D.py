@@ -33,12 +33,12 @@ class Punto2D(Objeto2D):
         x,y = linea.split(',')
         return Punto2D(float(x),float(y))
     
-    def copy(self: Punto2D) ->  Punto2D:
+    def copy(self) ->  Punto2D:
         return Punto2D(self.x,self.y)
     
     @property
-    def vector(self: Punto2D) ->  Vector2D:
-        return Vector2D(self.x,self.y)
+    def vector(self: Punto2D) -> Vector2D:
+        return Vector2D.of(self.x,self.y)
 
     @property
     def cuadrante(self):    

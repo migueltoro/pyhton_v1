@@ -199,7 +199,7 @@ class Mano:
     
                         
     def __str__(self):
-        mano = str_iter((c for c in self.cartas),separator=',',prefix='[',suffix=']')
+        mano = str_iter((c for c in self.cartas),sep=',',prefix='[',suffix=']')
         return '{}={}={}'.format(mano,self.nombre_de_jugada,str(self.fuerza()))
 
     def to_graphics(self, file_out: str) -> None:
