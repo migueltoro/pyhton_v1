@@ -154,7 +154,7 @@ def flat_map(iterable:Iterable[Iterable[E]]) -> Iterable[E]: ...
 
 @overload   
 def flat_map(iterable:Iterable[E],key:Callable[[E],Iterable[R]]) -> Iterable[R]: ...
-    
+     
 def flat_map(iterable:Iterable[E],key:Optional[Callable[[E],Iterable[R]]]=None) -> Iterable[R]:
     if key is None:
             key = identity

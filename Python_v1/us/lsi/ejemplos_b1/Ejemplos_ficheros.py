@@ -3,10 +3,9 @@ Created on 16 sept 2022
 
 @author: migueltoro
 '''
-
-
 from us.lsi.tools.File import lineas_de_fichero, absolute_path, iterable_de_fichero, iterable_de_csv
 from typing import Callable, Iterable
+from math import sqrt
 
 def lista_de_fichero_0(file:str)->list[str]:
     with open(file,encoding='UTF-8') as f:
@@ -66,13 +65,27 @@ def lista_de_fichero_6(file:str,encoding:str,f:Callable[[int],int])->list[int]:
     return r
 
 def suma_elementos_fichero(file:str,encoding:str)->int:
-    lns = lineas_de_fichero(file,encoding=encoding)
+    lns:list[str] = lineas_de_fichero(file,encoding=encoding)
     r:int = 0
     for linea in lns:
         for p in linea.split(','):
             if len(p) > 0:
                 r = r + int(p) 
     return r
+
+def suma_elementos_fichero_2(file:str,encoding:str)->int:
+    lns:Iterable[str] = iterable_de_fichero(file,encoding=encoding)
+    r:int = 0
+    for linea in lns:
+        for p in linea.split(','):
+            if len(p) > 0:
+                r = r + int(p) 
+    return r
+
+def cuadrado(x:int)->int:
+    return x*x
+
+cuadrado2:Callable[[int],int] = lambda x: x*x
 
 def suma_elementos_fichero_if(file:str,encoding:str,pd:Callable[[int],bool])->int:
     lns = lineas_de_fichero(file,encoding=encoding)
@@ -86,7 +99,7 @@ def suma_elementos_fichero_if(file:str,encoding:str,pd:Callable[[int],bool])->in
     return r
 
 
-def suma_elementos_fichero_if_2(file:str,encoding:str,pd:Callable[[int],bool])->int:
+def suma_elementos_fichero_if_2(file:str,encoding:str,pd:Callable[[int],bool],f:Callable[[int],int])->int:
     lns:Iterable[list[str]] = iterable_de_csv(file,delimiter=',',encoding=encoding)
     r:int = 0
     for linea in lns:
@@ -94,11 +107,25 @@ def suma_elementos_fichero_if_2(file:str,encoding:str,pd:Callable[[int],bool])->
             if len(p) > 0:
                 e = int(p)
                 if pd(e):
-                    r = r + e 
+                    r = r + f(e) 
     return r
 
-def cuadrado(x:int)->int:
-    return x*x
+def desesviacion_tipica_elementos_fichero(file:str,encoding:str,pd:Callable[[int],bool],f:Callable[[int],int])->float:
+    lns:Iterable[list[str]] = iterable_de_csv(file,delimiter=',',encoding=encoding)
+    n:int = 0
+    s:int = 0
+    s2:int = 0
+    for linea in lns:
+        for p in linea:
+            if len(p) > 0:
+                e = int(p)
+                if pd(e):
+                    n = n + 1
+                    s = s + f(e)
+                    s2 = s2 + f(e)*f(e)
+    assert n > 0,f'No hay elementos que cumplan la condición'
+    r:float = sqrt(s2/n - (s/n)*(s/n))
+    return r
 
 def lee_de_fichero(file:str,encoding:str)->str:
     with open(file,'r',encoding=encoding) as f:
@@ -126,9 +153,9 @@ def test2():
     print(lista_de_fichero_0(absolute_path('datos/datos.txt')))
     print(lista_de_fichero_1(absolute_path('datos/datos.txt')))
     print(lista_de_fichero_2(absolute_path('datos/datos.txt')))
-    ls1: list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
+    ls1:list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
     print(ls1) 
-    ls2: list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
+    ls2:list[str] = lineas_de_fichero(absolute_path('datos/datos.txt'),encoding='utf-8')
     print(ls2) 
     
 def test3():
@@ -164,9 +191,12 @@ def test6():
     lns:Iterable[list[str]] = iterable_de_csv(absolute_path('datos/datos_2.txt'),delimiter=',',encoding='utf-8')
     escribe_en_fichero(absolute_path('datos/datos_4.txt'), 'utf-8', [str(x) for x in range(10,30,5)])
     escribe_en_fichero_csv(absolute_path('datos/datos_5.txt'), ';', 'utf-8', lns)
+    
+def test7():
+    print(desesviacion_tipica_elementos_fichero(absolute_path('datos/datos_2.txt'),encoding='utf-8',pd=lambda e: e%3==0,f=lambda x:x*x))
              
 if __name__ == '__main__':
-    test6()  
+    test7()  
     
       
     

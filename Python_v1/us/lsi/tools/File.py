@@ -12,7 +12,7 @@ from os.path import abspath, join, isfile
 from os import getcwd
 import sys
 
-def root_project():
+def root_project()->str:
     return sys.path[1]
 
 def absolute_path(relative_path:str,root:str=root_project())->str:
@@ -145,7 +145,8 @@ def lineas_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')-> list[list
     with open(file,"r",encoding= encoding) as f:
         lector = csv.reader(f, delimiter = delimiter)
         return  [linea for linea in lector]
-    
+ 
+   
 def dict_de_csv(file:str, delimiter:str=",", encoding:str='utf-8')->dict[str,list[str]]:
     """
     This function reads a CSV file and returns a dictionary where each key is a column header and the value is a list of all the values in that column.
