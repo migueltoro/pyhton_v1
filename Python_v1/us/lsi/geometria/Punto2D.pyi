@@ -4,6 +4,7 @@ from us.lsi.geometria.Objeto2D import Objeto2D
 from matplotlib.patches import Patch 
 from us.lsi.geometria.Cuadrante import Cuadrante
 
+
   
 class Punto2D(Objeto2D):
     x: float
