@@ -13,6 +13,8 @@ from datetime import date, datetime
 from dateutil.relativedelta import relativedelta
 
 class Horoscopo(Enum):
+    Acuario = auto()
+    Piscis = auto()
     Aries = auto()
     Tauro = auto()
     Geminis = auto()
@@ -23,8 +25,22 @@ class Horoscopo(Enum):
     Escorpio = auto()
     Sagitario = auto()
     Capricornio = auto()
-    Acuario = auto()
-    Piscis = auto()
+  
+    
+horoscopos_con_fechas:list[tuple[str,tuple[int,int]]] = [
+    ("Acuario", (1, 20)),
+    ("Piscis", (2, 19)),
+    ("Aries", (3, 21)),
+    ("Tauro", (4, 21)),
+    ("Géminis", (5, 21)),
+    ("Cáncer", (6, 21)),
+    ("Leo", (7, 23)),
+    ("Virgo", (8, 23)),
+    ("Libra", (9, 23)),
+    ("Escorpio", (10, 23)),
+    ("Sagitario", (11, 22)),
+    ("Capricornio", (12, 22))
+]
 
 @dataclass(frozen=True,order=True)
 class Persona:

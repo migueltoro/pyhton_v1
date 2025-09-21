@@ -1,5 +1,0 @@
-class Persona:
-    apellidos: str
-    nombre: str
-    dni: str
-    fecha_de_nacimiento: datetime
