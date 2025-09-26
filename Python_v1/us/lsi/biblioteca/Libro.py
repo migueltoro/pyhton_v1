@@ -45,7 +45,7 @@ class Libro:
         return (isbn.startswith("978") or isbn.startswith("979"))
       
     
-    def __str__(self):
+    def __str__(self)->str:
         return '{0},{1},{2},{3},{4:.2f},{5},{6}'.format(self.isbn, self.titulo, self.autor, self. numero_paginas, self.precio, self.fecha_publicacion, self.estimacion_ventas)
     
 if __name__ == '__main__':

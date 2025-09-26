@@ -36,7 +36,7 @@ class Ejemplares:
     def ejemplares_de_libro(self, isbn:str) -> list[Ejemplar]:
         return [e for e in self.__ejemplares if e.isbn==isbn]
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__ejemplares)
         return f'Ejemplares\n\t{txt}'
 

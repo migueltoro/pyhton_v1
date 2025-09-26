@@ -40,7 +40,7 @@ class Empleado:
         now:datetime = datetime.now()
         return relativedelta(now,self.fecha_de_contrado).months
     
-    def __str__(self):
+    def __str__(self)->str:
         return f'{self.dni},{self.fecha_de_contrado.strftime("%d-%m-%Y")}'
 
 if __name__ == '__main__':  

@@ -40,7 +40,7 @@ class Prestamos:
         assert 0 <= index < len(self.__prestamos), f'Índice {index} fuera de rango [0,{len(self.__prestamos)-1}]'
         return [a for a in self.__prestamos][index]
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__prestamos)
         return f'Prestamos\n\t{txt}'  
     

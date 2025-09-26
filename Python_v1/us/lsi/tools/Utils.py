@@ -4,7 +4,7 @@ Created on 15 jul 2025
 @author: migueltoro
 '''
 
-def allNotNone(*args)->bool:
+def all_not_None(*args)->bool:
     """
     Check if all arguments are not None.
     

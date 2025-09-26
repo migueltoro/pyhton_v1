@@ -39,7 +39,7 @@ class Asignaturas:
         assert 0 <= index < len(self.__asignaturas), f'Índice {index} fuera de rango [0,{len(self.__asignaturas)-1}]'
         return [a for a in self.__asignaturas][index]
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__asignaturas)
         return f'Asignaturas\n\t{txt}'
 

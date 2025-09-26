@@ -56,7 +56,7 @@ class Aeropuertos:
         assert 0 <= i < len(self.__aeropuertos), f'Índice {i} fuera de rango [0,{len(self.__aeropuertos)-1}]'
         return self.__aeropuertos[i]
     
-    def __str__(self):
+    def __str__(self)->str:
         txt = "\n\t".join(str(a) for a in self.__aeropuertos)
         return f'Aeropuertos\n\t{txt}'
     

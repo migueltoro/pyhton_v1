@@ -57,7 +57,7 @@ class Cuenta:
     def __hash__(self)->int:
         return  hash(self.__iban)
         
-    def __str__(self):
+    def __str__(self)->str:
         return f'{self.iban},{self.saldo}'
      
 if __name__ == '__main__': 

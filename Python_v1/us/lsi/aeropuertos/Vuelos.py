@@ -42,7 +42,7 @@ class Vuelos:
     def size(self)->int:
         return len(self.__lista_de_vuelos)
     
-    def __str__(self):
+    def __str__(self)->str:
         txt = "\n\t".join(str(a) for a in self.__lista_de_vuelos)
         return f'Ocupaciones_vuelos\n\t{txt}'
 

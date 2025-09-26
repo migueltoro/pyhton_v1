@@ -39,7 +39,7 @@ class Cuentas:
         assert 0 <= index < len(self.__cuentas), f'Índice {index} fuera de rango [0,{len(self.__cuentas)-1}]'
         return [a for a in self.__cuentas][index]
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__cuentas)
         return f'Cuentas\n\t{txt}'  
     

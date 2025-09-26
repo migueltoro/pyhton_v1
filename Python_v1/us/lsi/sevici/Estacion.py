@@ -45,7 +45,7 @@ class Estacion:
     def nombre_compuesto(self) -> str:
         return '{0}_{1}'.format(self.numero,self.name)
     
-    def __str__(self):
+    def __str__(self)->str:
         return '{0:3d} {1:>35s} {2:2d} {3:2d} {4:2d} {5:>40s}'.format(self.numero,self.name,self.slots,self.empty_slots,self.free_bikes,str(self.ubicacion))
 
 if __name__ == '__main__':

@@ -63,7 +63,7 @@ class Vuelo:
     def hora_salida(self)->time: 
         return self.fecha.time();
 
-    def __str__(self):
+    def __str__(self)->str:
         return f'{self.codigo},{self.fecha.strftime("%Y-%m-%d %H:%M:%S")},{self.num_pasajeros}'
 
 if __name__ == '__main__':

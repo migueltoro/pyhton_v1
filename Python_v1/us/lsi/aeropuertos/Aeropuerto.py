@@ -27,7 +27,7 @@ class Aeropuerto:
     def of(codigo: str, ciudad: str, pais:str, nombre:str) -> Aeropuerto:
         return Aeropuerto(codigo,ciudad,pais,nombre)
     
-    def __str__(self):
+    def __str__(self)->str:
         return f'({self.codigo},{self.ciudad},{self.pais},{self.nombre})'
 
 if __name__ == '__main__':

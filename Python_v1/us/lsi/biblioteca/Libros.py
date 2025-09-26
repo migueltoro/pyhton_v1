@@ -42,7 +42,7 @@ class Libros:
     def libros_de_autor(self, autor:str) -> set[Libro]:
         return {lb for lb in self.__libros if lb.autor==autor}
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__libros)
         return f'Libros\n\t{txt}'
 

@@ -39,7 +39,7 @@ class Prestamos:
     def algun_ejemplar_prestado(self, isbn:str) -> bool:    
         return any([isbn==p.isbn for p in self.__prestamos])
     
-    def __str__(self):
+    def __str__(self)->str:
         txt:str = "\n\t".join(str(a) for a in self.__prestamos)
         return f'Prestamos\n\t{txt}'
 

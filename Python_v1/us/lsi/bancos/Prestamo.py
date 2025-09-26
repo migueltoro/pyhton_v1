@@ -43,5 +43,5 @@ class Prestamo:
         meses:int = self.duracion%12
         return (self.fecha_comienzo+relativedelta(years=años,months=meses)).date()
      
-    def __str__(self):
+    def __str__(self)->str:
         return f'{self.dni_cliente},{self.fecha_comienzo.strftime("%d-%m-%Y")},{self.cantidad}' 

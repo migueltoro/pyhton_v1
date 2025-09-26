@@ -45,7 +45,7 @@ class VuelosProgramados:
     def remove_vuelo(self,v:VueloProgramado)->None:
         self.__vuelos_programados.remove(v)
         
-    def __str__(self):
+    def __str__(self)->str:
         txt = "\n\t".join(str(a) for a in self.__vuelos_programados)
         return f'VuelosProgramados\n\t{txt}'
 

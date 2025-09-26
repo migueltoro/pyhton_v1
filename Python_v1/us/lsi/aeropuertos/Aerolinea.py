@@ -24,7 +24,7 @@ class Aerolinea:
         nombre: str = campos[1].strip()
         return Aerolinea.of(codigo,nombre)
     
-    def __str__(self):
+    def __str__(self)->str:
         return f'({self.codigo},{self.nombre})'
 
 if __name__ == '__main__':

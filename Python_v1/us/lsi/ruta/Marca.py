@@ -8,11 +8,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import time,datetime
 from us.lsi.coordenadas.Coordenadas3D import Coordenadas3D
+from us.lsi.tools.Utils import all_not_None
 
 @dataclass(frozen=True,order=True)
 class Marca:
     tiempo: time
     coordenadas: Coordenadas3D
+    
+    def __post_init__(self) -> None:
+        assert all_not_None(self.tiempo,self.coordenadas), 'Ningun atributo puede ser None'
     
     @staticmethod 
     def of(tiempo:time,latitud:float,longitud:float,altitud:float)->Marca:
@@ -41,7 +45,7 @@ class Marca:
     def distancia(self,other):
         return self.coordenadas.distancia(other.coordenadas)
     
-    def __str__(self):
+    def __str__(self)->str:
         return '({0},{1:>20},{2:>20},{3:>20})'.format(self.tiempo.strftime("%H:%M:%S"),
                                                       self.latitud,
                                                       self.longitud,

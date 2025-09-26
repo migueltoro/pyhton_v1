@@ -34,7 +34,7 @@ class Segmento2D(Objeto2D):
     
     @property
     def modulo(self) -> float:        
-        return self.p1.distancia(self.p2)
+        return self.p1.distancia_a(self.p2)
 
     def rota(self,p:Punto2D,angulo) -> Segmento2D:
         return Segmento2D.of(self.p1.rota(p,angulo),self.p2.rota(p,angulo))
