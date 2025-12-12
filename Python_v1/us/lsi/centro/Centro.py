@@ -14,9 +14,10 @@ from us.lsi.centro.Asignaciones import Asignaciones
 from us.lsi.centro.Grupo import Grupo
 from us.lsi.tools.File import root_project, absolute_path
 
+
 class Centro:
     
-    centro = None
+    __centro = None
 
     def __init__(self, alumnos:Alumnos,profesores:Profesores,asignaturas:Asignaturas,\
             matriculas:Matriculas, \
@@ -34,7 +35,7 @@ class Centro:
 
     @staticmethod
     def of(root:str=root_project())->Centro:
-        if Centro.centro is None:
+        if Centro.__centro is None:
             fichero_alumnos:str=absolute_path('centro/alumnos.txt',root)
             fichero_profesores:str=absolute_path('centro/profesores.txt',root)
             fichero_asignaturas:str=absolute_path('centro/asignaturas.txt',root)
@@ -45,8 +46,8 @@ class Centro:
             asignaturas:Asignaturas = Asignaturas.of(fichero_asignaturas)
             matriculas:Matriculas = Matriculas.of(fichero_matriculas)
             asignaciones: Asignaciones = Asignaciones.of(fichero_asignaciones)
-            Centro.centro = Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
-        return Centro.centro
+            Centro.__centro = Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
+        return Centro.__centro
 
         
     @staticmethod
@@ -61,11 +62,16 @@ class Centro:
         matriculas:Matriculas = Matriculas.of(fichero_matriculas)
         asignaciones: Asignaciones = Asignaciones.of(fichero_asignaciones)
         return Centro(alumnos,profesores,asignaturas,matriculas,asignaciones)
+    
+    @staticmethod
+    def reset():
+        Centro.__centro = None
 
    
     @property
     def grupos_size(self):
         return len(self.grupos)
+       
     
 if __name__ == '__main__':
     c:Centro = Centro.of()

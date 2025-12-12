@@ -56,6 +56,10 @@ class Banco:
             Banco.__gestor_de_banco = Banco(nombre, codigo_postal,email,personas,empleados, cuentas, prestamos)
         return Banco.__gestor_de_banco
     
+    @staticmethod
+    def reset():
+        Banco.__gestor_de_banco = None
+    
     @property
     def nombre(self)->str:
         return self.__nombre

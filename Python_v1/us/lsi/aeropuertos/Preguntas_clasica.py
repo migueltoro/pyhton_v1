@@ -6,7 +6,6 @@ Created on 21 ago 2022
 
 from datetime import date,datetime
 from collections import OrderedDict
-from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
 from us.lsi.aeropuertos.Vuelo import Vuelo
 from us.lsi.aeropuertos.Espacio_aereo import Espacio_aereo
@@ -91,7 +90,7 @@ def primer_vuelo(destino:str,f:datetime)->Optional[str]:
     else:
         return None
 
-#6. Devuelve para los vuelos con menos de n plazas libres un Map que haga corresponder a cada ciudad
+#6. Devuelve para los vuelos con menos de n plazas libres un diccionario que haga corresponder a cada ciudad
 # destino la media de los precios de los vuelos a ese destino.
 
 def precio_medio(ls:list[float])->float:
@@ -116,7 +115,7 @@ def precios_medios(n_libres:int)->dict[str,float]:
         d[k] = precio_medio(r[k])    
     return d    
 
-#7. Devuelve un Map tal que dado un entero n haga corresponder
+#7. Devuelve un diccionario tal que dado un entero n haga corresponder
 # a cada mes la __ocupaciones_vuelos de los n destinos con los vuelos de mayor duracion.
 
 
@@ -150,7 +149,7 @@ def precio_medio_posterior(f:datetime)->float:
     return s/n
             
 
-#9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
+#9. Devuelve un diccionario que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.
 
  
@@ -186,17 +185,17 @@ def destino_con_mas_vuelos()->tuple[str,int]:
         raise ValueError("No hay vuelos")
     return (d,n)
 
-#11. Dado un entero m devuelve un conjunto ordenado con las duraciones 
+
+#11. Dado un entero m devuelve una lista sin repetición con las duraciones 
 # de todos los vuelos cuya duracion es mayor que m minutos.
 
-
-def duraciones(m:int)->SortedSet[int]:
+def duraciones(m:int)->list[int]:
     ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
-    r = []
+    r:set[int] = set()
     for v in ls:
         if v.vuelo_programado.duracion.total_seconds()/60 > m:
-            r.append(int(v.vuelo_programado.duracion.total_seconds()/60))
-    return SortedSet(sorted(r,reverse=True))
+            r.add(int(v.vuelo_programado.duracion.total_seconds()/60))
+    return sorted(r,reverse=True)
     
 
 #12. Dado un numero n devuelve un conjunto con los destinos de los vuelos de los vuelos con mayor duracion
@@ -246,7 +245,7 @@ def mas_de_n_vuelos(n:int)->list[str]:
         s.append(t[i][0])
     return s
 
-# 15. Devuelve un Map que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
+# 15. Devuelve un diccionario que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
 
 
 def porcentaje_a_destino()->dict[str,float]:
@@ -265,7 +264,7 @@ def porcentaje_a_destino()->dict[str,float]:
     return s
 
 
-# 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo de mas barato
+# 16. Devuelve un diccionario que haga corresponder a cada ciudad destino el vuelo de mas barato
 
 def min_precio(lv:list[VueloProgramado])->VueloProgramado:   
     vm:VueloProgramado = lv[0]
@@ -289,7 +288,7 @@ def mas_barato()->dict[str,VueloProgramado]:
             s[k]= min_precio(lv)
     return s
 
-# 17. Devuelve un Map que haga corresponder a cada destino el numero de fechas
+# 17. Devuelve un diccionario que haga corresponder a cada destino el numero de fechas
 # distintas en las que hay vuelos a ese destino.
 
 

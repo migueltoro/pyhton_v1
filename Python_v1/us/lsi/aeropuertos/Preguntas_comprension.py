@@ -6,10 +6,10 @@ Created on 21 ago 2022
 
 from datetime import date,datetime
 from collections import OrderedDict
-from sortedcontainers import SortedSet # type: ignore
+# from sortedcontainers import SortedSet # type: ignore
 from us.lsi.aeropuertos.VueloProgramado import VueloProgramado
 from us.lsi.aeropuertos.Vuelo import Vuelo
-from us.lsi.tools.Iterable import first, grouping_list,grouping_set,groups_size,grouping_reduce
+from us.lsi.tools.Iterable import first, grouping_list,grouping_set,groups_size,grouping_reduce, distinct
 from us.lsi.tools.Iterable import str_iter
 from us.lsi.tools.Dict import str_dict
 from collections import Counter
@@ -61,7 +61,7 @@ def primer_vuelo(destino:str,f:datetime)->Optional[str]:
             v.vuelo_programado.num_plazas > v.num_pasajeros and \
             v.fecha > f)
 
-#6. Devuelve para los vuelos con menos n de plazas libres un Map que haga corresponder a cada ciudad
+#6. Devuelve para los vuelos con menos n de plazas libres un diccionario que haga corresponder a cada ciudad
 # destino la media de los precios de los vuelos a ese destino.
 
 
@@ -71,7 +71,7 @@ def precios_medios(n:int)->dict[str,float]:
     r: dict[str,list[float]] = grouping_list(s,key=lambda x:x.vuelo_programado.ciudad_destino,value=lambda x:x.vuelo_programado.precio)
     return {c:mean(r[c]) for c in r.keys()}
 
-#7. Devuelve un Map tal que dado un entero n haga corresponder
+#7. Devuelve un diccionario tal que dado un entero n haga corresponder
 # a cada mes la __ocupaciones_vuelos de los n destinos con los vuelos de mayor duracion.
 
 def ldf(ls:list[VueloProgramado],n:int)->list[str]:
@@ -97,7 +97,7 @@ def precio_medio_posterior(f:datetime)->float:
     except StatisticsError:
         return 0.0
 
-#9. Devuelve un Map que haga corresponder a cada destino un conjunto con las
+#9. Devuelve un diccionario que haga corresponder a cada destino un conjunto con las
 # fechas de los vuelos a ese destino.
 
 
@@ -112,14 +112,14 @@ def destino_con_mas_vuelos()->str:
     ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     return Counter(v.vuelo_programado.ciudad_destino for v in ls).most_common(1)[0][0]
 
-#11. Dado un entero m devuelve un conjunto ordenado con las duraciones 
+#11. Dado un entero m devuelve una lista sin repetición con las duraciones 
 # de todos los vuelos cuya duracion es mayor que m minutos.
 
 
-def duraciones(m:int)->SortedSet[int]:
+def duraciones(m:int)->list[int]:
     ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     s:Iterable[int] = (int(v.vuelo_programado.duracion.total_seconds()/60) for v in ls if v.vuelo_programado.duracion.total_seconds()//60 > m)
-    return SortedSet(sorted(s,reverse=True))
+    return sorted(distinct(s),reverse=True)
 
 #12. Dado un numero n devuelve un conjunto con los n destinos de los vuelos con mayor duracion
 
@@ -145,7 +145,7 @@ def mas_de_n_vuelos(n:int)->list[str]:
     ls: list[Vuelo] = Espacio_aereo.of().vuelos.todos
     return [d for d,c in Counter(v.vuelo_programado.ciudad_destino for v in ls).items() if c>n]
 
-# 15. Devuelve un Map que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
+# 15. Devuelve un diccionario que relacion cada destino con el porcentaje de los vuelos del total que van a ese destino.
 
 
 def porcentaje_a_destino()->dict[str,float]:
@@ -155,7 +155,7 @@ def porcentaje_a_destino()->dict[str,float]:
     return {k:d[k]/n for k in d.keys()}
     
 
-# 16. Devuelve un Map que haga corresponder a cada ciudad destino el vuelo mas barato
+# 16. Devuelve un diccionario que haga corresponder a cada ciudad destino el vuelo mas barato
 
 
 def mas_barato()->dict[str,VueloProgramado]:
@@ -164,7 +164,7 @@ def mas_barato()->dict[str,VueloProgramado]:
                            op=lambda v1,v2:min((v1,v2),key=lambda v:v.precio),
                            value = lambda v:v.vuelo_programado)
 
-# 17. Devuelve un Map que haga corresponder a cada destino el numero de fechas
+# 17. Devuelve un diccionario que haga corresponder a cada destino el numero de fechas
 # distintas en las que hay vuelos a ese destino.
 
 def fechasDistintas()->OrderedDict[str,int]:

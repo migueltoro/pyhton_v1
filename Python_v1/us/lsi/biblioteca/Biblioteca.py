@@ -50,6 +50,10 @@ class Biblioteca:
             Biblioteca.__gestor_de_biblioteca = Biblioteca(nombre, codigo_postal,email,fu,fl,fe,fp)
         return Biblioteca.__gestor_de_biblioteca
         
+    @staticmethod
+    def reset():
+        Biblioteca.__gestor_de_biblioteca = None
+        
     @property
     def nombre(self:Biblioteca) -> str:
         return self.__nombre
