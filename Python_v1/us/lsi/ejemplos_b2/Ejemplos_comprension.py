@@ -7,11 +7,11 @@ Created on 18 sept 2022
 from us.lsi.tools.File import absolute_path, encoding
 from typing import Iterable
 
-def test0():
+def test0()->None:
     print(encoding(absolute_path('/resources/lin_quijote.txt')))
     
     
-def test1():
+def test1()->None:
     # Forma clásica
     sr: list[int] = []
     for x in range(3, 70):
@@ -28,7 +28,7 @@ def test1():
     s2: list[int] = [3,56,78,67,45]
     print(s2)
         
-def test2():
+def test2()->None:
     # Forma clásica
     sts: set[int] = set()
     for x in range(3, 70):
@@ -44,7 +44,7 @@ def test2():
     st2: set[int] = {3,56,78,67,45}
     print(st2)
     
-def test3():
+def test3()->None:
     # Forma clásica
     dtr: dict[int,int] = {}
     for x in range(3, 70):
@@ -61,7 +61,7 @@ def test3():
     dt2: dict[int,int] = {3:56,78:67,45:45}
     print(dt2)
     
-def test4():
+def test4()->None:
     # Forma clásica
     for x in range(3, 70):
         if x % 3 == 0:
@@ -88,13 +88,13 @@ Usos
 '''
 
     
-def test5():
+def test5()->None:
     nombres:list[str] = ["Miguel", "Ana", "Jose Maria", "Guillermo", "Maria", "Luisa"]
     ranking:dict[str,int] = {nombre: nombres.index(nombre) for nombre in nombres}
     print(f'ranking = {ranking}')
     
 
-def test6():  
+def test6()->None:  
     texto:str = "este es un pequeño texto para probar la siguiente definicion por comprension"
     iniciales = {p[0] for p in texto.split()}
     palabras = {p for p in texto.split()}
